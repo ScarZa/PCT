@@ -17,9 +17,9 @@ $series = array();
 $sql="select t.tB_id,t.vn,t.hn,concat(p.pname,p.fname,' ',p.lname) as fullname,w.name as ward,t.send_date
 from patient p 
 inner join jvl_transferBox t on p.hn=t.hn 
-left outer join an_stat a on a.vn = t.vn
-left outer join ward w on w.ward = a.ward
-where t.dep_res='009' and (t.status='0' or ISNULL(t.status))
+inner join an_stat a on a.vn = t.vn
+inner join ward w on w.ward = a.ward
+where t.dep_res='006' and (t.status='0' or ISNULL(t.status))
 order by t.tB_id desc"; 
 $conn_DB->imp_sql($sql);
     $num_risk = $conn_DB->select();

@@ -20,23 +20,18 @@ $sql="SELECT mr.matrix_id,mr.hn,mr.regdate,o.name,cs.clinic_member_status_name a
     WHEN mr.m_type = 1 THEN 'สุรา'
     WHEN mr.m_type = 2 THEN 'ยาเสพติด'
     ELSE 'สุรา+ยาเสพติด' END as type
-,dep.department
+,w.name as ward
 FROM patient p
 inner join jvlmatrix_register mr on mr.hn=p.hn
 inner join opduser o on o.doctorcode = mr.doctor
 inner join clinic_member_status cs on cs.clinic_member_status_id=mr.m_status
 inner join jvl_transferBox tb on tb.hn = mr.hn
-inner join kskdepartment dep on dep.depcode = tb.dep_send
+LEFT OUTER join an_stat a on a.vn = tb.vn
+LEFT OUTER join ward w on w.ward = a.ward
 ORDER BY mr.matrix_id desc"; 
 $conn_DB->imp_sql($sql);
     $num_risk = $conn_DB->select();
-
-    $sql2="SELECT od.name FROM opduser od 
-    inner join jvl_transferBox tb on tb.sender = od.loginname 
-    inner join jvlmatrix_register mr on tb.hn = mr.hn
-    ORDER BY mr.matrix_id desc"; 
-    $conn_DB->imp_sql($sql2);
-        $num_risk2 = $conn_DB->select();    
+ 
     $conv=new convers_encode();
     for($i=0;$i<count($num_risk);$i++){
     $series['matrix_id'] = $num_risk[$i]['matrix_id'];
@@ -47,7 +42,7 @@ $conn_DB->imp_sql($sql);
     $series['name']= $conv->tis620_to_utf8($num_risk[$i]['name']);
     //$series['type']= $num_risk[$i]['type'];
     //$series['department']= $conv->tis620_to_utf8($num_risk[$i]['department']);
-    $series['sender']= $conv->tis620_to_utf8($num_risk2[$i]['name']);
+    $series['ward']= $conv->tis620_to_utf8($num_risk[$i]['ward']);
     array_push($rslt, $series);    
     }
     //print_r($rslt);

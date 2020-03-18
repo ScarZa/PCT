@@ -21,14 +21,14 @@ if($_SESSION['status_user']=='ADMIN'){
 }else{
     $code ="where t.dep_send = '".$_SESSION['depcode']."'";
 }
-$sql="select t.tB_id,t.hn,concat(p.pname,p.fname,' ',p.lname) as fullname,t.send_date,od.name
+$sql="select t.tB_id,t.hn,concat(p.pname,p.fname,' ',p.lname) as fullname,t.send_date,dep.department
 ,CASE
     WHEN t.status = 'N' THEN 'ไม่รับเคส'
     WHEN t.status = 'Y' THEN 'รับเคสแล้ว'
     ELSE 'อยู่ระหว่างดำเนินการ' END as status
 from patient p 
 inner join jvl_transferBox t on p.hn=t.hn 
-inner join opduser od on od.loginname = t.sender
+inner join kskdepartment dep on dep.depcode = t.dep_res
 $code
 order by t.tB_id desc"; 
 $conn_DB->imp_sql($sql);
@@ -39,7 +39,7 @@ $conn_DB->imp_sql($sql);
     $series['hn'] = $num_risk[$i]['hn'];
     $series['send_date'] = DateThai1($num_risk[$i]['send_date']);
     $series['fullname'] = $conv->tis620_to_utf8($num_risk[$i]['fullname']);
-    $series['name']= $conv->tis620_to_utf8($num_risk[$i]['name']);
+    $series['department']= $conv->tis620_to_utf8($num_risk[$i]['department']);
     $series['status']= $num_risk[$i]['status'];
     array_push($rslt, $series);    
     }

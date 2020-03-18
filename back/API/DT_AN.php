@@ -14,8 +14,16 @@ $conn_DB->conn_PDO();
 set_time_limit(0);
 $rslt = array();
 $series = array();
+$data = isset($_POST['data1'])?$_POST['data1']:(isset($_GET['data1'])?$_GET['data1']:'');
+if(!empty($data)){
+    $code = "WHERE a.ward ='".$data."'";
+}else{
+    $code ='';
+}
+
 $sql="select a.an,a.hn,a.regdate,p.cid,CONCAT(p.pname,p.fname,' ',p.lname)fullname,p.informaddr from an_stat a 
 inner join patient p on a.hn=p.hn and ISNULL(a.dchdate)
+".$code."
 order by a.an desc"; 
 $conn_DB->imp_sql($sql);
     $num_risk = $conn_DB->select();

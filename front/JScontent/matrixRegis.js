@@ -21,6 +21,11 @@ function MatrixRegis(content, id = null) {
         var method = "confirm_Phar";
         var process = "prcPharAPI.php";
         var popup_ = "Phar_Regis.html"      
+    }else if($.cookie("dep")=='006'){
+        var title = " ลงทะเบียนนักจิตวิทยา";
+        var method = "confirm_Phy";
+        var process = "prcPhyAPI.php";
+        var popup_ = "Phy_Regis.html"      
     }
     var subtitle = "แบบลงทะเบียน";
     //$("li#page").empty().text(title)
@@ -47,7 +52,7 @@ function MatrixRegis(content, id = null) {
         $.getJSON('../back/API/detail_CCpatientAPI.php',{data : idvn.data},function (data) {console.log(data);
         $("#P-data").append($("<div class='col-lg-12 row'><div class='row col-lg-6'><span><label class='col-form-label'>HN : "+data[0].hn+"<br>เลขบัตรประชาชน : "+data[0].cid+"<br>ชื่อ-สกุล :"+data[0].fullname
         +"<br>ที่อยู่ : "+data[0].informaddr+"<br>วันเกิด : "+data[0].birthday+" สถานะภาพ : "+data[0].mrname+"<br>การวินิจฉัย : "+data[0].pdx+" "+data[0].dx0
-        +" "+data[0].dx1+" "+data[0].dx2+" "+data[0].dx3+" "+data[0].dx4+" "+data[0].dx5+" <br>ส่งให้ : "+data[0].department+" <br>ส่งมาเพื่อ : "+data[0].cons_name+" <br>สาเหตุที่ส่ง/อาการ/ความจำเป็น : "+data[0].cause
+        +" "+data[0].dx1+" "+data[0].dx2+" "+data[0].dx3+" "+data[0].dx4+" "+data[0].dx5+"<br><b style='color: red'>Admit ที่ : "+data[0].ward+"</b> <br>ส่งให้ : "+data[0].department+" <br>ส่งมาเพื่อ : "+data[0].cons_name+" <br>สาเหตุที่ส่ง/อาการ/ความจำเป็น : "+data[0].cause
         +"<br>แพทย์เจ้าของไข้ : "+data[0].doctor_name+"<br>ผู้ส่งบำบัด : "+data[0].sender_name+"</label></span></div> "
         +"<div class='col-lg-6 block'> <img src='../back/API/show_image.php?hn="+data[0].hn+"' width='230' /></div></div><br>")
         ,$("<div class='form-group row'><div class='col-sm-2'><label><input class='ace' type='radio' name='status' value='Y'checked required><span class='lbl'> ลงทะเบียน</span></label></div><div class='col-sm-2'><label><input class='ace' type='radio' name='status' value='N' required><span class='lbl'> ส่งคืน</span></label></div></div>")
@@ -96,6 +101,8 @@ $("#cgi-post").append($("<input type='hidden' name='hn' value='"+data[0].hn+"'>"
                     TBCommuRegis('#page-content');
                 }else if($.cookie("dep")=='018'){
                     TBPharRegis('#page-content');
+                }else if($.cookie("dep")=='006'){
+                    TBPhyRegis('#page-content');
                 }
             }else if(result.check=='Y'){
                 $("#page-content").empty();
@@ -108,6 +115,8 @@ $("#cgi-post").append($("<input type='hidden' name='hn' value='"+data[0].hn+"'>"
                     TBCommuRegis('#page-content');                    
                 }else if($.cookie("dep")=='018'){
                     TBPharRegis('#page-content');
+                }else if($.cookie("dep")=='006'){
+                    TBPhyRegis('#page-content');
                 }
                 
             }

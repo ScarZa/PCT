@@ -23,34 +23,98 @@ function InterviewIPD(content, id = null) {
         +"</div></form>"));
         var idvn = id; 
         $.getJSON('../back/API/patient_detail.php',{data:idvn.data},function (data) { 
-        $("#interviewfrm").append($("<div class='col-lg-12 row'><label><h4>ชื่อผู้ป่วย <b>"+data[0].fullname+"</b> อายุ <b>"+data[0].age+"</b> ปี  HN <b>"+data[0].hn+"</b>  AN <b>"+data[0].an+"</b>  Admit ครั้งที่ <b>"+data[0].admit+"</b></h4></label></div><p>")
-                                ,$("<div class='col-lg-12 row'><div class='col-lg-6 row'><input type='text' id=biographer' name='biographer' placeholder='ชื่อผู้ให้ประวัติ' class='col-xs-12 col-sm-12' /></div><div class='col-lg-6'><input type='text' id='concerned' name='concerned' placeholder='ความเกี่ยวข้องกับผู้ป่วย' class='col-xs-12 col-sm-12' /></div></div><p><p>")
-                                //,$("<div class='form-group row'><label class='col-sm-5 col-form-label'><b>ที่อยู่ (สามารถติดต่อได้) ของผู้ป่วย </b></label></div>")
-                                ,$("<div class='col-lg-12 row'>&nbsp;</div><p></p><textarea name='patient_add' id='patient_add' class='form-control' placeholder='ที่อยู่ (สามารถติดต่อได้) ของผู้ป่วย'></textarea><p>")
+        $("#interviewfrm").append($("<div class='col-lg-12 row'><div class='col-lg-10 row'><label><h4><p>ชื่อผู้ป่วย : <b>"+data[0].fullname+"</b> &nbsp;&nbsp; อายุ : <b>"+data[0].age+"</b> ปี &nbsp;&nbsp; HN : <b>"+data[0].hn+"</b> &nbsp;&nbsp; AN : <b>"+data[0].an+"</b> &nbsp;&nbsp; Admit ครั้งที่ : <b>"+data[0].admit+"</b></p><p>"
+                                    +"รับวันที่ : <b>"+data[0].admitdate+"</b> &nbsp;&nbsp; เวลา : <b>"+data[0].regtime+"</b> น. &nbsp;&nbsp; จำนวนวันที่ผู้ป่วยอยู่บ้าน : <b>"+data[0].lastvisit+"</b> วัน</p><p>เพศ : <b>"+data[0].sex+"</b> &nbsp;&nbsp; สถานภาพสมรส : <b>"+data[0].marry_name+"</b> &nbsp;&nbsp; วันเกิด  : <b>"+data[0].birthday+"</b> &nbsp;&nbsp; สัญชาติ : <b>"+data[0].nation_name+"</b></p><p>"
+                                    +"ศาสนา : <b>"+data[0].religion_name+"</b> &nbsp;&nbsp; การศึกษา : <b>"+data[0].edu_name+"</b> &nbsp;&nbsp; อาชีพ : <b>"+data[0].occ_name+"</b></p><p>เลขประจำตัวประชาชน : <b>"+data[0].cid+"</b> &nbsp;&nbsp; สิทธิการรักษา : <b>"+data[0].ptname+"</b></p></h4></label></div><div class='col-lg-2 block'> <img src='../back/API/show_image.php?hn="+data[0].hn+"' width='125' /></div></div><p>")
+                                    ,$("<div class='col-lg-12 row'>"
+                                    +"<div class='form-group col-lg-5 row'><label class='col-sm-3 control-label no-padding-left' for='biographer'>ชื่อผู้ให้ประวัติ </label>"
+                                    +"<div class='col-sm-9 row'><input class='input-sm' type='text' id='biographer' name='biographer' placeholder='ชื่อผู้ให้ประวัติ'/></div> "
+                                    +"</div>"
+                                    +"<div class='form-group col-lg-5 row'><label class='col-sm-3 control-label no-padding-right' for='relative'>เกี่ยวข้องเป็น </label>"
+                                    +"<div class='col-sm-9 row'><input class='input-sm' type='text' id='relative' name='relative'  placeholder='ความเกี่ยวข้องกับผู้ป่วย' /></div> "
+                                    +"</div>"
+                                +"</div>")
+                                ,$("<div class='form-group row'><label class='col-sm-5 col-form-label'><b>ที่อยู่ (สามารถติดต่อได้) ของผู้ป่วย </b></label></div>")
+                                ,$("<textarea name='patient_add' id='patient_add' class='form-control' placeholder='ที่อยู่ (สามารถติดต่อได้) ของผู้ป่วย'>"+data[0].fulladdressname+"</textarea><p>")
                                 ,$("<div class='col-lg-12 row'>"
-                                    //+"<div class='form-group col-lg-5 row'><label class='col-sm-4 control-label no-padding-left' for='tel'>หมายเลขโทรศัพท์</label>"
-                                    +"<div class='col-sm-3 row'><input class='input-sm' type='text' id='tel' name='tel' placeholder='หมายเลขโทรศัพท์' /></div> "
+                                    +"<div class='form-group col-lg-5 row'><label class='col-sm-5 control-label no-padding-left' for='tel0'>หมายเลขโทรศัพท์ติดต่อได้</label>"
+                                    +"<div class='col-sm-7 row'><input class='input-sm' type='text' id='tel0' name='tel0' value='"+data[0].hometel+"' placeholder='หมายเลขโทรศัพท์' /></div> "
+                                    +"</div>"
+                                +"</div>")
+                                ,$("<div class='col-lg-12 row'>"
+                                    +"<div class='form-group col-lg-4 row'><label class='col-sm-5 control-label no-padding-left' for='tel1'>หมายเลขโทรศัพท์ 1</label>"
+                                    +"<div class='col-sm-7 row'><input class='input-sm' type='text' id='tel1' name='tel1' value='"+data[0].informtel+"' placeholder='หมายเลขโทรศัพท์' /></div> "
+                                    +"</div>"
+                                    +"<div class='form-group col-lg-4 row'><label class='col-sm-4 control-label no-padding-right' for='relative1'>เกี่ยวข้องเป็น </label>"
+                                    +"<div class='col-sm-8 row'><input class='input-sm' type='text' id='relative1' name='relative1'  value='ญาติ' placeholder='ความเกี่ยวข้องกับผู้ป่วย' /></div> "
+                                    +"</div>"
+                                +"</div>")
+                                ,$("<div class='col-lg-12 row'>"
+                                    +"<div class='form-group col-lg-4 row'><label class='col-sm-5 control-label no-padding-left' for='tel2'>หมายเลขโทรศัพท์ 2</label>"
+                                    +"<div class='col-sm-7 row'><input class='input-sm' type='text' id='tel2' name='tel2' placeholder='หมายเลขโทรศัพท์' /></div> "
+                                    +"</div>"
+                                    +"<div class='form-group col-lg-4 row'><label class='col-sm-4 control-label no-padding-right' for='relative2'>เกี่ยวข้องเป็น </label>"
+                                    +"<div class='col-sm-8 row'><input class='input-sm' type='text' id='relative2' name='relative2' placeholder='ความเกี่ยวข้องกับผู้ป่วย' /></div> "
+                                    +"</div>"
+                                +"</div>")    
+                                ,$("<div class='form-group row'><label class='col-sm-5 col-form-label'><b>บิดา </b> <input class='input-sm' type='text' name='father_name' value='"+data[0].fathername+"' placeholder='ชื่อบิดา' required></label><div class='col-sm-2'><label><input class='ace' type='radio' name='father_chk' value='Y' checked required><span class='lbl'> มีชีวิตอยู่</span></label></div><div class='col-sm-2'><label><input class='ace' type='radio' name='father_chk' value='N' required><span class='lbl'> เสียชีวิต</span></label></div></div>")    
+                                ,$("<div id='father' class='row'><div class='col-lg-12 row'><div class='form-horizontal' role='form'>"
+                                    +"<div class='form-group col-lg-4 row'><label class='col-sm-6 control-label no-padding-right' for='father_age'>อายุ </label>"
+                                    +"<div class='col-sm-5'><input class='input-sm' type='text' id='father_age' name='father_age' placeholder='' /></div></div>"
+                                    +"<div class='form-group col-lg-4 row'><label class='col-sm-3 control-label no-padding-right' for='father_income'>อาชีพ </label>"
+                                    +"<div class='col-sm-5'><input class='input-sm' type='text' id='father_income' name='father_income' placeholder='' /></div></div>"
+                                    +"</div></div></div>")
+                                ,$("<div class='form-group row'><label class='col-sm-5 col-form-label'><b>มารดา </b>  <input class='input-sm' type='text' name='mother_name' value='"+data[0].mothername+"' placeholder='ชื่อมารดา' required></label><div class='col-sm-2'><label><input class='ace' type='radio' name='mother_chk' value='Y' checked required><span class='lbl'> มีชีวิตอยู่</span></label></div><div class='col-sm-2'><label><input class='ace' type='radio' name='mother_chk' value='N' required><span class='lbl'> เสียชีวิต</span></label></div></div>")    
+                                ,$("<div id='mother' class='row'><div class='col-lg-12 row'><div class='form-horizontal' role='form'>"
+                                    +"<div class='form-group col-lg-4 row'><label class='col-sm-6 control-label no-padding-right' for='mother_age'>อายุ </label>"
+                                    +"<div class='col-sm-5'><input class='input-sm' type='text' id='mother_age' name='mother_age' placeholder='' /></div></div>"
+                                    +"<div class='form-group col-lg-4 row'><label class='col-sm-3 control-label no-padding-right' for='mother_income'>อาชีพ </label>"
+                                    +"<div class='col-sm-5'><input class='input-sm' type='text' id='mother_income' name='mother_income' placeholder='' /></div></div>"
+                                    +"</div></div></div>")
+                                ,$("<div class='form-group row'><label class='col-sm-4 col-form-label'><b>การสมรส </b></label>"
+                                    +"<div class='col-sm-2'><label><input class='ace' type='radio' name='marry_chk' value='0'checked required><span class='lbl'> โสด</span></label></div>"
+                                    +"<div class='col-sm-2'><label><input class='ace' type='radio' name='marry_chk' value='1' required><span class='lbl'> หม้าย</span></label></div>"
+                                    +"<div class='col-sm-2'><label><input class='ace' type='radio' name='marry_chk' value='2' required><span class='lbl'> หย่า/แยก</span></label></div>"
+                                    +"<div class='col-sm-2'><label><input class='ace' type='radio' name='marry_chk' value='3' required><span class='lbl'> คู่</span></label></div></div>")
+                                ,$("<div id='marry' class='row'>"
+                                    //+"<div class='col-lg-12 row'><div class='form-horizontal' role='form'>"
+                                    // +"<div class='form-group col-lg-4 row'><label class='col-sm-3 control-label no-padding-right' for='marry_age'>คู่สมรส อายุ </label>"
+                                    // +"<div class='col-sm-8'><input class='input-sm' type='text' id='marry_age' name='marry_age' placeholder='' /></div></div>"
+                                    // +"<div class='form-group col-lg-3 row'><label class='col-sm-3 control-label no-padding-right' for='marry_career>อาชีพ </label>"
+                                    // +"<div class='col-sm-8'><input class='input-sm' type='text' id='marry_career' name='marry_career' placeholder='' /></div></div>"
+                                    // +"<div class='form-group col-lg-5 row'><label class='col-sm-3 control-label no-padding-right' for='marry_income'>รายได้คู่สมรส/ปี </label>"
+                                    // +"<div class='col-sm-8'><input class='input-sm' type='text' id='marry_income' name='marry_income' placeholder='' /></div></div>"
                                     //+"</div>"
-                                    //+"<div class='form-group col-lg-5 row'><label class='col-sm-4 control-label no-padding-right' for='father_income'>หมายเลขโทรศัพท์ญาติ </label>"
-                                    +"<div class='col-sm-3 row'><input class='input-sm' type='text' id='relative_tel' name='relative_tel' placeholder='หมายเลขโทรศัพท์ญาติ' /></div> "
-                                    //+"</div>"
-                                    //+"<div class='form-group col-lg-2 row'><label class='col-sm-4 control-label no-padding-right' for='father_income'>ตำหนิ </label>"
-                                    +"<div class='col-sm-3 row'><input class='input-sm' type='text' id='earmark' name='earmark' placeholder='ตำหนิ' /></div>"
-                                    //+"</div>"
-                                    +"</div><p></p><div class='col-lg-12 row'>&nbsp;</div>")
-                                    ,$("<div class='col-lg-10 row'><div class='row col-lg-2'><input type='text' name='bw' class='form-control' placeholder='น้ำหนัก (ก.ก.)' required></div> <div class='col-lg-2'> <input type='text' name='height' class='form-control' placeholder='ส่วนสูง (ซ.ม.)' required></div>"
+                                    +"<div class='col-lg-12 row'><div class='form-horizontal' role='form'>"
+                                    +"<div class='form-group col-lg-3 row'><label class='col-sm-5 control-label no-padding-right' for='spouse_name'>คู่สมรสชื่อ </label>"
+                                    +"<div class='col-sm-5'><input class='input-sm' type='text' id='spouse_name' name='spouse_name' placeholder='' /></div></div>"
+                                    +"<div class='form-group col-lg-4 row'><label class='col-sm-5 control-label no-padding-right' for='child'>จำนวนบุตร </label>"
+                                    +"<div class='col-sm-5'><input class='input-sm' type='text' id='child' name='child' placeholder='' /></div></div>"
+                                    +"</div></div></div><p>")
+                                ,$("<div class='col-lg-12 row'>"
+                                    +"<div class='form-group col-lg-2 row'><label class='col-sm-4 control-label no-padding-left' for='earmark'>ตำหนิ </label>"
+                                    +"<div class='col-sm-8 row'><input class='input-sm' type='text' id='earmark' name='earmark' placeholder='ตำหนิ' /></div>"
+                                    +"</div>"
+                                +"</div>")
+                                    ,$("<div class='col-lg-10 row'><div class='row col-lg-2'><input type='text' name='bw' class='form-control' value='"+data[0].bw+"' placeholder='น้ำหนัก (ก.ก.)' required></div> <div class='col-lg-2'> <input type='text' name='height' class='form-control' value='"+data[0].height+"' placeholder='ส่วนสูง (ซ.ม.)' required></div>"
                                     +"<div class='col-lg-1'><input type='button' class='btn btn-sm btn-success' id='BMIcal' value='คำนวณ'></div> <div class='col-lg-2'> <input type='text' name='bmi' class='form-control' placeholder='BMI' required></div><div class='col-lg-3'> <b id='BMIresult'></b></div></div><div class='col-lg-12 row'>&nbsp;</div>")
                                     
                                 ,$("<div class='form-group row'><label class='col-sm-5 col-form-label'><b>อาการสำคัญ (CC) </b></label></div>")
                                 ,$("<textarea name='CC' id='CC' class='form-control' placeholder='อาการสำคัญ (CC)'>"+data[0].cc+"</textarea><p>")
                                 ,$("<div class='form-group row'><label class='col-sm-5 col-form-label'><b>ประวัติความเจ็บป่วยปัจจุบัน (PI) </b></label></div>")
                                 ,$("<textarea name='HPI' id='HPI' class='form-control' placeholder='ประวัติความเจ็บป่วยปัจจุบัน (PI)'>"+data[0].hpi+"</textarea><p>")
-                                ,$("<div class='form-group row'><label class='col-sm-5 col-form-label'><b>ประวัติความเจ็บป่วยในอดีต </b></label></div>")
-                                ,$("<textarea name='illness' id='illness' class='form-control' placeholder='ประวัติความเจ็บป่วยในอดีต'>"+data[0].pmh+"</textarea><p>")
-                                ,$("<div class=''><div class='alert alert-info'><div class='form-group'><label class='col-sm-5 col-form-label row'><b>โรคประจำตัว </b></label><div class='col-sm-2'><label><input class='ace' type='radio' name='disease_chk' value='N'checked required><span class='lbl'> ปฏิเสธ</span></label></div><div class='col-sm-2'><label><input class='ace' type='radio' name='disease_chk' value='Y' required><span class='lbl'> มี</span></label></div></div>"
-                                    +"<div class='form-group'><textarea name='disease' id='disease' class='form-control' placeholder='รายละเอียดโรคประจำตัว'></textarea></div></div></div><p>")
+                                ,$("<div class='form-group row'><label class='col-sm-5 col-form-label'><b>ประวัติความเจ็บป่วยทางจิตเวชในอดีต </b></label></div>")
+                                ,$("<textarea name='illness' id='illness' class='form-control' placeholder='ประวัติความเจ็บป่วยทางจิตเวชในอดีต'>"+data[0].pmh+"</textarea><p>")
+                                ,$("<div class=''><div class='alert alert-info'><div class='form-group'><label class='col-sm-5 col-form-label row'><b>โรคประจำตัวหรืออาการทางกายในปัจจุบัน </b></label><div class='col-sm-2'><label><input class='ace' type='radio' name='disease_chk' value='N'checked required><span class='lbl'> ปฏิเสธ</span></label></div><div class='col-sm-2'><label><input class='ace' type='radio' name='disease_chk' value='Y' required><span class='lbl'> มี</span></label></div></div>"
+                                    +"<div class='form-group'><textarea name='disease' id='disease' class='form-control' placeholder='รายละเอียดโรคประจำตัว'></textarea></div>"
+                                    +"<div class='form-group' id='heal_0'><div class='col-sm-2'><input class='ace' type='radio' name='heal_chk' value='N'checked required><span class='lbl'> ไม่ได้รักษา</span></label></div><div class='col-sm-2'><label><input class='ace' type='radio' name='heal_chk' value='Y' required><span class='lbl'> อยู่ระหว่างรักษา</span></label></div></div>"
+                                    +"<div class='form-group'><textarea name='heal' id='heal' class='form-control' placeholder='ระบุชื่อยา/สถานพยาบาล'></textarea></div><p></div></div><p>")
                                 ,$("<div class=''><div class='alert alert-info'><div class='form-group'><label class='col-sm-5 col-form-label row'><b>อุบัติเหตุทางสมอง/การผ่าตัด </b></label><div class='col-sm-2'><label><input class='ace' type='radio' name='surgery_chk' value='N'checked required><span class='lbl'> ปฏิเสธ</span></label></div><div class='col-sm-2'><label><input class='ace' type='radio' name='surgery_chk' value='Y' required><span class='lbl'> มี</span></label></div></div>"
                                     +"<div class='form-group'><textarea name='surgery' id='surgery' class='form-control' placeholder='รายละเอียดอุบัติเหตุทางสมอง/การผ่าตัด'></textarea></div></div></div><p>")
+                                ,$("<div class='form-group row'><label class='col-sm-5 col-form-label'><b>พกพาอาวุธ </b></label><div class='col-sm-2'><label><input class='ace' type='radio' name='weapon_chk' value='N'checked required><span class='lbl'> ปฏิเสธ</span></label></div><div class='col-sm-2'><label><input class='ace' type='radio' name='weapon_chk' value='Y' required><span class='lbl'> มี</span></label></div></div>")
+                                ,$("<textarea name='weapon' id='weapon' class='form-control' placeholder='รายละเอียดการพกพาอาวุธ'></textarea><p>")
+                                ,$("<div class='form-group row'><label class='col-sm-5 col-form-label'><b>การจำกัดพฤติกรรม </b></label><div class='col-sm-2'><label><input class='ace' type='radio' name='detain_chk' value='N'checked required><span class='lbl'> ปฏิเสธ</span></label></div><div class='col-sm-2'><label><input class='ace' type='radio' name='detain_chk' value='Y' required><span class='lbl'> มี</span></label></div></div>")
+                                ,$("<textarea name='detain' id='detain' class='form-control' placeholder='รายละเอียดการจำกัดพฤติกรรม'></textarea><p>")
                                 ,$("<div class='form-group row'><label class='col-sm-5 col-form-label'><b>ประว้ติการชัก </b></label><div class='col-sm-2'><label><input class='ace' type='radio' name='whip_chk' value='N'checked required><span class='lbl'> ปฏิเสธ</span></label></div><div class='col-sm-2'><label><input class='ace' type='radio' name='whip_chk' value='Y' required><span class='lbl'> มี</span></label></div></div>")
                                 ,$("<textarea name='whip' id='whip' class='form-control' placeholder='รายละเอียดประว้ติการชัก'></textarea><p>")
                                 ,$("<div class='form-group row'><label class='col-sm-5 col-form-label'><b>บาดแผล </b></label><div class='col-sm-2'><label><input class='ace' type='radio' name='wound_chk' value='N'checked required><span class='lbl'> ปฏิเสธ</span></label></div><div class='col-sm-2'><label><input class='ace' type='radio' name='wound_chk' value='Y' required><span class='lbl'> มี</span></label></div></div>")
@@ -117,40 +181,7 @@ function InterviewIPD(content, id = null) {
                                 //     +"<div class='form-group col-lg-4 row'><label class='col-sm-3 control-label no-padding-right' for='income'><b>รายได้/ปี </b></label>"
                                 //     +"<div class='col-sm-5'><input class='input-sm' type='text' id='income' placeholder='' /></div></div>"
                                 //     +"</div></div></div>")
-                                ,$("<div class='form-group row'><label class='col-sm-5 col-form-label'><b>บิดา </b> <input class='input-sm' type='text' name='father_name' placeholder='ชื่อบิดา' required></label><div class='col-sm-2'><label><input class='ace' type='radio' name='father_chk' value='Y' checked required><span class='lbl'> มีชีวิตอยู่</span></label></div><div class='col-sm-2'><label><input class='ace' type='radio' name='father_chk' value='N' required><span class='lbl'> เสียชีวิต</span></label></div></div>")    
-                                ,$("<div id='father' class='row'><div class='col-lg-12 row'><div class='form-horizontal' role='form'>"
-                                    +"<div class='form-group col-lg-4 row'><label class='col-sm-6 control-label no-padding-right' for='father_age'>อายุ </label>"
-                                    +"<div class='col-sm-5'><input class='input-sm' type='text' id='father_age' name='father_age' placeholder='' /></div></div>"
-                                    +"<div class='form-group col-lg-4 row'><label class='col-sm-3 control-label no-padding-right' for='father_income'>อาชีพ </label>"
-                                    +"<div class='col-sm-5'><input class='input-sm' type='text' id='father_income' name='father_income' placeholder='' /></div></div>"
-                                    +"</div></div></div>")
-                                ,$("<div class='form-group row'><label class='col-sm-5 col-form-label'><b>มารดา </b>  <input class='input-sm' type='text' name='mother_name' placeholder='ชื่อมารดา' required></label><div class='col-sm-2'><label><input class='ace' type='radio' name='mother_chk' value='Y' checked required><span class='lbl'> มีชีวิตอยู่</span></label></div><div class='col-sm-2'><label><input class='ace' type='radio' name='mother_chk' value='N' required><span class='lbl'> เสียชีวิต</span></label></div></div>")    
-                                ,$("<div id='mother' class='row'><div class='col-lg-12 row'><div class='form-horizontal' role='form'>"
-                                    +"<div class='form-group col-lg-4 row'><label class='col-sm-6 control-label no-padding-right' for='mother_age'>อายุ </label>"
-                                    +"<div class='col-sm-5'><input class='input-sm' type='text' id='mother_age' name='mother_age' placeholder='' /></div></div>"
-                                    +"<div class='form-group col-lg-4 row'><label class='col-sm-3 control-label no-padding-right' for='mother_income'>อาชีพ </label>"
-                                    +"<div class='col-sm-5'><input class='input-sm' type='text' id='mother_income' name='mother_income' placeholder='' /></div></div>"
-                                    +"</div></div></div>")
-                                ,$("<div class='form-group row'><label class='col-sm-4 col-form-label'><b>การสมรส </b></label>"
-                                    +"<div class='col-sm-2'><label><input class='ace' type='radio' name='marry_chk' value='0'checked required><span class='lbl'> โสด</span></label></div>"
-                                    +"<div class='col-sm-2'><label><input class='ace' type='radio' name='marry_chk' value='1' required><span class='lbl'> หม้าย</span></label></div>"
-                                    +"<div class='col-sm-2'><label><input class='ace' type='radio' name='marry_chk' value='2' required><span class='lbl'> หย่า/แยก</span></label></div>"
-                                    +"<div class='col-sm-2'><label><input class='ace' type='radio' name='marry_chk' value='3' required><span class='lbl'> คู่</span></label></div></div>")
-                                ,$("<div id='marry' class='row'>"
-                                    //+"<div class='col-lg-12 row'><div class='form-horizontal' role='form'>"
-                                    // +"<div class='form-group col-lg-4 row'><label class='col-sm-3 control-label no-padding-right' for='marry_age'>คู่สมรส อายุ </label>"
-                                    // +"<div class='col-sm-8'><input class='input-sm' type='text' id='marry_age' name='marry_age' placeholder='' /></div></div>"
-                                    // +"<div class='form-group col-lg-3 row'><label class='col-sm-3 control-label no-padding-right' for='marry_career>อาชีพ </label>"
-                                    // +"<div class='col-sm-8'><input class='input-sm' type='text' id='marry_career' name='marry_career' placeholder='' /></div></div>"
-                                    // +"<div class='form-group col-lg-5 row'><label class='col-sm-3 control-label no-padding-right' for='marry_income'>รายได้คู่สมรส/ปี </label>"
-                                    // +"<div class='col-sm-8'><input class='input-sm' type='text' id='marry_income' name='marry_income' placeholder='' /></div></div>"
-                                    //+"</div>"
-                                    +"<div class='col-lg-12 row'><div class='form-horizontal' role='form'>"
-                                    // +"<div class='form-group col-lg-3 row'><label class='col-sm-5 control-label no-padding-right' for='marry_habit'>นิสัยคู่สมรส </label>"
-                                    // +"<div class='col-sm-5'><input class='input-sm' type='text' id='marry_habit' name='marry_habit' placeholder='' /></div></div>"
-                                    +"<div class='form-group col-lg-4 row'><label class='col-sm-5 control-label no-padding-right' for='child'>จำนวนบุตร </label>"
-                                    +"<div class='col-sm-5'><input class='input-sm' type='text' id='child' name='child' placeholder='' /></div></div>"
-                                    +"</div></div></div><p>")
+                                
                                 ,$("<div class='form-group row'><label class='col-sm-5 col-form-label'><b>ประวัติกรรมพันธุ์โรคทางจิตเวช </b></label><div class='col-sm-2'><label><input class='ace' type='radio' name='heredity_chk' value='N'checked required><span class='lbl'> ปฏิเสธ</span></label></div><div class='col-sm-2'><label><input class='ace' type='radio' name='heredity_chk' value='Y' required><span class='lbl'> มี</span></label></div></div>")
                                 ,$("<textarea name='heredity' id='heredity' class='form-control' placeholder='รายละเอียดประวัติกรรมพันธุ์โรคทางจิตเวช'></textarea><p>")
                                 ,$("<div class='form-group row'><label class='col-sm-5 col-form-label'><b>ประวัติการฆ่าตัวตัวตาย / ทำร้ายร่างตานเอง ( 3 เดือนย้อนหลัง) </b></label><div class='col-sm-2'><label><input class='ace' type='radio' name='Hurt_yourself_chk' value='N'checked required><span class='lbl'> ปฏิเสธ</span></label></div><div class='col-sm-2'><label><input class='ace' type='radio' name='Hurt_yourself_chk' value='Y' required><span class='lbl'> มี</span></label></div></div>")
@@ -177,9 +208,34 @@ function InterviewIPD(content, id = null) {
                                 +"<div class='col-sm-1'><label><input class='ace' type='checkbox' name='smi4_3' value='3'><span class='lbl'> 3</span></label></div><div class='col-sm-1'><label><input class='ace' type='checkbox' name='smi4_4' value='4'><span class='lbl'> 4</span></label></div></div>")
                                 ,$("<div class='form-group row'><label class='col-sm-2 col-form-label'><b>สรุปประเภทผู้ป่วย </b></label><div class='col-sm-1'><label><input class='ace' type='checkbox' name='typeP_1' value='1'><span class='lbl'> 3s</span></label></div><div class='col-sm-2'><label><input class='ace' type='checkbox' name='typeP_2' value='2'><span class='lbl'> เฝ้าระวังหลบหนี</span></label></div>"
                                 +"<div class='col-sm-2'><label><input class='ace' type='checkbox' name='typeP_3' value='3'><span class='lbl'> เฝ้าระวังฆ่าตัวตาย</span></label></div><div class='col-sm-2'><label><input class='ace' type='checkbox' name='typrP_4' value='4'><span class='lbl'> เฝ้าระวังอุบัติเหตุ</span></label></div><div class='col-sm-2'><label><input class='ace' type='checkbox' name='typrP_5' value='5'><span class='lbl'> เฝ้าระวังพฤติกรรมรุนแรง</span></label></div>"
-                                +"<div class='col-sm-2'><label><input class='ace' type='checkbox' name='typrP_6' value='6'><span class='lbl'> พรบ. 120 ยาเสพติด</span></label></div><div class='col-sm-1'><label><input class='ace' type='checkbox' name='typrP_7' value='7'><span class='lbl'> พรบ.สุรา</span></label></div></div>")
+                                +"<div class='col-sm-2'></div><div class='col-sm-2'><label><input class='ace' type='checkbox' name='typrP_6' value='6'><span class='lbl'> พรบ. 120 ยาเสพติด</span></label></div><div class='col-sm-1'><label><input class='ace' type='checkbox' name='typrP_7' value='7'><span class='lbl'> พรบ.สุรา</span></label></div></div>")
+                                ,$("<div class='form-group row'><label class='col-sm-5 col-form-label'><b>การประเมินสภาพร่างกายเบื้องต้น  </b></label></div>")
+                                ,$("<div class='col-lg-12'>"
+                                    +"<div class='form-group col-lg-6 row'><label class='col-sm-2 control-label no-padding-right' for='shape'>รูปร่าง</label>"
+                                    +"<div class='col-sm-10 row'><input class='input-sm  col-lg-12' type='text' id='shape' name='shape' placeholder='ลักษณะรูปร่าง' /></div> "
+                                    +"</div>"
+                                    +"<div class='form-group col-lg-6 row'><label class='col-sm-1 control-label no-padding-left' for='skin_color'> สีผิว</label>"
+                                    +"<div class='col-sm-11 row'><input class='input-sm col-lg-12' type='text' id='skin_color' name='skin_color' placeholder='สีผิว'/></div> "
+                                    +"</div>"
+                                    +"</div>")
+                                    ,$("<div class='col-lg-12'>"
+                                    +"<div class='form-group col-lg-6 row'><label class='col-sm-2 control-label no-padding-right' for='scab'>โรคผิวหนัง</label>"
+                                    +"<div class='col-sm-10 row'><input class='input-sm  col-lg-12' type='text' id='scab' name='scab' placeholder='ลักษณะโรคผิวหนัง' /></div> "
+                                    +"</div>"
+                                    +"<div class='form-group col-lg-6 row'><label class='col-sm-2 control-label no-padding-left' for='swelling'> อาการบวม</label>"
+                                    +"<div class='col-sm-10 row'><input class='input-sm col-lg-12' type='text' id='swelling' name='swelling' placeholder='อาการบวม'/></div> "
+                                    +"</div>"
+                                    +"</div>")
+                                    ,$("<div class='col-lg-12'>"
+                                    +"<div class='form-group col-lg-6 row'><label class='col-sm-3 control-label no-padding-right' for='movement'>การเคลื่อนไหว</label>"
+                                    +"<div class='col-sm-9 row'><input class='input-sm  col-lg-12' type='text' id='movement' name='movement' placeholder='ลักษณะการเคลื่อนไหว' /></div> "
+                                    +"</div>"
+                                    +"<div class='form-group col-lg-6 row'><label class='col-sm-2 control-label no-padding-left' for='disabled'> ความพิการ</label>"
+                                    +"<div class='col-sm-10 row'><input class='input-sm col-lg-12' type='text' id='disabled' name='disabled' placeholder='ลักษณะความพิการ'/></div> "
+                                    +"</div>"
+                                    +"</div>")
                                 ,$("<div class='form-group row'><label class='col-sm-5 col-form-label'><b>การประเมินสภาพจิต  </b></label></div>")
-                                ,$("<div class='form-group row'><label class='col-sm-2 col-form-label'><b>อารมณ์ </b></label><div class='col-sm-1'><label><input class='ace' type='radio' name='mood_chk' value='1'><span class='lbl'> แจ่มใส</span></label></div><div class='col-sm-2'><label><input class='ace' type='radio' name='mood_chk' value='2'><span class='lbl'> หงุดหงิด</span></label></div>"
+                                ,$("<div class='form-group row'><label class='col-sm-2 col-form-label'><b>อารมณ์ </b></label><div class='col-sm-2'><label><input class='ace' type='radio' name='mood_chk' value='1'><span class='lbl'> แจ่มใส</span></label></div><div class='col-sm-2'><label><input class='ace' type='radio' name='mood_chk' value='2'><span class='lbl'> หงุดหงิด</span></label></div>"
                                 +"<div class='col-sm-2'><label><input class='ace' type='radio' name='mood_chk' value='3'><span class='lbl'> ซึมเศร้า</span></label></div><div class='col-sm-2'><label><input class='ace' type='radio' name='mood_chk' value='4'><span class='lbl'> เฉยเมย/ไร้อารมณ์</span></label></div><div class='col-sm-2'><label><input class='ace' type='radio' name='mood_chk' value='5'><span class='lbl'> อื่นๆ</span></label></div></div>")
                                 ,$("<textarea name='other_mood' id='other_mood' class='form-control' placeholder='รายละเอียด'></textarea><p>")
                                 ,$("<div class='form-group row'><label class='col-sm-2 col-form-label'><b>พฤติกรรม </b></label><div class='col-sm-2'><label><input class='ace' type='checkbox' name='action_1' value='1'><span class='lbl'> ก้าวร้าว</span></label></div><div class='col-sm-2'><label><input class='ace' type='checkbox' name='action_2' value='2'><span class='lbl'> ทำลายสิ่งของเครื่องใช้</span></label></div></div>")
@@ -190,9 +246,19 @@ function InterviewIPD(content, id = null) {
                                 ,$("<div class='form-group row'><div class='col-sm-2'></div><div class='col-sm-2'><label><input class='ace' type='checkbox' name='action_7' value='7'><span class='lbl'> พูดคนเดียว</span></label></div><div class='col-sm-2'><label><input class='ace' type='checkbox' name='action_8' value='8'><span class='lbl'> หัวเราะคนเดียว</span></label></div></div>")
                                 ,$("<div class='form-group row'><div class='col-sm-2'></div><div class='col-sm-2'><label><input class='ace' type='checkbox' name='action_9' value='9'><span class='lbl'> ร้องไห้ไม่สมเหตุผล</span></label></div><div class='col-sm-2'><label><input class='ace' type='checkbox' name='action_10' value='10'><span class='lbl'> อื่นๆ</span></label></div></div>")
                                 ,$("<textarea name='action_10D' id='action_10D' class='form-control' placeholder='ระบุวิธีการ'></textarea><p>")
-                                ,$("<div class='form-group row'><label class='col-sm-5 col-form-label'><b>การรับรู้  </b></label><div class='col-sm-2'><label><input class='ace' type='radio' name='Recognition_chk' value='N'checked required><span class='lbl'> ตรงสภาพที่เป็นจริง</span></label></div><div class='col-sm-2'><label><input class='ace' type='radio' name='Recognition_chk' value='Y' required><span class='lbl'> ประสาทหลอน</span></label></div></div>")
+
+                                ,$("<div class='form-group row'><label class='col-sm-5 col-form-label'><b>ความคิด </b></label><div class='col-sm-2'><label><input class='ace' type='radio' name='think_chk' value='Y' checked><span class='lbl'> สมเหตุสมผล</span></label></div><div class='col-sm-2'><label><input class='ace' type='radio' name='think_chk' value='N'><span class='lbl'> ไม่สมเหตุสมผล</span></label></div></div>")
+                                ,$("<div id='think_group' class='row'><div class='form-group row'><div class='col-sm-2'></div><div class='col-sm-2'><label><input class='ace' type='checkbox' name='think_1' value='1'><span class='lbl'> หลงผิด</span></label></div></div>"
+                                    +"<textarea name='think_1D' id='think_1D' class='form-control' placeholder='ระบุลักษณะการหลงผิด'></textarea><p>"
+                                    +"<div class='form-group row'><div class='col-sm-2'></div><div class='col-sm-2'><label><input class='ace' type='checkbox' name='think_2' value='2'><span class='lbl'> หวาดระแวง</span></label></div></div>"
+                                    +"<textarea name='think_2D' id='think_2D' class='form-control' placeholder='ระบุอาการหวาดระแวง'></textarea><p>"
+                                    +"<div class='form-group row'><div class='col-sm-2'></div><div class='col-sm-2'><label><input class='ace' type='checkbox' name='think_3' value='3'><span class='lbl'> หยุดชะงัก</span></label></div><div class='col-sm-2'><label><input class='ace' type='checkbox' name='think_4' value='4'><span class='lbl'> วกวน</span></label></div></div>"
+                                    +"<div class='form-group row'><div class='col-sm-2'></div><div class='col-sm-2'><label><input class='ace' type='checkbox' name='think_5' value='5'><span class='lbl'> หลากหลาย/ฟุ้งซาน</span></label></div><div class='col-sm-2'><label><input class='ace' type='checkbox' name='think_6' value='6'><span class='lbl'> อื่นๆ</span></label></div></div>"
+                                    +"<textarea name='action_10D' id='think_6D' class='form-control' placeholder='ระบุวิธีการ'></textarea></div><p>")
+
+                                ,$("<div class='form-group row'><label class='col-sm-5 col-form-label'><b>การรับรู้ (perception) </b></label><div class='col-sm-2'><label><input class='ace' type='radio' name='Recognition_chk' value='N'checked required><span class='lbl'> ตรงสภาพที่เป็นจริง</span></label></div><div class='col-sm-2'><label><input class='ace' type='radio' name='Recognition_chk' value='Y' required><span class='lbl'> ประสาทหลอน</span></label></div></div>")
                                 ,$("<textarea name='Recognition' id='Recognition' class='form-control' placeholder='ระบุรายละเอียด'></textarea><p>")
-                                ,$("<div class='form-group row'><label class='col-sm-5 col-form-label'><b>การรู้จักตัวเอง  </b></label><div class='col-sm-2'><label><input class='ace' type='radio' name='accept_chk' value='N'checked required><span class='lbl'> ยอมรับการเจ็บป่วย</span></label></div><div class='col-sm-2'><label><input class='ace' type='radio' name='accept_chk' value='Y' required><span class='lbl'> ไม่ยอมรับการเจ็บป่วย</span></label></div></div>")
+                                ,$("<div class='form-group row'><label class='col-sm-5 col-form-label'><b>การตระหนักรู้ (insigth) </b></label><div class='col-sm-2'><label><input class='ace' type='radio' name='accept_chk' value='N'checked required><span class='lbl'> ยอมรับการเจ็บป่วย</span></label></div><div class='col-sm-2'><label><input class='ace' type='radio' name='accept_chk' value='Y' required><span class='lbl'> ไม่ยอมรับการเจ็บป่วย</span></label></div></div>")
                                 ,$("<div class='form-group row'><label class='col-sm-5 col-form-label'><b>ความจำ  </b></label></div>")
                                 ,$("<div class='form-group row'><label class='col-sm-5 col-form-label'><b>ระยะสั้น  </b></label><div class='col-sm-2'><label><input class='ace' type='radio' name='memo_short' value='N'checked required><span class='lbl'> ปกติ</span></label></div><div class='col-sm-2'><label><input class='ace' type='radio' name='memo_short' value='Y' required><span class='lbl'> ไม่ปกติ</span></label></div></div>")
                                 ,$("<div class='form-group row'><label class='col-sm-5 col-form-label'><b>ระยะยาว  </b></label><div class='col-sm-2'><label><input class='ace' type='radio' name='memo_long' value='N'checked required><span class='lbl'> ปกติ</span></label></div><div class='col-sm-2'><label><input class='ace' type='radio' name='memo_long' value='Y' required><span class='lbl'> ไม่ปกติ</span></label></div></div>")
@@ -219,6 +285,8 @@ function InterviewIPD(content, id = null) {
                                 $("textarea#disease").hide();
                                 $("#surgery").hide();
                                 $("#whip").hide();
+                                $("#weapon").hide();
+                                $("#detain").hide();
                                 $("#wound").hide();
                                 $("#regular_med").hide();
                                 $("#beAllergic").hide();
@@ -241,17 +309,32 @@ function InterviewIPD(content, id = null) {
                                 $("#action_4D").hide();
                                 $("#action_6D").hide();
                                 $("#action_10D").hide();
+                                $("#think_group").hide();
+                                $("#think_1D").hide();
+                                $("#think_2D").hide();
+                                $("#think_6D").hide();
                                 $("#Recognition").hide();
+                                $("#heal_0").hide();
+                                $("textarea#heal").hide();
                                 
                                 $("input[type=radio][name=disease_chk]").click(function(){ 
-                                    if($("input[type=radio][name=disease_chk]:checked").val()=='Y'){$("textarea#disease").show();}else{$("textarea#disease").hide();}
+                                    if($("input[type=radio][name=disease_chk]:checked").val()=='Y'){$("textarea#disease").show();$("div#heal_0").show();}else{$("textarea#disease").hide();$("div#heal_0").hide();}
                                     });
+                                    $("input[type=radio][name=heal_chk]").click(function(){ 
+                                        if($("input[type=radio][name=heal_chk]:checked").val()=='Y'){$("textarea#heal").show();}else{$("textarea#heal").hide();}
+                                        });
                                 $("input[type=radio][name=surgery_chk]").click(function(){
                                     if($("input[type=radio][name=surgery_chk]:checked").val()=='Y'){$("textarea#surgery").show();}else{$("textarea#surgery").hide();}
                                     });  
                                 $("input[type=radio][name=whip_chk]").click(function(){
                                     if($("input[type=radio][name=whip_chk]:checked").val()=='Y'){$("textarea#whip").show();}else{$("textarea#whip").hide();}
                                     });  
+                                $("input[type=radio][name=weapon_chk]").click(function(){
+                                    if($("input[type=radio][name=weapon_chk]:checked").val()=='Y'){$("textarea#weapon").show();}else{$("textarea#weapon").hide();}
+                                    });
+                                $("input[type=radio][name=detain_chk]").click(function(){
+                                    if($("input[type=radio][name=detain_chk]:checked").val()=='Y'){$("textarea#detain").show();}else{$("textarea#detain").hide();}
+                                    });
                                 $("input[type=radio][name=wound_chk]").click(function(){
                                     if($("input[type=radio][name=wound_chk]:checked").val()=='Y'){$("textarea#wound").show();}else{$("textarea#wound").hide();}
                                     });
@@ -326,6 +409,18 @@ function InterviewIPD(content, id = null) {
                                 });
                                 $("input[type=checkbox][name=action_10]").click(function(){
                                     if($("input[type=checkbox][name=action_10]:checked").prop("checked") == true){$("textarea#action_10D").show();}else{$("textarea#action_10D").hide();}
+                                });
+                                $("input[type=radio][name=think_chk]").click(function(){
+                                    if($("input[type=radio][name=think_chk]:checked").val()=='N'){$("div#think_group").show();}else{$("div#think_group").hide();}
+                                });
+                                $("input[type=checkbox][name=think_1]").click(function(){
+                                    if($("input[type=checkbox][name=think_1]:checked").prop("checked") == true){$("textarea#think_1D").show();}else{$("textarea#think_1D").hide();}
+                                });
+                                $("input[type=checkbox][name=think_2]").click(function(){
+                                    if($("input[type=checkbox][name=think_2]:checked").prop("checked") == true){$("textarea#think_2D").show();}else{$("textarea#think_2D").hide();}
+                                });
+                                $("input[type=checkbox][name=think_6]").click(function(){
+                                    if($("input[type=checkbox][name=think_6]:checked").prop("checked") == true){$("textarea#think_6D").show();}else{$("textarea#think_6D").hide();}
                                 });
                                 $("input[type=radio][name=Recognition_chk]").click(function(){
                                     if($("input[type=radio][name=Recognition_chk]:checked").val()=='Y'){$("textarea#Recognition").show();}else{$("textarea#Recognition").hide();}

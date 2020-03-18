@@ -14,24 +14,31 @@ $conn_DB->conn_PDO();
 set_time_limit(0);
 $rslt = array();
 $series = array();
-$sql="select t.tB_id,t.vn,t.hn,concat(p.pname,p.fname,' ',p.lname) as fullname,w.name as ward,t.send_date
-from patient p 
-inner join jvl_transferBox t on p.hn=t.hn 
-left outer join an_stat a on a.vn = t.vn
-left outer join ward w on w.ward = a.ward
-where t.dep_res='009' and (t.status='0' or ISNULL(t.status))
-order by t.tB_id desc"; 
+$sql="SELECT ph.phy_id,ph.hn,ph.regdate,o.name,cs.clinic_member_status_name as cms
+,concat(p.pname,p.fname,' ',p.lname) as fullname
+,w.name as ward
+FROM patient p
+inner join jvlphy_regis ph on ph.hn=p.hn
+inner join opduser o on o.doctorcode = ph.doctor
+inner join clinic_member_status cs on cs.clinic_member_status_id=ph.phy_status
+inner join jvl_transferBox tb on tb.hn = ph.hn
+inner join an_stat a on a.vn = tb.vn
+inner join ward w on w.ward = a.ward
+where tb.dep_res = '006' and tb.status='Y'
+ORDER BY ph.phy_id desc"; 
 $conn_DB->imp_sql($sql);
     $num_risk = $conn_DB->select();
+ 
     $conv=new convers_encode();
     for($i=0;$i<count($num_risk);$i++){
-    $series['tB_id']= $num_risk[$i]['tB_id'];
-    $series['vn'] = $num_risk[$i]['vn'];
+    $series['phy_id'] = $num_risk[$i]['phy_id'];
     $series['hn'] = $num_risk[$i]['hn'];
-    $series['send_date'] = DateThai1($num_risk[$i]['send_date']);
+    $series['regdate'] = DateThai1($num_risk[$i]['regdate']);
     $series['fullname'] = $conv->tis620_to_utf8($num_risk[$i]['fullname']);
+    $series['name']= $conv->tis620_to_utf8($num_risk[$i]['name']);
     $series['ward']= $conv->tis620_to_utf8($num_risk[$i]['ward']);
     array_push($rslt, $series);    
     }
+    //print_r($rslt);
 print json_encode($rslt);
 $conn_DB->close_PDO();
