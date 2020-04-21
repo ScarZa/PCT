@@ -82,7 +82,9 @@ $("#navbar-container").empty().append($('<button type="button" class="navbar-tog
                                                                                         ,$('<li class="" id="menu4">')
                                                                                         ,$('<li class="" id="menu5">')
                                                                                         ,$('<li class="" id="menu6">')
-                                                                                        ,$('<li class="" id="menu7">'));   
+                                                                                        ,$('<li class="" id="menu7">')
+                                                                                        ,$('<li class="" id="menu8">')
+                                                                                        );   
                                                                     $("#menu1").empty().append($('<a href="#" class="dropdown-toggle"><i class="menu-icon fa fa-bed"></i> <span class="menu-text">ผู้ป่วยใน </span> <b class="arrow fa fa-angle-down"></b></a>')
                                                                                                 ,$('<b class="arrow"></b>')
                                                                                                 ,$('<ul class="submenu" id="submenu1-1"></ul>'));   
@@ -186,7 +188,7 @@ $("#navbar-container").empty().append($('<button type="button" class="navbar-tog
                                                                 $("a#psychology_list").attr("onclick","TBPsychologyList('#page-content')");
 
 
-                                                                $("#menu7").empty().append($('<a href="#" class="dropdown-toggle"><i class="menu-icon fa fa-exclamation-triangle"></i> <span class="menu-text">ER </span> <b class="arrow fa fa-angle-down"></b></a>')
+                                                                $("#menu7").empty().append($('<a href="#" class="dropdown-toggle"><i class="menu-icon fa fa-exclamation-triangle red"></i> <span class="menu-text">ER </span> <b class="arrow fa fa-angle-down"></b></a>')
                                                                                 ,$('<b class="arrow"></b>')
                                                                                 ,$('<ul class="submenu" id="submenu7"></ul>'));   
                                                                 $("#submenu7").empty().append($('<li class=""><a href="#" id="ER_new"><i class="menu-icon fa fa-caret-right"></i> ผู้ป่วยรับ Admit (ER)</a><b class="arrow"></b></li>')
@@ -201,8 +203,29 @@ $("#navbar-container").empty().append($('<button type="button" class="navbar-tog
                                                                                         $("#SSsubmenu7").empty().append($('<li class=""><a href="#"><i class="menu-icon fa fa-plus purple"></i> Add Product</a> <b class="arrow"></b></li>')
                                                                                                                         ,$('<li class=""><a href="#"><i class="menu-icon fa fa-eye pink"></i> View Products</a> <b class="arrow"></b></li>'));          
                                                                                                                         
-                                                                                $("a#ER_new").attr("onclick","TBnewER('#page-content')"); 
-                                                                                
+                                                                                $("a#ER_new").attr("onclick","TBnewER('#page-content')");
+
+                                                                $("#menu8").empty().append($('<a href="#" class="dropdown-toggle"><i class="menu-icon fa fa-plus-square green"></i> <span class="menu-text">OPD </span> <b class="arrow fa fa-angle-down"></b></a>')
+                                                                                ,$('<b class="arrow"></b>')
+                                                                                ,$('<ul class="submenu" id="submenu8"></ul>'));   
+                                                                $("#submenu8").empty().append($('<li class=""><a href="#" id="Depression"><i class="menu-icon fa fa-caret-right"></i> ประเมินซึมเศร้า</a><b class="arrow"></b></li>')
+                                                                                                ,$('<li class=""><a href="#" class="dropdown-toggle">'
+                                                                                                        +'<i class="menu-icon fa fa-caret-right"></i> คลินิกเด็ก <b class="arrow fa fa-angle-down"></b></a>'
+                                                                                                        +'<b class="arrow"></b><ul id="Ssubmenu8-1" class="submenu"></ul></li>')
+                                                                                                ,$('<li class=""><a href="#" class="dropdown-toggle">'
+                                                                                                        +'<i class="menu-icon fa fa-caret-right"></i> คลินิกผู้สูงอายุ <b class="arrow fa fa-angle-down"></b></a>'
+                                                                                                        +'<b class="arrow"></b><ul id="Ssubmenu8-2" class="submenu"></ul></li>')        
+                                                                                                        );
+                                                                                $("#Ssubmenu8-1").empty().append($('<li class=""><a href="#"><i class="menu-icon fa fa-leaf green"></i> SNAP-IV</a> <b class="arrow"></b></li>')
+                                                                                                                ,$('<li class=""><a href="#"><i class="menu-icon fa fa-leaf green"></i> CDI</a> <b class="arrow"></b></li>')
+                                                                                                                );
+                                                                                $("#Ssubmenu8-2").empty().append($('<li class=""><a href="#"><i class="menu-icon fa fa-leaf green"></i> MMSE-Thai 2002</a> <b class="arrow"></b></li>')
+                                                                                                                ,$('<li class=""><a href="#"><i class="menu-icon fa fa-leaf green"></i> ADL</a> <b class="arrow"></b></li>')
+                                                                                                                ,$('<li class=""><a href="#"><i class="menu-icon fa fa-leaf green"></i> NPI-Q thai</a> <b class="arrow"></b></li>')
+                                                                                                                );        
+                                                                                                                        
+                                                                                $("a#Depression").attr("onclick","TBDepression('#page-content')"); 
+
                                                                     // $("#menu3").empty().append($('<a href="calendar.html"><i class="menu-icon fa fa-calendar"></i>'
                                                                     //                             +'<span class="menu-text">Calendar <span class="badge badge-transparent tooltip-error" title="2 Important Events"> '
                                                                     //                             +'<i class="ace-icon fa fa-exclamation-triangle red bigger-130"></i></span></span></a> <b class="arrow"></b>'));
@@ -222,6 +245,7 @@ $("#navbar-container").empty().append($('<button type="button" class="navbar-tog
                                                 $("#menu5").hide();
                                                 $("#menu6").hide();
                                                 $("#menu7").hide();
+                                                $("#menu8").hide();
                                                 if(data.status_user=='ADMIN'){
                                                     $("#menu1").show();
                                                     $("#menu2").show();
@@ -230,6 +254,7 @@ $("#navbar-container").empty().append($('<button type="button" class="navbar-tog
                                                     $("#menu5").show();
                                                     $("#menu6").show();
                                                     $("#menu7").show();
+                                                    $("#menu8").show();
                                                 }else if(data.status_user=='HOS' && data.depcode=='018'){
                                                     $("#menu5").show();
                                                 }else if(data.status_user=='HOS' && data.depcode=='009'){
@@ -244,6 +269,8 @@ $("#navbar-container").empty().append($('<button type="button" class="navbar-tog
                                                     $("#menu6").show();
                                                 }else if(data.status_user=='HOS' && data.depcode=='003'){
                                                     $("#menu7").show();
+                                                }else if(data.status_user=='HOS' && data.depcode=='004'){
+                                                    $("#menu8").show();
                                                 }
                                             }else if(data.status_user == ''){
                                                 $("#login-tab").show(); 

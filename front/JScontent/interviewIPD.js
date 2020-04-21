@@ -46,7 +46,7 @@ function InterviewIPD(content, id = null) {
                                     +"<div class='col-sm-7 row'><input class='input-sm' type='text' id='tel1' name='tel1' value='"+data[0].informtel+"' placeholder='หมายเลขโทรศัพท์' /></div> "
                                     +"</div>"
                                     +"<div class='form-group col-lg-4 row'><label class='col-sm-4 control-label no-padding-right' for='relative1'>เกี่ยวข้องเป็น </label>"
-                                    +"<div class='col-sm-8 row'><input class='input-sm' type='text' id='relative1' name='relative1'  value='ญาติ' placeholder='ความเกี่ยวข้องกับผู้ป่วย' /></div> "
+                                    +"<div class='col-sm-8 row'><input class='input-sm' type='text' id='relative1' name='relative1'  value='' placeholder='ความเกี่ยวข้องกับผู้ป่วย' /></div> "
                                     +"</div>"
                                 +"</div>")
                                 ,$("<div class='col-lg-12 row'>"
@@ -105,51 +105,56 @@ function InterviewIPD(content, id = null) {
                                 ,$("<textarea name='HPI' id='HPI' class='form-control' placeholder='ประวัติความเจ็บป่วยปัจจุบัน (PI)'>"+data[0].hpi+"</textarea><p>")
                                 ,$("<div class='form-group row'><label class='col-sm-5 col-form-label'><b>ประวัติความเจ็บป่วยทางจิตเวชในอดีต </b></label></div>")
                                 ,$("<textarea name='illness' id='illness' class='form-control' placeholder='ประวัติความเจ็บป่วยทางจิตเวชในอดีต'>"+data[0].pmh+"</textarea><p>")
-                                ,$("<div class=''><div class='alert alert-info'><div class='form-group'><label class='col-sm-5 col-form-label row'><b>โรคประจำตัวหรืออาการทางกายในปัจจุบัน </b></label><div class='col-sm-2'><label><input class='ace' type='radio' name='disease_chk' value='N'checked required><span class='lbl'> ปฏิเสธ</span></label></div><div class='col-sm-2'><label><input class='ace' type='radio' name='disease_chk' value='Y' required><span class='lbl'> มี</span></label></div></div>"
-                                    +"<div class='form-group'><textarea name='disease' id='disease' class='form-control' placeholder='รายละเอียดโรคประจำตัว'></textarea></div>"
-                                    +"<div class='form-group' id='heal_0'><div class='col-sm-2'><input class='ace' type='radio' name='heal_chk' value='N'checked required><span class='lbl'> ไม่ได้รักษา</span></label></div><div class='col-sm-2'><label><input class='ace' type='radio' name='heal_chk' value='Y' required><span class='lbl'> อยู่ระหว่างรักษา</span></label></div></div>"
-                                    +"<div class='form-group'><textarea name='heal' id='heal' class='form-control' placeholder='ระบุชื่อยา/สถานพยาบาล'></textarea></div><p></div></div><p>")
-                                ,$("<div class=''><div class='alert alert-info'><div class='form-group'><label class='col-sm-5 col-form-label row'><b>อุบัติเหตุทางสมอง/การผ่าตัด </b></label><div class='col-sm-2'><label><input class='ace' type='radio' name='surgery_chk' value='N'checked required><span class='lbl'> ปฏิเสธ</span></label></div><div class='col-sm-2'><label><input class='ace' type='radio' name='surgery_chk' value='Y' required><span class='lbl'> มี</span></label></div></div>"
-                                    +"<div class='form-group'><textarea name='surgery' id='surgery' class='form-control' placeholder='รายละเอียดอุบัติเหตุทางสมอง/การผ่าตัด'></textarea></div></div></div><p>")
-                                ,$("<div class='form-group row'><label class='col-sm-5 col-form-label'><b>พกพาอาวุธ </b></label><div class='col-sm-2'><label><input class='ace' type='radio' name='weapon_chk' value='N'checked required><span class='lbl'> ปฏิเสธ</span></label></div><div class='col-sm-2'><label><input class='ace' type='radio' name='weapon_chk' value='Y' required><span class='lbl'> มี</span></label></div></div>")
-                                ,$("<textarea name='weapon' id='weapon' class='form-control' placeholder='รายละเอียดการพกพาอาวุธ'></textarea><p>")
-                                ,$("<div class='form-group row'><label class='col-sm-5 col-form-label'><b>การจำกัดพฤติกรรม </b></label><div class='col-sm-2'><label><input class='ace' type='radio' name='detain_chk' value='N'checked required><span class='lbl'> ปฏิเสธ</span></label></div><div class='col-sm-2'><label><input class='ace' type='radio' name='detain_chk' value='Y' required><span class='lbl'> มี</span></label></div></div>")
-                                ,$("<textarea name='detain' id='detain' class='form-control' placeholder='รายละเอียดการจำกัดพฤติกรรม'></textarea><p>")
-                                ,$("<div class='form-group row'><label class='col-sm-5 col-form-label'><b>ประว้ติการชัก </b></label><div class='col-sm-2'><label><input class='ace' type='radio' name='whip_chk' value='N'checked required><span class='lbl'> ปฏิเสธ</span></label></div><div class='col-sm-2'><label><input class='ace' type='radio' name='whip_chk' value='Y' required><span class='lbl'> มี</span></label></div></div>")
-                                ,$("<textarea name='whip' id='whip' class='form-control' placeholder='รายละเอียดประว้ติการชัก'></textarea><p>")
-                                ,$("<div class='form-group row'><label class='col-sm-5 col-form-label'><b>บาดแผล </b></label><div class='col-sm-2'><label><input class='ace' type='radio' name='wound_chk' value='N'checked required><span class='lbl'> ปฏิเสธ</span></label></div><div class='col-sm-2'><label><input class='ace' type='radio' name='wound_chk' value='Y' required><span class='lbl'> มี</span></label></div></div>")
-                                ,$("<textarea name='wound' id='wound' class='form-control' placeholder='รายละเอียดบาดแผล'></textarea><p>")
-                                ,$("<div class='form-group row'><label class='col-sm-5 col-form-label'><b>ยาที่รับประทานประจำ </b></label><div class='col-sm-2'><label><input class='ace' type='radio' name='regular_med_chk' value='N'checked required><span class='lbl'> ปฏิเสธ</span></label></div><div class='col-sm-2'><label><input class='ace' type='radio' name='regular_med_chk' value='Y' required><span class='lbl'> มี</span></label></div></div>")
-                                ,$("<textarea name='regular_med' id='regular_med' class='form-control' placeholder='รายละเอียดยาที่รับประทานประจำ'></textarea><p>")
-                                ,$("<div class='form-group row'><label class='col-sm-5 col-form-label'><b>ประวัติการแพ้ยา/แพ้อาหาร/แพ้สารอื่นๆและ ADR </b></label><div class='col-sm-2'><label><input class='ace' type='radio' name='beAllergic_chk' value='N'checked required><span class='lbl'> ปฏิเสธ</span></label></div><div class='col-sm-2'><label><input class='ace' type='radio' name='beAllergic_chk' value='Y' required><span class='lbl'> มี</span></label></div></div>")
-                                ,$("<textarea name=beAllergic' id='beAllergic' class='form-control' placeholder='รายละเอียดประวัติการแพ้ยา/แพ้อาหาร/แพ้สารอื่นๆและ ADR'></textarea><p>")
-                                ,$("<div class='form-group row'><label class='col-sm-5 col-form-label'><b>ประวัติการใช้/รับประทานยาก่อนมา รพจ.เลยฯ </b></label><div class='col-sm-2'><label><input class='ace' type='radio' name='old_med_chk' value='N'checked required><span class='lbl'> ปฏิเสธ</span></label></div><div class='col-sm-2'><label><input class='ace' type='radio' name='old_med_chk' value='Y' required><span class='lbl'> มี</span></label></div></div>")
-                                ,$("<textarea name='old_med' id='old_med' class='form-control' placeholder='รายละเอียดประวัติการใช้/รับประทานยาก่อนมา รพจ.เลยฯ'></textarea><p>")
-                                ,$("<div class='form-group row'><label class='col-sm-5 col-form-label'><b>สุรา </b></label><div class='col-sm-2'><label><input class='ace' type='radio' name='alcohol_chk' value='N'checked required><span class='lbl'> ไม่ดื่ม</span></label></div><div class='col-sm-2'><label><input class='ace' type='radio' name='alcohol_chk' value='Y' required><span class='lbl'> ดื่ม</span></label></div></div>")
-                                ,$("<div class='row' id='alcohol'><div class='col-lg-12 row'><div class='form-horizontal' role='form'>"
+                                ,$("<div class='widget-body'><div class='widget-main row'>"
+                                    +"<div class='alert alert-danger'>"
+                                    +"<div class='form-group row'><label class='col-sm-5 col-form-label'><u><b> ส่วนของ ER </b></u></label></div>"
+                                    +"<div class='form-group row'><label class='col-sm-5 col-form-label'><b>พกพาอาวุธ </b></label><div class='col-sm-2'><label><input class='ace' type='radio' name='weapon_chk' value='N'checked required><span class='lbl'> ปฏิเสธ</span></label></div><div class='col-sm-2'><label><input class='ace' type='radio' name='weapon_chk' value='Y' required><span class='lbl'> มี</span></label></div></div>"
+                                    +"<textarea name='weapon' id='weapon' class='form-control' placeholder='รายละเอียดการพกพาอาวุธ'></textarea><p>"
+                                    +"<div class='form-group row'><label class='col-sm-5 col-form-label'><b>การจำกัดพฤติกรรม </b></label><div class='col-sm-2'><label><input class='ace' type='radio' name='detain_chk' value='N'checked required><span class='lbl'> ปฏิเสธ</span></label></div><div class='col-sm-2'><label><input class='ace' type='radio' name='detain_chk' value='Y' required><span class='lbl'> มี</span></label></div></div>"
+                                    +"<textarea name='detain' id='detain' class='form-control' placeholder='รายละเอียดการจำกัดพฤติกรรม'></textarea><p>"
+                                    +"<div class='form-group row'><label class='col-sm-2 col-form-label'><b>สรุปประเภทผู้ป่วย </b></label><div class='col-sm-1'><label><input class='ace' type='checkbox' name='typeP_1' value='1'><span class='lbl'> 3s</span></label></div><div class='col-sm-2'><label><input class='ace' type='checkbox' name='typeP_2' value='2'><span class='lbl'> เฝ้าระวังหลบหนี</span></label></div>"
+                                    +"<div class='col-sm-2'><label><input class='ace' type='checkbox' name='typeP_3' value='3'><span class='lbl'> เฝ้าระวังฆ่าตัวตาย</span></label></div><div class='col-sm-2'><label><input class='ace' type='checkbox' name='typeP_4' value='4'><span class='lbl'> เฝ้าระวังอุบัติเหตุ</span></label></div><div class='col-sm-2'><label><input class='ace' type='checkbox' name='typeP_5' value='5'><span class='lbl'> เฝ้าระวังพฤติกรรมรุนแรง</span></label></div>"
+                                    +"<div class='col-sm-2'></div><div class='col-sm-3'><label><input class='ace' type='checkbox' name='typeP_6' value='6'><span class='lbl'> พรบ. 120 ยาเสพติด</span></label></div><div class='col-sm-2'><label><input class='ace' type='checkbox' name='typeP_7' value='7'><span class='lbl'> พรบ.สุรา</span></label></div></div>"
+                                    +"<div class='form-group row'><label class='col-sm-5 col-form-label'><b>การคัดกรอง SMI-V </b></label><div class='col-sm-2'><label><input class='ace' type='radio' name='smi4_chk' value='N'checked required><span class='lbl'> ไม่มี</span></label></div><div class='col-sm-2'><label><input class='ace' type='radio' name='smi4_chk' value='Y' required><span class='lbl'> มี</span></label></div></div>"
+                                    +"<div class='form-group row' id='smi4_group'><div class='col-sm-2'></div><div class='col-sm-1'><label><input class='ace' type='checkbox' name='smi4_1' value='1'><span class='lbl'> 1</span></label></div><div class='col-sm-1'><label><input class='ace' type='checkbox' name='smi4_2' value='2'><span class='lbl'> 2</span></label></div>"
+                                    +"<div class='col-sm-1'><label><input class='ace' type='checkbox' name='smi4_3' value='3'><span class='lbl'> 3</span></label></div><div class='col-sm-1'><label><input class='ace' type='checkbox' name='smi4_4' value='4'><span class='lbl'> 4</span></label></div></div>"
+                                    +"<div class='form-group row'><label class='col-sm-5 col-form-label'><b>นิติจิตเวช </b></label><div class='col-sm-2'><label><input class='ace' type='radio' name='lawpsych_chk' value='N'checked required><span class='lbl'> ปฏิเสธ</span></label></div><div class='col-sm-2'><label><input class='ace' type='radio' name='lawpsych_chk' value='Y' required><span class='lbl'> มี</span></label></div></div>"
+                                    +"<textarea name='lawpsych' id='lawpsych' class='form-control' placeholder='ระบุ (เลขคดี/คดี/เลขที่หนังสือนำส่ง)'></textarea><p>"
+                                    +"<div class='form-group row'><label class='col-sm-5 col-form-label'><b>การนอนหลับ </b></label><div class='col-sm-2'><label><input class='ace' type='radio' name='sleep_chk' value='N'checked required><span class='lbl'> หลับได้</span></label></div><div class='col-sm-2'><label><input class='ace' type='radio' name='sleep_chk' value='Y' required><span class='lbl'> นอนไม่หลับ</span></label></div></div>"
+                                    +"<textarea name='sleep' id='sleep' class='form-control' placeholder='รายละเอียด'></textarea><p>"
+                                    +"<div class='form-group row'><label class='col-sm-5 col-form-label'><b>การคัดกรอง IC  </b></label><div class='col-sm-2'><label><input class='ace' type='radio' name='IC_chk' value='N'checked required><span class='lbl'> ไม่มี</span></label></div><div class='col-sm-2'><label><input class='ace' type='radio' name='IC_chk' value='Y' required><span class='lbl'> มี</span></label></div></div>"
+                                    +"<textarea name='IC' id='IC' class='form-control' placeholder='รายละเอียด'></textarea><p>"
+                                    +"<div class='form-group row'><label class='col-sm-5 col-form-label'><b>การรับประทานยา  </b></label><div class='col-sm-2'><label><input class='ace' type='radio' name='med_chk' value='N'checked required><span class='lbl'> ต่อเนื่อง</span></label></div><div class='col-sm-2'><label><input class='ace' type='radio' name='med_chk' value='A' required><span class='lbl'> ไม่สม่ำเสมอ</span></label></div><div class='col-sm-2'><label><input class='ace' type='radio' name='med_chk' value='Y' required><span class='lbl'> ขาดยา</span></label></div></div>"
+                                    +"<textarea name='med' id='med' class='form-control' placeholder='รายละเอียด'></textarea><p>"
+                                    +"<div class='form-group row'><label class='col-sm-5 col-form-label'><b>บาดแผล </b></label><div class='col-sm-2'><label><input class='ace' type='radio' name='wound_chk' value='N'checked required><span class='lbl'> ปฏิเสธ</span></label></div><div class='col-sm-2'><label><input class='ace' type='radio' name='wound_chk' value='Y' required><span class='lbl'> มี</span></label></div></div>"
+                                    +"<textarea name='wound' id='wound' class='form-control' placeholder='รายละเอียดบาดแผล'></textarea><p>"
+                                    +"<div class='form-group row'><label class='col-sm-5 col-form-label'><b>อุบัติเหตุทางสมอง/การผ่าตัด </b></label><div class='col-sm-2'><label><input class='ace' type='radio' name='surgery_chk' value='N'checked required><span class='lbl'> ปฏิเสธ</span></label></div><div class='col-sm-2'><label><input class='ace' type='radio' name='surgery_chk' value='Y' required><span class='lbl'> มี</span></label></div></div>"
+                                    +"<textarea name='surgery' id='surgery' class='form-control' placeholder='รายละเอียดอุบัติเหตุทางสมอง/การผ่าตัด'></textarea><p>"
+                                    +"<div class='form-group row'><label class='col-sm-5 col-form-label'><b>สุรา </b></label><div class='col-sm-2'><label><input class='ace' type='radio' name='alcohol_chk' value='N'checked required><span class='lbl'> ไม่ดื่ม</span></label></div><div class='col-sm-2'><label><input class='ace' type='radio' name='alcohol_chk' value='Y' required><span class='lbl'> ดื่ม</span></label></div></div>"
+                                    +"<div class='row' id='alcohol'><div class='col-lg-12 row'><div class='form-horizontal' role='form'>"
                                     +"<div class='form-group col-lg-3 row'><label class='col-sm-3 control-label no-padding-right' for='alcohol_kind'>ชนิด </label>"
-                                    +"<div class='col-sm-8'><input class='input-sm' type='text' id='alcohol_kind' name='alcohol_kind' placeholder='' /></div></div>"
-                                    +"<div class='form-group col-lg-3 row'><label class='col-sm-3 control-label no-padding-right' for='alcohol_volume'>ปริมาณ </label>"
-                                    +"<div class='col-sm-8'><input class='input-sm' type='text' id='alcohol_volume' name='alcohol_volume' placeholder='' /></div></div>"
+                                    +"<div class='col-sm-8'><select class='form-control form-control-sm select2' id='alcohol_type' name='alcohol_type'></select></div></div>"
+                                    +"<div class='form-group col-lg-3 row'><label class='col-sm-3 control-label no-padding-right' for='alcohol_vol'>ปริมาณ </label>"
+                                    +"<div class='col-sm-8'><select class='form-control form-control-sm select2' id='alcohol_vol' name='alcohol_vol'></select></div></div>"
                                     +"<div class='form-group col-lg-3 row'><label class='col-sm-3 control-label no-padding-right' for='alcohol_frequency'>ความถี่ </label>"
                                     +"<div class='col-sm-8'><input class='input-sm' type='text' id='alcohol_frequency' name='alcohol_frequency' placeholder='' /></div></div>"
                                     +"</div></div>"
                                     +"<div class='col-lg-12 row'><div class='form-horizontal' role='form'>"
                                     +"<div class='form-group col-lg-4 row'><label class='col-sm-5 control-label no-padding-right' for='drink_age'>ระยะเวลาที่ดื่มต่อเนื่อง </label>"
                                     +"<div class='col-sm-5'><input class='input-sm' type='text' id='drink_age' name='drink_age' placeholder='' /></div></div>"
-                                    +"<div class='form-group col-lg-4 row'><label class='col-sm-5 control-label no-padding-right' for='drink_last'>ดื่มครั้งสุดท้าย (วันที่) </label>"
-                                    +"<div class='col-sm-5'><input class='input-sm' type='text' id='drink_last' name='drink_last' placeholder='' /></div></div>"
+                                    +"<div class='form-group col-lg-4 row'><label class='col-sm-6 control-label no-padding-right' for='last_useA'>ดื่มครั้งสุดท้าย (จำนวนวัน) </label>"
+                                    +"<div class='col-sm-5'><input class='input-sm' type='text' id='last_useA' name='last_useA' placeholder='ระบุจำนวนวัน' /></div></div>"
                                     +"</div></div>"
                                     +"<div class='col-lg-12 row'><div class='form-horizontal' role='form'>"
                                     +"<div class='form-group col-lg-4 row'><label class='col-sm-5 control-label no-padding-right' for='time_stop'>ระยะเวลาที่เลิก </label>"
                                     +"<div class='col-sm-5'><input class='input-sm' type='text' id='time_stop' name='time_stop' placeholder='' /></div></div>"
-                                    +"<div class='form-group col-lg-4 row'><label class='col-sm-5 control-label no-padding-right' for='drink_cause'>สาเหตุการดื่ม </label>"
+                                    +"<div class='form-group col-lg-4 row'><label class='col-sm-6 control-label no-padding-right' for='drink_cause'>สาเหตุการดื่ม </label>"
                                     +"<div class='col-sm-5'><input class='input-sm' type='text' id='drink_cause' name='drink_cause' placeholder='' /></div></div>"
-                                    +"</div></div></div><p>")
-                                ,$("<div class='form-group row'><label class='col-sm-5 col-form-label'><b>ยาเสพติด </b></label><div class='col-sm-2'><label><input class='ace' type='radio' name='narcotic_chk' value='N'checked required><span class='lbl'> ไม่เสพ</span></label></div><div class='col-sm-2'><label><input class='ace' type='radio' name='narcotic_chk' value='Y' required><span class='lbl'> เสพ</span></label></div></div>")    
-                                ,$("<div class='row' id='narcotic'><div class='col-lg-12 row'><div class='form-horizontal' role='form'>"
+                                    +"</div></div></div><p>"
+                                    +"<div class='form-group row'><label class='col-sm-5 col-form-label'><b>ยาเสพติด </b></label><div class='col-sm-2'><label><input class='ace' type='radio' name='narcotic_chk' value='N'checked required><span class='lbl'> ไม่เสพ</span></label></div><div class='col-sm-2'><label><input class='ace' type='radio' name='narcotic_chk' value='Y' required><span class='lbl'> เสพ</span></label></div></div>"    
+                                    +"<div class='row' id='narcotic'><div class='col-lg-12 row'><div class='form-horizontal' role='form'>"
                                     +"<div class='form-group col-lg-3 row'><label class='col-sm-3 control-label no-padding-right' for='narcotic_kind'>ชนิด </label>"
-                                    +"<div class='col-sm-8'><input class='input-sm' type='text' id='narcotic_kind' name='narcotic_kind' placeholder='' /></div></div>"
+                                    +"<div class='col-sm-8'><select class='form-control form-control-sm  select2' id='dope_type' name='dope_type'></select></div></div>"
                                     +"<div class='form-group col-lg-3 row'><label class='col-sm-3 control-label no-padding-right' for='narcotic_volume'>ปริมาณ </label>"
                                     +"<div class='col-sm-8'><input class='input-sm' type='text' id='narcotic_volume' name='narcotic_volume' placeholder='' /></div></div>"
                                     +"<div class='form-group col-lg-3 row'><label class='col-sm-3 control-label no-padding-right' for='narcotic_frequency'>ความถี่ </label>"
@@ -158,17 +163,37 @@ function InterviewIPD(content, id = null) {
                                     +"<div class='col-lg-12 row'><div class='form-horizontal' role='form'>"
                                     +"<div class='form-group col-lg-4 row'><label class='col-sm-5 control-label no-padding-right' for='narcotic_age'>ระยะเวลาที่ใช้ต่อเนื่อง </label>"
                                     +"<div class='col-sm-5'><input class='input-sm' type='text' id='narcotic_age' name='narcotic_age' placeholder='' /></div></div>"
-                                    +"<div class='form-group col-lg-4 row'><label class='col-sm-5 control-label no-padding-right' for='narcotic_last'>ใช้ครั้งสุดท้าย (วันที่) </label>"
-                                    +"<div class='col-sm-5'><input class='input-sm' type='text' id='narcotic_last' name='narcotic_last' placeholder='' /></div></div>"
+                                    +"<div class='form-group col-lg-4 row'><label class='col-sm-6 control-label no-padding-right' for='last_useD'>ใช้ครั้งสุดท้าย (จำนวนวัน) </label>"
+                                    +"<div class='col-sm-5'><input class='input-sm' type='text' id='last_useD' name='last_useD' placeholder='ระบุจำนวนวัน' /></div></div>"
                                     +"</div></div>"
                                     +"<div class='col-lg-12 row'><div class='form-horizontal' role='form'>"
                                     +"<div class='form-group col-lg-4 row'><label class='col-sm-5 control-label no-padding-right' for='narcotic_stop'>ระยะเวลาที่เลิก </label>"
                                     +"<div class='col-sm-5'><input class='input-sm' type='text' id='narcotic_stop' name='narcotic_stop' placeholder='' /></div></div>"
-                                    +"<div class='form-group col-lg-4 row'><label class='col-sm-5 control-label no-padding-right' for='narcotic_cause'>สาเหตุการใช้ </label>"
+                                    +"<div class='form-group col-lg-4 row'><label class='col-sm-6 control-label no-padding-right' for='narcotic_cause'>สาเหตุการใช้ </label>"
                                     +"<div class='col-sm-5'><input class='input-sm' type='text' id='narcotic_cause' name='narcotic_cause' placeholder='' /></div></div>"
-                                    +"</div></div></div><p>")
-                                ,$("<div class='form-group row'><label class='col-sm-5 col-form-label'><b>อื่นๆ </b></label><div class='col-sm-2'><label><input class='ace' type='radio' name='other_chk' value='N'checked required><span class='lbl'> ไม่มี</span></label></div><div class='col-sm-2'><label><input class='ace' type='radio' name='other_chk' value='Y' required><span class='lbl'> มี</span></label></div></div>")
-                                ,$("<textarea name='other' id='other' class='form-control' placeholder='รายละเอียด'></textarea><p>")
+                                    +"</div></div></div><p>"
+                                    +"</div>"
+                                    // +"<p class='alert alert-success'>"
+                                    //     +"สามารถใส่เนื้อหาในนี้ได้</p>"
+                                    +"</div></div>")
+                                ,$("<div class='form-group row'><label class='col-sm-5 col-form-label'><b>โรคประจำตัวหรืออาการทางกายในปัจจุบัน </b></label><div class='col-sm-2'><label><input class='ace' type='radio' name='disease_chk' value='N'checked required><span class='lbl'> ปฏิเสธ</span></label></div><div class='col-sm-2'><label><input class='ace' type='radio' name='disease_chk' value='Y' required><span class='lbl'> มี</span></label></div></div>"
+                                    +"<div class='form-group'><textarea name='disease' id='disease' class='form-control' placeholder='รายละเอียดโรคประจำตัว'></textarea></div>"
+                                    +"<div class='form-group' id='heal_0'><div class='col-sm-2'><input class='ace' type='radio' name='heal_chk' value='N'checked required><span class='lbl'> ไม่ได้รักษา</span></label></div><div class='col-sm-2'><label><input class='ace' type='radio' name='heal_chk' value='Y' required><span class='lbl'> อยู่ระหว่างรักษา</span></label></div></div>"
+                                    +"<textarea name='heal' id='heal' class='form-control' placeholder='ระบุชื่อยา/สถานพยาบาล'></textarea><p>")
+                                
+                                
+                                ,$("<div class='form-group row'><label class='col-sm-5 col-form-label'><b>ประว้ติการชัก </b></label><div class='col-sm-2'><label><input class='ace' type='radio' name='whip_chk' value='N'checked required><span class='lbl'> ปฏิเสธ</span></label></div><div class='col-sm-2'><label><input class='ace' type='radio' name='whip_chk' value='Y' required><span class='lbl'> มี</span></label></div></div>")
+                                ,$("<textarea name='whip' id='whip' class='form-control' placeholder='รายละเอียดประว้ติการชัก'></textarea><p>")
+                                
+                                ,$("<div class='form-group row'><label class='col-sm-5 col-form-label'><b>ยาที่รับประทานประจำ </b></label><div class='col-sm-2'><label><input class='ace' type='radio' name='regular_med_chk' value='N'checked required><span class='lbl'> ปฏิเสธ</span></label></div><div class='col-sm-2'><label><input class='ace' type='radio' name='regular_med_chk' value='Y' required><span class='lbl'> มี</span></label></div></div>")
+                                ,$("<textarea name='regular_med' id='regular_med' class='form-control' placeholder='รายละเอียดยาที่รับประทานประจำ'></textarea><p>")
+                                ,$("<div class='form-group row'><label class='col-sm-5 col-form-label'><b>ประวัติการแพ้ยา/แพ้อาหาร/แพ้สารอื่นๆและ ADR </b></label><div class='col-sm-2'><label><input class='ace' type='radio' name='beAllergic_chk' value='N'checked required><span class='lbl'> ปฏิเสธ</span></label></div><div class='col-sm-2'><label><input class='ace' type='radio' name='beAllergic_chk' value='Y' required><span class='lbl'> มี</span></label></div></div>")
+                                ,$("<textarea name=beAllergic' id='beAllergic' class='form-control' placeholder='รายละเอียดประวัติการแพ้ยา/แพ้อาหาร/แพ้สารอื่นๆและ ADR'></textarea><p>")
+                                ,$("<div class='form-group row'><label class='col-sm-5 col-form-label'><b>ประวัติการใช้/รับประทานยาก่อนมา รพจ.เลยฯ </b></label><div class='col-sm-2'><label><input class='ace' type='radio' name='old_med_chk' value='N'checked required><span class='lbl'> ปฏิเสธ</span></label></div><div class='col-sm-2'><label><input class='ace' type='radio' name='old_med_chk' value='Y' required><span class='lbl'> มี</span></label></div></div>")
+                                ,$("<textarea name='old_med' id='old_med' class='form-control' placeholder='รายละเอียดประวัติการใช้/รับประทานยาก่อนมา รพจ.เลยฯ'></textarea><p>")
+                                
+                                // ,$("<div class='form-group row'><label class='col-sm-5 col-form-label'><b>อื่นๆ </b></label><div class='col-sm-2'><label><input class='ace' type='radio' name='other_chk' value='N'checked required><span class='lbl'> ไม่มี</span></label></div><div class='col-sm-2'><label><input class='ace' type='radio' name='other_chk' value='Y' required><span class='lbl'> มี</span></label></div></div>")
+                                // ,$("<textarea name='other' id='other' class='form-control' placeholder='รายละเอียด'></textarea><p>")
                                 // ,$("<div class='form-group row'><label class='col-sm-4 col-form-label'><b>การคลอด </b></label>"
                                 //     +"<div class='col-sm-2'><label><input class='ace' type='radio' name='spawn' value='1' required><span class='lbl'> ที่บ้าน</span></label></div>"
                                 //     +"<div class='col-sm-2'><label><input class='ace' type='radio' name='spawn' value='2' checked required><span class='lbl'> ที่โรงพยาบาล</span></label></div>"
@@ -192,24 +217,9 @@ function InterviewIPD(content, id = null) {
                                 +"<textarea name='action_detial' id='action_detial' class='form-control' placeholder='ระบุวิธีการ/ว.ด.ป.'></textarea></div><p>")
                                 ,$("<div class='form-group row'><label class='col-sm-5 col-form-label'><b>คดีทั่วไป </b></label><div class='col-sm-2'><label><input class='ace' type='radio' name='lawsuit_chk' value='N'checked required><span class='lbl'> ปฏิเสธ</span></label></div><div class='col-sm-2'><label><input class='ace' type='radio' name='lawsuit_chk' value='Y' required><span class='lbl'> มี</span></label></div></div>")
                                 ,$("<textarea name='lawsuit' id='lawsuit' class='form-control' placeholder='รายละเอียดคดี'></textarea><p>")
-                                ,$("<div class='form-group row'><label class='col-sm-5 col-form-label'><b>นิติจิตเวช </b></label><div class='col-sm-2'><label><input class='ace' type='radio' name='lawpsych_chk' value='N'checked required><span class='lbl'> ปฏิเสธ</span></label></div><div class='col-sm-2'><label><input class='ace' type='radio' name='lawpsych_chk' value='Y' required><span class='lbl'> มี</span></label></div></div>")
-                                ,$("<textarea name='lawpsych' id='lawpsych' class='form-control' placeholder='ระบุ (เลขคดี/คดี/เลขที่หนังสือนำส่ง)'></textarea><p>")
                                 ,$("<div class='form-group row'><label class='col-sm-5 col-form-label'><b>บุคลิกภาพเดิม </b></label></div>")
                                 ,$("<textarea name='personality' id='personality' class='form-control' placeholder='รายละเอียดบุคลิกภาพเดิม'></textarea><p>")
-                                ,$("<div class='form-group row'><label class='col-sm-5 col-form-label'><b>การคัดกรอง IC  </b></label><div class='col-sm-2'><label><input class='ace' type='radio' name='IC_chk' value='N'checked required><span class='lbl'> ไม่มี</span></label></div><div class='col-sm-2'><label><input class='ace' type='radio' name='IC_chk' value='Y' required><span class='lbl'> มี</span></label></div></div>")
-                                ,$("<textarea name='IC' id='IC' class='form-control' placeholder='รายละเอียด'></textarea><p>")
-                                ,$("<div class='form-group row'><label class='col-sm-5 col-form-label'><b>การนอนหลับ </b></label><div class='col-sm-2'><label><input class='ace' type='radio' name='sleep_chk' value='N'checked required><span class='lbl'> หลับได้</span></label></div><div class='col-sm-2'><label><input class='ace' type='radio' name='sleep_chk' value='Y' required><span class='lbl'> นอนไม่หลับ</span></label></div></div>")
-                                ,$("<textarea name='sleep' id='sleep' class='form-control' placeholder='รายละเอียด'></textarea><p>")
-                                ,$("<div class='form-group row'><label class='col-sm-5 col-form-label'><b>การรับประทานยา  </b></label><div class='col-sm-2'><label><input class='ace' type='radio' name='med_chk' value='N'checked required><span class='lbl'> ต่อเนื่อง</span></label></div><div class='col-sm-2'><label><input class='ace' type='radio' name='med_chk' value='A' required><span class='lbl'> ไม่สม่ำเสมอ</span></label></div><div class='col-sm-2'><label><input class='ace' type='radio' name='med_chk' value='Y' required><span class='lbl'> ขาดยา</span></label></div></div>")
-                                ,$("<textarea name='med' id='med' class='form-control' placeholder='รายละเอียด'></textarea><p>")
-                                ,$("<div class='form-group row'><label class='col-sm-5 col-form-label'><b>ประเภทผู้ป่วย  </b></label></div>")
-                                ,$("<div class='form-group row'><label class='col-sm-5 col-form-label'><b>การคัดกรอง SMI-V </b></label><div class='col-sm-2'><label><input class='ace' type='radio' name='smi4_chk' value='N'checked required><span class='lbl'> ไม่มี</span></label></div><div class='col-sm-2'><label><input class='ace' type='radio' name='smi4_chk' value='Y' required><span class='lbl'> มี</span></label></div></div>")
-                                ,$("<div class='form-group row' id='smi4_group'><div class='col-sm-1'><label><input class='ace' type='checkbox' name='smi4_1' value='1'><span class='lbl'> 1</span></label></div><div class='col-sm-1'><label><input class='ace' type='checkbox' name='smi4_2' value='2'><span class='lbl'> 2</span></label></div>"
-                                +"<div class='col-sm-1'><label><input class='ace' type='checkbox' name='smi4_3' value='3'><span class='lbl'> 3</span></label></div><div class='col-sm-1'><label><input class='ace' type='checkbox' name='smi4_4' value='4'><span class='lbl'> 4</span></label></div></div>")
-                                ,$("<div class='form-group row'><label class='col-sm-2 col-form-label'><b>สรุปประเภทผู้ป่วย </b></label><div class='col-sm-1'><label><input class='ace' type='checkbox' name='typeP_1' value='1'><span class='lbl'> 3s</span></label></div><div class='col-sm-2'><label><input class='ace' type='checkbox' name='typeP_2' value='2'><span class='lbl'> เฝ้าระวังหลบหนี</span></label></div>"
-                                +"<div class='col-sm-2'><label><input class='ace' type='checkbox' name='typeP_3' value='3'><span class='lbl'> เฝ้าระวังฆ่าตัวตาย</span></label></div><div class='col-sm-2'><label><input class='ace' type='checkbox' name='typrP_4' value='4'><span class='lbl'> เฝ้าระวังอุบัติเหตุ</span></label></div><div class='col-sm-2'><label><input class='ace' type='checkbox' name='typrP_5' value='5'><span class='lbl'> เฝ้าระวังพฤติกรรมรุนแรง</span></label></div>"
-                                +"<div class='col-sm-2'></div><div class='col-sm-2'><label><input class='ace' type='checkbox' name='typrP_6' value='6'><span class='lbl'> พรบ. 120 ยาเสพติด</span></label></div><div class='col-sm-1'><label><input class='ace' type='checkbox' name='typrP_7' value='7'><span class='lbl'> พรบ.สุรา</span></label></div></div>")
-                                ,$("<div class='form-group row'><label class='col-sm-5 col-form-label'><b>การประเมินสภาพร่างกายเบื้องต้น  </b></label></div>")
+                                 ,$("<div class='form-group row'><label class='col-sm-5 col-form-label'><b>การประเมินสภาพร่างกายเบื้องต้น  </b></label></div>")
                                 ,$("<div class='col-lg-12'>"
                                     +"<div class='form-group col-lg-6 row'><label class='col-sm-2 control-label no-padding-right' for='shape'>รูปร่าง</label>"
                                     +"<div class='col-sm-10 row'><input class='input-sm  col-lg-12' type='text' id='shape' name='shape' placeholder='ลักษณะรูปร่าง' /></div> "
@@ -246,7 +256,6 @@ function InterviewIPD(content, id = null) {
                                 ,$("<div class='form-group row'><div class='col-sm-2'></div><div class='col-sm-2'><label><input class='ace' type='checkbox' name='action_7' value='7'><span class='lbl'> พูดคนเดียว</span></label></div><div class='col-sm-2'><label><input class='ace' type='checkbox' name='action_8' value='8'><span class='lbl'> หัวเราะคนเดียว</span></label></div></div>")
                                 ,$("<div class='form-group row'><div class='col-sm-2'></div><div class='col-sm-2'><label><input class='ace' type='checkbox' name='action_9' value='9'><span class='lbl'> ร้องไห้ไม่สมเหตุผล</span></label></div><div class='col-sm-2'><label><input class='ace' type='checkbox' name='action_10' value='10'><span class='lbl'> อื่นๆ</span></label></div></div>")
                                 ,$("<textarea name='action_10D' id='action_10D' class='form-control' placeholder='ระบุวิธีการ'></textarea><p>")
-
                                 ,$("<div class='form-group row'><label class='col-sm-5 col-form-label'><b>ความคิด </b></label><div class='col-sm-2'><label><input class='ace' type='radio' name='think_chk' value='Y' checked><span class='lbl'> สมเหตุสมผล</span></label></div><div class='col-sm-2'><label><input class='ace' type='radio' name='think_chk' value='N'><span class='lbl'> ไม่สมเหตุสมผล</span></label></div></div>")
                                 ,$("<div id='think_group' class='row'><div class='form-group row'><div class='col-sm-2'></div><div class='col-sm-2'><label><input class='ace' type='checkbox' name='think_1' value='1'><span class='lbl'> หลงผิด</span></label></div></div>"
                                     +"<textarea name='think_1D' id='think_1D' class='form-control' placeholder='ระบุลักษณะการหลงผิด'></textarea><p>"
@@ -255,7 +264,6 @@ function InterviewIPD(content, id = null) {
                                     +"<div class='form-group row'><div class='col-sm-2'></div><div class='col-sm-2'><label><input class='ace' type='checkbox' name='think_3' value='3'><span class='lbl'> หยุดชะงัก</span></label></div><div class='col-sm-2'><label><input class='ace' type='checkbox' name='think_4' value='4'><span class='lbl'> วกวน</span></label></div></div>"
                                     +"<div class='form-group row'><div class='col-sm-2'></div><div class='col-sm-2'><label><input class='ace' type='checkbox' name='think_5' value='5'><span class='lbl'> หลากหลาย/ฟุ้งซาน</span></label></div><div class='col-sm-2'><label><input class='ace' type='checkbox' name='think_6' value='6'><span class='lbl'> อื่นๆ</span></label></div></div>"
                                     +"<textarea name='action_10D' id='think_6D' class='form-control' placeholder='ระบุวิธีการ'></textarea></div><p>")
-
                                 ,$("<div class='form-group row'><label class='col-sm-5 col-form-label'><b>การรับรู้ (perception) </b></label><div class='col-sm-2'><label><input class='ace' type='radio' name='Recognition_chk' value='N'checked required><span class='lbl'> ตรงสภาพที่เป็นจริง</span></label></div><div class='col-sm-2'><label><input class='ace' type='radio' name='Recognition_chk' value='Y' required><span class='lbl'> ประสาทหลอน</span></label></div></div>")
                                 ,$("<textarea name='Recognition' id='Recognition' class='form-control' placeholder='ระบุรายละเอียด'></textarea><p>")
                                 ,$("<div class='form-group row'><label class='col-sm-5 col-form-label'><b>การตระหนักรู้ (insigth) </b></label><div class='col-sm-2'><label><input class='ace' type='radio' name='accept_chk' value='N'checked required><span class='lbl'> ยอมรับการเจ็บป่วย</span></label></div><div class='col-sm-2'><label><input class='ace' type='radio' name='accept_chk' value='Y' required><span class='lbl'> ไม่ยอมรับการเจ็บป่วย</span></label></div></div>")
@@ -265,6 +273,14 @@ function InterviewIPD(content, id = null) {
                                 // ,$("<div class='form-group row'><label class='col-sm-5 col-form-label'><b>วิธีแก้ปัญหาต่างๆ </b></label></div>")
                                 // ,$("<textarea name='solve' id='solve' class='form-control' placeholder='รายละเอียดวิธีแก้ปัญหาต่างๆ'></textarea><p>")
                                 );
+
+                                selectMash("#alcohol_type","alcoholType_data.php"," เลือกชนิดสุรา ");
+                                    selectMash("#alcohol_vol","alcoholVol_Data.php"," เลือกปริมาณ ");
+                                    selectMash("#dope_type","drugs_data.php"," เลือกชนิดยาเสพติด ");
+
+                                    $("#last_useA").attr("onkeyup","inputDigits(last_useA)");
+                                    $("#last_useD").attr("onkeyup","inputDigits(last_useD)");
+
                                 var bmi;
                                 $("#BMIcal").click(function(){
                                     var height= $("input[type=text][name=height]").val()/100;
@@ -425,7 +441,83 @@ function InterviewIPD(content, id = null) {
                                 $("input[type=radio][name=Recognition_chk]").click(function(){
                                     if($("input[type=radio][name=Recognition_chk]:checked").val()=='Y'){$("textarea#Recognition").show();}else{$("textarea#Recognition").hide();}
                                     }); 
-                                });             
+                                $("#biographer").val(data[0].relative);
+
+///////// ER Zone /////////// 
+    
+    if(data[0].weapon_chk == 'Y'){
+        $("input[type=radio][name=weapon_chk][value='Y']").attr("checked","checked");
+        $("textarea#weapon").show();
+        $("textarea#weapon").val(data[0].weapon);
+    }
+    if(data[0].detain_chk == 'Y'){
+        $("input[type=radio][name=detain_chk][value='Y']").attr("checked","checked");
+        $("textarea#detain").show();
+        $("textarea#detain").val(data[0].detain);
+    }console.log(data[0].typeP_1)
+    if(data[0].typeP_1 == '1'){$("input[type=checkbox][name=typeP_1]").attr("checked","checked");}
+    if(data[0].typeP_2 == '2'){$("input[type=checkbox][name=typeP_2]").attr("checked","checked");}
+    if(data[0].typeP_3 == '3'){$("input[type=checkbox][name=typeP_3]").attr("checked","checked");}
+    if(data[0].typeP_4 == '4'){$("input[type=checkbox][name=typeP_4]").attr("checked","checked");}
+    if(data[0].typeP_5 == '5'){$("input[type=checkbox][name=typeP_5]").attr("checked","checked");}
+    if(data[0].typeP_6 == '6'){$("input[type=checkbox][name=typeP_6]").attr("checked","checked");}
+    if(data[0].typeP_7 == '7'){$("input[type=checkbox][name=typeP_7]").attr("checked","checked");}
+    if(data[0].smi4_chk == 'Y'){
+        $("input[type=radio][name=smi4_chk][value='Y']").attr("checked","checked");
+        $("div#smi4_group").show();
+        if(data[0].smi4_1 == '1'){$("input[type=checkbox][name=smi4_1]").attr("checked","checked");}
+        if(data[0].smi4_2 == '2'){$("input[type=checkbox][name=smi4_2]").attr("checked","checked");}
+        if(data[0].smi4_3 == '3'){$("input[type=checkbox][name=smi4_3]").attr("checked","checked");}
+        if(data[0].smi4_4 == '4'){$("input[type=checkbox][name=smi4_4]").attr("checked","checked");}
+    }
+    if(data[0].lawpsych_chk == 'Y'){
+        $("input[type=radio][name=lawpsych_chk][value='Y']").attr("checked","checked");
+        $("textarea#lawpsych").show();
+        $("textarea#lawpsych").val(data[0].lawpsych);
+    }
+    if(data[0].sleep_chk == 'Y'){
+        $("input[type=radio][name=sleep_chk][value='Y']").attr("checked","checked");
+        $("textarea#sleep").show();
+        $("textarea#sleep").val(data[0].sleep);
+    }
+    if(data[0].IC_chk == 'Y'){
+        $("input[type=radio][name=IC_chk][value='Y']").attr("checked","checked");
+        $("textarea#IC").show();
+        $("textarea#IC").val(data[0].IC);
+    }
+    if(data[0].med_chk == 'Y'){
+        $("input[type=radio][name=med_chk][value='Y']").attr("checked","checked");
+        $("textarea#med").show();
+        $("textarea#med").val(data[0].med);
+    }
+    if(data[0].wound_chk == 'Y'){
+        $("input[type=radio][name=wound_chk][value='Y']").attr("checked","checked");
+        $("textarea#wound").show();
+        $("textarea#wound").val(data[0].wound);
+    }
+    if(data[0].surgery_chk == 'Y'){
+        $("input[type=radio][name=surgery_chk][value='Y']").attr("checked","checked");
+        $("textarea#surgery").show();
+        $("textarea#surgery").val(data[0].surgery);
+    }
+    if(data[0].alcohol_chk == 'Y'){
+        $("input[type=radio][name=alcohol_chk][value='Y']").attr("checked","checked");
+        $("div#alcohol").show();
+        selectMash("#alcohol_type","alcoholType_data.php"," เลือกชนิดสุรา ",data[0].alcohol_type);
+        selectMash("#alcohol_vol","alcoholVol_Data.php"," เลือกปริมาณ ",data[0].alcohol_vol);
+        $("input#last_useA").val(data[0].last_useA);
+    }
+    if(data[0].dope_chk == 'Y'){
+        $("input[type=radio][name=narcotic_chk][value='Y']").attr("checked","checked");
+        $("div#narcotic").show();
+        selectMash("#dope_type","drugs_data.php"," เลือกชนิดยาเสพติด ",data[0].dope_type);
+        $("input#last_useD").val(data[0].last_useD);
+    }
+
+///////// End ER Zone ///////////
+                                });
+                                
+    
 
     $("#frminv").on('submit', (function (e) {
         e.preventDefault();

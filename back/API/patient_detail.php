@@ -34,8 +34,14 @@ $sql="SELECT (SELECT count(a.an) from an_stat a WHERE a.hn = '".$rslt0['hn']."')
 ,oc.bw,oc.height,oc.bmi,p.hometel,p.informtel
 ,oc.pmh,oc.cc,oc.hpi,i.regdate,SUBSTR(i.regtime,1,5)regtime,doc.name as doctorname,a.pdx,a.dx0,a.dx1,a.dx2,a.dx3,a.dx4
 ,IF(a.lastvisit ='999', 'ไม่เคยรับการ admit', a.lastvisit)lastvisit
+,er.relative,er.police_name,er.weapon_chk,er.weapon,er.detain_chk,er.detain,er.typeP_1,er.typeP_2,er.typeP_3,er.typeP_4
+,er.typeP_5,er.typeP_6,er.typeP_7,er.smi4_chk,er.smi4_1,er.smi4_2,er.smi4_3,er.smi4_4,er.lawpsych_chk,er.lawpsych
+,er.sleep_chk,er.sleep,er.IC_chk,er.IC,er.med_chk,er.med,er.accident_chk,er.accident,er.wound_chk,er.wound,er.surgery_chk,er.surgery
+,er.cigarette_chk,er.D_cigarette,er.last_useC,er.alcohol_chk,er.alcohol_type,er.alcohol_vol,er.last_useA,er.dope_chk,er.dope_type,last_useD
+,er.marihuana_chk,er.D_marihuana,er.last_useM,er.ADL,er.work,er.menses_chk,er.menses
 from an_stat a
 left outer join patient p on a.hn=p.hn
+left outer join jvlER_regis er on er.vn = a.vn
 inner join sex s on s.code=p.sex
 inner join marrystatus m on m.code = p.marrystatus
 inner join nationality n on n.nationality = p.nationality
@@ -53,11 +59,11 @@ left outer join thaiaddress t2 on t2.chwpart=p.chwpart and
 left outer join thaiaddress t3 on t3.chwpart=p.chwpart and
      t3.amppart=p.amppart and t3.tmbpart=p.tmbpart
 left outer JOIN thaiaddress t4 ON t4.chwpart=p.chwpart
-#left outer join an_stat a on a.hn = v.hn
-WHERE a.an = :an";
+WHERE a.an = :an GROUP BY a.an";
 $conn_DB->imp_sql($sql);
 //$execute=array(':an' => $data);
 $rslt=$conn_DB->select_a($execute);
+//print_r($rslt);
 $conv=new convers_encode();
 //for($i=0;$i<count($rslt);$i++){
     $series['admit'] = $rslt['admit'];
@@ -104,6 +110,55 @@ $conv=new convers_encode();
     $series['dx3'] = $rslt['dx3'];
     $series['dx4'] = $rslt['dx4'];
     $series['lastvisit'] = $rslt['lastvisit'];
+    $series['relative'] = isset($rslt['relative'])?$conv->tis620_to_utf8($rslt['relative']):'';
+    $series['police_name'] = isset($rslt['police_name'])?$conv->tis620_to_utf8($rslt['police_name']):'';
+    $series['weapon_chk'] = $rslt['weapon_chk'];
+    $series['weapon'] = isset($rslt['weapon'])?$conv->tis620_to_utf8($rslt['weapon']):'';
+    $series['detain_chk'] = $rslt['detain_chk'];
+    $series['detain'] = isset($rslt['detain'])?$conv->tis620_to_utf8($rslt['detain']):'';
+    $series['typeP_1'] = $rslt['typeP_1'];
+    $series['typeP_2'] = $rslt['typeP_2'];
+    $series['typeP_3'] = $rslt['typeP_3'];
+    $series['typeP_4'] = $rslt['typeP_4'];
+    $series['typeP_5'] = $rslt['typeP_5'];
+    $series['typeP_6'] = $rslt['typeP_6'];
+    $series['typeP_7'] = $rslt['typeP_7'];
+    $series['smi4_chk'] = $rslt['smi4_chk'];
+    $series['smi4_1'] = $rslt['smi4_1'];
+    $series['smi4_2'] = $rslt['smi4_2'];
+    $series['smi4_3'] = $rslt['smi4_3'];
+    $series['smi4_4'] = $rslt['smi4_4'];
+    $series['lawpsych_chk'] = $rslt['lawpsych_chk'];
+    $series['lawpsych'] = isset($rslt['lawpsych'])?$conv->tis620_to_utf8($rslt['lawpsych']):'';
+    $series['sleep_chk'] = $rslt['sleep_chk'];
+    $series['sleep'] = isset($rslt['sleep'])?$conv->tis620_to_utf8($rslt['sleep']):'';
+    $series['IC_chk'] = $rslt['IC_chk'];
+    $series['IC'] = isset($rslt['IC'])?$conv->tis620_to_utf8($rslt['IC']):'';
+    $series['med_chk'] = $rslt['med_chk'];
+    $series['med'] = isset($rslt['med'])?$conv->tis620_to_utf8($rslt['med']):'';
+    $series['accident_chk'] = $rslt['accident_chk'];
+    $series['accident'] = isset($rslt['accident'])?$conv->tis620_to_utf8($rslt['accident']):'';
+    $series['wound_chk'] = $rslt['wound_chk'];
+    $series['wound'] = isset($rslt['wound'])?$conv->tis620_to_utf8($rslt['wound']):'';
+    $series['surgery_chk'] = $rslt['surgery_chk'];
+    $series['surgery'] = isset($rslt['surgery'])?$conv->tis620_to_utf8($rslt['surgery']):'';
+    $series['cigarette_chk'] = $rslt['cigarette_chk'];
+    $series['D_cigarette'] = isset($rslt['D_cigarette'])?$conv->tis620_to_utf8($rslt['D_cigarette']):'';
+    $series['last_useC'] = isset($rslt['last_useC'])?$rslt['last_useC']:'';
+    $series['alcohol_chk'] = $rslt['alcohol_chk'];
+    $series['alcohol_type'] = isset($rslt['alcohol_type'])?$rslt['alcohol_type']:'';
+    $series['alcohol_vol'] = isset($rslt['alcohol_vol'])?$rslt['alcohol_vol']:'';
+    $series['last_useA'] = isset($rslt['last_useA'])?$rslt['last_useA']:'';
+    $series['dope_chk'] = $rslt['dope_chk'];
+    $series['dope_type'] = isset($rslt['dope_type'])?$rslt['dope_type']:'';
+    $series['last_useD'] = isset($rslt['last_useD'])?$rslt['last_useD']:'';
+    $series['marihuana_chk'] = $rslt['marihuana_chk'];
+    $series['D_marihuana'] = isset($rslt['D_marihuana'])?$conv->tis620_to_utf8($rslt['D_marihuana']):'';
+    $series['last_useM'] = isset($rslt['last_useM'])?$conv->tis620_to_utf8($rslt['last_useM']):'';
+    $series['ADL'] = $rslt['ADL'];
+    $series['work'] = $rslt['work'];
+    $series['menses_chk'] = $rslt['menses_chk'];
+    $series['menses'] = isset($rslt['menses'])?$conv->tis620_to_utf8($rslt['menses']):'';
 array_push($result, $series);    
 //}
 //print_r($result);
