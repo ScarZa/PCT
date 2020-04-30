@@ -216,15 +216,20 @@ $("#navbar-container").empty().append($('<button type="button" class="navbar-tog
                                                                                                         +'<i class="menu-icon fa fa-caret-right"></i> คลินิกผู้สูงอายุ <b class="arrow fa fa-angle-down"></b></a>'
                                                                                                         +'<b class="arrow"></b><ul id="Ssubmenu8-2" class="submenu"></ul></li>')        
                                                                                                         );
-                                                                                $("#Ssubmenu8-1").empty().append($('<li class=""><a href="#"><i class="menu-icon fa fa-leaf green"></i> SNAP-IV</a> <b class="arrow"></b></li>')
-                                                                                                                ,$('<li class=""><a href="#"><i class="menu-icon fa fa-leaf green"></i> CDI</a> <b class="arrow"></b></li>')
+                                                                                $("#Ssubmenu8-1").empty().append($('<li class=""><a href="#" id="snap4"><i class="menu-icon fa fa-leaf green"></i> SNAP-IV</a> <b class="arrow"></b></li>')
+                                                                                                                ,$('<li class=""><a href="#" id="CDI"><i class="menu-icon fa fa-leaf green"></i> CDI</a> <b class="arrow"></b></li>')
                                                                                                                 );
-                                                                                $("#Ssubmenu8-2").empty().append($('<li class=""><a href="#"><i class="menu-icon fa fa-leaf green"></i> MMSE-Thai 2002</a> <b class="arrow"></b></li>')
-                                                                                                                ,$('<li class=""><a href="#"><i class="menu-icon fa fa-leaf green"></i> ADL</a> <b class="arrow"></b></li>')
-                                                                                                                ,$('<li class=""><a href="#"><i class="menu-icon fa fa-leaf green"></i> NPI-Q thai</a> <b class="arrow"></b></li>')
+                                                                                $("#Ssubmenu8-2").empty().append($('<li class=""><a href="#" id="MMSE"><i class="menu-icon fa fa-leaf green"></i> MMSE-Thai 2002</a> <b class="arrow"></b></li>')
+                                                                                                                ,$('<li class=""><a href="#" id="ADL"><i class="menu-icon fa fa-leaf green"></i> ADL</a> <b class="arrow"></b></li>')
+                                                                                                                ,$('<li class=""><a href="#" id="NPIQ"><i class="menu-icon fa fa-leaf green"></i> NPI-Q thai</a> <b class="arrow"></b></li>')
                                                                                                                 );        
                                                                                                                         
-                                                                                $("a#Depression").attr("onclick","TBDepression('#page-content')"); 
+                                                                                $("a#Depression").attr("onclick","TBDepression('#page-content')");
+                                                                                $("a#snap4").attr("onclick","TBSnap4('#page-content')");
+                                                                                $("a#CDI").attr("onclick","TBCDI('#page-content')"); 
+                                                                                $("a#MMSE").attr("onclick","TBMMSE('#page-content')"); 
+                                                                                $("a#ADL").attr("onclick","TBADL('#page-content')");
+                                                                                $("a#NPIQ").attr("onclick","TBNPIQ('#page-content')");
 
                                                                     // $("#menu3").empty().append($('<a href="calendar.html"><i class="menu-icon fa fa-calendar"></i>'
                                                                     //                             +'<span class="menu-text">Calendar <span class="badge badge-transparent tooltip-error" title="2 Important Events"> '

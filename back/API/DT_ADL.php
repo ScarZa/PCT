@@ -18,15 +18,14 @@ $series = array();
 
 $sql="select p.hn,concat(p.pname,p.fname,' ',p.lname) as fullname,v.age_y age,v.pdx,pt.name ptname
 from patient p
-inner join depression_screen ds on ds.hn = p.hn
-inner join jvl_headData_2q8q9q hd on hd.depression_screen_id = ds.depression_screen_id
+inner join jvl_adl adl on adl.hn = p.hn
 inner JOIN vn_stat v ON v.hn=p.hn
 inner join pttype pt on v.pttype=pt.pttype
-GROUP BY ds.hn ORDER BY hd.hd_id desc"; 
+GROUP BY adl.hn ORDER BY adl.adl_id desc"; 
 $conn_DB->imp_sql($sql);
 $num_risk = $conn_DB->select();
 
-    $sql2="SELECT count(ds.hn) count FROM jvl_headData_2q8q9q hd inner join depression_screen ds on hd.depression_screen_id = ds.depression_screen_id GROUP BY ds.hn ORDER BY hd.hd_id desc"; 
+    $sql2="SELECT count(hn) count FROM jvl_adl GROUP BY hn ORDER BY adl_id desc"; 
     $conn_DB->imp_sql($sql2);
     $count = $conn_DB->select();    
     $conv=new convers_encode();

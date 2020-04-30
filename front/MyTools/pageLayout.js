@@ -3,7 +3,7 @@ var PageLayout = function(content){
     this.GetPL= function (){
             var layout = "<div class='row'>"+
             "<div id='sel_year' class='col-md-3 col-md-offset-9 form-group'></div>"+
-            "<div class='col-md-12'>"+
+            "<div class='col-xs-12'>"+
 
 											'<div class="widget-box widget-color-blue" id="widget-box-2">'+
 												'<div class="widget-header">'+
