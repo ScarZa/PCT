@@ -18,7 +18,7 @@ $("#navbar-container").empty().append($('<button type="button" class="navbar-tog
                         $("#Notify").hide();
                         $("#Messages").hide();
                         $("#profile").hide();
-                        console.log('test');                     
+                                      
                 $.getJSON('../back/API/up_header.php',function (data) { console.log(data);
                         if(data.conn=='Connect_DB_false'){
                             $(".content-wrapper").append("<section class='content' id='sec_content'></section>");   
@@ -59,12 +59,12 @@ $("#navbar-container").empty().append($('<button type="button" class="navbar-tog
                             $("li#profile").empty().append($('<a data-toggle="dropdown" href="#" class="dropdown-toggle"><img class="nav-user-photo" src="images/person.png" alt="Jason\'s Photo" />'
 								+'<span class="user-info"><small>ยินดีต้อนรับ,</small> '+data.name_user+'</span><i class="ace-icon fa fa-caret-down"></i></a>'
                                                                 +'<ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close"></ul>'));  
-                                        $("ul.user-menu").empty().append($('<li><a href="#"><i class="ace-icon fa fa-cog"></i> Settings</a></li>')
+                                        $("ul.user-menu").empty().append($('<li><a href="#" id="add-user"><i class="ace-icon fa fa-cog"></i> Settings</a></li>')
                                                                         ,$('<li><a href="profile.html"><i class="ace-icon fa fa-user"></i> Profile</a></li>')
                                                                         ,$('<li class="divider"></li>')
                                                                         ,$('<li><a id="logout" href="#"><i class="ace-icon fa fa-power-off"></i> Logout</a></li>'));  
                                     $("#logout").attr("onclick","loadAjax('#index_content','../back/API/logout.php',null,'logout','html');");                                    
-
+                                    $("a#add-user").attr("onclick","AddUser('#page-content')");
 
 ////////////// Left Menu
 						
@@ -84,6 +84,7 @@ $("#navbar-container").empty().append($('<button type="button" class="navbar-tog
                                                                                         ,$('<li class="" id="menu6">')
                                                                                         ,$('<li class="" id="menu7">')
                                                                                         ,$('<li class="" id="menu8">')
+                                                                                        ,$('<li class="" id="menu9">')
                                                                                         );   
                                                                     $("#menu1").empty().append($('<a href="#" class="dropdown-toggle"><i class="menu-icon fa fa-bed"></i> <span class="menu-text">ผู้ป่วยใน </span> <b class="arrow fa fa-angle-down"></b></a>')
                                                                                                 ,$('<b class="arrow"></b>')
@@ -229,7 +230,17 @@ $("#navbar-container").empty().append($('<button type="button" class="navbar-tog
                                                                                 $("a#CDI").attr("onclick","TBCDI('#page-content')"); 
                                                                                 $("a#MMSE").attr("onclick","TBMMSE('#page-content')"); 
                                                                                 $("a#ADL").attr("onclick","TBADL('#page-content')");
-                                                                                $("a#NPIQ").attr("onclick","TBNPIQ('#page-content')");
+                                                                                $("a#NPIQ").attr("onclick", "TBNPIQ('#page-content')");
+                                                                                
+                                                                $("#menu9").empty().append($('<a href="#" class="dropdown-toggle"><i class="menu-icon fa fa-fire red"></i> <span class="menu-text">งานโภชนาการ </span> <b class="arrow fa fa-angle-down"></b></a>')
+                                                                                ,$('<b class="arrow"></b>')
+                                                                                ,$('<ul class="submenu" id="submenu9"></ul>'));   
+                                                                $("#submenu9").empty().append($('<li class=""><a href="#" id="food_new"><i class="menu-icon fa fa-caret-right"></i> รอลงทะเบียน</a><b class="arrow"></b></li>')
+                                                                                            ,$('<li class=""><a href="#" id="food_list"><i class="menu-icon fa fa-caret-right"></i> ผู้ป่วยในคลินิก</a><b class="arrow"></b></li>')               
+                                                                                                );        
+                                                                                                                        
+                                                                                $("a#food_new").attr("onclick","TBFoodRegis('#page-content')");
+                                                                                $("a#food_list").attr("onclick","TBFoodList('#page-content')");
 
                                                                     // $("#menu3").empty().append($('<a href="calendar.html"><i class="menu-icon fa fa-calendar"></i>'
                                                                     //                             +'<span class="menu-text">Calendar <span class="badge badge-transparent tooltip-error" title="2 Important Events"> '
@@ -251,6 +262,7 @@ $("#navbar-container").empty().append($('<button type="button" class="navbar-tog
                                                 $("#menu6").hide();
                                                 $("#menu7").hide();
                                                 $("#menu8").hide();
+                                                $("#menu9").hide();
                                                 if(data.status_user=='ADMIN'){
                                                     $("#menu1").show();
                                                     $("#menu2").show();
@@ -260,6 +272,7 @@ $("#navbar-container").empty().append($('<button type="button" class="navbar-tog
                                                     $("#menu6").show();
                                                     $("#menu7").show();
                                                     $("#menu8").show();
+                                                    $("#menu9").show();
                                                 }else if(data.status_user=='HOS' && data.depcode=='018'){
                                                     $("#menu5").show();
                                                 }else if(data.status_user=='HOS' && data.depcode=='009'){
@@ -276,6 +289,8 @@ $("#navbar-container").empty().append($('<button type="button" class="navbar-tog
                                                     $("#menu7").show();
                                                 }else if(data.status_user=='HOS' && data.depcode=='004'){
                                                     $("#menu8").show();
+                                                }else if(data.status_user=='HOS' && data.depcode=='024'){
+                                                    $("#menu9").show();
                                                 }
                                             }else if(data.status_user == ''){
                                                 $("#login-tab").show(); 

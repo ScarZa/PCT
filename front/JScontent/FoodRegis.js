@@ -1,7 +1,7 @@
 function FoodRegis(content, id = null) {
     
-    var title = " ลงทะเบียนเภสัชกรรม";
-    var subtitle = "แบบลงทะเบียน ";
+    var title = " ลงทะเบียนงานโภชนาการ";
+    var subtitle = "แบบลงทะเบียนงานโภชนาการ ";
     //$("li#page").empty().text(title)
     $("b#head-title").empty().prepend("<img src='images/icon_set2/compose.ico' width='40'> ").append(title);
     $("span#head-subtitle").empty().append(subtitle);
@@ -36,21 +36,21 @@ function FoodRegis(content, id = null) {
         // ,$("<div class='form-group col-xs-12 row'><div class='col-xs-6 row'><label><input class='ace' type='text' name='status' placeholder='หมายเลขโทรศัพท์ 3'></label></div>"
         //     +"<div class='col-xs-6 row'><label><input class='ace' type='text' name='status' placeholder='ความสัมพันธ์บุคคลที่ 3'></label></div></div>")
         ,$("<div class='form-group col-xs-12 row'><div class='col-xs-4 row'><label><input class='ace' type='date' name='regdate' placeholder='วันที่ลงทะเบียน'></label></div>"
-            +"<div class='col-xs-6 row'><label><select name='phar_type' class='form-control select2' id='phar_type' required></select></label></div></div>")
-        ,$("<div class='form-group col-xs-12 row'><div class='col-xs-6 row'><label><select name='phar_status' class='form-control select2' id='phar_status' required></select></label></div>"
+            +"<div class='col-xs-6 row'><label><select name='food_type' class='form-control select2' id='food_type' required></select></label></div></div>")
+        ,$("<div class='form-group col-xs-12 row'><div class='col-xs-6 row'><label><select name='food_status' class='form-control select2' id='food_status' required></select></label></div>"
             //+"<div class='col-xs-3'><label><select name='begin_year' class='form-control select2' id='begin_year' required></select></label></div>"
             +"<div class='col-xs-3'><label><select name='doctor' class='form-control select2' id='doctor' required></select></label></div></div>")
         //,$("<textarea name='note' class='form-control' placeholder='หมายเหตุ' required></textarea><br>")
         );
 
-        selectMash("#phar_type","consult_data.php?data=018","เลือกเหตุผล");                      
-        selectMash("#phar_status","member_status_data.php","เลือกสถานะ");
-        selectMash("#doctor","clinic_data.php?data=018","เลือกผู้รับผิดชอบ");
+        selectMash("#food_type","consult_data.php?data=024","เลือกเหตุผล");                      
+        selectMash("#food_status","member_status_data.php","เลือกสถานะ");
+        selectMash("#doctor","clinic_data.php?data=024","เลือกผู้รับผิดชอบ");
 
 
 $("#cgi-post").append($("<input type='hidden' name='hn' value='"+data[0].hn+"'>")
     ,$("<input type='hidden' name='user' value='"+$.cookie("user")+"'>")
-    ,$("<input type='hidden' name='method' value='regis_Phar'>"));    
+    ,$("<input type='hidden' name='method' value='regis_Food'>"));    
     
     $("#frmMR").on('submit', (function (e) {
         e.preventDefault();
@@ -61,7 +61,7 @@ $("#cgi-post").append($("<input type='hidden' name='hn' value='"+data[0].hn+"'>"
         // }
         var settings = {
             type: "POST",
-            url: "../../back/API/prcPharAPI.php",
+            url: "../../back/API/prcFoodAPI.php",
             async: true,
             crossDomain: true,
             data: dataForm,

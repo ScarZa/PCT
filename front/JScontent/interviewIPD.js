@@ -33,7 +33,7 @@ function InterviewIPD(content, id = null) {
                                     +"<div class='form-group col-lg-5 row'><label class='col-sm-3 control-label no-padding-right' for='relative'>เกี่ยวข้องเป็น </label>"
                                     +"<div class='col-sm-9 row'><input class='input-sm' type='text' id='relative' name='relative'  placeholder='ความเกี่ยวข้องกับผู้ป่วย' /></div> "
                                     +"</div>"
-                                +"</div>")
+                                    +"</div>")
                                 ,$("<div class='form-group row'><label class='col-sm-5 col-form-label'><b>ที่อยู่ (สามารถติดต่อได้) ของผู้ป่วย </b></label></div>")
                                 ,$("<textarea name='patient_add' id='patient_add' class='form-control' placeholder='ที่อยู่ (สามารถติดต่อได้) ของผู้ป่วย'>"+data[0].fulladdressname+"</textarea><p>")
                                 ,$("<div class='col-lg-12 row'>"

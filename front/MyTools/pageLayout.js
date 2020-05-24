@@ -7,7 +7,7 @@ var PageLayout = function(content){
 
 											'<div class="widget-box widget-color-blue" id="widget-box-2">'+
 												'<div class="widget-header">'+
-													'<h5 class="widget-title bigger lighter">'+
+													'<h5 class="widget-title bigger lighter" id="head-table">'+
 														'<i class="ace-icon fa fa-table"></i>'+
 														'ตาราง'+
 													'</h5>'+

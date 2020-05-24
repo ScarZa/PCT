@@ -26,6 +26,11 @@ function MatrixRegis(content, id = null) {
         var method = "confirm_Phy";
         var process = "prcPhyAPI.php";
         var popup_ = "Phy_Regis.html"      
+    }else if($.cookie("dep")=='024'){
+        var title = " ลงทะเบียนงานโภชนาการ";
+        var method = "confirm_Food";
+        var process = "prcFoodAPI.php";
+        var popup_ = "Food_Regis.html"      
     }
     var subtitle = "แบบลงทะเบียน";
     //$("li#page").empty().text(title)
@@ -103,6 +108,8 @@ $("#cgi-post").append($("<input type='hidden' name='hn' value='"+data[0].hn+"'>"
                     TBPharRegis('#page-content');
                 }else if($.cookie("dep")=='006'){
                     TBPhyRegis('#page-content');
+                }else if($.cookie("dep")=='024'){
+                    TBFoodRegis('#page-content');
                 }
             }else if(result.check=='Y'){
                 $("#page-content").empty();
@@ -117,6 +124,8 @@ $("#cgi-post").append($("<input type='hidden' name='hn' value='"+data[0].hn+"'>"
                     TBPharRegis('#page-content');
                 }else if($.cookie("dep")=='006'){
                     TBPhyRegis('#page-content');
+                }else if($.cookie("dep")=='024'){
+                    TBFoodRegis('#page-content');
                 }
                 
             }
