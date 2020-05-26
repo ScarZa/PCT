@@ -1,6 +1,28 @@
 var createTableAjax = function () {
     
-    this.GetNewTableAjax = function (content,jsonsource,tempdata,cols,namefunc=null,deltable=null,delfield=null,resend=null,edit=false,process=false,pnamefunc=null,detail=false,dmodal=null,print=false,printpage=null,red=null,orange=null,yellow=null,green=null,tid1=null,tid2=null,tid3=null) {
+    this.GetNewTableAjax = function (content
+                                    , jsonsource
+                                    , tempdata
+                                    , cols
+                                    , namefunc = null
+                                    , deltable = null
+                                    , delfield = null
+                                    , resend = null
+                                    , edit = false
+                                    , process = false
+                                    , pnamefunc = null
+                                    , detail = false
+                                    , dmodal = null
+                                    , print = false
+                                    , printpage = null
+                                    , red = null
+                                    , orange = null
+                                    , yellow = null
+                                    , green = null
+                                    , tid1 = null
+                                    , tid2 = null
+                                    , tid3 = null)
+                                {
                 var table = document.createElement ("table");
             	//table.border = "1px";
                 if(tid1!=null){
@@ -123,7 +145,7 @@ var createTableAjax = function () {
 					cellDel.appendChild(delButton);
 					delButton.innerHTML = "<img src='images/icon_set1/file_delete.ico' width='25'>";
 					delButton.setAttribute("href","#");
-					delButton.setAttribute("onclick","DeleteData('JsonData/DeleteFile.php','"+deltable+"','"+delfield+"','"+value[0]+"','"+resend+"','html');");
+					delButton.setAttribute("onclick","DeleteData('../back/API/DeleteFileAPI.php','"+deltable+"','"+delfield+"','"+value[0]+"','"+resend+"','html');");
                                     }
             }
             	// var container = document.getElementById (content);
@@ -133,131 +155,148 @@ var createTableAjax = function () {
             $("td:contains("+red+")").attr("style","background-color: #d61b1b;color: white");
             $("td:contains("+orange+")").attr("style","background-color: #e08002;color: white");
             $("td:contains("+yellow+")").attr("style","background-color: #e3fc07;");
-            $("td:contains("+green+")").attr("style","background-color: #40ad57;color: white");
-        jQuery(function($) {
-            //initiate dataTables plugin
-            var myTable = 
-            $('#'+tid)
-            //.wrap("<div class='dataTables_borderWrap' />")   //if you are applying horizontal scrolling (sScrollX)
-            .DataTable( {
-                bAutoWidth: false,
-                "aoColumns": [
-                  { "bSortable": false },
-                  null, null,null, null, null,
-                  { "bSortable": false }
-                ],
-                "aaSorting": [],
+                        $("td:contains(" + green + ")").attr("style", "background-color: #40ad57;color: white");
+                        $("#"+tid1+"").DataTable();
+            $("#"+tid2+"").DataTable({
+            "paging": true,
+            "lengthChange": false,
+            "searching": false,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false
+        });
+        $("#"+tid3+"").DataTable({
+            "paging": false,
+            "lengthChange": true,
+            "searching": true,
+            "ordering": true,
+            "info": true,
+            "autoWidth": true
+        });
+        // jQuery(function($) {
+        //     //initiate dataTables plugin
+        //     var myTable = 
+        //     $('#'+tid)
+        //     //.wrap("<div class='dataTables_borderWrap' />")   //if you are applying horizontal scrolling (sScrollX)
+        //     .DataTable( {
+        //         bAutoWidth: false,
+        //         "aoColumns": [
+        //           { "bSortable": false },
+        //           null, null,null, null, null,
+        //           { "bSortable": false }
+        //         ],
+        //         "aaSorting": [],
                 
                 
-                //"bProcessing": true,
-                //"bServerSide": true,
-                //"sAjaxSource": "http://127.0.0.1/table.php"	,
+        //         //"bProcessing": true,
+        //         //"bServerSide": true,
+        //         //"sAjaxSource": "http://127.0.0.1/table.php"	,
         
-                //,
-                //"sScrollY": "200px",
-                //"bPaginate": false,
+        //         //,
+        //         //"sScrollY": "200px",
+        //         //"bPaginate": false,
         
-                //"sScrollX": "100%",
-                //"sScrollXInner": "120%",
-                //"bScrollCollapse": true,
-                //Note: if you are applying horizontal scrolling (sScrollX) on a ".table-bordered"
-                //you may want to wrap the table inside a "div.dataTables_borderWrap" element
+        //         //"sScrollX": "100%",
+        //         //"sScrollXInner": "120%",
+        //         //"bScrollCollapse": true,
+        //         //Note: if you are applying horizontal scrolling (sScrollX) on a ".table-bordered"
+        //         //you may want to wrap the table inside a "div.dataTables_borderWrap" element
         
-                //"iDisplayLength": 50
+        //         //"iDisplayLength": 50
         
         
-                select: {
-                    style: 'multi'
-                }
-            } );
+        //         select: {
+        //             style: 'multi'
+        //         }
+        //     } );
         
             
             
-            $.fn.dataTable.Buttons.defaults.dom.container.className = 'dt-buttons btn-overlap btn-group btn-overlap';
+        //     $.fn.dataTable.Buttons.defaults.dom.container.className = 'dt-buttons btn-overlap btn-group btn-overlap';
             
-            new $.fn.dataTable.Buttons( myTable, {
-                buttons: [
-                  {
-                    "extend": "colvis",
-                    "text": "<i class='fa fa-search bigger-110 blue'></i> <span class='hidden'>Show/hide columns</span>",
-                    "className": "btn btn-white btn-primary btn-bold",
-                    columns: ':not(:first):not(:last)'
-                  },
-                  {
-                    "extend": "copy",
-                    "text": "<i class='fa fa-copy bigger-110 pink'></i> <span class='hidden'>Copy to clipboard</span>",
-                    "className": "btn btn-white btn-primary btn-bold"
-                  },
-                  {
-                    "extend": "csv",
-                    "text": "<i class='fa fa-database bigger-110 orange'></i> <span class='hidden'>Export to CSV</span>",
-                    "className": "btn btn-white btn-primary btn-bold"
-                  },
-                  {
-                    "extend": "excel",
-                    "text": "<i class='fa fa-file-excel-o bigger-110 green'></i> <span class='hidden'>Export to Excel</span>",
-                    "className": "btn btn-white btn-primary btn-bold"
-                  },
-                  {
-                    "extend": "pdf",
-                    "text": "<i class='fa fa-file-pdf-o bigger-110 red'></i> <span class='hidden'>Export to PDF</span>",
-                    "className": "btn btn-white btn-primary btn-bold"
-                  },
-                  {
-                    "extend": "print",
-                    "text": "<i class='fa fa-print bigger-110 grey'></i> <span class='hidden'>Print</span>",
-                    "className": "btn btn-white btn-primary btn-bold",
-                    autoPrint: false,
-                    message: 'This print was produced using the Print button for DataTables'
-                  }		  
-                ]
-            } );
-            myTable.buttons().container().appendTo( $('.tableTools-container') );
+        //     new $.fn.dataTable.Buttons( myTable, {
+        //         buttons: [
+        //           {
+        //             "extend": "colvis",
+        //             "text": "<i class='fa fa-search bigger-110 blue'></i> <span class='hidden'>Show/hide columns</span>",
+        //             "className": "btn btn-white btn-primary btn-bold",
+        //             columns: ':not(:first):not(:last)'
+        //           },
+        //           {
+        //             "extend": "copy",
+        //             "text": "<i class='fa fa-copy bigger-110 pink'></i> <span class='hidden'>Copy to clipboard</span>",
+        //             "className": "btn btn-white btn-primary btn-bold"
+        //           },
+        //           {
+        //             "extend": "csv",
+        //             "text": "<i class='fa fa-database bigger-110 orange'></i> <span class='hidden'>Export to CSV</span>",
+        //             "className": "btn btn-white btn-primary btn-bold"
+        //           },
+        //           {
+        //             "extend": "excel",
+        //             "text": "<i class='fa fa-file-excel-o bigger-110 green'></i> <span class='hidden'>Export to Excel</span>",
+        //             "className": "btn btn-white btn-primary btn-bold"
+        //           },
+        //           {
+        //             "extend": "pdf",
+        //             "text": "<i class='fa fa-file-pdf-o bigger-110 red'></i> <span class='hidden'>Export to PDF</span>",
+        //             "className": "btn btn-white btn-primary btn-bold"
+        //           },
+        //           {
+        //             "extend": "print",
+        //             "text": "<i class='fa fa-print bigger-110 grey'></i> <span class='hidden'>Print</span>",
+        //             "className": "btn btn-white btn-primary btn-bold",
+        //             autoPrint: false,
+        //             message: 'This print was produced using the Print button for DataTables'
+        //           }		  
+        //         ]
+        //     } );
+        //     myTable.buttons().container().appendTo( $('.tableTools-container') );
             
-            //style the message box
-            var defaultCopyAction = myTable.button(1).action();
-            myTable.button(1).action(function (e, dt, button, config) {
-                defaultCopyAction(e, dt, button, config);
-                $('.dt-button-info').addClass('gritter-item-wrapper gritter-info gritter-center white');
-            });
+        //     //style the message box
+        //     var defaultCopyAction = myTable.button(1).action();
+        //     myTable.button(1).action(function (e, dt, button, config) {
+        //         defaultCopyAction(e, dt, button, config);
+        //         $('.dt-button-info').addClass('gritter-item-wrapper gritter-info gritter-center white');
+        //     });
             
             
-            var defaultColvisAction = myTable.button(0).action();
-            myTable.button(0).action(function (e, dt, button, config) {
+        //     var defaultColvisAction = myTable.button(0).action();
+        //     myTable.button(0).action(function (e, dt, button, config) {
                 
-                defaultColvisAction(e, dt, button, config);
+        //         defaultColvisAction(e, dt, button, config);
                 
                 
-                if($('.dt-button-collection > .dropdown-menu').length == 0) {
-                    $('.dt-button-collection')
-                    .wrapInner('<ul class="dropdown-menu dropdown-light dropdown-caret dropdown-caret" />')
-                    .find('a').attr('href', '#').wrap("<li />")
-                }
-                $('.dt-button-collection').appendTo('.tableTools-container .dt-buttons')
-            });
+        //         if($('.dt-button-collection > .dropdown-menu').length == 0) {
+        //             $('.dt-button-collection')
+        //             .wrapInner('<ul class="dropdown-menu dropdown-light dropdown-caret dropdown-caret" />')
+        //             .find('a').attr('href', '#').wrap("<li />")
+        //         }
+        //         $('.dt-button-collection').appendTo('.tableTools-container .dt-buttons')
+        //     });
         
-            ////
+        //     ////
         
-            setTimeout(function() {
-                $($('.tableTools-container')).find('a.dt-button').each(function() {
-                    var div = $(this).find(' > div').first();
-                    if(div.length == 1) div.tooltip({container: 'body', title: div.parent().text()});
-                    else $(this).tooltip({container: 'body', title: $(this).text()});
-                });
-            }, 500);
+        //     setTimeout(function() {
+        //         $($('.tableTools-container')).find('a.dt-button').each(function() {
+        //             var div = $(this).find(' > div').first();
+        //             if(div.length == 1) div.tooltip({container: 'body', title: div.parent().text()});
+        //             else $(this).tooltip({container: 'body', title: $(this).text()});
+        //         });
+        //     }, 500);
             
-            myTable.on( 'select', function ( e, dt, type, index ) {
-                if ( type === 'row' ) {
-                    $( myTable.row( index ).node() ).find('input:checkbox').prop('checked', true);
-                }
-            } );
-            myTable.on( 'deselect', function ( e, dt, type, index ) {
-                if ( type === 'row' ) {
-                    $( myTable.row( index ).node() ).find('input:checkbox').prop('checked', false);
-                }
-            } );
+        //     myTable.on( 'select', function ( e, dt, type, index ) {
+        //         if ( type === 'row' ) {
+        //             $( myTable.row( index ).node() ).find('input:checkbox').prop('checked', true);
+        //         }
+        //     } );
+        //     myTable.on( 'deselect', function ( e, dt, type, index ) {
+        //         if ( type === 'row' ) {
+        //             $( myTable.row( index ).node() ).find('input:checkbox').prop('checked', false);
+        //         }
+        //     } );
         
-        })
+        // })
     }else{
         $('#' + content + '').text("ไม่มีข้อมูลแสดงครับ ^_^ ");
     }

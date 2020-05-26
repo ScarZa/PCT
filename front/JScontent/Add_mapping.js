@@ -1,16 +1,15 @@
-function AddUser (content,id=null) {
+function AddMapping (content,id=null) {
     var PL = new PageLayout(content);
     PL.GetPL();
-    var title = " เพิ่มข้อมูลผู้ใช้งานระบบ";
+    var title = " Mapping ข้อมูลผู้ใช้งานระบบกับ Hosxp";
     var subtitle = "ตารางข้อมูลผู้ใช้งานระบบ ";
-        $("b#head-title").empty().prepend("<img src='images/icon_set2/compose.ico' width='40'> ").append(title);
-        $("#head-table").empty().append(subtitle);
-        $("#home").attr("onclick", "$('#index_content').empty();location.reload();");
-        $("#prev").hide();
-        $("#this-page").text(title);
-        $("li").removeClass("active");
-        $("#submenu1").parent().find("li:eq(0)").addClass("active")
-
+    $("b#head-title").empty().prepend("<img src='images/icon_set2/compose.ico' width='40'> ").append(title);
+    $("span#head-subtitle").empty().append(subtitle);
+    $("#home").attr("onclick", "$('#index_content').empty();location.reload();");
+    $("#prev").hide();
+    $("#this-page").text(title);
+    $("li").removeClass("active");
+    $("#settihg-01").parent().find("li:eq(0)").addClass("active")
         $("#contentGr").empty().append("<div class='row'><div class='col-md-12'>"+
                                     "<form action='' name='frmadduser' id='frmadduser' method='post'>"+
                                     "<div class='col-md-12'>"+
@@ -68,7 +67,7 @@ function AddUser (content,id=null) {
                 }
                 $.ajax(settings).done(function (result) { console.log(result);
                         alert(result.messege);
-                        AddUser('#page-content');
+                        AddMapping('#page-content');
                 })
             }));
         }

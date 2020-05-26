@@ -9,7 +9,7 @@ function TBPharRegis(content, id = null) {
     $("#prev").hide();
     $("#this-page").text(title);
     $("li").removeClass("active");
-    $("#submenu1").parent().find("li:eq(0)").addClass("active")
+    $("#submenu5").parent().find("li:eq(0)").addClass("active")
         var PL = new PageLayout(content);
         PL.GetPL();
     $("#contentTB").html('<center><i class="fa fa-spinner fa-pulse" style="font-size:48px"></i></center><br>');

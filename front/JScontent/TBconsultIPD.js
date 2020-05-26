@@ -1,5 +1,5 @@
 function TBConsultIPD(content, id = null) {
-    //$.cookie("dep", "009");
+    $.cookie("dep", "");
     var title = " ผู้ป่วยที่ส่ง Consult";
     var subtitle = "ตารางผู้ป่วยที่ส่ง Consult ";
     //$("li#page").empty().text(title)
@@ -9,7 +9,7 @@ function TBConsultIPD(content, id = null) {
     $("#prev").hide();
     $("#this-page").text(title);
     $("li").removeClass("active");
-    $("#submenu1").parent().find("li:eq(0)").addClass("active");
+    $("#Ssubmenu1").parent().find("li:eq(0)").addClass("active");
     
         var PL = new PageLayout(content);
         PL.GetPL();

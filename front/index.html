@@ -29,6 +29,7 @@
         <link rel="stylesheet" href="assets/css/ace-skins.min.css" />
         <link rel="stylesheet" href="assets/css/ace-rtl.min.css" />
 
+        <link rel="stylesheet" type="text/css" href="plugins/DataTables/dataTables.bootstrap.min.css" />
         <!--[if lte IE 9]>
           <link rel="stylesheet" href="assets/css/ace-ie.min.css" />
         <![endif]-->
@@ -37,7 +38,8 @@
 
         <!-- ace settings handler -->
         <script src="assets/js/ace-extra.min.js"></script>
-
+        <!-- Select2 -->
+        <link rel="stylesheet" href="plugins/select2/select2.min.css">
         <!-- HTML5shiv and Respond.js for IE8 to support HTML5 elements and media queries -->
 
         <!--[if lte IE 8]>
@@ -123,6 +125,8 @@
                             SymptomGroup01(content, result);
                         } else if (subgetfunc[0] == 'SymptomGroup02') {
                             SymptomGroup02(content, result);
+                        } else if (subgetfunc[0] == 'AddUser') {
+                            AddUser(content, result);
                         } else if (subgetfunc[0] == 'logout') {
                             alert(result);
                             loadPage(content, 'index.html');
@@ -142,7 +146,7 @@
                         dataType: datatype,
                         success: function (result) {
                             alert(result);
-                            $("#index_content").empty().load(pageresend);
+                            $("#page-content").empty()//.load(pageresend);
                         }
                     });
             }
@@ -355,7 +359,7 @@
 
             <!-- page specific plugin scripts -->
 <!-- page specific plugin scripts -->
-            <script src="assets/js/jquery.dataTables.min.js"></script>
+            <!-- <script src="assets/js/jquery.dataTables.min.js"></script>
             <script src="assets/js/jquery.dataTables.bootstrap.min.js"></script>
             <script src="assets/js/dataTables.buttons.min.js"></script>
             <script src="assets/js/buttons.flash.min.js"></script>
@@ -363,10 +367,13 @@
             <script src="assets/js/buttons.print.min.js"></script>
             <script src="assets/js/buttons.colVis.min.js"></script>
             <script src="assets/js/dataTables.select.min.js"></script>
-            <script src="assets/js/select2.min.js"></script>
+            <script src="assets/js/select2.min.js"></script> -->
             <!--[if lte IE 8]>
               <script src="assets/js/excanvas.min.js"></script>
             <![endif]-->
+            <script src="plugins/DataTables/jquery.dataTables.min.js"></script>
+            <script src="plugins/DataTables/dataTables.bootstrap.min.js"></script>
+            <script src="plugins/select2/select2.full.min.js"></script>
             <script src="assets/js/jquery-ui.custom.min.js"></script>
             <script src="assets/js/jquery.ui.touch-punch.min.js"></script>
             <script src="assets/js/jquery.easypiechart.min.js"></script>
@@ -420,6 +427,7 @@
             <script src="JScontent/TBfoodRegis.js" type="text/javascript"></script>
             <script src="JScontent/TBfoodList.js" type="text/javascript"></script>
             <script src="JScontent/Add_user.js" type="text/javascript"></script>
+            <script src="JScontent/Add_mapping.js" type="text/javascript"></script>
             <!-- End JS content -->
             <!-- inline scripts related to this page -->
 

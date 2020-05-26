@@ -9,7 +9,7 @@ function TBNPIQ(content, id = null) {
     $("#prev").hide();
     $("#this-page").text(title);
     $("li").removeClass("active");
-    $("#submenu1").parent().find("li:eq(0)").addClass("active")
+    $("#Ssubmenu8-2").parent().find("li:eq(2)").addClass("active")
         var PL = new PageLayout(content);
         PL.GetPL();
     $("#contentGr").html('<center><i class="fa fa-spinner fa-pulse" style="font-size:48px"></i></center><br>');

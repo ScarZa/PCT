@@ -59,13 +59,14 @@ $("#navbar-container").empty().append($('<button type="button" class="navbar-tog
                             $("li#profile").empty().append($('<a data-toggle="dropdown" href="#" class="dropdown-toggle"><img class="nav-user-photo" src="images/person.png" alt="Jason\'s Photo" />'
 								+'<span class="user-info"><small>ยินดีต้อนรับ,</small> '+data.name_user+'</span><i class="ace-icon fa fa-caret-down"></i></a>'
                                                                 +'<ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close"></ul>'));  
-                                        $("ul.user-menu").empty().append($('<li><a href="#" id="add-user"><i class="ace-icon fa fa-cog"></i> Settings</a></li>')
+                                        $("ul.user-menu").empty().append($('<li id="settihg-01"><a href="#" id="add-mapping"><i class="ace-icon fa fa-cog"></i> Mapping Settings</a></li>')
+                                                                        ,$('<li id="settihg-02"><a href="#" id="add-user"><i class="ace-icon fa fa-cog"></i> User Settings</a></li>')
                                                                         ,$('<li><a href="profile.html"><i class="ace-icon fa fa-user"></i> Profile</a></li>')
                                                                         ,$('<li class="divider"></li>')
                                                                         ,$('<li><a id="logout" href="#"><i class="ace-icon fa fa-power-off"></i> Logout</a></li>'));  
                                     $("#logout").attr("onclick","loadAjax('#index_content','../back/API/logout.php',null,'logout','html');");                                    
+                                    $("a#add-mapping").attr("onclick","AddMapping('#page-content')");
                                     $("a#add-user").attr("onclick","AddUser('#page-content')");
-
 ////////////// Left Menu
 						
                                                                     $("#sidebar-shortcuts").empty().append($('<div class="sidebar-shortcuts-large" id="sidebar-shortcuts-large"></div><div class="sidebar-shortcuts-mini" id="sidebar-shortcuts-mini"></div>'));
@@ -253,7 +254,8 @@ $("#navbar-container").empty().append($('<button type="button" class="navbar-tog
                                                                     //                                             ,$('<li class=""><a href="error-500.html"><i class="menu-icon fa fa-caret-right"></i> Error 500 </a><b class="arrow"></b></li>')
                                                                     //                                             ,$('<li class=""><a href="grid.html"><i class="menu-icon fa fa-caret-right"></i> Grid </a><b class="arrow"></b></li>')
                                                                     //                                             ,$('<li class=""><a href="blank.html"><i class="menu-icon fa fa-caret-right"></i> Blank Page </a><b class="arrow"></b></li>'));        
-                                                
+                                                $("#settihg-01").hide();
+                                                $("#settihg-02").hide();
                                                 $("#menu1").hide();
                                                 $("#menu2").hide();
                                                 $("#menu3").hide();
@@ -263,7 +265,9 @@ $("#navbar-container").empty().append($('<button type="button" class="navbar-tog
                                                 $("#menu7").hide();
                                                 $("#menu8").hide();
                                                 $("#menu9").hide();
-                                                if(data.status_user=='ADMIN'){
+                                                if (data.status_user == 'ADMIN') {
+                                                    $("#settihg-01").show();
+                                                    $("#settihg-02").show();
                                                     $("#menu1").show();
                                                     $("#menu2").show();
                                                     $("#menu3").show();

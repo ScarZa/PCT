@@ -35,7 +35,7 @@ function IPDConsult(content, id = null) {
         //+ "<br><center><button class='btn btn-success'>ลงทะเบียน</button> <button class='btn btn-danger'>ส่งคืน</button></center></div>"
         + "</div></form>"));
         
-        $.getJSON('../back/API/detail_IPDpatientAPI.php',{data : idvn.data},function (data) {console.log(data);
+        $.getJSON('../back/API/detail_IPDpatientAPI.php',{data : idvn.data,data2 : $.cookie("dep")},function (data) {console.log(data);
         $("#P-data").append($("<div class='col-lg-12 row'><div class='row col-lg-6'><span><label class='col-form-label'>AN : "+data[0].an+"<br>HN : "+data[0].hn+"<br>เลขบัตรประชาชน : "+data[0].cid+"<br>ชื่อ-สกุล :"+data[0].fullname
         +"<br>ที่อยู่ : "+data[0].informaddr+"<br>วันเกิด : "+data[0].birthday+" สถานะภาพ : "+data[0].mrname+"<br>การวินิจฉัย : "+data[0].pdx+" "+data[0].dx0
         +" "+data[0].dx1+" "+data[0].dx2+" "+data[0].dx3+" "+data[0].dx4+" "+data[0].dx5+" <br>ส่งให้ : "+data[0].department+" <br>ส่งมาเพื่อ : "+data[0].cons_name+" <br>สาเหตุที่ส่ง/อาการ/ความจำเป็น : "+data[0].cause

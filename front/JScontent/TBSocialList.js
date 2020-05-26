@@ -1,5 +1,5 @@
 function TBSocialList(content, id = null) {
-
+    $.cookie("dep", "008");
     var title = " คลินิกสังคมสงเคราะห์";
     var subtitle = "ตารางผู้ป่วยคลินิกสังคมสงเคราะห์ ";
     //$("li#page").empty().text(title)
@@ -9,12 +9,12 @@ function TBSocialList(content, id = null) {
     $("#prev").hide();
     $("#this-page").text(title);
     $("li").removeClass("active");
-    $("#submenu1").parent().find("li:eq(0)").addClass("active")
+    $("#submenu3").parent().find("li:eq(2)").addClass("active")
         var PL = new PageLayout(content);
         PL.GetPL();
     $("#contentTB").html('<center><i class="fa fa-spinner fa-pulse" style="font-size:48px"></i></center><br>');
     var column1 = ["เลขที่","HN","วันที่ส่ง","ชื่อ - นามสกุล","ผู้รับผิดชอบ","ผู้ส่ง","รายละเอียด"];
     var CTb = new createTableAjax();
     CTb.GetNewTableAjax('contentTB','../back/API/DT_SocialList.php?','../back/API/tempSendDataAPI.php',column1
-    ,null,null,null,null,false,true,'MatrixRegis',false,null,false,null,null,null,null,null,'dynamic-table');
+    ,null,null,null,null,false,true,'IPDConsult',false,null,false,null,null,null,null,null,'dynamic-table');
 }

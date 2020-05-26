@@ -16,8 +16,8 @@ $rslt = array();
 $series = array();
 $data = isset($_POST['data'])?$_POST['data']:(isset($_GET['data'])?$_GET['data']:'');
 $sql = "select d.code as id,d.name FROM doctor d 
-left outer join jvl_mappingDU jm on jm.doctorcode = d.code 
-WHERE ISNULL(jm.depcode)
+#left outer join jvl_mappingDU jm on jm.doctorcode = d.code 
+#WHERE ISNULL(jm.depcode)
 GROUP BY id ORDER BY id asc";
 $conv=new convers_encode();
     $connDB->imp_sql($sql);

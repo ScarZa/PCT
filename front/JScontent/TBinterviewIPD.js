@@ -9,7 +9,7 @@ function TBInterviewIPD(content, id = null) {
     $("#prev").hide();
     $("#this-page").text(title);
     $("li").removeClass("active");
-    $("#submenu1").parent().find("li:eq(0)").addClass("active")
+    $("#submenu1-1").parent().find("li:eq(0)").addClass("active")
         var PL = new PageLayout(content);
         PL.GetPL();
     //$("#contentTB").empty().append("แบบสัมภาษณ์");

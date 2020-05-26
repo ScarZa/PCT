@@ -17,7 +17,7 @@ $series = array();
 $sql="SELECT mp.mDU_id,d.name,dep.department
 FROM jvl_mappingDU mp
 inner join doctor d on d.code = mp.doctorcode
-inner join kskdepartment dep on dep.depcode = mp.depcode
+left outer join kskdepartment dep on dep.depcode = mp.depcode
 ORDER BY mp.mDU_id"; 
 $conn_DB->imp_sql($sql);
     $num_risk = $conn_DB->select();
