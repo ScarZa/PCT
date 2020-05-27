@@ -15,18 +15,16 @@ $connDB->conn_PDO();
 $rslt = array();
 $series = array();
 $data = isset($_POST['data'])?$_POST['data']:(isset($_GET['data'])?$_GET['data']:'');
-$sql = "SELECT * FROM jvlmatrix_user WHERE user_id=:user_id";
+$sql = "SELECT * FROM jvl_mappingDU WHERE mDU_id=:mDU_id";
 $conv=new convers_encode();
     $connDB->imp_sql($sql);
     //$user = $connDB->select();
-    $execute=array(':user_id'=>$data);
+    $execute=array(':mDU_id'=>$data);
     $user=$connDB->select_a($execute);
     //for($i=0;$i<count($user);$i++){
-        $series['user_id'] = $user['user_id'];
+        $series['mDU_id'] = $user['mDU_id'];
         $series['doctorcode'] = $user['doctorcode'];
-        $series['username'] = $user['username'];
-        $series['depcode'] = $user['clinic'];
-        $series['status_user'] = $conv->tis620_to_utf8($user['status_user']);
+        $series['depcode'] = $user['depcode'];
     array_push($rslt, $series);    
     //}
     print json_encode($rslt);

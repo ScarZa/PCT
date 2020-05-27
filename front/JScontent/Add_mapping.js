@@ -23,8 +23,8 @@ function AddMapping (content,id=null) {
                                         );            
                                     var column1 = ["id.","ชื่อ-นามสกุล","งาน","แก้ไข","ลบ"];
     var CTb = new createTableAjax();
-    CTb.GetNewTableAjax('DSP_content','../back/API/DT_User.php?','../back/API/tempSendDataAPI.php',column1
-    ,'AddUser','jvl_mappingDU','mDU_id','index.html',true,false,null,false,null,false,null,null,null,null,null,'dynamic-table');
+    CTb.GetNewTableAjax('DSP_content','../back/API/DT_UserMap.php?','../back/API/tempSendDataAPI.php',column1
+    ,'AddMapping','jvl_mappingDU','mDU_id','index.html',true,false,null,false,null,false,null,null,null,null,null,'dynamic-table');
             //   CTb.GetNewTableAjax('DSP_content','JsonData/DT_User.php','JsonData/tempSendData.php',column1
             //   ,'AddUser','ss_member','ss_UserID','content/add_user.html',true,false,null,false,null,false,null,null,null,null,null,'dbtb');                    
                                 
@@ -33,14 +33,14 @@ function AddMapping (content,id=null) {
             if(iduser == null){
         
 
-                selectMash("select#doctor", "user_data.php", "เลือกผู้ใช้");
+                selectMash("select#doctor", "user_dataM.php", "เลือกผู้ใช้");
                 selectMash("select#depcode", "dep_data.php", "เลือกงาน");
                                     
             $("div#DUS_content").append("<input type='hidden' id='method' name='method' value='add_user'>");                
             $("div#DUS_content").append("<div class='col-md-12' align='center'><button type='submit' class='btn btn-primary' id='USsubmit'>บันทึก</button></div>");
             
             }else{
-                $.getJSON('../back/API/edit_user_data.php',{data: iduser.data}, function (data) {
+                $.getJSON('../back/API/edit_user_dataM.php',{data: iduser.data}, function (data) {
                     selectMash("select#doctor", "user_edit_data.php", "เลือกผู้ใช้",data[0].doctorcode);
                     selectMash("select#depcode", "dep_data.php", "เลือกงาน", data[0].depcode);
                     $("div#DUS_content").append("<input type='hidden' id='method' name='method' value='edit_user'>");  
@@ -57,7 +57,7 @@ function AddMapping (content,id=null) {
                 // }
                 var settings = {
                     type: "POST",
-                    url: "../back/API/prcUserAPI.php",
+                    url: "../back/API/prcMappingAPI.php",
                     async: true,
                     crossDomain: true,
                     data: dataForm,

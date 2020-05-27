@@ -28,13 +28,10 @@ $conv=new convers_encode();
 $method = isset($_POST['method']) ? $_POST['method'] : $_GET['method'];
 if ($method == 'add_user') {
         $doctor = $_POST['doctor'];
-        $username = $conv->tis620_to_utf8($_POST['username']);
-        $password = $conv->tis620_to_utf8(md5(trim(filter_input(INPUT_POST, 'password',FILTER_SANITIZE_STRING))));
-        $clinic = $_POST['depcode'];
-        $status_user = $_POST['status_user'];
-  $data = array($doctor,$username,$password,$clinic,$status_user);
+        $depcode = $_POST['depcode'];
+  $data = array($doctor,$depcode);
   //$field = array("doctor","hn","comm_type","regdate","comm_status");
-  $table = "jvlmatrix_user";
+  $table = "jvl_mappingDU";
   $AddUser = $connDB->insert($table, $data);
 if($AddUser){
           $res = array("messege"=>'บันทึกผู้ใช้งานเรียบร้อยจ้า!!!!',"check"=>'Y');
@@ -44,27 +41,17 @@ if($AddUser){
         print json_encode($res);
         $connDB->close_PDO();
 }elseif ($method == 'edit_user') {
-    $user_id = $_POST['user_id'];
-    $doctor = $_POST['doctor'];
-    $username = $conv->tis620_to_utf8($_POST['username']);
-    $password = $_POST['password']!=''?$conv->tis620_to_utf8(md5(trim(filter_input(INPUT_POST, 'password',FILTER_SANITIZE_ENCODED)))):'';
-    $clinic = $_POST['depcode'];
-    $status_user = $_POST['status_user'];
+        $mDU_id = $_POST['mDU_id'];
+        $doctor = $_POST['doctor'];
+        $depcode = $_POST['depcode'];
         
-            
-            $table = "jvlmatrix_user";
-            $where="user_id=:user_id";
-            $execute=array(':user_id' => $user_id);
-            if(empty($password)){
-                $data = array($doctor,$username,$clinic,$status_user);
-                $field=array("doctor","username","clinic", "status_user");
-                $edit_user=$connDB->update($table, $data, $where, $field, $execute);    
-                }else{
-                $data = array($doctor,$username,$password,$clinic,$status_user);
-                $edit_user=$connDB->update($table, $data, $where, null, $execute);
-                }
-            
-        if($edit_user===true){
+            $data = array($doctor,$depcode);
+            $field = array("doctorcode","depcode");
+            $table = "jvl_mappingDU";
+            $where="mDU_id=:mDU_id";
+            $execute=array(':mDU_id' => $mDU_id);
+            $upadte_DU = $connDB->update($table, $data, $where, $field, $execute);
+        if($upadte_DU===true){
                 $res = array("messege"=>'แก้ไขผู้ใช้งานเรียบร้อยจ้า!!!!');
         }else{
             $res = array("messege"=>'แก้ไขผู้ใช้งานไม่สำเร็จครับ!!!!');

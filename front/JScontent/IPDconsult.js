@@ -21,7 +21,7 @@ function IPDConsult(content, id = null) {
     $("#prev").hide();
     $("#this-page").text(title);
     $("li").removeClass("active");
-    $("#submenu1").parent().find("li:eq(0)").addClass("active")
+    //$("#submenu1").parent().find("li:eq(0)").addClass("active")
         var PL = new PageLayout(content);
         PL.GetPL();
         $("h5.widget-title").empty().prepend("แบบลงทะเบียนผู้ป่วย");
