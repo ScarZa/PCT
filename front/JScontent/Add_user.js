@@ -79,6 +79,7 @@ function AddUser (content,id=null) {
             // for (var value of dataForm.values()) {
             //     console.log(value);
             // }
+            //////////////
             var settings = {
                 type: "POST",
                 url: "../back/API/prcUserAPI.php",
@@ -90,7 +91,7 @@ function AddUser (content,id=null) {
                 processData: false
             }
             $.ajax(settings).done(function (result) {
-                console.log(result);
+                //console.log(result);
                 alert(result.messege);
                 AddUser('#page-content');
             })

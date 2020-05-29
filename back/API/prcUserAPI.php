@@ -47,7 +47,7 @@ if($AddUser){
     $user_id = $_POST['user_id'];
     $doctor = $_POST['doctor'];
     $username = $conv->tis620_to_utf8($_POST['username']);
-    $password = $_POST['password']!=''?$conv->tis620_to_utf8(md5(trim(filter_input(INPUT_POST, 'password',FILTER_SANITIZE_ENCODED)))):'';
+    $password = isset($_POST['password'])?$conv->tis620_to_utf8(md5(trim(filter_input(INPUT_POST, 'password',FILTER_SANITIZE_ENCODED)))):'';
     $clinic = $_POST['depcode'];
     $status_user = $_POST['status_user'];
         
