@@ -260,8 +260,18 @@ function InterviewIPD(content, id = null) {
         if (data[0].typeP_4 == '4') { $("input[type=checkbox][name=typeP_4]").attr("checked", "checked"); }
         if (data[0].typeP_5 == '5') { $("input[type=checkbox][name=typeP_5]").attr("checked", "checked"); }
         
-        if (data[0].typeP_7 == '7' || data[0].typeP_6 == '6') { $("input[type=checkbox][name=typeP_7]").attr("checked", "checked"); }
-        else{$("input[type=checkbox][name=typeP_6]").attr("checked", "checked"); }
+        if (data[0].typeP_7 == '7' || data[0].typeP_6 == '6') { $("input[type=radio][name=typeP][value='2']").attr("checked", "checked"); }
+        else { $("input[type=radio][name=typeP][value='1']").attr("checked", "checked"); }
+        
+        if (data[0].refer == '1') { $("input[type=radio][name=refer][value='1']").attr("checked", "checked"); }
+        else if (data[0].refer == '2')  { $("input[type=radio][name=refer][value='2']").attr("checked", "checked"); }
+
+        if (data[0].admit_type == '1') { $("input[type=radio][name=admit_type][value='1']").attr("checked", "checked"); }
+        else if (data[0].admit_type == '2') { $("input[type=radio][name=admit_type][value='2']").attr("checked", "checked"); }
+        else if (data[0].admit_type == '3') { $("input[type=radio][name=admit_type][value='3']").attr("checked", "checked"); }
+        else if (data[0].admit_type == '4') { $("input[type=radio][name=admit_type][value='4']").attr("checked", "checked"); }
+        else if (data[0].admit_type == '5') { $("input[type=radio][name=admit_type][value='5']").attr("checked", "checked"); }
+        
         if (data[0].smi4_chk == 'Y') {
             $("input[type=radio][name=smi4_chk][value='Y']").attr("checked", "checked");
             $("div#smi4_group").show();

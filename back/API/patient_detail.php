@@ -39,6 +39,7 @@ $sql="SELECT (SELECT count(a.an) from an_stat a WHERE a.hn = '".$rslt0['hn']."')
 ,er.sleep_chk,er.sleep,er.IC_chk,er.IC,er.med_chk,er.med,er.accident_chk,er.accident,er.wound_chk,er.wound,er.surgery_chk,er.surgery
 ,er.cigarette_chk,er.D_cigarette,er.last_useC,er.alcohol_chk,er.alcohol_type,er.alcohol_vol,er.last_useA,er.dope_chk,er.dope_type,last_useD
 ,er.marihuana_chk,er.D_marihuana,er.last_useM,er.ADL,er.work,er.menses_chk,er.menses
+,er.admit_chk,er.refer,er.admit admit_type
 from an_stat a
 left outer join patient p on a.hn=p.hn
 left outer join jvlER_regis er on er.vn = a.vn
@@ -159,6 +160,9 @@ $conv=new convers_encode();
     $series['work'] = $rslt['work'];
     $series['menses_chk'] = $rslt['menses_chk'];
     $series['menses'] = isset($rslt['menses'])?$conv->tis620_to_utf8($rslt['menses']):'';
+    $series['admit_chk'] = $rslt['admit_chk'];
+    $series['refer'] = isset($rslt['refer'])?$conv->tis620_to_utf8($rslt['refer']):'';
+    $series['admit_type'] = isset($rslt['admit_type'])?$conv->tis620_to_utf8($rslt['admit_type']):'';
 array_push($result, $series);    
 //}
 //print_r($result);

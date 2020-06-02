@@ -200,7 +200,7 @@ var AssFirstRecIPD = function(content){
       ,$("<div class='widget-body'><div class='widget-main row'>"
       +"<div class='alert alert-warning'>"
         + "<div class='form-group row'><label class='col-sm-5 col-form-label'><u><b> ประเภทผู้ป่วย </b></u></label></div>"
-        +"<div class='form-group row'><div class='col-sm-3'><label><input class='ace' type='radio' name='typeP' value='6'><span class='lbl'> จิตเวชทั่วไป </span></label></div><div class='col-sm-2'><label><input class='ace' type='radio' name='typeP' value='7'><span class='lbl'> พรบ.สุรา/ยาเสพติด</span></label></div>"
+        +"<div class='form-group row'><div class='col-sm-3'><label><input class='ace' type='radio' name='typeP' value='1'><span class='lbl'> จิตเวชทั่วไป </span></label></div><div class='col-sm-2'><label><input class='ace' type='radio' name='typeP' value='2'><span class='lbl'> พรบ.สุรา/ยาเสพติด</span></label></div>"
         + "</div></div></div></div>")
         ,$("<div class='widget-body'><div class='widget-main row'>"
         +"<div class='alert alert-success'>"
@@ -208,17 +208,17 @@ var AssFirstRecIPD = function(content){
         +"<div class='form-group row'><div class='col-sm-2'><label><input class='ace' type='radio' name='refer' value='1'><span class='lbl'> Refer-in</span></label></div><div class='col-sm-2'><label><input class='ace' type='radio' name='refer' value='2'><span class='lbl'> ไม่มีใบ Refer</span></label></div>"
           + "</div></div></div></div>")
           ,$("<div class='widget-body'><div class='widget-main row'>"
-          +"<div class='alert alert-info'>"
-          + "<div class='form-group row'><label class='col-sm-5 col-form-label'><u><b> ประเภทการมา Admit </b></u></label></div>"
-          +"<div class='form-group row'><div class='col-sm-3'><label><input class='ace' type='radio' name='income' value='1'><span class='lbl'> มารับบริการเอง</span></label></div><div class='col-sm-3'><label><input class='ace' type='radio' name='income' value='3'><span class='lbl'> รพ.ในเครือข่ายนำส่ง</span></label></div>"
-        +"<div class='col-sm-3'><label><input class='ace' type='radio' name='income' value='3'><span class='lbl'> รพ.นอกเครือข่ายนำส่ง</span></label></div><div class='col-sm-3'><label><input class='ace' type='radio' name='income' value='3'><span class='lbl'> มูลนิธินำส่ง</span></label></div>"
-           +"<div class='col-sm-3'><label><input class='ace' type='radio' name='income' value='3'><span class='lbl'> ตำรวจ/หรือฝ่ายปกครองนำส่ง</span></label></div>"   
+            +"<div class='alert alert-info'>"
+            + "<div class='form-group row'><label class='col-sm-5 col-form-label'><u><b> ประเภทการมา Admit </b></u></label></div>"
+            +"<div class='form-group row'><div class='col-sm-3'><label><input class='ace' type='radio' name='admit_type' value='1'><span class='lbl'> มารับบริการเอง</span></label></div><div class='col-sm-3'><label><input class='ace' type='radio' name='admit_type' value='2'><span class='lbl'> รพ.ในเครือข่ายนำส่ง</span></label></div>"
+            +"<div class='col-sm-3'><label><input class='ace' type='radio' name='admit_type' value='3'><span class='lbl'> รพ.นอกเครือข่ายนำส่ง</span></label></div><div class='col-sm-3'><label><input class='ace' type='radio' name='admit_type' value='4'><span class='lbl'> มูลนิธินำส่ง</span></label></div>"
+            +"<div class='col-sm-3'><label><input class='ace' type='radio' name='admit_type' value='5'><span class='lbl'> ตำรวจ/หรือฝ่ายปกครองนำส่ง</span></label></div>"
             + "</div></div></div></div>")
             ,$("<div class='widget-body'><div class='widget-main row'>"
         +"<div class='alert alert-warning'>"
         + "<div class='form-group row'><label class='col-sm-5 col-form-label'><u><b> ประเภทการ admit </b></u></label></div>"
-        +"<div class='form-group row'><div class='col-sm-3'><label><input class='ace' type='radio' name='admit' value='1'><span class='lbl'> Admit แบบปกติ</span></label></div><div class='col-sm-3'><label><input class='ace' type='radio' name='income' value='3'><span class='lbl'> Admit โดยการ Refer กลับ</span></label></div>"
-        +"<div class='col-sm-3'><label><input class='ace' type='radio' name='admit' value='3'><span class='lbl'> Admit เพื่อการ Rehabilitation</span></label></div>"
+        +"<div class='form-group row'><div class='col-sm-3'><label><input class='ace' type='radio' name='income' value='1'><span class='lbl'> Admit แบบปกติ</span></label></div><div class='col-sm-3'><label><input class='ace' type='radio' name='income' value='3'><span class='lbl'> Admit โดยการ Refer กลับ</span></label></div>"
+        +"<div class='col-sm-3'><label><input class='ace' type='radio' name='income' value='3'><span class='lbl'> Admit เพื่อการ Rehabilitation</span></label></div>"
               + "</div></div></div></div>")
               ,$("<div class='widget-body'><div class='widget-main row'>"
         +"<div class='alert alert-danger'>"

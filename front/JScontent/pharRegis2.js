@@ -1,4 +1,4 @@
-function FoodRegis(content, id = null) {
+function PharRegis2(content, id = null) {
     
     var title = " ลงทะเบียนเภสัชกรรม";
     var subtitle = "แบบลงทะเบียน ";
