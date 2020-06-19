@@ -17,6 +17,7 @@ if($db != FALSE){
 $conv=new convers_encode();
 $data['status_user'] = $conv->tis620_to_utf8($_SESSION['status_user']);
 $data['clinic_user'] = $conv->tis620_to_utf8($_SESSION['clinic_user']);
+$data['username'] = $conv->tis620_to_utf8($_SESSION['username']);
 $data['user'] = $conv->tis620_to_utf8($_SESSION['user']);
 $data['name_user'] = $conv->tis620_to_utf8($_SESSION['name_user']);
 $data['depcode'] = $conv->tis620_to_utf8($_SESSION['depcode']);

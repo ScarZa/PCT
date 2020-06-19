@@ -27,7 +27,7 @@ $conn_DB->imp_sql($sql0);
 $execute=array(':an' => $data);
 $rslt0=$conn_DB->select_a($execute);
 $sql="SELECT (SELECT count(a.an) from an_stat a WHERE a.hn = '".$rslt0['hn']."')admit
-,CONCAT(p.pname,p.fname,' ',p.lname)fullname,a.age_y age,a.hn,a.an,pt.name ptname
+,CONCAT(p.pname,p.fname,' ',p.lname)fullname,a.age_y age,a.hn,a.vn,a.an,pt.name ptname
 ,s.name sex,m.name marry_name,birthday,n.name nation_name,r.name religion_name,e.name edu_name,occ.name occ_name,p.cid
 ,p.addrpart,p.moopart,t3.name tambon,t2.name ampher,t1.name changwat
 ,concat(p.fathername,' ',p.fatherlname)fathername,concat(p.mathername,' ',p.motherlname)mothername
@@ -72,6 +72,7 @@ $conv=new convers_encode();
     $series['fullname'] = $fullname;
     $series['age'] = $rslt['age'];
     $series['hn'] = $rslt['hn'];
+    $series['vn'] = $rslt['vn'];
     $series['an'] = $rslt['an'];
     $series['ptname'] = $conv->tis620_to_utf8($rslt['ptname']);
     $series['marry_name'] = $conv->tis620_to_utf8($rslt['marry_name']);

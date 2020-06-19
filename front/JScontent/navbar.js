@@ -26,7 +26,8 @@ $("#navbar-container").empty().append($('<button type="button" class="navbar-tog
                                                     $("#index_content").html("<center><h4><a href='#'>Please connect Database!!!!</a></h4></center>");
                                                         $("a").attr("onclick","return popup('content/set_conn_db.php?method="+data.check+"&host=main', popup, 400, 600);");
                         }else{   
-                            if(data.status_user != ''){
+                            if (data.status_user != '') {
+                                $.cookie("username", data.username);
                                 $.cookie("user", data.user);
                                 $.cookie("depcode", data.depcode);
                             $("#login-tab").hide(); 
@@ -265,7 +266,7 @@ $("#navbar-container").empty().append($('<button type="button" class="navbar-tog
                                                 $("#menu7").hide();
                                                 $("#menu8").hide();
                                                 $("#menu9").hide();
-                                                if (data.status_user == 'ADMIN') {
+                                                if (data.status_user == 'ADMIN' || data.depcode=='026') {
                                                     $("#settihg-01").show();
                                                     $("#settihg-02").show();
                                                     $("#menu1").show();

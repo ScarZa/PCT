@@ -50,6 +50,7 @@ if($result){
     $where="username=:username and password=:password";
     $execute=array(':username' => $user_account,':password'=>$user_pwd);
     $receive_repair=$dbh->update($table, $data, $where, $field, $execute);
+    $_SESSION['username'] = $user_account;
     $_SESSION['user'] = $result['doctorcode'];
     $_SESSION['name_user'] = $result['name'];
     $_SESSION['depcode'] = $result3['depcode'];

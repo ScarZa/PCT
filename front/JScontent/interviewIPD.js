@@ -156,9 +156,7 @@ function InterviewIPD(content, id = null) {
     $("input[type=radio][name=med_chk]").click(function () {
         if ($("input[type=radio][name=med_chk]:checked").val() == 'Y') { $("textarea#med").show(); } else { $("textarea#med").hide(); }
     });
-    $("input[type=radio][name=smi4_chk]").click(function () {
-        if ($("input[type=radio][name=smi4_chk]:checked").val() == 'Y') { $("div#smi4_group").show(); } else { $("div#smi4_group").hide(); }
-    });
+    
     $("input[type=radio][name=mood_chk]").click(function () {
         if ($("input[type=radio][name=mood_chk]:checked").val() == '5') { $("textarea#other_mood").show(); } else { $("textarea#other_mood").hide(); }
     });
@@ -323,7 +321,12 @@ function InterviewIPD(content, id = null) {
             selectMash("#dope_type", "drugs_data.php", " เลือกชนิดยาเสพติด ", data[0].dope_type);
             $("input#last_useD").val(data[0].last_useD);
         }
-
+        $("input[type=radio][name=smi4_chk]").click(function () {
+            if ($("input[type=radio][name=smi4_chk]:checked").val() == 'Y') { console.log($.cookie("username"))
+                popup('http://10.0.0.11/CF-Form/font/content/Ass_SMIV.html?vn='+data[0].vn+'?user='+$.cookie("username"), popup, 1440, 900);
+                $("div#smi4_group").show();
+            } else { $("div#smi4_group").hide(); }
+        });
         ///////// End ER Zone ///////////
     });
 
