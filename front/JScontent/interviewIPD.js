@@ -323,7 +323,7 @@ function InterviewIPD(content, id = null) {
         }
         $("input[type=radio][name=smi4_chk]").click(function () {
             if ($("input[type=radio][name=smi4_chk]:checked").val() == 'Y') { console.log($.cookie("username"))
-                popup('http://10.0.0.11/CF-Form/font/content/Ass_SMIV.html?vn='+data[0].vn+'?user='+$.cookie("username"), popup, 1440, 900);
+                popup('../../CF-Form/font/content/Ass_SMIV.html?vn='+data[0].vn+'?user='+$.cookie("username"), popup, 1440, 900);
                 $("div#smi4_group").show();
             } else { $("div#smi4_group").hide(); }
         });
