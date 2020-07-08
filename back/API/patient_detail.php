@@ -31,15 +31,16 @@ $sql="SELECT (SELECT count(a.an) from an_stat a WHERE a.hn = '".$rslt0['hn']."')
 ,s.name sex,m.name marry_name,birthday,n.name nation_name,r.name religion_name,e.name edu_name,occ.name occ_name,p.cid
 ,p.addrpart,p.moopart,t3.name tambon,t2.name ampher,t1.name changwat
 ,concat(p.fathername,' ',p.fatherlname)fathername,concat(p.mathername,' ',p.motherlname)mothername
-,oc.bw,oc.height,oc.bmi,p.hometel,p.informtel
+,oc.bw,oc.height,oc.bmi,oc.temperature,oc.pulse,oc.rr,oc.bps,oc.bpd
+,p.hometel,p.informtel
 ,oc.pmh,oc.cc,oc.hpi,i.regdate,SUBSTR(i.regtime,1,5)regtime,doc.name as doctorname,a.pdx,a.dx0,a.dx1,a.dx2,a.dx3,a.dx4
 ,IF(a.lastvisit ='999', 'ไม่เคยรับการ admit', a.lastvisit)lastvisit
-,er.relative,er.police_name,er.weapon_chk,er.weapon,er.detain_chk,er.detain,er.typeP_1,er.typeP_2,er.typeP_3,er.typeP_4
+,er.relative,er.police_name,er.weapon_chk,er.weapon,er.weaponer_chk,er.weaponer,er.detain_chk,er.detain,er.typeP_1,er.typeP_2,er.typeP_3,er.typeP_4
 ,er.typeP_5,er.typeP_6,er.typeP_7,er.smi4_chk,er.smi4_1,er.smi4_2,er.smi4_3,er.smi4_4,er.lawpsych_chk,er.lawpsych
 ,er.sleep_chk,er.sleep,er.IC_chk,er.IC,er.med_chk,er.med,er.accident_chk,er.accident,er.wound_chk,er.wound,er.surgery_chk,er.surgery
 ,er.cigarette_chk,er.D_cigarette,er.last_useC,er.alcohol_chk,er.alcohol_type,er.alcohol_vol,er.last_useA,er.dope_chk,er.dope_type,last_useD
 ,er.marihuana_chk,er.D_marihuana,er.last_useM,er.ADL,er.work,er.menses_chk,er.menses
-,er.admit_chk,er.refer,er.admit admit_type
+,er.admit_chk,er.refer,er.admit admit_type,er.complicate_chk,er.complicate
 from an_stat a
 left outer join patient p on a.hn=p.hn
 left outer join jvlER_regis er on er.vn = a.vn
@@ -94,6 +95,11 @@ $conv=new convers_encode();
     $series['bw'] = $rslt['bw'];
     $series['height'] = $rslt['height'];
     $series['bmi'] = $rslt['bmi'];
+    $series['temp'] = round($rslt['temperature'],1);
+    $series['pr'] = round($rslt['pulse']);
+    $series['rr'] = round($rslt['rr']);
+    $series['bps'] = round($rslt['bps']);
+    $series['bpd'] = round($rslt['bpd']);
     $series['hometel'] = $conv->tis620_to_utf8($rslt['hometel']);
     $series['informtel'] = $conv->tis620_to_utf8($rslt['informtel']);
     $cc=$conv->tis620_to_utf8( $rslt['cc']);
@@ -116,6 +122,8 @@ $conv=new convers_encode();
     $series['police_name'] = isset($rslt['police_name'])?$conv->tis620_to_utf8($rslt['police_name']):'';
     $series['weapon_chk'] = $rslt['weapon_chk'];
     $series['weapon'] = isset($rslt['weapon'])?$conv->tis620_to_utf8($rslt['weapon']):'';
+    $series['weaponer_chk'] = $rslt['weaponer_chk'];
+    $series['weaponer'] = isset($rslt['weaponer'])?$conv->tis620_to_utf8($rslt['weaponer']):'';
     $series['detain_chk'] = $rslt['detain_chk'];
     $series['detain'] = isset($rslt['detain'])?$conv->tis620_to_utf8($rslt['detain']):'';
     $series['typeP_1'] = $rslt['typeP_1'];
@@ -164,6 +172,8 @@ $conv=new convers_encode();
     $series['admit_chk'] = $rslt['admit_chk'];
     $series['refer'] = isset($rslt['refer'])?$conv->tis620_to_utf8($rslt['refer']):'';
     $series['admit_type'] = isset($rslt['admit_type'])?$conv->tis620_to_utf8($rslt['admit_type']):'';
+    $series['complicate_chk'] = $rslt['complicate_chk'];
+    $series['complicate'] = isset($rslt['complicate'])?$conv->tis620_to_utf8($rslt['complicate']):'';
 array_push($result, $series);    
 //}
 //print_r($result);

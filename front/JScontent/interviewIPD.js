@@ -10,23 +10,23 @@ function InterviewIPD(content, id = null) {
     $("#this-page").text(title);
     $("li").removeClass("active");
     $("#submenu1").parent().find("li:eq(0)").addClass("active")
-    var PL = new TabLayout(content, 3);
+    var PL = new TabLayout(content, 2);
     PL.GetTL();
     $("h5.widget-title").empty().prepend("แบบสัมภาษณ์ประวัติผู้ป่วย");
     $("#Budget").remove();
 
-    $("#Tl0 >a").empty().append("แบบแรกรับ");
+    $("#Tl0 >a").empty().append("แบบแรกรับ (หอผู้ป่วย)");
     $("#Tc0 >p").empty().append($("<form action='' name='frminv' id='frminv' method='post' enctype='multipart/form-data'>"
         + "<div class='widget-main row'><div class='col-lg-12' id='cgi-post'>"
-        + "<div id='interviewfrm'></div>"
-        + "<br><center><input type='submit' name='submit' class='btn btn-success' value='ประเมิน'></center></div>"
+        + "<div id='interviewfrm' class='row scroll'></div>"
+        + "<br><center><input type='submit' name='submit' class='btn btn-success' value='บันทึก'></center></div>"
         //+ "<div class='col-lg-6'><div class='row col-lg-12' id='sub-contentTB'></div><div class='row col-lg-12' id='sub-contentGr'></div></div>"
         + "</div></form>"));
 
-    $("#Tl1 >a").empty().append("แบบประเมิน");
+    $("#Tl1 >a").empty().append("แบบประเมินสภาพจิตใจ");
     $("#Tc1 >p").empty().append($("<form action='' name='frmgauge' id='frmgauge' method='post' enctype='multipart/form-data'>"
         + "<div class='widget-main row'><div class='col-lg-12' id='cgi-post'>"
-        + "<div id='gaugefrm'></div>"
+        + "<div id='gaugefrm' class='row scroll'></div>"
         + "<br><center><input type='submit' name='submit' class='btn btn-success' value='ประเมิน'></center></div>"
         //+ "<div class='col-lg-6'><div class='row col-lg-12' id='sub-contentTB'></div><div class='row col-lg-12' id='sub-contentGr'></div></div>"
         + "</div></form>"));
@@ -41,14 +41,19 @@ function InterviewIPD(content, id = null) {
     selectMash("#alcohol_type", "alcoholType_data.php", " เลือกชนิดสุรา ");
     selectMash("#alcohol_vol", "alcoholVol_Data.php", " เลือกปริมาณ ");
     selectMash("#dope_type", "drugs_data.php", " เลือกชนิดยาเสพติด ");
-
+    
+    
     $("textarea#disease").hide();
+    $("#disease_group").hide();
     $("#surgery").hide();
+    $("#complicate").hide();
     $("#whip").hide();
     $("#weapon").hide();
+    $("#weaponer").hide();
     $("#detain").hide();
     $("#wound").hide();
     $("#regular_med").hide();
+    $("#ADR").hide();
     $("#beAllergic").hide();
     $("#old_med").hide();
     $("#alcohol").hide();
@@ -57,28 +62,44 @@ function InterviewIPD(content, id = null) {
     $("#marry").hide();
     $("#heredity").hide();
     $("#Hurt_yourself").hide();
-    $("#plan_datial").hide();
+    $("#plan_detial").hide();
     $("#action_detial").hide();
     $("textarea[name=lawsuit]").hide();
     $("textarea[name=lawpsych]").hide();
     $("#IC").hide();
     $("#sleep").hide();
     $("#med").hide();
+    $("#accident").hide();
     $("#smi4_group").hide();
     $("#other_mood").hide();
     $("#action_4D").hide();
     $("#action_6D").hide();
     $("#action_10D").hide();
+    $("#scab_group").hide(); 
+    $("#swelling").hide();
+    $("#disabled").hide();
     $("#think_group").hide();
+    $("#think_group2").hide();
     $("#think_1D").hide();
     $("#think_2D").hide();
     $("#think_6D").hide();
     $("#Recognition").hide();
     $("#heal_0").hide();
     $("textarea#heal").hide();
+    $("#div-admittype").hide();
+    //$("#condition_group").hide();
+    $("textarea#accept").hide();
+    $("textarea#memoS").hide();
+    $("textarea#memoL").hide();
+    $("#Recog_group").hide();
+    $("#Recog_1D").hide();
+    $("#Recog_2D").hide();
+    $("#Recog_3D").hide();
+    $("#Recog_4D").hide();
+    $("#Recog_5D").hide();
 
     $("input[type=radio][name=disease_chk]").click(function () {
-        if ($("input[type=radio][name=disease_chk]:checked").val() == 'Y') { $("textarea#disease").show(); $("div#heal_0").show(); } else { $("textarea#disease").hide(); $("div#heal_0").hide(); }
+        if ($("input[type=radio][name=disease_chk]:checked").val() == 'Y') { $("textarea#disease").show(); $("#disease_group").show(); $("div#heal_0").show(); } else { $("textarea#disease").hide(); $("#disease_group").hide(); $("div#heal_0").hide(); }
     });
     $("input[type=radio][name=heal_chk]").click(function () {
         if ($("input[type=radio][name=heal_chk]:checked").val() == 'Y') { $("textarea#heal").show(); } else { $("textarea#heal").hide(); }
@@ -92,6 +113,12 @@ function InterviewIPD(content, id = null) {
     $("input[type=radio][name=weapon_chk]").click(function () {
         if ($("input[type=radio][name=weapon_chk]:checked").val() == 'Y') { $("textarea#weapon").show(); } else { $("textarea#weapon").hide(); }
     });
+    $("input[type=radio][name=weaponer_chk]").click(function () {
+        if ($("input[type=radio][name=weaponer_chk]:checked").val() == 'Y') { $("textarea#weaponer").show(); } else { $("textarea#weaponer").hide(); }
+    });
+    $("input[type=radio][name=complicate_chk]").click(function () {
+        if ($("input[type=radio][name=complicate_chk]:checked").val() == 'Y') { $("textarea#complicate").show(); } else { $("textarea#complicate").hide(); }
+    });
     $("input[type=radio][name=detain_chk]").click(function () {
         if ($("input[type=radio][name=detain_chk]:checked").val() == 'Y') { $("textarea#detain").show(); } else { $("textarea#detain").hide(); }
     });
@@ -103,6 +130,9 @@ function InterviewIPD(content, id = null) {
     });
     $("input[type=radio][name=beAllergic_chk]").click(function () {
         if ($("input[type=radio][name=beAllergic_chk]:checked").val() == 'Y') { $("textarea#beAllergic").show(); } else { $("textarea#beAllergic").hide(); }
+    });
+    $("input[type=radio][name=ADR_chk]").click(function () {
+        if ($("input[type=radio][name=ADR_chk]:checked").val() == 'Y') { $("textarea#ADR").show(); } else { $("textarea#ADR").hide(); }
     });
     $("input[type=radio][name=old_med_chk]").click(function () {
         if ($("input[type=radio][name=old_med_chk]:checked").val() == 'Y') { $("textarea#old_med").show(); } else { $("textarea#old_med").hide(); }
@@ -133,8 +163,8 @@ function InterviewIPD(content, id = null) {
         else { $("div#Hurt_yourself").hide(); }
     });
     $("input[type=checkbox][name=plan]").click(function () {
-        if ($("input[type=checkbox][name=plan]").prop("checked") == true) { $("textarea#plan_datial").show(); }
-        else { $("textarea#plan_datial").hide(); }
+        if ($("input[type=checkbox][name=plan]").prop("checked") == true) { $("textarea#plan_detial").show(); }
+        else { $("textarea#plan_detial").hide(); }
     });
     $("input[type=checkbox][name=action]").click(function () {
         if ($("input[type=checkbox][name=action]").prop("checked") == true) {
@@ -156,9 +186,11 @@ function InterviewIPD(content, id = null) {
     $("input[type=radio][name=med_chk]").click(function () {
         if ($("input[type=radio][name=med_chk]:checked").val() == 'Y') { $("textarea#med").show(); } else { $("textarea#med").hide(); }
     });
-    
-    $("input[type=radio][name=mood_chk]").click(function () {
-        if ($("input[type=radio][name=mood_chk]:checked").val() == '5') { $("textarea#other_mood").show(); } else { $("textarea#other_mood").hide(); }
+    $("input[type=radio][name=accident_chk]").click(function () {
+        if ($("input[type=radio][name=accident_chk]:checked").val() == 'Y') { $("textarea#accident").show(); } else { $("textarea#accident").hide(); }
+    });
+    $("input[type=checkbox][name=mood5]").click(function () {
+        if ($("input[type=checkbox][name=mood5]:checked").prop("checked") == true) { $("textarea#other_mood").show(); } else { $("textarea#other_mood").hide(); }
     });
     $("input[type=checkbox][name=action_4]").click(function () {
         if ($("input[type=checkbox][name=action_4]:checked").prop("checked") == true) { $("textarea#action_4D").show(); } else { $("textarea#action_4D").hide(); }
@@ -169,8 +201,20 @@ function InterviewIPD(content, id = null) {
     $("input[type=checkbox][name=action_10]").click(function () {
         if ($("input[type=checkbox][name=action_10]:checked").prop("checked") == true) { $("textarea#action_10D").show(); } else { $("textarea#action_10D").hide(); }
     });
+    $("input[type=radio][name=scab_chk]").click(function () {
+        if ($("input[type=radio][name=scab_chk]:checked").val() == 'N') { $("#scab_group").hide(); } else { $("#scab_group").show(); }
+    });
+    $("input[type=radio][name=disabled_chk]").click(function () {
+        if ($("input[type=radio][name=disabled_chk]:checked").val() == 'N') { $("#disabled").hide(); } else { $("#disabled").show(); }
+    });
+    $("input[type=radio][name=swelling_chk]").click(function () {
+        if ($("input[type=radio][name=swelling_chk]:checked").val() == 'N') { $("#swelling").hide(); } else { $("#swelling").show(); }
+    });
     $("input[type=radio][name=think_chk]").click(function () {
         if ($("input[type=radio][name=think_chk]:checked").val() == 'N') { $("div#think_group").show(); } else { $("div#think_group").hide(); }
+    });
+    $("input[type=radio][name=think_chk]").click(function () {
+        if ($("input[type=radio][name=think_chk]:checked").val() == 'Y') { $("div#think_group2").show(); } else { $("div#think_group2").hide(); }
     });
     $("input[type=checkbox][name=think_1]").click(function () {
         if ($("input[type=checkbox][name=think_1]:checked").prop("checked") == true) { $("textarea#think_1D").show(); } else { $("textarea#think_1D").hide(); }
@@ -182,14 +226,70 @@ function InterviewIPD(content, id = null) {
         if ($("input[type=checkbox][name=think_6]:checked").prop("checked") == true) { $("textarea#think_6D").show(); } else { $("textarea#think_6D").hide(); }
     });
     $("input[type=radio][name=Recognition_chk]").click(function () {
-        if ($("input[type=radio][name=Recognition_chk]:checked").val() == 'Y') { $("textarea#Recognition").show(); } else { $("textarea#Recognition").hide(); }
+        if ($("input[type=radio][name=Recognition_chk]:checked").val() == 'Y') { $("#Recog_group").show(); } else { $("#Recog_group").hide(); }
     });
+        $("input[type=checkbox][name=Recog_1]").click(function () {
+            if ($("input[type=checkbox][name=Recog_1]:checked").prop("checked") == true) { $("#Recog_1D").show(); } else { $("#Recog_1D").hide(); }
+        });
+        $("input[type=checkbox][name=Recog_2]").click(function () {
+            if ($("input[type=checkbox][name=Recog_2]:checked").prop("checked") == true) { $("#Recog_2D").show(); } else { $("#Recog_2D").hide(); }
+        });
+        $("input[type=checkbox][name=Recog_3]").click(function () {
+            if ($("input[type=checkbox][name=Recog_3]:checked").prop("checked") == true) { $("#Recog_3D").show(); } else { $("#Recog_3D").hide(); }
+        });
+        $("input[type=checkbox][name=Recog_4]").click(function () {
+            if ($("input[type=checkbox][name=Recog_4]:checked").prop("checked") == true) { $("#Recog_4D").show(); } else { $("#Recog_4D").hide(); }
+        });
+        $("input[type=checkbox][name=Recog_5]").click(function () {
+            if ($("input[type=checkbox][name=Recog_5]:checked").prop("checked") == true) { $("#Recog_5D").show(); } else { $("#Recog_5D").hide(); }
+        });
+    $("input[type=radio][name=income]").click(function () {
+        if ($("input[type=radio][name=income]:checked").val() == '1') { $("#div-admittype").show(); } else { $("#div-admittype").hide(); }
+    });
+    // $("input[type=radio][name=condition]").click(function () {
+    //     if ($("input[type=radio][name=condition]:checked").val() == 'N') { $("#condition_group").show(); } else { $("#condition_group").hide(); }
+    // });
+    $("input[type=radio][name=accept_chk]").click(function () {
+        if ($("input[type=radio][name=accept_chk]:checked").val() == 'Y') { $("#accept").show(); } else { $("#accept").hide(); }
+    });
+    $("input[type=radio][name=memo_short]").click(function () {
+        if ($("input[type=radio][name=memo_short]:checked").val() == 'Y') { $("#memoS").show(); } else { $("#memoS").hide(); }
+    });
+    $("input[type=radio][name=memo_long]").click(function () {
+        if ($("input[type=radio][name=memo_long]:checked").val() == 'Y') { $("#memoL").show(); } else { $("#memoL").hide(); }
+    });
+    
+     
+    $.getJSON('../back/API/disease_Data.php', function (data) {
+        var ii = 0;
+        $("div#disease_group").empty();
+        $.each(data, function (i, item) {
+            $("div#disease_group").append($("<div class='col-lg-2'><label><input class='ace' type='checkbox' name='D" + ii + "' value='" + item.disease_id + "' ><span class='lbl'> " + item.disease_name + "</label></div>"))
+            ii++;
+        });
+    });
+    $.getJSON('../back/API/scab_Data.php', function (data) {
+        var ii = 0;
+        $("div#scab").empty();
+        $.each(data, function (i, item) {
+            $("div#scab").append($("<div class='col-lg-2'><label><input class='ace' type='checkbox' name='scab_" + ii + "' value='" + item.id + "' ><span class='lbl'> " + item.name + "</span></label></div>"))
+            ii++;
+        });
+    });
+        
+    selectMash("#admittype", "admittype_Data.php", " เลือกชนิดการ admit ");
+    selectMash("#shape", "shape_Data.php", " เลือกรูปร่าง ");
+    selectMash("#skin_color", "skin_Data.php", " เลือกสีผิว ");
 
     $.getJSON('../back/API/patient_detail.php', { data: idvn.data }, function (data) {
         $("b#patient_name").append(data[0].fullname);
         $("b#age").append(data[0].age);
         $("#hn").append(data[0].hn);
         $("#an").append(data[0].an);
+        $("#interviewfrm ,#gaugefrm").append($("<input type='hidden' name='hn' value='" + data[0].hn + "'>")
+                                            ,$("<input type='hidden' name='vn' value='" + data[0].vn + "'>")
+                                            ,$("<input type='hidden' name='an' value='" + data[0].an + "'>")
+                                            ,$("<input type='hidden' name='user' value='" + $.cookie("user") + "'>"))
         $("#admit_no").append(data[0].admit);
         $("#admitdate").append(data[0].admitdate);
         $("#regtime").append(data[0].regtime);
@@ -208,8 +308,8 @@ function InterviewIPD(content, id = null) {
         $("#patient_add").val(data[0].fulladdressname);
         $("#tel0").val(data[0].hometel);
         $("#tel1").val(data[0].informtel);
-        $("#father_name").val(data[0].fathername);
-        $("#mother_name").val(data[0].mothername);
+        $("#fathername").val(data[0].fathername);
+        $("#mothername").val(data[0].mothername);
         $("#bw").val(data[0].bw);
         $("#height").val(data[0].height);
         $("#CC").val(data[0].cc);
@@ -236,7 +336,37 @@ function InterviewIPD(content, id = null) {
                 $("#BMIresult").empty().append(" <b style='color: red;'> โรคอ้วนอันตราย</b>");
             }
         });
-
+        $("#Temp").append(data[0].temp+'  ํc');
+        if (data[0].temp < 36.5) { $("#Temp").css("background-color", "yellow"); } else if (data[0].temp > 37.5) { $("#Temp").css({ "background-color":"red","color":"white"});}
+        $("#PR").append(data[0].pr+' /min.');
+        if (data[0].pr < 50) { $("#PR").css("background-color", "yellow"); } else if (data[0].pr > 100) { $("#PR").css({ "background-color":"red","color":"white"});}
+        $("#RR").append(data[0].rr+' /min.');
+        if (data[0].rr < 20) { $("#RR").css("background-color", "yellow"); } else if (data[0].rr > 40) { $("#RR").css({ "background-color":"red","color":"white"});}
+        $("#BP").append(data[0].bps+'/'+data[0].bpd+' mmHg.');
+        if (data[0].bps < 100) { $("#BP").css("background-color", "yellow"); } else if (data[0].bps > 130) { $("#BP").css({ "background-color": "red", "color": "white" }); }
+        
+        if (data[0].accident == 'Y') {
+            $("input[type=radio][name=accident_chk][value='Y']").attr("checked", "checked");
+            $("textarea#accident").show();
+            $("textarea#accident").val(data[0].accident);
+        }
+        if (data[0].surgery == 'Y') {
+            $("input[type=radio][name=surgery_chk][value='Y']").attr("checked", "checked");
+            $("textarea#surgery").show();
+            $("textarea#surgery").val(data[0].surgery);
+        }
+        $.getJSON('../back/API/allergy_Data.php', { data: $.cookie("hn") }, function (data) { console.log(data)
+            var text;
+            $.each( data, function( key, value ) {
+                text += value.drugallergy+"<br>";
+              });
+            if (data!='') {
+                $("input[type=radio][name=ADR_chk][value='Y']").attr("checked", "checked");
+                $("textarea#ADR").show();
+                $("textarea#ADR").val(text);
+            }
+            
+        });
         ///////// ER Zone /////////// 
         $("div#ER-frame").hide();
         $("a#SW-ER-frame").click(function () {
@@ -246,6 +376,11 @@ function InterviewIPD(content, id = null) {
             $("input[type=radio][name=weapon_chk][value='Y']").attr("checked", "checked");
             $("textarea#weapon").show();
             $("textarea#weapon").val(data[0].weapon);
+        }
+        if (data[0].weaponer_chk == 'Y') {
+            $("input[type=radio][name=weaponer_chk][value='Y']").attr("checked", "checked");
+            $("textarea#weaponer").show();
+            $("textarea#weaponer").val(data[0].weapon);
         }
         if (data[0].detain_chk == 'Y') {
             $("input[type=radio][name=detain_chk][value='Y']").attr("checked", "checked");
@@ -297,7 +432,11 @@ function InterviewIPD(content, id = null) {
             $("input[type=radio][name=med_chk][value='Y']").attr("checked", "checked");
             $("textarea#med").show();
             $("textarea#med").val(data[0].med);
-        }
+            }else if (data[0].med_chk == 'A') {
+                $("input[type=radio][name=med_chk][value='A']").attr("checked", "checked");
+            }else if (data[0].med_chk == '0') {
+                $("input[type=radio][name=med_chk][value='0']").attr("checked", "checked");
+            }
         if (data[0].wound_chk == 'Y') {
             $("input[type=radio][name=wound_chk][value='Y']").attr("checked", "checked");
             $("textarea#wound").show();
@@ -307,6 +446,11 @@ function InterviewIPD(content, id = null) {
             $("input[type=radio][name=surgery_chk][value='Y']").attr("checked", "checked");
             $("textarea#surgery").show();
             $("textarea#surgery").val(data[0].surgery);
+        }
+        if (data[0].complicate_chk == 'Y') {
+            $("input[type=radio][name=complicate_chk][value='Y']").attr("checked", "checked");
+            $("textarea#complicate").show();
+            $("textarea#complicate").val(data[0].complicate);
         }
         if (data[0].alcohol_chk == 'Y') {
             $("input[type=radio][name=alcohol_chk][value='Y']").attr("checked", "checked");
@@ -339,7 +483,7 @@ function InterviewIPD(content, id = null) {
         // }
         var settings = {
             type: "POST",
-            url: "../back/API/prcSocialAPI.php",
+            url: "../back/API/prcInterviewAPI.php",
             async: true,
             crossDomain: true,
             data: dataForm,
@@ -350,9 +494,30 @@ function InterviewIPD(content, id = null) {
         console.log(settings)
         $.ajax(settings).done(function (result) {
             alert(result.messege);
-            $("#body_text").empty();
-            popup('../back/API/socialPDF.php?id=' + result.id, popup, 450, 500);
-            AssSocial('#index_content', $.cookie('hn'));
+            TBInterviewIPD('#page-content');
         })
+    }));
+        $("#frmgauge").on('submit', (function (e) {
+            e.preventDefault();
+            var dataForm = new FormData(this);
+            // console.log(dataForm)
+            // for (var value of dataForm.values()) {
+            //     console.log(value);
+            // }
+            var settings = {
+                type: "POST",
+                url: "../back/API/prcInterviewAPI.php",
+                async: true,
+                crossDomain: true,
+                data: dataForm,
+                contentType: false,
+                cache: false,
+                processData: false
+            }
+            console.log(settings)
+            $.ajax(settings).done(function (result) {
+                alert(result.messege);
+                TBInterviewIPD('#page-content');
+            })
     }));
 }

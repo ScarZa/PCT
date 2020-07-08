@@ -91,17 +91,23 @@ $("#navbar-container").empty().append($('<button type="button" class="navbar-tog
                                                                     $("#menu1").empty().append($('<a href="#" class="dropdown-toggle"><i class="menu-icon fa fa-bed"></i> <span class="menu-text">ผู้ป่วยใน </span> <b class="arrow fa fa-angle-down"></b></a>')
                                                                                                 ,$('<b class="arrow"></b>')
                                                                                                 ,$('<ul class="submenu" id="submenu1-1"></ul>'));   
-                                                                                $("#submenu1-1").empty().append($('<li class=""><a href="#" id="interview"><i class="menu-icon fa fa-caret-right"></i> แบบสัมภาษณ์</a><b class="arrow"></b></li>')
+                                                                                $("#submenu1-1").empty().append($('<li class=""><a href="#" id="interview"><i class="menu-icon fa fa-caret-right"></i> แบบแรกรับ</a><b class="arrow"></b></li>')
                                                                                                                 ,$('<li class=""><a href="#" class="dropdown-toggle">'
+                                                                                                                    +'<i class="menu-icon fa fa-caret-right"></i> IPD <b class="arrow fa fa-angle-down"></b></a>'
+                                                                                                                    +'<b class="arrow"></b><ul id="Ssubmenu1-2" class="submenu"></ul></li>')
+                                                                                                                , $('<li class=""><a href="#" class="dropdown-toggle">'
                                                                                                                     +'<i class="menu-icon fa fa-caret-right"></i> รายการส่งเคส <b class="arrow fa fa-angle-down"></b></a>'
-                                                                                                                    +'<b class="arrow"></b><ul id="Ssubmenu1" class="submenu"></ul></li>'));
+                                                                                                                    + '<b class="arrow"></b><ul id="Ssubmenu1" class="submenu"></ul></li>'));
+                                                                                            $("#Ssubmenu1-2").empty().append($('<li class=""><a href="#"  id="SSsubmenu1-2"><i class="menu-icon fa fa-send green"></i> ผู้ป่วยแรกรับ</a> <b class="arrow"></b></li>')
+                                                                                                                    );
                                                                                             $("#Ssubmenu1").empty().append($('<li class=""><a href="#"  id="SSsubmenu1-1"><i class="menu-icon fa fa-send green"></i> เคสส่ง Consult</a> <b class="arrow"></b></li>')
                                                                                                                             ,$('<li class=""><a href="#" class="dropdown-toggle"><i class="menu-icon fa fa-pencil orange"></i> 4th level <b class="arrow fa fa-angle-down"></b></a>'
                                                                                                                                 +'<b class="arrow"></b><ul id="SSsubmenu1" class="submenu"></ul></li>'));  
                                                                                                         $("#SSsubmenu1").empty().append($('<li class=""><a href="#"><i class="menu-icon fa fa-plus purple"></i> Add Product</a> <b class="arrow"></b></li>')
                                                                                                                                         ,$('<li class=""><a href="#"><i class="menu-icon fa fa-eye pink"></i> View Products</a> <b class="arrow"></b></li>'));          
                                                                                                                                         
-                                                                                $("a#interview").attr("onclick","TBInterviewIPD('#page-content')");
+                                                                                $("a#interview").attr("onclick", "TBInterviewIPD('#page-content')");
+                                                                                $("a#SSsubmenu1-2").attr("onclick","TBRegisIPD('#page-content')");
                                                                                 $("a#SSsubmenu1-1").attr("onclick","TBConsultIPD('#page-content')");
                                                                     $("#menu2").empty().append($('<a href="#" class="dropdown-toggle"><i class="menu-icon fa fa-beer"></i> <span class="menu-text">สุราและสารเสพติด </span> <b class="arrow fa fa-angle-down"></b></a>')
                                                                                                 ,$('<b class="arrow"></b>')
