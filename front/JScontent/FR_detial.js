@@ -33,6 +33,7 @@ $table.append('<caption> บันทึกแรกรับ</caption>')
 //.append('<tr />').children('tr').append('<th>A</th><th>B</th><th>C</th><th>D</th>');
 
 //tbody
+            //////////// Loop tbody part ///////////////////
             var $tbody = $table.append('<tbody />').children('tbody');
             $.each(data,function(d,k) { console.log(k)
                 var row = tr.clone() //creates a row
@@ -46,7 +47,7 @@ $table.append('<caption> บันทึกแรกรับ</caption>')
                 // })
                 $tbody.append(row) //puts row on the tbody
             })
-
+            //////////// End Loop tbody part ///////////////////
 // // add row
 // $tbody.append('<tr />').children('tr:last')
 // .append("<td>val</td>")
