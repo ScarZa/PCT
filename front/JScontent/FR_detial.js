@@ -10,6 +10,7 @@ function FRDetial(content, id = null) {
                                                     , $("<div class='col-sm-12 alert alert-danger'><div class='' id='alert'></div></div><br>")
                                                     , $("<div class='col-sm-12 alert alert-info'><div class='' id='ipd-ass'></div></div><br>")
                                                     , $("<div class='col-sm-12 alert alert-info'><u>การประเมินสภาพร่างกายเบื้องต้น</u><div class='' id='condition'></div></div><br>")
+                                                    , $("<div class='col-sm-12 alert alert-success' id='mental-panel'><u>การประเมินสภาพจิตใจ</u><div class='' id='mental'></div><br></div>")
                                                     , $("<div class='col-sm-12 alert alert-warning'><div class='' id='conclude'></div></div><br>")
                                                     , $("<div class='col-sm-12'><center><span id='recorder'></span></center></div>")
                                                     )
@@ -158,7 +159,13 @@ function FRDetial(content, id = null) {
             if (data.movement != '') { $("#movement").append("<b>" + data.movement + "</b>"); }else{ $("#movement").append("<b>ปกติ</b>"); }
             if (data.disabled != '') { $("#disabled").append("รายละเอียด : <b>" + data.disabled + "</b>"); }
             if (data.income_code = '1') { $("#income").append("ชนิดการ Admit : <b>" + data.admittype_name + "</b>"); }
-            $("#recorder").append("ผู้บันทึก "+data.recorder+"<br>วันที่ "+data.recdate);
+            $("#recorder").append("ผู้บันทึก " + data.recorder + "<br>วันที่ " + data.recdate);
+            
+            if (data.recorder2 == '') { $("#mental-panel").hide() } else {
+                $("#mental").append($("<div class='col-sm-12'>รูปร่าง  : <b>" + data.shape_name + "</b></div>")
+                    
+                );
+            }
           // create table
             var $table = $('<table>');
             $table.attr("width", "100%");
