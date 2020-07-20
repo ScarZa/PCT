@@ -19,7 +19,7 @@ function InterviewIPD(content, id = null) {
     $("#Tc0 >p").empty().append($("<form action='' name='frminv' id='frminv' method='post' enctype='multipart/form-data'>"
         + "<div class='widget-main row'><div class='col-lg-12' id='cgi-post'>"
         + "<div id='interviewfrm' class='row scroll'></div>"
-        + "<br><center><input type='submit' name='submit' class='btn btn-success' value='บันทึก'></center></div>"
+        + "<br><center><input type='submit' name='submit1' class='btn btn-success' value='บันทึก'></center></div>"
         //+ "<div class='col-lg-6'><div class='row col-lg-12' id='sub-contentTB'></div><div class='row col-lg-12' id='sub-contentGr'></div></div>"
         + "</div></form>"));
 
@@ -27,7 +27,7 @@ function InterviewIPD(content, id = null) {
     $("#Tc1 >p").empty().append($("<form action='' name='frmgauge' id='frmgauge' method='post' enctype='multipart/form-data'>"
         + "<div class='widget-main row'><div class='col-lg-12' id='cgi-post'>"
         + "<div id='gaugefrm' class='row scroll'></div>"
-        + "<br><center><input type='submit' name='submit' class='btn btn-success' value='ประเมิน'></center></div>"
+        + "<br><center><input type='submit' name='submit2' class='btn btn-success' value='ประเมิน'></center></div>"
         //+ "<div class='col-lg-6'><div class='row col-lg-12' id='sub-contentTB'></div><div class='row col-lg-12' id='sub-contentGr'></div></div>"
         + "</div></form>"));
     var idvn = id;
@@ -494,7 +494,8 @@ function InterviewIPD(content, id = null) {
         console.log(settings)
         $.ajax(settings).done(function (result) {
             alert(result.messege);
-            TBInterviewIPD('#page-content');
+            //TBInterviewIPD('#page-content');
+            $("input[type=submit][name=submit1]").attr("disabled", "disabled");
         })
     }));
         $("#frmgauge").on('submit', (function (e) {

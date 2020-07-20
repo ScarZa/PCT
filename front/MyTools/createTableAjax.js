@@ -116,7 +116,7 @@ var createTableAjax = function () {
                                         var cellEdit = row.insertCell (-1);
 					editButton = document.createElement("a");
 					cellEdit.appendChild(editButton);
-					editButton.innerHTML = "<img src='images/icon_set1/file_search.ico' width='25'>";
+					editButton.innerHTML = "<img id='modal-ico"+value[0]+"' src='images/icon_set1/file_search.ico' width='25'>";
 					editButton.setAttribute("href","#");
                                         editButton.setAttribute("onclick",modalsub[0]+"("+modalsub[1]+")");
                                         editButton.setAttribute("data-toggle","modal");

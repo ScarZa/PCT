@@ -15,15 +15,15 @@ function TBRegisIPD(content, id = null) {
     //$("#contentTB").empty().append("แบบสัมภาษณ์");
     $("#Budget").append($("<p><div class='col-lg-12 row'><div class='col-lg-2 offset-lg-2'><select class='form-control' id='sel-ward'></select></div></div></p><br>"));
     selectMash("#sel-ward","ward_data.php","เลือก ward");
-    var column1 = ["ลำดับ","AN","HN","วันที่ admit","ชื่อ - นามสกุล","ward","สภาพจิตใจ","ข้อมูลแรกรับ"];
+    var column1 = ["ลำดับ","AN","HN","วันที่ admit","ชื่อ - นามสกุล","ward","สภาพจิตใจ","ข้อมูลแรกรับ","ประเมินสภาพจิต"];
     var CTb = new createTableAjax();
     CTb.GetNewTableAjax('contentTB','../back/API/DT_ANregis.php?','../back/API/tempSendDataAPI.php',column1
-    ,null,null,null,null,false,false,null,false,null,true,'content/FR_detial.html',null,null,null,null,'dynamic-table');
+    ,null,null,null,null,false,false,null,true,'GaugleModal',true,'content/FR_detial.html',null,null,null,null,'dynamic-table');
 
     $("select#sel-ward").change(function () { 
         console.log($("#sel-ward").val()) ;
         CTb.GetNewTableAjax('contentTB','../back/API/DT_ANregis.php?'+$("#sel-ward").val(),'../back/API/tempSendDataAPI.php',column1
-          ,null,null,null,null,false,false,null,false,null,true,'content/FR_detial.html',null,null,null,null,'dynamic-table');
+          ,null,null,null,null,false,false,null,true,'GaugleModal',true,'content/FR_detial.html',null,null,null,null,'dynamic-table');
 
     });
 }
