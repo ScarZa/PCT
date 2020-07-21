@@ -162,9 +162,53 @@ function FRDetial(content, id = null) {
             $("#recorder").append("ผู้บันทึก " + data.recorder + "<br>วันที่ " + data.recdate);
             
             if (data.recorder2 == '') { $("#mental-panel").hide() } else {
-                $("#mental").append($("<div class='col-sm-12'>รูปร่าง  : <b>" + data.shape_name + "</b></div>")
-                    
+                $("#mental").append($("<div class='row col-sm-12'><span class='col-sm-3'>ความคิด  : <b>" + data.think_chk + "</b></span> <span class='col-sm-9' id='think-detial'></span></div>")
+                    , $("<div class='row col-sm-12'><span class='col-sm-2'>อารมณ์ : </span> <span class='col-sm-10' id='mood-detial'></span></div>")
+                    , $("<div class='row col-sm-12'><span class='col-sm-2'>พฤติกรรม : </span> <span class='col-sm-10' id='action-detial'></span></div>")
+                    , $("<div class='row col-sm-12'><span class='col-sm-5'>การรับรู้ (perception) : <b>" + data.recognition_chk + "</b></span> <span class='col-sm-7' id='recognition-detial'></span></div>")
+                    , $("<div class='row col-sm-12'><span class='col-sm-5'>การตระหนักรู้ (insigth) : <b>" + data.accept_chk + "</b></span> <span class='col-sm-7' id='accept-detial'></span></div>")
+                    , $("<div class='row col-sm-12'><span class='col-sm-5'><u>ความจำ</u></span></div>")
+                    , $("<div class='row col-sm-12'><div class='row col-sm-1'>&nbsp;</div><span class='col-sm-3'>ระยะสั้น : <b>" + data.memo_short + "</b></span> <span class='col-sm-8' id='memos-detial'></span></div>")
+                    , $("<div class='row col-sm-12'><div class='row col-sm-1'>&nbsp;</div><span class='col-sm-3'>ระยะยาว : <b>" + data.memo_long + "</b></span> <span class='col-sm-8' id='memol-detial'></span></div>")
+                    , $("<div class='row col-sm-12' style='text-align: center;'><span>( ผู้ประเมิน "+data.recorder2+" วันที่ "+data.recdate2+" )</span></div>")
                 );
+                if (data.think_chk == 'สมเหตุสมผล') {
+                    $("#think-detial").append($("<b>" + data.continuous + "</b> รายละเอียด : <b>"+data.continuous_detial+"</b>"))
+                } else {
+                    if (data.think_1 != '') { $("#think-detial").append("<b>" + data.think_1 + "</b> รายละเอียด : <b>" + data.think_1d + "</b><br>") }
+                    if (data.think_2 != '') { $("#think-detial").append("<b>" + data.think_2 + "</b> รายละเอียด : <b>" + data.think_2d + "</b><br>") }
+                    if (data.think_3 != '') { $("#think-detial").append("<b>" + data.think_3 + "</b><br>") }
+                    if (data.think_4 != '') { $("#think-detial").append("<b>" + data.think_4 + "</b><br>") }
+                    if (data.think_5 != '') { $("#think-detial").append("<b>" + data.think_5 + "</b><br>") }
+                    if (data.think_6 != '') { $("#think-detial").append("<b>" + data.think_6 + "</b> รายละเอียด : <b>" + data.think_6d + "</b><br>") }
+                }
+                if (data.mood1 != '') { $("#mood-detial").append("<b>" + data.mood1 + "</b><br>") }
+                if (data.mood2 != '') { $("#mood-detial").append("<b>" + data.mood2 + "</b><br>") }
+                if (data.mood3 != '') { $("#mood-detial").append("<b>" + data.mood3 + "</b><br>") }
+                if (data.mood4 != '') { $("#mood-detial").append("<b>" + data.mood4 + "</b><br>") }
+                if (data.mood5 != '') { $("#mood-detial").append("<b>" + data.mood5 + "</b> รายละเอียด : <b>" + data.other_mood + "</b><br>") }
+
+                if (data.action_1 != '') { $("#action-detial").append("<b>" + data.action_1 + "</b><br>") }
+                if (data.action_2 != '') { $("#action-detial").append("<b>" + data.action_2 + "</b><br>") }
+                if (data.action_3 != '') { $("#action-detial").append("<b>" + data.action_3 + "</b><br>") }
+                if (data.action_4 != '') { $("#action-detial").append("<b>" + data.action_4 + "</b> รายละเอียด : <b>" + data.action_4d + "</b><br>") }
+                if (data.action_5 != '') { $("#action-detial").append("<b>" + data.action_5 + "</b><br>") }
+                if (data.action_6 != '') { $("#action-detial").append("<b>" + data.action_6 + "</b> รายละเอียด : <b>" + data.action_6d + "</b><br>") }
+                if (data.action_7 != '') { $("#action-detial").append("<b>" + data.action_7 + "</b><br>") }
+                if (data.action_8 != '') { $("#action-detial").append("<b>" + data.action_8 + "</b><br>") }
+                if (data.action_9 != '') { $("#action-detial").append("<b>" + data.action_9 + "</b><br>") }
+                if (data.action_10 != '') { $("#action-detial").append("<b>" + data.action_10 + "</b> รายละเอียด : <b>" + data.action_10d + "</b><br>") }
+
+                if (data.recognition_chk == 'ประสาทหลอน') {
+                    if (data.recog_1 != '') { $("#recognition-detial").append("&nbsp;&nbsp;<b>" + data.recog_1 + "</b> รายละเอียด : <b>" + data.recog_1d + "</b><br>") }
+                    if (data.recog_2 != '') { $("#recognition-detial").append("&nbsp;&nbsp;<b>" + data.recog_2 + "</b> รายละเอียด : <b>" + data.recog_2d + "</b><br>") }
+                    if (data.recog_3 != '') { $("#recognition-detial").append("&nbsp;&nbsp;<b>" + data.recog_3 + "</b> รายละเอียด : <b>" + data.recog_3d + "</b><br>") }
+                    if (data.recog_4 != '') { $("#recognition-detial").append("&nbsp;&nbsp;<b>" + data.recog_4 + "</b> รายละเอียด : <b>" + data.recog_4d + "</b><br>") }
+                    if (data.recog_5 != '') { $("#recognition-detial").append("&nbsp;&nbsp;<b>" + data.recog_5 + "</b> รายละเอียด : <b>" + data.recog_5d + "</b><br>") }
+                }
+                if (data.accept_chk == 'ไม่ยอมรับการเจ็บป่วย') { $("#accept-detial").append("รายละเอียด : <b>" + data.accept + "</b>") }
+                if (data.memo_short == 'ไม่ปกติ') { $("#memos-detial").append("รายละเอียด : <b>" + data.memos + "</b>") }
+                if (data.memo_long == 'ไม่ปกติ') { $("#memol-detial").append("รายละเอียด : <b>"+data.memol+"</b>")}
             }
           // create table
             var $table = $('<table>');
@@ -215,6 +259,6 @@ $table.append('<caption> บันทึกแรกรับ</caption>')
 // .append("<td>val</td>");
 
 // add table to dom
-$table.appendTo('#FRD');
+// **$table.appendTo('#FRD'); **//
       });
 }

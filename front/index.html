@@ -314,6 +314,147 @@
                             </h1>
                         </div><!-- /.page-header -->
                         <div class="row"><div class="col-xs-12" id="page-content"></div></div>
+
+                        <div class="row">
+                        <div class="col-sm-3 widget-container-col" id="widget-container-col-11">
+                            <div class="widget-box widget-color-green" id="widget-box-11">
+                                <div class="widget-header profile">
+                                    <!-- <div class="profile-activity clearfix"> -->
+                                       <img class="nav-user-photo" width="35px" src="images/person.png"/>
+                                    <h6 class="widget-title">Scroll Content</h6>
+
+                                    <div class="widget-toolbar">
+                                        <div class="widget-menu">
+                                            <a href="#" data-action="settings" data-toggle="dropdown">
+                                                <i class="ace-icon fa fa-bars"></i>
+                                            </a>
+
+                                            <ul class="dropdown-menu dropdown-menu-right dropdown-light-blue dropdown-caret dropdown-closer">
+                                                <li>
+                                                    <a data-toggle="tab" href="#dropdown1">Option#1</a>
+                                                </li>
+
+                                                <li>
+                                                    <a data-toggle="tab" href="#dropdown2">Option#2</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <!-- <a href="#" data-action="settings">
+                                            <i class="ace-icon fa fa-cog"></i>
+                                        </a> -->
+
+                                        <a href="#" data-action="reload">
+                                            <i class="ace-icon fa fa-refresh"></i>
+                                        </a>
+
+                                        <a href="#" data-action="collapse">
+                                            <i class="ace-icon fa fa-chevron-up"></i>
+                                        </a>
+
+                                        <!-- <a href="#" data-action="close">
+                                            <i class="ace-icon fa fa-times"></i>
+                                        </a> -->
+
+                                        <a href="#" data-action="fullscreen" class="orange2">
+                                            <i class="ace-icon fa fa-expand"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            <!-- </div> -->
+                                <div class="widget-body">
+                                    <div class="widget-main padding-4 scrollable" data-size="125">
+                                        <div class="content">
+                                            <div class="alert alert-info">
+                                                Lorem ipsum dolor sit amet, consectetur adipiscing.
+                                            </div>
+                                            <div class="alert alert-danger">
+                                                Lorem ipsum dolor sit amet, consectetur adipiscing.
+                                            </div>
+                                            <div class="alert alert-success">
+                                                Lorem ipsum dolor sit amet, consectetur adipiscing.
+                                            </div>
+                                            <div class="alert">
+                                                Lorem ipsum dolor sit amet, consectetur adipiscing.
+                                            </div>
+                                            <div class="alert alert-info">
+                                                Lorem ipsum dolor sit amet, consectetur adipiscing.
+                                            </div>
+                                            <div class="alert alert-danger">
+                                                Lorem ipsum dolor sit amet, consectetur adipiscing.
+                                            </div>
+                                            <div class="alert alert-success">
+                                                Lorem ipsum dolor sit amet, consectetur adipiscing.
+                                            </div>
+                                            <div class="alert">
+                                                Lorem ipsum dolor sit amet, consectetur adipiscing.
+                                            </div>
+                                            <div class="alert alert-info">
+                                                Lorem ipsum dolor sit amet, consectetur adipiscing.
+                                            </div>
+                                            <div class="alert alert-danger">
+                                                Lorem ipsum dolor sit amet, consectetur adipiscing.
+                                            </div>
+                                            <div class="alert alert-success">
+                                                Lorem ipsum dolor sit amet, consectetur adipiscing.
+                                            </div>
+                                            <div class="alert">
+                                                Lorem ipsum dolor sit amet, consectetur adipiscing.
+                                            </div>
+                                            <div class="alert alert-info">
+                                                Lorem ipsum dolor sit amet, consectetur adipiscing.
+                                            </div>
+                                            <div class="alert alert-danger">
+                                                Lorem ipsum dolor sit amet, consectetur adipiscing.
+                                            </div>
+                                            <div class="alert alert-success">
+                                                Lorem ipsum dolor sit amet, consectetur adipiscing.
+                                            </div>
+                                            <div class="alert">
+                                                Lorem ipsum dolor sit amet, consectetur adipiscing.
+                                            </div>
+                                            <div class="alert alert-info">
+                                                Lorem ipsum dolor sit amet, consectetur adipiscing.
+                                            </div>
+                                            <div class="alert alert-danger">
+                                                Lorem ipsum dolor sit amet, consectetur adipiscing.
+                                            </div>
+                                            <div class="alert alert-success">
+                                                Lorem ipsum dolor sit amet, consectetur adipiscing.
+                                            </div>
+                                            <div class="alert">
+                                                Lorem ipsum dolor sit amet, consectetur adipiscing.
+                                            </div>
+                                            <div class="alert alert-info">
+                                                Lorem ipsum dolor sit amet, consectetur adipiscing.
+                                            </div>
+                                            <div class="alert alert-danger">
+                                                Lorem ipsum dolor sit amet, consectetur adipiscing.
+                                            </div>
+                                            <div class="alert alert-success">
+                                                Lorem ipsum dolor sit amet, consectetur adipiscing.
+                                            </div>
+                                            <div class="alert">
+                                                Lorem ipsum dolor sit amet, consectetur adipiscing.
+                                            </div>
+                                            <div class="alert alert-info">
+                                                Lorem ipsum dolor sit amet, consectetur adipiscing.
+                                            </div>
+                                            <div class="alert alert-success">
+                                                Lorem ipsum dolor sit amet, consectetur adipiscing.
+                                            </div>
+                                            <div class="alert">
+                                                Lorem ipsum dolor sit amet, consectetur adipiscing.
+                                            </div>
+                                            <div class="alert alert-info">
+                                                Lorem ipsum dolor sit amet, consectetur adipiscing.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     </div>
                 </div>
                 <!-- footer zone -->
@@ -361,6 +502,32 @@
             <script type="text/javascript">
                                 if ('ontouchstart' in document.documentElement)
                                     document.write("<script src='assets/js/jquery.mobile.custom.min.js'>" + "<" + "/script>");
+
+            jQuery(function($) {
+                                            // scrollables
+				$('.scrollable').each(function () {
+					var $this = $(this);
+					$(this).ace_scroll({
+						size: $this.attr('data-size') || 100,
+						//styleClass: 'scroll-left scroll-margin scroll-thin scroll-dark scroll-light no-track scroll-visible'
+					});
+				});
+				$('.scrollable-horizontal').each(function () {
+					var $this = $(this);
+					$(this).ace_scroll(
+					  {
+						horizontal: true,
+						styleClass: 'scroll-top',//show the scrollbars on top(default is bottom)
+						size: $this.attr('data-size') || 500,
+						mouseWheelLock: true
+					  }
+					).css({'padding-top': 12});
+				});
+				
+				$(window).on('resize.scroll_reset', function() {
+					$('.scrollable-horizontal').ace_scroll('reset');
+				});
+            });
             </script>
             <script src="assets/js/bootstrap.min.js"></script>
 
