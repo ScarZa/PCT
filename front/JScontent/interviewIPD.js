@@ -280,8 +280,8 @@ function InterviewIPD(content, id = null) {
     selectMash("#admittype", "admittype_Data.php", " เลือกชนิดการ admit ");
     selectMash("#shape", "shape_Data.php", " เลือกรูปร่าง ");
     selectMash("#skin_color", "skin_Data.php", " เลือกสีผิว ");
-
-    $.getJSON('../back/API/patient_detail.php', { data: idvn.data }, function (data) {
+    console.log(idvn)
+    $.getJSON('../back/API/patient_detail.php', { data: idvn.data }, function (data) { console.log(data)
         $("b#patient_name").append(data[0].fullname);
         $("b#age").append(data[0].age);
         $("#hn").append(data[0].hn);
