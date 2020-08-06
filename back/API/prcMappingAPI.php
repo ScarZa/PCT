@@ -26,7 +26,7 @@ function insert_date($take_date_conv) {
 }
 $conv=new convers_encode();
 $method = isset($_POST['method']) ? $_POST['method'] : $_GET['method'];
-if ($method == 'add_CC') {
+if ($method == 'add_user') {
         $doctor = $_POST['doctor'];
         $depcode = $_POST['depcode'];
   $data = array($doctor,$depcode);
