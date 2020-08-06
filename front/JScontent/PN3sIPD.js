@@ -18,13 +18,10 @@ function PN3SIPD(content, id = null) {
     $("#Budget").append($("<p><div class=''><div class='col-lg-2 offset-lg-2'><select class='form-control' id='sel-ward'></select></div>"
                         +"<div class='col-md-10 offset-md-3' style='text-align: right;'><input type='text' id='search-patient' placeholder='ค้นหา ชื่อ/สกุล/HN/AN'></div></div></p > <br><br>"));
     selectMash("#sel-ward","ward_data.php","เลือก ward");
-    // var column1 = ["ลำดับ","AN","HN","วันที่ admit","ชื่อ - นามสกุล","ward","สภาพจิตใจ","ข้อมูลแรกรับ","ประเมินสภาพจิต"];
-    // var CTb = new createTableAjax();
-    // CTb.GetNewTableAjax('contentTB','../back/API/DT_ANregis.php?','../back/API/tempSendDataAPI.php',column1
-    //     , null, null, null, null, false, false, null, true, 'GaugleModal', true, 'content/FR_detial.html', null, null, null, null, 'dynamic-table');
     
     AddPanel("DT_3S_search.php");
     $("select#sel-ward").change(function () {
+        HAlert("#alert-add",$("#sel-ward").val());
         AddPanel("DT_3S.php",$("#sel-ward").val());
     });
     $("input#search-patient").keyup(function () {

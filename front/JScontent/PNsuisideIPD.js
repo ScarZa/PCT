@@ -25,6 +25,7 @@ function PNSuisideIPD(content, id = null) {
     
     AddPanel("DT_Suiside_search.php");
     $("select#sel-ward").change(function () {
+        HAlert("#alert-add",$("#sel-ward").val());
         AddPanel("DT_Suiside.php",$("#sel-ward").val());
     });
     $("input#search-patient").keyup(function () {

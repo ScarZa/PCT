@@ -25,42 +25,42 @@ FROM an_stat a
 inner join patient p on p.hn=a.hn
 inner join jvlsmiv_regis smi on smi.hn=p.hn
 inner join jvl_smiv smiv on smiv.hn = smi.hn
-where ISNULL(a.dchdate)"; 
+where ISNULL(a.dchdate) $code"; 
 $conn_DB->imp_sql($sql);
 $num_smiv = $conn_DB->select_a();
 
     $sql2="SELECT count(DISTINCT fr.ipd_fr_id) s3
     FROM jvl_ipd_first_rec fr 
     inner join an_stat a on fr.an = a.an
-    where ISNULL(a.dchdate) and fr.typep_1 !=0"; 
+    where ISNULL(a.dchdate) and fr.typep_1 !=0 $code"; 
     $conn_DB->imp_sql($sql2);
     $num_3s = $conn_DB->select_a();
         
         $sql2="SELECT count(DISTINCT fr.ipd_fr_id) escab
         FROM jvl_ipd_first_rec fr 
         inner join an_stat a on fr.an = a.an
-        where ISNULL(a.dchdate) and fr.typep_2 !=0"; 
+        where ISNULL(a.dchdate) and fr.typep_2 !=0 $code"; 
 $conn_DB->imp_sql($sql2);
     $num_escab = $conn_DB->select_a();
 
     $sql="SELECT count(DISTINCT fr.ipd_fr_id) suiside
     FROM jvl_ipd_first_rec fr 
     inner join an_stat a on fr.an = a.an
-    where ISNULL(a.dchdate) and fr.typep_3 !=0"; 
+    where ISNULL(a.dchdate) and fr.typep_3 !=0 $code"; 
 $conn_DB->imp_sql($sql);
     $num_suiside = $conn_DB->select_a();
 
     $sql="SELECT count(DISTINCT fr.ipd_fr_id) accident
     FROM jvl_ipd_first_rec fr 
     inner join an_stat a on fr.an = a.an
-    where ISNULL(a.dchdate) and fr.typep_4 !=0"; 
+    where ISNULL(a.dchdate) and fr.typep_4 !=0 $code"; 
 $conn_DB->imp_sql($sql);
     $num_accident = $conn_DB->select_a();
 
     $sql="SELECT count(DISTINCT fr.ipd_fr_id) assail
     FROM jvl_ipd_first_rec fr 
     inner join an_stat a on fr.an = a.an
-    where ISNULL(a.dchdate) and fr.typep_5 !=0"; 
+    where ISNULL(a.dchdate) and fr.typep_5 !=0 $code"; 
 $conn_DB->imp_sql($sql);
     $num_assail = $conn_DB->select_a();
  

@@ -25,6 +25,7 @@ function PNAssailIPD(content, id = null) {
     
     AddPanel("DT_Assail_search.php");
     $("select#sel-ward").change(function () {
+        HAlert("#alert-add",$("#sel-ward").val());
         AddPanel("DT_Assail.php",$("#sel-ward").val());
     });
     $("input#search-patient").keyup(function () {
