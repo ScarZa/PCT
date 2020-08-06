@@ -303,7 +303,15 @@ function InterviewIPD(content, id = null) {
         $("#occ").append(data[0].occ_name);
         $("#cid").append(data[0].cid);
         $("#ptname").append(data[0].ptname);
-        $("#pics").append("<img src='../back/API/show_image.php?hn=" + data[0].hn + "' width='125' />");
+        var img = data[0].hn;
+        $.getJSON('../back/API/check_image.php', { data1: img }, function (data) {
+            if (data.cc) { 
+                $("#pics").append("<img src='../back/API/show_image.php?hn=" + img+ "' width='125' />");
+            } else { 
+                $("#pics").append("<img src='images/person.png' width='125' />");
+            }
+        });
+        
         $("#biographer").val(data[0].relative);
         $("#patient_add").val(data[0].fulladdressname);
         $("#tel0").val(data[0].hometel);

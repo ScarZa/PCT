@@ -29,13 +29,13 @@ FLOOR(TIMESTAMPDIFF(DAY,a.regdate,NOW())%30.4375),' วัน')AS admit_day
 ,fr.smi4_chk,fr.smi4_1,fr.smi4_2,fr.smi4_3,fr.smi4_4,fr.typep_1,fr.typep_2,fr.typep_3,fr.typep_4,fr.typep_5
 ,fr.cc,fr.hpi,fr.complicate_chk,fr.complicate
 ,a.pdx,a.dx0,a.dx1,a.dx2,a.dx3,a.dx4,a.dx5,smivr.smi4_id
-from an_stat a 
+from an_stat a
+inner join jvlsmiv_regis smivr on smivr.hn = a.hn 
 inner join patient p on a.hn=p.hn and ISNULL(a.dchdate)
 inner join ward w on w.ward = a.ward
 left outer join jvl_ipd_first_rec fr on fr.an = a.an
 left outer join jvl_mental_state ms on ms.ipd_fr_id = fr.ipd_fr_id
-left outer join jvlsmiv_regis smivr on smivr.hn = fr.hn
-".$code."
+".$code." GROUP BY a.an
 order by fr.ipd_fr_id desc"; 
 $conn_DB->imp_sql($sql);
     $num_risk = $conn_DB->select();

@@ -11,6 +11,7 @@ function FRDetial(content, id = null) {
                                                     , $("<div class='col-sm-12 alert alert-info'><div class='' id='ipd-ass'></div></div><br>")
                                                     , $("<div class='col-sm-12 alert alert-info'><u>การประเมินสภาพร่างกายเบื้องต้น</u><div class='' id='condition'></div></div><br>")
                                                     , $("<div class='col-sm-12 alert alert-success' id='mental-panel'><u>การประเมินสภาพจิตใจ</u><div class='' id='mental'></div><br></div>")
+                                                    , $("<div class='col-sm-12 alert alert-info' id='conclude-nurse'><u>สรุปข้อวินิจฉัยทางการพยาบาล</u><div class='' id='CCnurse'></div><br></div>")
                                                     , $("<div class='col-sm-12 alert alert-warning'><div class='' id='conclude'></div></div><br>")
                                                     , $("<div class='col-sm-12'><center><span id='recorder'></span></center></div>")
                                                     )
@@ -22,7 +23,7 @@ function FRDetial(content, id = null) {
                 + "</label></span></div> "
                 + "<div class='col-sm-4 block'> <img src='../../back/API/show_image.php?hn=" + data[0].hn + "' width='100' /></div>"));
         });
-        console.log(data.an)
+        
             $("#medical-detial1").prepend($("<div class='col-sm-8'>AN : <b>" + data.an + "</b> HN : <b>" + data.hn + "</b></div>"))
             $("#medical-detial2").append($("<div class='col-sm-12'>ชื่อผู้ให้ประวัติ : <b id='biographer'></b>&nbsp;&nbsp; เกี่ยวข้องเป็น : <b id='relative'></b>&nbsp;&nbsp; โทรศัพท์ : <b id='tel0'></b></div>")
                 , $("<div class='col-sm-12' id='tel-rel'>" + data.relative1 + " : <b>" + data.tel1 + "</b>&nbsp;&nbsp; " + data.relative2 + " : <b>" + data.tel2 + "</b> </div>")
@@ -39,7 +40,7 @@ function FRDetial(content, id = null) {
                             , $("<div class='col-sm-12' id='weapon'>ประวัติพกพาอาวุธ : <b>" + data.weapon + "</b></div>")
                             , $("<div class='col-sm-12' id='weaponer'>พกพาอาวุธ(พบในรพจ.) : <b>" + data.weaponer + "</b></div>")
                             , $("<div class='col-sm-12' id='detain'>การจำกัดพฤติกรรม : <b>" + data.detain + "</b></div>")
-                            , $("<div class='col-sm-12' id='smiv'>SMI-V : <b id='smiv-detial'></b></div>")
+                            , $("<div class='col-sm-12 row' id='smiv'><div class='col-sm-1'>SMI-V</div><b class='col-sm-11' id='smiv-detial'></b></div>")
                             , $("<div class='col-sm-12' id='lawpsych'>นิติจิตเวช : <b>" + data.lawpsych + "</b></div>")
                             , $("<div class='col-sm-12' id='sleep'>การนอนหลับ : <b>" + data.sleep + "</b></div>")
                             , $("<div class='col-sm-12' id='IC'>IC : <b>" + data.IC + "</b></div>")
@@ -100,14 +101,48 @@ function FRDetial(content, id = null) {
             if (data.weapon == '') { $("#weapon").hide(); } else { $("#weapon").show(); }
             if (data.weaponer == '') { $("#weaponer").hide(); } else { $("#weaponer").show(); }
             if (data.detain == '') { $("#detain").hide(); } else { $("#detain").show(); }
-            if (data.smi4_1 != '' || data.smi4_2 != '' || data.smi4_3 != '' || data.smi4_4 != '') {
-                $("#smiv").show();
-                if (data.smi4_1 != '') { $("#smiv-detial").append("<b>" + data.smi4_1 + "</b>") }
-                if (data.smi4_2 != '') { $("#smiv-detial").append("<b>" + data.smi4_2 + "</b>") }
-                if (data.smi4_3 != '') { $("#smiv-detial").append("<b>" + data.smi4_3 + "</b>") }
-                if (data.smi4_4 != '') { $("#smiv-detial").append("<b>" + data.smi4_4 + "</b>") }
+            $("#smiv").hide(); 
+            $.getJSON('../../back/API/detail_SMIVAPI.php', { data: data.hn }, function (data) {
+                if (data[0].chk_1 +data[0].chk_2 +data[0].chk_3 +data[0].chk_4>0) {
+                    $("#smiv").show();
+                    
+        if (data[0].smi1_2 != '') { $("#smiv-detial").append("1.2 "+data[0].smi1_2 + "<br>") }
+        if (data[0].smi1_3 != '') { $("#smiv-detial").append("1.3 "+data[0].smi1_3 + "<br>") }
+        if (data[0].smi1_4 != '') { $("#smiv-detial").append("1.4 "+data[0].smi1_4 + "<br>") }
+        if (data[0].smi1_5 != '') { $("#smiv-detial").append("1.5 "+data[0].smi1_5 + "<br>") }
+        if (data[0].smi1_6 != '') { $("#smiv-detial").append("1.6 "+data[0].smi1_6 + "<br>") }
+        if (data[0].smi1_7 != '') { $("#smiv-detial").append("1.7 "+data[0].smi1_7 + "<br>") }
+        if (data[0].smi1_8 != '') { $("#smiv-detial").append("1.8 "+data[0].smi1_8 + "<br>") }
+        if (data[0].smi1_9 != '') { $("#smiv-detial").append("1.9 "+data[0].smi1_9 + "<br>") }
+        if (data[0].smi1_10 != '') { $("#smiv-detial").append("1.10 "+data[0].smi1_10 + "<br>") }
+        if (data[0].smi1_11 != '') { $("#smiv-detial").append("1.11 "+data[0].smi1_11 + "<br>") }
+        if (data[0].t1_12 != '') { $("#smiv-detial").append("1.12 "+data[0].t1_12 + "<br>") }
+        if (data[0].smi2_1 != '') { $("#smiv-detial").append("2.1 "+data[0].smi2_1 + "<br>") }
+        if (data[0].smi2_2 != '') { $("#smiv-detial").append("2.2 "+data[0].smi2_2 + "<br>") }
+        if (data[0].smi2_3 != '') { $("#smiv-detial").append("2.3 "+data[0].smi2_3 + "<br>") }
+        if (data[0].smi2_4 != '') { $("#smiv-detial").append("2.4 "+data[0].smi2_4 + "<br>") }
+        if (data[0].smi2_5 != '') { $("#smiv-detial").append("2.5 "+data[0].smi2_5 + "<br>") }
+        if (data[0].smi2_6 != '') { $("#smiv-detial").append("2.6 "+data[0].smi2_6 + "<br>") }
+        if (data[0].smi2_7 != '') { $("#smiv-detial").append("2.7 "+data[0].smi2_7 + "<br>") }
+        if (data[0].smi2_8 != '') { $("#smiv-detial").append("2.8 "+data[0].smi2_8 + "<br>") }
+        if (data[0].smi2_9 != '') { $("#smiv-detial").append("2.9 "+data[0].smi2_9 + "<br>") }
+        if (data[0].smi2_10 != '') { $("#smiv-detial").append("2.10 "+data[0].smi2_10 + "<br>") }
+        if (data[0].smi2_11 != '') { $("#smiv-detial").append("2.11 "+data[0].smi2_11 + "<br>") }
+        if (data[0].t2_12 != '') { $("#smiv-detial").append("2.12 "+data[0].t2_12 + "<br>") }
+        if (data[0].smi3_1 != '') { $("#smiv-detial").append("3.1 "+data[0].smi3_1 + "<br>") }
+        if (data[0].smi3_2 != '') { $("#smiv-detial").append("3.2 "+data[0].smi3_2 + "<br>") }
+        if (data[0].t3_3 != '') { $("#smiv-detial").append("3.3 "+data[0].t3_3 + "<br>") }
+        if (data[0].smi4_1 != '') { $("#smiv-detial").append("4.1 "+data[0].smi4_1 + "<br>") }
+        if (data[0].smi4_2 != '') { $("#smiv-detial").append("4.2 "+data[0].smi4_2 + "<br>") }
+        if (data[0].smi4_3 != '') { $("#smiv-detial").append("4.3 "+data[0].smi4_3 + "<br>") }
+        if (data[0].smi4_4 != '') { $("#smiv-detial").append("4.4 "+data[0].smi4_4 + "<br>") }
+        if (data[0].smi5_1 != '') { $("#smiv-detial").append("5.1 "+data[0].smi5_1 + "<br>") }
+        if (data[0].smi5_2 != '') { $("#smiv-detial").append("5.2 "+data[0].smi5_2 + "<br>") }
+        if (data[0].smi5_3 != '') { $("#smiv-detial").append("5.3 "+data[0].smi5_3 + "<br>") }
+        if (data[0].smi5_4 != '') { $("#smiv-detial").append("5.4 "+data[0].smi5_4 + "<br>") }
                 
-            } else { $("#smiv").hide(); }
+                } else { $("#smiv").hide(); }
+            })
             if (data.lawpsych == '') { $("#lawpsych").hide(); } else { $("#lawpsych").show(); }
             if (data.sleep == '') { $("#sleep").hide(); } else { $("#sleep").show(); }
             if (data.IC == '') { $("#IC").hide(); } else { $("#IC").show(); }
@@ -210,55 +245,65 @@ function FRDetial(content, id = null) {
                 if (data.memo_short == 'ไม่ปกติ') { $("#memos-detial").append("รายละเอียด : <b>" + data.memos + "</b>") }
                 if (data.memo_long == 'ไม่ปกติ') { $("#memol-detial").append("รายละเอียด : <b>"+data.memol+"</b>")}
             }
-          // create table
-            var $table = $('<table>');
-            $table.attr("width", "100%");
-            $table.attr("border", "0");
-            $table.attr("cellspacing", "");
-            $table.attr("cellpadding", "");
-            $table.attr("frame", "below");
-            $table.attr("class", "divider");
-            //$table.addclass("divider");
-            var tr = $('<tr></tr>') //creates row
-            var th = $('<th></th>') //creates table header cells
-            var td = $('<td></td>') //creates table cells
-// caption
-$table.append('<caption> บันทึกแรกรับ</caption>')
-// thead
-.append('<thead>').children('thead')
-//.append('<tr />').children('tr').append('<th>A</th><th>B</th><th>C</th><th>D</th>');
+            // $.getJSON('../../back/API/detail_concludeAPI.php', { data: data.ipd_fr_id }, function (data) {
+            //     $.each(data,function(d,k) { console.log(k)
+            //         $("#CCnurse").append($("<div></div>"))
+            //     })
+            // })
+            $.getJSON('../../back/API/detail_concludeAPI.php', { data: data.ipd_fr_id }, function (data) { console.log(data)
+            if (data == '') { $("#conclude-nurse").hide() } else {
+                // create table
+                var $table = $('<table>');
+                $table.attr("width", "100%");
+                $table.attr("border", "1");
+                $table.attr("cellspacing", "");
+                $table.attr("cellpadding", "");
+                //$table.attr("frame", "below");
+                $table.attr("class", "divider");
+                //$table.addclass("divider");
+                var tr = $('<tr></tr>') //creates row
+                var th = $('<th></th>') //creates table header cells
+                var td = $('<td></td>') //creates table cells
+                // caption
+                $table.append('<caption> บันทึกสรุป</caption>')
+                    // thead
+                    .append('<thead>').children('thead')
+                    .append('<tr />').children('tr').append('<th> สรุปข้อวินิจฉัยทางการพยาบาล</th><th> วันที่เริ่มต้น</th><th> วันที่สิ้นสุดปัญหา</th><th> ผู้บันทึก</th><th> วันที่บันทึก</th>');
 
-//tbody
-            //////////// Loop tbody part ///////////////////
-            var $tbody = $table.append('<tbody />').children('tbody');
-            $.each(data,function(d,k) { //console.log(k)
-                var row = tr.clone() //creates a row
-                // $.each(d,function(e,j) {
-                if (k=='') {
-                    row.append(td.clone().append(d)).append(td.clone().append(" : -")) //fills in the row
-                } else {
-                    row.append(td.clone().append(d)).append(td.clone().append(" : "+k)) //fills in the row
-                }
+                //tbody
+                //////////// Loop tbody part ///////////////////
+                var $tbody = $table.append('<tbody />').children('tbody');
+                
+                    $.each(data, function (d, k) {
+                        console.log(k)
+                        var row = tr.clone() //creates a row
+                        // $.each(d,function(e,j) {
+                
+                        row.append(td.clone().append(k.topic)).append(td.clone().append(k.begin_date)).append(td.clone().append(k.end_date)).append(td.clone().append(k.name)).append(td.clone().append(k.recdate)) //fills in the row
+                
                     
-                // })
-                $tbody.append(row) //puts row on the tbody
+                        // })
+                        $tbody.append(row) //puts row on the tbody
+                    })
+                
+                //////////// End Loop tbody part ///////////////////
+                // // add row
+                // $tbody.append('<tr />').children('tr:last')
+                // .append("<td>val</td>")
+                // .append("<td>val</td>")
+                // .append("<td>val</td>")
+                // .append("<td>val</td>");
+
+                // // add another row
+                // $tbody.append('<tr />').children('tr:last')
+                // .append("<td>val</td>")
+                // .append("<td>val</td>")
+                // .append("<td>val</td>")
+                // .append("<td>val</td>");
+
+                // add table to dom
+                $table.appendTo('#CCnurse');
+                }
             })
-            //////////// End Loop tbody part ///////////////////
-// // add row
-// $tbody.append('<tr />').children('tr:last')
-// .append("<td>val</td>")
-// .append("<td>val</td>")
-// .append("<td>val</td>")
-// .append("<td>val</td>");
-
-// // add another row
-// $tbody.append('<tr />').children('tr:last')
-// .append("<td>val</td>")
-// .append("<td>val</td>")
-// .append("<td>val</td>")
-// .append("<td>val</td>");
-
-// add table to dom
-// **$table.appendTo('#FRD'); **//
       });
 }

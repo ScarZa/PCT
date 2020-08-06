@@ -11,12 +11,14 @@ $read = "../connection/conn_DB.txt";
 $conn_DB->para_read($read);
 $conn_db = $conn_DB->Read_Text();
 $conn_DB->conn_PDO();
+$conv=new convers_encode();
 set_time_limit(0);
 $rslt = array();
 $series = array();
 $data = isset($_POST['data1'])?$_POST['data1']:(isset($_GET['data1'])?$_GET['data1']:'');
 if(!empty($data)){
-    $code = "WHERE a.ward ='".$data."'";
+  $data =$conv->utf8_to_tis620($data);
+    $code = "and (a.an like '%".$data."%' or p.fname like '%".$data."%' or p.lname like '%".$data."%' or a.hn like '%".$data."%')";
 }else{
     $code ='';
 }
@@ -30,16 +32,16 @@ FLOOR(TIMESTAMPDIFF(DAY,a.regdate,NOW())%30.4375),' วัน')AS admit_day
 ,fr.cc,fr.hpi,fr.complicate_chk,fr.complicate
 ,a.pdx,a.dx0,a.dx1,a.dx2,a.dx3,a.dx4,a.dx5,smivr.smi4_id
 from an_stat a 
+left outer join jvlsmiv_regis smivr on smivr.hn = a.hn
 inner join patient p on a.hn=p.hn and ISNULL(a.dchdate)
 inner join ward w on w.ward = a.ward
 left outer join jvl_ipd_first_rec fr on fr.an = a.an
 left outer join jvl_mental_state ms on ms.ipd_fr_id = fr.ipd_fr_id
-left outer join jvlsmiv_regis smivr on smivr.hn = fr.hn
-".$code."
+where fr.typep_2 !=0 $code GROUP BY a.an
 order by fr.ipd_fr_id desc"; 
 $conn_DB->imp_sql($sql);
     $num_risk = $conn_DB->select();
-    $conv=new convers_encode();
+    
     for($i=0;$i<count($num_risk);$i++){
       $series['ipd_fr_id'] = $num_risk[$i]['ipd_fr_id'];
     $series['an'] = $num_risk[$i]['an'];
@@ -66,7 +68,7 @@ $conn_DB->imp_sql($sql);
     $series['typeP_2R'] = $num_risk[$i]['typep_2']!=0?'เฝ้าระวังหลบหนี &nbsp;&nbsp;':'';
     $series['typeP_3R'] = $num_risk[$i]['typep_3']!=0?'เฝ้าระวังฆ่าตัวตาย &nbsp;&nbsp;':'';
     $series['typeP_4R'] = $num_risk[$i]['typep_4']!=0?'เฝ้าระวังอุบัติเหตุ &nbsp;&nbsp;':'';
-    $series['typeP_5R'] = $num_risk[$i]['typep_5']!=0?'เฝ้าระวังพฤติกรรมรุนแรง &nbsp;&nbsp;':'';
+    $series['typeP_5R'] = $num_risk[$i]['typep_5']!=0?'เฝ้าระวังพฤติกรรมรุนแรง':'';
     $series['cc'] = isset($num_risk[$i]['cc'])?$conv->tis620_to_utf8($num_risk[$i]['cc']):'';
     $series['hpi'] = isset($num_risk[$i]['hpi'])?$conv->tis620_to_utf8($num_risk[$i]['hpi']):'';
     array_push($rslt, $series);    

@@ -140,6 +140,7 @@ if(!empty($data2)){
 //print_r($rslt);
 $conv=new convers_encode();
 //for($i=0;$i<count($rslt);$i++){
+  $series['ipd_fr_id'] = $data;
   $series['hn'] = $rslt['hn'];
   $series['an'] = $rslt['an'];
   $series['biographer'] = isset($rslt['biographer'])?$conv->tis620_to_utf8($rslt['biographer']):'';

@@ -1,7 +1,7 @@
-function TBRegisIPD(content, id = null) {
+function PN3SIPD(content, id = null) {
 
     var title = " งานผู้ป่วยใน (IPD)";
-    var subtitle = "ตารางผู้ป่วยในแรกรับ (IPD) ";
+    var subtitle = "ตารางผู้ป่วยใน เฝ้าระวัง 3S (IPD) ";
     //$("li#page").empty().text(title)
     $("b#head-title").empty().prepend("<img src='images/icon_set2/compose.ico' width='40'> ").append(title);
     $("span#head-subtitle").empty().append(subtitle);
@@ -23,13 +23,13 @@ function TBRegisIPD(content, id = null) {
     // CTb.GetNewTableAjax('contentTB','../back/API/DT_ANregis.php?','../back/API/tempSendDataAPI.php',column1
     //     , null, null, null, null, false, false, null, true, 'GaugleModal', true, 'content/FR_detial.html', null, null, null, null, 'dynamic-table');
     
-    AddPanel("DT_ANregis_search.php");
+    AddPanel("DT_3S_search.php");
     $("select#sel-ward").change(function () {
-        AddPanel("DT_ANregis.php",$("#sel-ward").val());
+        AddPanel("DT_3S.php",$("#sel-ward").val());
     });
     $("input#search-patient").keyup(function () {
         //if ($("#search-patient").val() != '') {
-            AddPanel("DT_ANregis_search.php",$("#search-patient").val());
+            AddPanel("DT_3S_search.php",$("#search-patient").val());
         //}
     });
     

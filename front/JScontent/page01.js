@@ -10,5 +10,13 @@ function Page01(content, id = null) {
     $("#prev").hide();
     $("#this-page").text(title);
 
-    $(content).empty().append("Hello world!!!!");
+    if ($.cookie("username")) {
+        var PL = new PageLayout(content);
+        PL.GetPL();
+        $("#head-table").empty().append("<i class='ace-icon fa fa-table'></i> Dashboard")
+        HAlert("#contentGr");
+    } else {
+        $(content).empty().append("Hello world!!!!");
+    }
+    
 }

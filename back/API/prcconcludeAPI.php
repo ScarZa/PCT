@@ -27,16 +27,23 @@ function insert_date($take_date_conv) {
 $conv=new convers_encode();
 $method = isset($_POST['method']) ? $_POST['method'] : $_GET['method'];
 if ($method == 'add_CC') {
-        $doctor = $_POST['doctor'];
-        $depcode = $_POST['depcode'];
-  $data = array($doctor,$depcode);
+        $begin_date = insert_date($_POST['begin_date']);
+        $end_date = insert_date($_POST['end_date']);
+        $topic = $conv->utf8_to_tis620($_POST['topic']);
+        $hn = $conv->utf8_to_tis620($_POST['hn']);
+        $vn = $conv->utf8_to_tis620($_POST['vn']);
+        $an = $conv->utf8_to_tis620($_POST['an']);
+        $ipd_fr_id = $conv->utf8_to_tis620($_POST['ipd_fr_id']);
+        $user = $conv->utf8_to_tis620($_POST['user']);
+        $redate = date('Y-m-d H:i:s');
+  $data = array($ipd_fr_id,$hn,$an,$topic,$begin_date,$end_date,$redate,$user);
   //$field = array("doctor","hn","comm_type","regdate","comm_status");
-  $table = "jvl_mappingDU";
-  $AddUser = $connDB->insert($table, $data);
-if($AddUser){
-          $res = array("messege"=>'บันทึกผู้ใช้งานเรียบร้อยจ้า!!!!',"check"=>'Y');
+  $table = "jvl_conclude_nurse";
+  $conclude = $connDB->insert($table, $data);
+if($conclude){
+          $res = array("messege"=>'บันทึกสรุปข้อวินิจฉัยทางการพยาบาลเรียบร้อยจ้า!!!!',"check"=>'Y');
       }else{
-          $res = array("messege"=>'บันทึกผู้ใช้งานไม่สำเร็จครับ!!!!',"check"=>'N');
+          $res = array("messege"=>'บันทึกสรุปข้อวินิจฉัยทางการพยาบาลไม่สำเร็จครับ!!!!',"check"=>'N');
       }
         print json_encode($res);
         $connDB->close_PDO();

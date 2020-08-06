@@ -14,8 +14,10 @@
         <link rel="stylesheet" href="assets/font-awesome/4.5.0/css/font-awesome.min.css" />
 
         <!-- page specific plugin styles -->
-        <link rel="stylesheet" href="assets/css/jquery-ui.custom.min.css" />
+        <!-- <link rel="stylesheet" href="assets/css/jquery-ui.custom.min.css" /> -->
         <link rel="stylesheet" href="assets/css/select2.min.css" />
+        <link rel="stylesheet" href="plugins/jquery-ui-1.11.4.custom/jquery-ui-1.11.4.custom.css" />
+        <!-- <link rel="stylesheet" href="plugins/jquery-ui-1.11.4.custom/SpecialDateSheet.css" /> -->
 
         <!-- text fonts -->
         <link rel="stylesheet" href="assets/css/fonts.googleapis.com.css" />
@@ -121,8 +123,8 @@
                                 AddP();
                                 AddM(result);
                             }
-                        } else if (subgetfunc[0] == 'RecRepair') {
-                            RecRepair(content, result);
+                        } else if (subgetfunc[0] == 'IPDSmiV') {
+                            IPDSmiV(content, result);
                         } else if (subgetfunc[0] == 'HisRepair') {
                             HisRepair(content, result);
                         } else if (subgetfunc[0] == 'ListDev') {
@@ -405,13 +407,14 @@
              <!-- ace scripts -->
             <script src="assets/js/ace-elements.min.js"></script>
             <script src="assets/js/ace.min.js"></script>
-
+            <script src="plugins/jquery-ui-1.11.4.custom/jquery-ui-1.11.4.custom.js"></script>
             <!-- My Tools -->
             <script src="MyTools/pageLayout.js" type="text/javascript"></script>
             <script src="MyTools/tabLayout.js" type="text/javascript"></script>
             <script src="MyTools/createTableAjax.js" type="text/javascript"></script>
             <script src="MyTools/AJAXCharts.js" type="text/javascript"></script>
             <script src="MyTools/panelLayout.js" type="text/javascript"></script>
+            <script src="MyTools/DatepickerThai.js" type="text/javascript"></script>
             <!-- End My Tools -->
             <!-- JS content -->
             <script src="JScontent/navbar.js" type="text/javascript"></script>
@@ -448,6 +451,18 @@
             <script src="JScontent/Ass_FirstRecIPD.js" type="text/javascript"></script>
             <script src="JScontent/TBregisIPD.js" type="text/javascript"></script>
             <script src="JScontent/gaugleModel.js" type="text/javascript"></script>
+            <script src="JScontent/TBsmivList.js" type="text/javascript"></script>
+            <script src="JScontent/IPDSmiV.js" type="text/javascript"></script>
+            <script src="JScontent/Halert.js" type="text/javascript"></script>
+            <script src="JScontent/concludeModel.js" type="text/javascript"></script>
+            <script src="JScontent/Ass_concludeIPD.js" type="text/javascript"></script>
+            <script src="JScontent/Add_panel.js" type="text/javascript"></script>
+            <script src="JScontent/PNsmivIPD.js" type="text/javascript"></script>
+            <script src="JScontent/PNassailIPD.js" type="text/javascript"></script>
+            <script src="JScontent/PNescapIPD.js" type="text/javascript"></script>
+            <script src="JScontent/PNaccidentIPD.js" type="text/javascript"></script>
+            <script src="JScontent/PN3sIPD.js" type="text/javascript"></script>
+            <script src="JScontent/PNsuisideIPD.js" type="text/javascript"></script>
             <!-- End JS content -->
             <!-- inline scripts related to this page -->
 

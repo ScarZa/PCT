@@ -65,7 +65,7 @@ $("#navbar-container").empty().append($('<button type="button" class="navbar-tog
                                                                         ,$('<li><a href="profile.html"><i class="ace-icon fa fa-user"></i> Profile</a></li>')
                                                                         ,$('<li class="divider"></li>')
                                                                         ,$('<li><a id="logout" href="#"><i class="ace-icon fa fa-power-off"></i> Logout</a></li>'));  
-                                    $("#logout").attr("onclick","loadAjax('#index_content','../back/API/logout.php',null,'logout','html');");                                    
+                                    $("#logout").attr("onclick","loadAjax('#index_content','../back/API/logout.php',null,'logout','html');$.removeCookie('username');$.removeCookie('user');$.removeCookie('depcode');");                                    
                                     $("a#add-mapping").attr("onclick","AddMapping('#page-content')");
                                     $("a#add-user").attr("onclick","AddUser('#page-content')");
 ////////////// Left Menu
@@ -98,7 +98,8 @@ $("#navbar-container").empty().append($('<button type="button" class="navbar-tog
                                                                                                                 , $('<li class=""><a href="#" class="dropdown-toggle">'
                                                                                                                     +'<i class="menu-icon fa fa-caret-right"></i> รายการส่งเคส <b class="arrow fa fa-angle-down"></b></a>'
                                                                                                                     + '<b class="arrow"></b><ul id="Ssubmenu1" class="submenu"></ul></li>'));
-                                                                                            $("#Ssubmenu1-2").empty().append($('<li class=""><a href="#"  id="SSsubmenu1-2"><i class="menu-icon fa fa-send green"></i> ผู้ป่วยใน</a> <b class="arrow"></b></li>')
+                                                                                $("#Ssubmenu1-2").empty().append($('<li class=""><a href="#"  id="SSsubmenu1-2"><i class="menu-icon fa fa-send green"></i> ผู้ป่วยใน</a> <b class="arrow"></b></li>')
+                                                                                                                ,$('<li class=""><a href="#"  id="SSsubmenu1-3"><i class="menu-icon fa fa-send green"></i> SMI-V</a> <b class="arrow"></b></li>')
                                                                                                                     );
                                                                                             $("#Ssubmenu1").empty().append($('<li class=""><a href="#"  id="SSsubmenu1-1"><i class="menu-icon fa fa-send green"></i> เคสส่ง Consult</a> <b class="arrow"></b></li>')
                                                                                                                             ,$('<li class=""><a href="#" class="dropdown-toggle"><i class="menu-icon fa fa-pencil orange"></i> 4th level <b class="arrow fa fa-angle-down"></b></a>'
@@ -108,7 +109,8 @@ $("#navbar-container").empty().append($('<button type="button" class="navbar-tog
                                                                                                                                         
                                                                                 $("a#interview").attr("onclick", "TBInterviewIPD('#page-content')");
                                                                                 $("a#SSsubmenu1-2").attr("onclick","TBRegisIPD('#page-content')");
-                                                                                $("a#SSsubmenu1-1").attr("onclick","TBConsultIPD('#page-content')");
+                                                                                $("a#SSsubmenu1-1").attr("onclick", "TBConsultIPD('#page-content')");
+                                                                                $("a#SSsubmenu1-3").attr("onclick", "TBSmivList('#page-content')");
                                                                     $("#menu2").empty().append($('<a href="#" class="dropdown-toggle"><i class="menu-icon fa fa-beer"></i> <span class="menu-text">สุราและสารเสพติด </span> <b class="arrow fa fa-angle-down"></b></a>')
                                                                                                 ,$('<b class="arrow"></b>')
                                                                                                 ,$('<ul class="submenu" id="submenu2"></ul>'));   
@@ -302,7 +304,8 @@ $("#navbar-container").empty().append($('<button type="button" class="navbar-tog
                                                     $("#menu8").show();
                                                 }else if(data.status_user=='HOS' && data.depcode=='024'){
                                                     $("#menu9").show();
-                                                }
+                                }
+                                Page01("#page-content")
                                             }else if(data.status_user == ''){
                                                 $("#login-tab").show(); 
                                             }
