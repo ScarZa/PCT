@@ -25,6 +25,7 @@ function TBRegisIPD(content, id = null) {
     
     AddPanel("DT_ANregis_search.php");
     $("select#sel-ward").change(function () {
+        HAlert("#alert-add",$("#sel-ward").val());
         AddPanel("DT_ANregis.php",$("#sel-ward").val());
     });
     $("input#search-patient").keyup(function () {
