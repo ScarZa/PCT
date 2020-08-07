@@ -78,7 +78,7 @@ function AddPanel(content,id = null) {
         })
             if (item.mental == 'ยังไม่ประเมิน') { $("#mentel-status" + i).attr("style", "color:red;background-color:yellow") }
             if (item.ipd_fr_id){
-                if (((item.typeP_1) + (item.typeP_2) + (item.typeP_3) + (item.typeP_4) + (item.typeP_5) > 0) || item.smi4_id) { $("#widget_box_" + i).addClass("widget-color-grey") } else { $("#widget_box_" + i).addClass("widget-color-green") }
+                if (((item.typeP_1) + (item.typeP_2) + (item.typeP_3) + (item.typeP_4) + (item.typeP_5) > 0) || item.smi4_id) { $("#widget_box_" + i).addClass("widget-color-red2") } else { $("#widget_box_" + i).addClass("widget-color-green") }
             } else {
                 $("#widget-body").attr("style", "color:black;");
             }
