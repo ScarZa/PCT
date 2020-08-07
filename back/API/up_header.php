@@ -21,7 +21,7 @@ $data['username'] = $conv->tis620_to_utf8($_SESSION['username']);
 $data['user'] = $conv->tis620_to_utf8($_SESSION['user']);
 $data['name_user'] = $conv->tis620_to_utf8($_SESSION['name_user']);
 $data['depcode'] = $conv->tis620_to_utf8($_SESSION['depcode']);
-
+$data['ward'] = $conv->tis620_to_utf8($_SESSION['ward']);
 print json_encode($data);                       
 }else {
     $data['check']=  md5(trim('check'));

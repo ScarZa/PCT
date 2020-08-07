@@ -37,7 +37,9 @@ $_SESSION['status_user']='HOS';
 
 }
 if($result){
-    $sql3 ="SELECT depcode FROM jvl_mappingDU where doctorcode=:doctorcode";
+    $sql3 ="SELECT m.depcode,mdw.ward FROM jvl_mappingDU m
+    left outer join jvl_mapd_w mdw on mdw.depcode = m.depcode
+    where m.doctorcode=:doctorcode";
     $execute3=array(':doctorcode' => $result['doctorcode']);
     $dbh->imp_sql($sql3);
     $result3=$dbh->select_a($execute3); 
@@ -54,7 +56,7 @@ if($result){
     $_SESSION['user'] = $result['doctorcode'];
     $_SESSION['name_user'] = $result['name'];
     $_SESSION['depcode'] = $result3['depcode'];
-    
+    $_SESSION['ward'] = $result3['ward'];
 }else{
 	echo "ชื่อหรือรหัสผ่านผิด กรุณาตรวจสอบอีกครั้ง!";
         exit();

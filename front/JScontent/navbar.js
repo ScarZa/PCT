@@ -30,6 +30,7 @@ $("#navbar-container").empty().append($('<button type="button" class="navbar-tog
                                 $.cookie("username", data.username);
                                 $.cookie("user", data.user);
                                 $.cookie("depcode", data.depcode);
+                                $.cookie("ward", data.ward);
                             $("#login-tab").hide(); 
                             $("#Tasks").show();
                             $("#Notify").show();

@@ -13,17 +13,17 @@ function PNEscapIPD(content, id = null) {
         var PL = new PageLayout(content);
     PL.GetPL();
     $("#contentGr").append("<div class='col-lg-12' id='alert-add'></div>")
-    HAlert("#alert-add");
+    
     //$("#contentTB").empty().append("แบบสัมภาษณ์");
     $("#Budget").append($("<p><div class=''><div class='col-lg-2 offset-lg-2'><select class='form-control' id='sel-ward'></select></div>"
                         +"<div class='col-md-10 offset-md-3' style='text-align: right;'><input type='text' id='search-patient' placeholder='ค้นหา ชื่อ/สกุล/HN/AN'></div></div></p > <br><br>"));
-    selectMash("#sel-ward","ward_data.php","เลือก ward");
+    selectMash("#sel-ward","ward_data.php","เลือก ward",$.cookie("ward"));
     // var column1 = ["ลำดับ","AN","HN","วันที่ admit","ชื่อ - นามสกุล","ward","สภาพจิตใจ","ข้อมูลแรกรับ","ประเมินสภาพจิต"];
     // var CTb = new createTableAjax();
     // CTb.GetNewTableAjax('contentTB','../back/API/DT_ANregis.php?','../back/API/tempSendDataAPI.php',column1
     //     , null, null, null, null, false, false, null, true, 'GaugleModal', true, 'content/FR_detial.html', null, null, null, null, 'dynamic-table');
-    
-    AddPanel("DT_Escap_search.php");
+    HAlert("#alert-add",$.cookie("ward"));
+    AddPanel("DT_Escap.php",$.cookie("ward"));
     $("select#sel-ward").change(function () {
         HAlert("#alert-add",$("#sel-ward").val());
         AddPanel("DT_Escap.php",$("#sel-ward").val());
