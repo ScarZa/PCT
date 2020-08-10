@@ -9,7 +9,7 @@ function AddPanel(content,id = null) {
             });
             
             $("#patient-name" + i).append(" HN : " + item.hn + "<br>AN : " + item.an)
-            $("#head-panel" + i).append("<span>" + item.fullname + "</span> สภาพจิต : <span id='mentel-status" + i + "'> &nbsp;" + item.mental + "&nbsp; </span><br>วันที่ admit : " + item.regdate + " ( " + item.admit_day + " )<br>ตึก : <b>" + item.name + "</b>"
+            $("#head-panel" + i).append("<span>" + item.fullname + "</span> สภาพจิต : <span id='mentel-status" + i + "'> &nbsp;" + item.mental + "&nbsp; </span><br>วันที่ admit : " + item.regdate + " ( " + item.admit_day + " ) Admit <b>"+item.admit+"</b> ครั้ง<br>ตึก : <b>" + item.name + "</b>"
                 + "<br>Dx. : " + item.pdx + " " + item.dx0 + " " + item.dx2 + " " + item.dx3 + " " + item.dx4 + " " + item.dx5)
             if (item.ipd_fr_id) {
                 $("#menu-panel" + i).append($("<li><a data-toggle='tab' href='#' id='menu1_" + i + "'><img src='images/printer.ico' width='20'> ข้อมูลแรกรับ</a></li></ul>")

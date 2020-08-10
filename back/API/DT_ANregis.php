@@ -22,6 +22,11 @@ if(!empty($data)){
 }
 
 $sql="select fr.ipd_fr_id,a.an,a.hn,a.vn,a.regdate
+,(SELECT count(a2.hn)
+FROM an_stat a2
+left outer join patient p2 on a2.hn=p2.hn
+where a2.hn = a.hn
+GROUP BY a2.hn) admit
 ,CONCAT(timestampdiff(month,a.regdate,NOW())-(timestampdiff(year,a.regdate,NOW())*12),' เดือน ',
 FLOOR(TIMESTAMPDIFF(DAY,a.regdate,NOW())%30.4375),' วัน')AS admit_day  
 ,CONCAT(p.pname,p.fname,' ',p.lname)fullname,w.name
@@ -36,6 +41,7 @@ left outer join jvl_ipd_first_rec fr on fr.an = a.an
 left outer join jvl_mental_state ms on ms.ipd_fr_id = fr.ipd_fr_id
 left outer join jvlsmiv_regis smivr on smivr.hn = fr.hn
 ".$code."
+GROUP BY a.hn
 order by fr.ipd_fr_id desc"; 
 $conn_DB->imp_sql($sql);
     $num_risk = $conn_DB->select();
@@ -47,6 +53,7 @@ $conn_DB->imp_sql($sql);
     $series['hn'] = $num_risk[$i]['hn'];
     $series['smi4_id'] = $num_risk[$i]['smi4_id'];
     $series['regdate'] = DateThai1($num_risk[$i]['regdate']);
+    $series['admit'] = $num_risk[$i]['admit'];
     $series['admit_day'] = $num_risk[$i]['admit_day'];
     $series['fullname'] = $conv->tis620_to_utf8($num_risk[$i]['fullname']);
     $series['name']= $conv->tis620_to_utf8($num_risk[$i]['name']);
