@@ -158,10 +158,6 @@ function InterviewIPD(content, id = null) {
     $("input[type=radio][name=heredity_chk]").click(function () {
         if ($("input[type=radio][name=heredity_chk]:checked").val() == 'Y') { $("textarea#heredity").show(); } else { $("textarea#heredity").hide(); }
     });
-    $("input[type=radio][name=Hurt_yourself_chk]").click(function () {
-        if ($("input[type=radio][name=Hurt_yourself_chk]:checked").val() == 'Y') { $("div#Hurt_yourself").show() }
-        else { $("div#Hurt_yourself").hide(); }
-    });
     $("input[type=checkbox][name=plan]").click(function () {
         if ($("input[type=checkbox][name=plan]").prop("checked") == true) { $("textarea#plan_detial").show(); }
         else { $("textarea#plan_detial").hide(); }
@@ -480,6 +476,13 @@ function InterviewIPD(content, id = null) {
             } else { $("div#smi4_group").hide(); }
         });
         ///////// End ER Zone ///////////
+        $("input[type=radio][name=Hurt_yourself_chk]").click(function () {
+            if ($("input[type=radio][name=Hurt_yourself_chk]:checked").val() == 'Y') { console.log("1234")
+                popup('../../CF-Form/font/content/Ass_Depress.html?vn=' + data[0].vn + '?user=' + $.cookie("username"), popup, 1440, 900);
+                $("div#Hurt_yourself").show();
+            }
+            else { $("div#Hurt_yourself").hide(); }
+        });
     });
 
     $("#frminv").on('submit', (function (e) {

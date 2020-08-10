@@ -21,7 +21,7 @@ if(!empty($data)){
     $code ='';
 }
 
-$sql="select fr.ipd_fr_id,a.an,a.hn,a.regdate
+$sql="select fr.ipd_fr_id,a.an,a.hn,a.vn,a.regdate
 ,CONCAT(timestampdiff(month,a.regdate,NOW())-(timestampdiff(year,a.regdate,NOW())*12),' เดือน ',
 FLOOR(TIMESTAMPDIFF(DAY,a.regdate,NOW())%30.4375),' วัน')AS admit_day  
 ,CONCAT(p.pname,p.fname,' ',p.lname)fullname,w.name
@@ -43,6 +43,7 @@ $conn_DB->imp_sql($sql);
     for($i=0;$i<count($num_risk);$i++){
       $series['ipd_fr_id'] = $num_risk[$i]['ipd_fr_id'];
     $series['an'] = $num_risk[$i]['an'];
+    $series['vn'] = $num_risk[$i]['vn'];
     $series['hn'] = $num_risk[$i]['hn'];
     $series['smi4_id'] = $num_risk[$i]['smi4_id'];
     $series['regdate'] = DateThai1($num_risk[$i]['regdate']);
