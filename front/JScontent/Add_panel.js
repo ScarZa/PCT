@@ -12,9 +12,13 @@ function AddPanel(content,id = null) {
             $("#head-panel" + i).append("<span>" + item.fullname + "</span> สภาพจิต : <span id='mentel-status" + i + "'> &nbsp;" + item.mental + "&nbsp; </span><br>วันที่ admit : " + item.regdate + " ( " + item.admit_day + " ) Admit <b>"+item.admit+"</b> ครั้ง<br>ตึก : <b>" + item.name + "</b>"
                 + "<br>Dx. : " + item.pdx + " " + item.dx0 + " " + item.dx2 + " " + item.dx3 + " " + item.dx4 + " " + item.dx5)
             if (item.ipd_fr_id) {
-                $("#menu-panel" + i).append($("<li><a data-toggle='tab' href='#' id='menu1_" + i + "'><img src='images/printer.ico' width='20'> ข้อมูลแรกรับ</a></li></ul>")
-                , $("<li><a data-toggle='tab' href='#' id='menu2_" + i + "'><img src='images/icon_set1/file_edit.ico' width='18'> ประเมินสภาพจิต</a></li></ul>")
-                , $("<li><a data-toggle='tab' href='#' id='menu3_" + i + "'><img src='images/icon_set1/file_edit.ico' width='18'> สรุปข้อวินิจฉัยทางการพยาบาล</a></li></ul>")
+                $("#menu-panel" + i).append($("<ul class='dropdown-navbar'>"
+                    + "<li class= 'dropdown-header' > <i class='ace-icon fa fa-envelope-o'></i> รายการ 01</li > <li class='dropdown-content'><ul class='dropdown-menu dropdown-navbar' id='menu01-body" + i + "'></ul></li>"
+                    + "<li class= 'dropdown-header' > <i class='ace-icon fa fa-envelope-o'></i> แบบประเมิน </li > <li class='dropdown-content'><ul class='dropdown-menu dropdown-navbar' id='menu02-body" + i + "'></ul></li>"
+                                        +"</ul> "))
+                    $("#menu01-body" + i).append($("<li><a data-toggle='tab' href='#' id='menu1_" + i + "'><img src='images/printer.ico' width='20'> ข้อมูลแรกรับ</a></li></ul>")
+                                            , $("<li><a data-toggle='tab' href='#' id='menu2_" + i + "'><img src='images/icon_set1/file_edit.ico' width='18'> ประเมินสภาพจิต</a></li></ul>")
+                                            , $("<li><a data-toggle='tab' href='#' id='menu3_" + i + "'><img src='images/icon_set1/file_edit.ico' width='18'> สรุปข้อวินิจฉัยทางการพยาบาล</a></li></ul>")
                 )
                 $("a#menu1_" + i).click(function () {
                     window.open('content/FR_detial.html?id=' + item.ipd_fr_id, '', 'width=900,height=1000'); return false;
