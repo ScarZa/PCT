@@ -1,4 +1,4 @@
-function PNAssailIPD(content, id = null) {
+function PNDrugIPD(content, id = null) {
 
     var title = " งานผู้ป่วยใน (IPD)";
     var subtitle = "ตารางผู้ป่วยใน High Alert Drug (IPD) ";

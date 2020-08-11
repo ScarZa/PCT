@@ -42,7 +42,7 @@ function HAlert(content, id = null) {
             PNSmivIPD("#page-content");
         });
         $("a#drug-panel").click(function () {
-            PNAssailIPD("#page-content");
+            PNDrugIPD("#page-content");
         });
     }
 }
