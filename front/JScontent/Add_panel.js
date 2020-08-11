@@ -1,6 +1,7 @@
 function AddPanel(content,id = null) {
     $.getJSON('../back/API/'+content,{data1:id}, function (data) { 
-        var PnL = new PanelLayout("#panel-add",data.length);
+        var PnL = new PanelLayout("#panel-add", data.length);
+        $("#total-admit").empty().append("Admit : "+data.length+" ราย")
         PnL.GetPnL();
         $.each(data, function (i, item) {
             $.getJSON('../back/API/check_image.php', { data1: item.hn }, function (data) {
@@ -13,13 +14,13 @@ function AddPanel(content,id = null) {
                 + "<br>Dx. : " + item.pdx + " " + item.dx0 + " " + item.dx2 + " " + item.dx3 + " " + item.dx4 + " " + item.dx5)
             if (item.ipd_fr_id) {
                 $("#menu-panel" + i).append($("<ul class='dropdown-navbar'>"
-                    + "<li class= 'dropdown-header' > <i class='ace-icon fa fa-envelope-o'></i> รายการ 01</li > <li class='dropdown-content'><ul class='dropdown-menu dropdown-navbar' id='menu01-body" + i + "'></ul></li>"
-                    + "<li class= 'dropdown-header' > <i class='ace-icon fa fa-envelope-o'></i> แบบประเมิน </li > <li class='dropdown-content'><ul class='dropdown-menu dropdown-navbar' id='menu02-body" + i + "'></ul></li>"
+                    + "<li class= 'dropdown-header' > <img src='images/icon_set2/contacts.ico' width='30px'> กระบวนการ</li > <li class='dropdown-content'><ul class='dropdown-menu dropdown-navbar' id='menu01-body" + i + "'></ul></li>"
+                    + "<li class= 'dropdown-header' > <img src='images/icon_set2/compose.ico' width='30px'> แบบประเมิน </li > <li class='dropdown-content'><ul class='dropdown-menu dropdown-navbar' id='menu02-body" + i + "'></ul></li>"
                                         +"</ul> "))
-                    $("#menu01-body" + i).append($("<li><a data-toggle='tab' href='#' id='menu1_" + i + "'><img src='images/printer.ico' width='20'> ข้อมูลแรกรับ</a></li></ul>")
+                    $("#menu01-body" + i).append($("<li><a data-toggle='tab' href='#' id='menu1_" + i + "'><img src='images/icon_set2/browser.ico' width='20'> ข้อมูลแรกรับ</a></li></ul>")
                                             , $("<li><a data-toggle='tab' href='#' id='menu3_" + i + "'><img src='images/icon_set1/file_edit.ico' width='18'> สรุปข้อวินิจฉัยทางการพยาบาล</a></li></ul>")
                 )
-                $("#menu02-body" + i).append($("<li><a data-toggle='tab' href='#' id='menu2_" + i + "'><img src='images/icon_set1/file_edit.ico' width='18'> ประเมินสภาพจิต</a></li></ul>")
+                    $("#menu02-body" + i).append($("<li><a data-toggle='tab' href='#' id='menu2_" + i + "'><img src='images/icon_set1/file_edit.ico' width='18'> ประเมินสภาพจิต</a></li></ul>")
                                             ,$("<li><a data-toggle='tab' href='#' id='menu4_" + i + "'><img src='images/icon_set1/file_edit.ico' width='18'> ประเมิน SMI-V</a></li></ul>")
                                             ,$("<li><a data-toggle='tab' href='#' id='menu5_" + i + "'><img src='images/icon_set1/file_edit.ico' width='18'> ประเมินซึมเศร้า</a></li></ul>")
                 )
@@ -92,7 +93,7 @@ function AddPanel(content,id = null) {
             
                 } else { $("#smiv-detial").hide(); }
             });
-            $.getJSON("../back/API/DT_HAD.php", { data: item.vn}, function (data) {
+            $.getJSON("../back/API/DT_HAD.php", { data: item.vn}, function (data) { console.log(data)
                 if(data.Clozapine100 != null){
                     $("#HAD-detial"+i).append("<b style='color: red'>High Alert Drug : </b>"+data.Clozapine100+" (สั่งล่าสุด "+data.Clozapine100Date+")<br>");
                 }

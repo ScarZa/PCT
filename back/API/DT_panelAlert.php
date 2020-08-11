@@ -63,6 +63,17 @@ $conn_DB->imp_sql($sql);
     where ISNULL(a.dchdate) and fr.typep_5 !=0 $code"; 
 $conn_DB->imp_sql($sql);
     $num_assail = $conn_DB->select_a();
+
+    $sql="SELECT count(DISTINCT op.hn)drug
+    FROM opitemrece op 
+    inner join an_stat a on a.an = op.an and ISNULL(a.dchdate)
+    WHERE (op.icode = '1570044' and (op.income in(03,19))) or (op.icode = '1540021' and (op.income in(03,19))) 
+    or (op.icode = '1460332' and (op.income in(03,19))) or (op.icode = '1480107' and (op.income in(03,19))) 
+    or (op.icode = '1000059' and (op.income in(03,19))) or (op.icode = '1480069' and (op.income in(03,19))) 
+    or (op.icode = '1480070' and (op.income in(03,19))) $code
+    #GROUP BY op.an"; 
+$conn_DB->imp_sql($sql);
+    $num_drug = $conn_DB->select_a();
  
     $conv=new convers_encode();
     //for($i=0;$i<count($num_risk);$i++){
@@ -72,6 +83,7 @@ $conn_DB->imp_sql($sql);
     $series['count_suiside'] = $num_suiside['suiside'];
     $series['count_accident'] = $num_accident['accident'];
     $series['count_assail'] = $num_assail['assail'];
+    $series['count_drug'] = $num_drug['drug'];
     //array_push($rslt, $series);    
     //}
     //print_r($rslt);
