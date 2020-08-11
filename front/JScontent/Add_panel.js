@@ -17,8 +17,11 @@ function AddPanel(content,id = null) {
                     + "<li class= 'dropdown-header' > <i class='ace-icon fa fa-envelope-o'></i> แบบประเมิน </li > <li class='dropdown-content'><ul class='dropdown-menu dropdown-navbar' id='menu02-body" + i + "'></ul></li>"
                                         +"</ul> "))
                     $("#menu01-body" + i).append($("<li><a data-toggle='tab' href='#' id='menu1_" + i + "'><img src='images/printer.ico' width='20'> ข้อมูลแรกรับ</a></li></ul>")
-                                            , $("<li><a data-toggle='tab' href='#' id='menu2_" + i + "'><img src='images/icon_set1/file_edit.ico' width='18'> ประเมินสภาพจิต</a></li></ul>")
                                             , $("<li><a data-toggle='tab' href='#' id='menu3_" + i + "'><img src='images/icon_set1/file_edit.ico' width='18'> สรุปข้อวินิจฉัยทางการพยาบาล</a></li></ul>")
+                )
+                $("#menu02-body" + i).append($("<li><a data-toggle='tab' href='#' id='menu2_" + i + "'><img src='images/icon_set1/file_edit.ico' width='18'> ประเมินสภาพจิต</a></li></ul>")
+                                            ,$("<li><a data-toggle='tab' href='#' id='menu4_" + i + "'><img src='images/icon_set1/file_edit.ico' width='18'> ประเมิน SMI-V</a></li></ul>")
+                                            ,$("<li><a data-toggle='tab' href='#' id='menu5_" + i + "'><img src='images/icon_set1/file_edit.ico' width='18'> ประเมินซึมเศร้า</a></li></ul>")
                 )
                 $("a#menu1_" + i).click(function () {
                     window.open('content/FR_detial.html?id=' + item.ipd_fr_id, '', 'width=900,height=1000'); return false;
@@ -28,6 +31,14 @@ function AddPanel(content,id = null) {
                 })
                 $("a#menu3_" + i).click(function () {
                     $("a#menu3_" + i).attr("onclick", ConcludeModel()).attr("data-toggle", "modal").attr("data-target", "#ConcludeModel").attr("data-whatever", item.ipd_fr_id)
+                })
+                $("a#menu4_" + i).click(function () { 
+                    popup('../../CF-Form/font/content/Ass_SMIV.html?vn='+item.vn+'?user='+$.cookie("username"), popup, 1440, 900);
+                    //window.open('content/FR_detial.html?id=' + item.ipd_fr_id, '', 'width=900,height=1000'); return false;
+                })
+                $("a#menu5_" + i).click(function () {
+                    popup('../../CF-Form/font/content/Ass_Depress.html?vn=' + item.vn + '?user=' + $.cookie("username"), popup, 1440, 900);
+                    //window.open('content/FR_detial.html?id=' + item.ipd_fr_id, '', 'width=900,height=1000'); return false;
                 })
             } else {
                 $("#menu-panel" + i).append($("<li><a data-toggle='tab' href='#' id='menu1_" + i + "'><img src='images/icon_set1/file_edit.ico' width='18'> บันทึกแรกรับ</a></li></ul>"))
