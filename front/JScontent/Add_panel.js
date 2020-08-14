@@ -50,7 +50,7 @@ function AddPanel(content,id = null) {
             
             $("#body-panel" + i).append($("<div class='alert alert-info'><span style='color:#1c2352'>CC : " + item.cc + "<br>HPI : " + item.hpi + "</span></div>")
                 , $("<div class='alert alert-danger'>เฝ้าระวัง : <span style='background-color:yellow'>" + item.typeP_1R + " " + item.typeP_2R + " " + item.typeP_3R + " " + item.typeP_4R + " " + item.typeP_5R + "</span><br><div><div id='smiv_class" + i + "'></div><span style='background-color:yellow' id='smiv-detial" + i + "'></span></div>"
-            +"<br><div><div id='HAD"+i+"'></div><span style='background-color:yellow' id='HAD-detial"+i+"'></span></div></div> ")
+            +"<br><div><div id='HAD"+i+"'></div><span style='background-color:' id='HAD-detial"+i+"'></span></div></div> ")
         )
             $.getJSON('../back/API/detail_SMIVAPI.php', { data: item.hn }, function (data) {
                 if (data[0].chk_1 + data[0].chk_2 + data[0].chk_3 + data[0].chk_4 > 0) {
@@ -93,7 +93,7 @@ function AddPanel(content,id = null) {
             
                 } else { $("#smiv-detial").hide(); }
             });
-            $.getJSON("../back/API/DT_HAD.php", { data: item.vn}, function (data) { console.log(data)
+            $.getJSON("../back/API/DT_HAD.php", { data: item.an}, function (data) { console.log(data)
                 if(data.Clozapine100 != null){
                     $("#HAD-detial"+i).append("<b style='color: red'>High Alert Drug : </b>"+data.Clozapine100+" (สั่งล่าสุด "+data.Clozapine100Date+")<br>");
                 }

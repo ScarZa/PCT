@@ -4,7 +4,7 @@ var PanelLayout = function (content, numTab = 1) {
   this.GetPnL = function () {
     var layout = '';
     for (var i = 0; i < this.numTab; i++) {
-      layout += "<div class='col-sm-3 col-lg-3 widget-container-col' id='widget-container-col-11'>"
+      layout += "<div class='col-sm-6 col-lg-3 widget-container-col' id='widget-container-col-11'>"
         + "<div class='widget-box collapsed' id='widget_box_" + i + "'>"
         + "<div class='widget-header widget-header-small'>"
         + "<div class='row'><div class='col-sm-8'><div class=''>"

@@ -21,8 +21,13 @@ function FRDetial(content, id = null) {
                 + "<br>ที่อยู่ : " + data[0].informaddr + "<br>วันเกิด : " + data[0].birthday + " อายุ : " + data[0].age + " ปี  สถานะภาพ : " + data[0].mrname + "<br>การวินิจฉัย : " + data[0].pdx + " " + data[0].dx0
                 + " " + data[0].dx1 + " " + data[0].dx2 + " " + data[0].dx3 + " " + data[0].dx4 + " " + data[0].dx5
                 + "</label></span></div> "
-                + "<div class='col-sm-4 block'> <img src='../../back/API/show_image.php?hn=" + data[0].hn + "' width='100' /></div>"));
+                + "<div class='col-sm-4 block'> <img id='pics-panel' width='100' /></div>"));
+                $.getJSON('../../back/API/check_image.php', { data1: data[0].hn }, function (datai) { console.log(datai)
+                    if (datai.cc == '') { var img = '../images/person.png' } else { var img = '../../back/API/show_image.php?hn=' + data[0].hn }
+                    $("#pics-panel").attr("src", img)
+                });
         });
+        
         
             $("#medical-detial1").prepend($("<div class='col-sm-8'>AN : <b>" + data.an + "</b> HN : <b>" + data.hn + "</b></div>"))
             $("#medical-detial2").append($("<div class='col-sm-12'>ชื่อผู้ให้ประวัติ : <b id='biographer'></b>&nbsp;&nbsp; เกี่ยวข้องเป็น : <b id='relative'></b>&nbsp;&nbsp; โทรศัพท์ : <b id='tel0'></b></div>")

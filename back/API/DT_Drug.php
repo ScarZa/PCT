@@ -41,10 +41,10 @@ inner join patient p on a.hn=p.hn and ISNULL(a.dchdate)
 inner join ward w on w.ward = a.ward
 left outer join jvl_ipd_first_rec fr on fr.an = a.an
 left outer join jvl_mental_state ms on ms.ipd_fr_id = fr.ipd_fr_id
-where ((op.icode = '1570044' and (op.income in(03,19))) or (op.icode = '1540021' and (op.income in(03,19))) 
-or (op.icode = '1460332' and (op.income in(03,19))) or (op.icode = '1480107' and (op.income in(03,19))) 
-or (op.icode = '1000059' and (op.income in(03,19))) or (op.icode = '1480069' and (op.income in(03,19))) 
-or (op.icode = '1480070' and (op.income in(03,19)))) $code GROUP BY a.an
+where ((op.icode = '1570044' and (op.income in(03,19)) and a.an = op.an) or (op.icode = '1540027' and (op.income in(03,19)) and a.an = op.an) 
+or (op.icode = '1460332' and (op.income in(03,19)) and a.an = op.an) or (op.icode = '1480107' and (op.income in(03,19)) and a.an = op.an) 
+or (op.icode = '1000059' and (op.income in(03,19)) and a.an = op.an) or (op.icode = '1480069' and (op.income in(03,19)) and a.an = op.an) 
+or (op.icode = '1480070' and (op.income in(03,19)) and a.an = op.an)) $code GROUP BY a.an
 order by fr.ipd_fr_id desc"; 
 $conn_DB->imp_sql($sql);
     $num_risk = $conn_DB->select();

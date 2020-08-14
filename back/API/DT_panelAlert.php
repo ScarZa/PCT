@@ -67,7 +67,7 @@ $conn_DB->imp_sql($sql);
     $sql="SELECT count(DISTINCT op.hn)drug
     FROM opitemrece op 
     inner join an_stat a on a.an = op.an and ISNULL(a.dchdate)
-    WHERE ((op.icode = '1570044' and (op.income in(03,19))) or (op.icode = '1540021' and (op.income in(03,19))) 
+    WHERE ((op.icode = '1570044' and (op.income in(03,19))) or (op.icode = '1540027' and (op.income in(03,19))) 
     or (op.icode = '1460332' and (op.income in(03,19))) or (op.icode = '1480107' and (op.income in(03,19))) 
     or (op.icode = '1000059' and (op.income in(03,19))) or (op.icode = '1480069' and (op.income in(03,19))) 
     or (op.icode = '1480070' and (op.income in(03,19)))) $code

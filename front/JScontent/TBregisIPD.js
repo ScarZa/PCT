@@ -12,11 +12,11 @@ function TBRegisIPD(content, id = null) {
     $("#submenu1-1").parent().find("li:eq(0)").addClass("active")
         var PL = new PageLayout(content);
     PL.GetPL();
-    $("#contentGr").append("<div class='col-lg-12' id='alert-add'></div>");
+    $("#contentGr").append("<div class='col-lg-12 col-sm-12 col-xs-12' id='alert-add'></div>");
     
     //$("#contentTB").empty().append("แบบสัมภาษณ์");
-    $("#Budget").append($("<p><div class=''><div class='col-lg-2 offset-lg-2'><select class='form-control' id='sel-ward'></select></div>"
-                        +"<div class='col-md-10 offset-md-3' style='text-align: right;'><input type='text' id='search-patient' placeholder='ค้นหา ชื่อ/สกุล/HN/AN'></div></div></p > <br><br>"));
+    $("#Budget").append($("<div class=''><div class='col-lg-2 offset-lg-2 col-md-2 offset-md-2'><select class='form-control' id='sel-ward'></select></div>"
+                        +"<div class='col-lg-10 offset-lg-2 col-md-10 offset-md-2 col-sm-12 col-xs-12' style='text-align: right;'><input type='text' id='search-patient' placeholder='ค้นหา ชื่อ/สกุล/HN/AN'></div></div><p>"));
     selectMash("#sel-ward","ward_data.php","เลือก ward",$.cookie("ward"));
     // var column1 = ["ลำดับ","AN","HN","วันที่ admit","ชื่อ - นามสกุล","ward","สภาพจิตใจ","ข้อมูลแรกรับ","ประเมินสภาพจิต"];
     // var CTb = new createTableAjax();
