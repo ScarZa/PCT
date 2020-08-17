@@ -114,52 +114,52 @@ var AssFirstRecIPD = function(content){
 //////////////////////////// Part 1
         $("#part1").empty().append($("<div class='col-lg-12 row'><div class='col-lg-10 row'><label><h4><p>ชื่อผู้ป่วย : <b id='patient_name'></b> &nbsp;&nbsp; อายุ : <b id='age'></b> ปี &nbsp;&nbsp; HN : <b id='hn'></b> &nbsp;&nbsp; AN : <b id='an'></b> &nbsp;&nbsp; Admit ครั้งที่ : <b id='admit_no'></b></p><p>"
             + "รับวันที่ : <b id='admitdate'></b> &nbsp;&nbsp; เวลา : <b id='regtime'></b> น. &nbsp;&nbsp; จำนวนวันที่ผู้ป่วยอยู่บ้าน : <b id='lastvisit'></b> วัน</p><p>เพศ : <b id='sex'></b> &nbsp;&nbsp; สถานภาพสมรส : <b id='marry_detial'></b> &nbsp;&nbsp; วันเกิด  : <b id='birthday'></b> &nbsp;&nbsp; สัญชาติ : <b id='nation'></b></p><p>"
-            + "ศาสนา : <b id='religion'></b> &nbsp;&nbsp; การศึกษา : <b id='edu'></b> &nbsp;&nbsp; อาชีพ : <b id='occ'></b></p><p>เลขประจำตัวประชาชน : <b id='cid'></b> &nbsp;&nbsp; สิทธิการรักษา : <b id='ptname'></b></p></h4></label></div><div class='col-lg-2 block' id='pics'> </div></div><p>")
-            , $("<div class='col-lg-12 row'>"
-                + "<div class='form-group col-lg-5 row'><label class='col-sm-3 control-label no-padding-left' for='biographer'>ชื่อผู้ให้ประวัติ </label>"
-                + "<div class='col-sm-9 row'><input class='input-sm' type='text' id='biographer' name='biographer' placeholder='ชื่อผู้ให้ประวัติ'/></div> "
+            + "ศาสนา : <b id='religion'></b> &nbsp;&nbsp; การศึกษา : <b id='edu'></b> &nbsp;&nbsp; อาชีพ : <b id='occ'></b></p><p>เลขประจำตัวประชาชน : <b id='cid'></b> &nbsp;&nbsp; สิทธิการรักษา : <b id='ptname'></b></p></h4></label></div><div class='block' id='pics'> </div></div><p>")
+            , $("<div class='row'>"
+                + "<div class='form-group col-lg-5'><label class='col-sm-3 control-label no-padding-left' for='biographer'>ชื่อผู้ให้ประวัติ </label>"
+                + "<div class='col-sm-7 row'><input class='input-sm' type='text' id='biographer' name='biographer' placeholder='ชื่อผู้ให้ประวัติ'/></div> "
                 + "</div>"
-                + "<div class='form-group col-lg-5 row'><label class='col-sm-3 control-label no-padding-right' for='relative'>เกี่ยวข้องเป็น </label>"
-                + "<div class='col-sm-9 row'><input class='input-sm' type='text' id='relative' name='relative'  placeholder='ความเกี่ยวข้องกับผู้ป่วย' /></div> "
+                + "<div class='form-group col-lg-5'><label class='col-sm-3 control-label no-padding-right' for='relative'>เกี่ยวข้องเป็น </label>"
+                + "<div class='col-sm-7 row'><input class='input-sm' type='text' id='relative' name='relative'  placeholder='ความเกี่ยวข้องกับผู้ป่วย' /></div> "
                 + "</div>"
                 + "</div>")
-            , $("<div class='form-group row'><label class='col-sm-5 col-form-label'><b>ที่อยู่ (สามารถติดต่อได้) ของผู้ป่วย </b></label></div>")
+            , $("<div class='row'><label class='col-sm-5 col-form-label'><b>ที่อยู่ (สามารถติดต่อได้) ของผู้ป่วย </b></label></div>")
             , $("<textarea name='patient_add' id='patient_add' class='form-control' placeholder='ที่อยู่ (สามารถติดต่อได้) ของผู้ป่วย'></textarea><br>")
-            , $("<div class='col-lg-12 row'>"
-                + "<div class='form-group col-lg-5 row'><label class='col-sm-5 control-label no-padding-left' for='tel0'>หมายเลขโทรศัพท์ติดต่อได้</label>"
+            , $("<div class='row'>"
+                + "<div class='form-group col-lg-5'><label class='col-sm-3 control-label no-padding-left' for='tel0'>หมายเลขโทรศัพท์ติดต่อได้</label>"
                 + "<div class='col-sm-7 row'><input class='input-sm' type='text' id='tel0' name='tel0' value='' placeholder='หมายเลขโทรศัพท์' /></div> "
                 + "</div>"
                 + "</div>")
-            , $("<div class='col-lg-12 row'>"
-                + "<div class='form-group col-lg-4 row'><label class='col-sm-5 control-label no-padding-left' for='tel1'>หมายเลขโทรศัพท์ 1</label>"
-                + "<div class='col-sm-7 row'><input class='input-sm' type='text' id='tel1' name='tel1' value='' placeholder='หมายเลขโทรศัพท์' /></div> "
+            , $("<div class='row'>"
+                + "<div class='form-group col-lg-5'><label class='col-sm-3 control-label no-padding-left' for='tel1'>หมายเลขโทรศัพท์ 1</label>"
+                + "<div class='col-sm-5 row'><input class='input-sm' type='text' id='tel1' name='tel1' value='' placeholder='หมายเลขโทรศัพท์' /></div> "
                 + "</div>"
-                + "<div class='form-group col-lg-4 row'><label class='col-sm-4 control-label no-padding-right' for='relative1'>เกี่ยวข้องเป็น </label>"
+                + "<div class='form-group col-lg-4'><label class='col-sm-3 control-label no-padding-right' for='relative1'>เกี่ยวข้องเป็น (1) </label>"
                 + "<div class='col-sm-8 row'><input class='input-sm' type='text' id='relative1' name='relative1'  value='' placeholder='ความเกี่ยวข้องกับผู้ป่วย' /></div> "
                 + "</div>"
                 + "</div>")
-            , $("<div class='col-lg-12 row'>"
-                + "<div class='form-group col-lg-4 row'><label class='col-sm-5 control-label no-padding-left' for='tel2'>หมายเลขโทรศัพท์ 2</label>"
-                + "<div class='col-sm-7 row'><input class='input-sm' type='text' id='tel2' name='tel2' placeholder='หมายเลขโทรศัพท์' /></div> "
+            , $("<div class='row'>"
+                + "<div class='form-group col-lg-5'><label class='col-sm-3 control-label no-padding-left' for='tel2'>หมายเลขโทรศัพท์ 2</label>"
+                + "<div class='col-sm-5 row'><input class='input-sm' type='text' id='tel2' name='tel2' placeholder='หมายเลขโทรศัพท์' /></div> "
                 + "</div>"
-                + "<div class='form-group col-lg-4 row'><label class='col-sm-4 control-label no-padding-right' for='relative2'>เกี่ยวข้องเป็น </label>"
+                + "<div class='form-group col-lg-4'><label class='col-sm-3 control-label no-padding-right' for='relative2'>เกี่ยวข้องเป็น (2) </label>"
                 + "<div class='col-sm-8 row'><input class='input-sm' type='text' id='relative2' name='relative2' placeholder='ความเกี่ยวข้องกับผู้ป่วย' /></div> "
                 + "</div>"
                 + "</div>")
             , $("<div class='form-group row'><label class='col-sm-5 col-form-label'><b>บิดา </b> <input class='input-sm' type='text' name='fathername' id='fathername' value='' placeholder='ชื่อบิดา' required></label><div class='col-sm-2'><label><input class='ace' type='radio' name='father_chk' value='Y' checked required><span class='lbl'> มีชีวิตอยู่</span></label></div><div class='col-sm-2'><label><input class='ace' type='radio' name='father_chk' value='N' required><span class='lbl'> เสียชีวิต</span></label></div></div>")
-            , $("<div id='father' class='row'><div class='col-lg-12 row'><div class='form-horizontal' role='form'>"
-                + "<div class='form-group col-lg-4 row'><label class='col-sm-6 control-label no-padding-right' for='father_age'>อายุ </label>"
-                + "<div class='col-sm-5'><input class='input-sm' type='text' id='father_age' name='father_age' placeholder='' /></div></div>"
-                + "<div class='form-group col-lg-4 row'><label class='col-sm-3 control-label no-padding-right' for='father_occup'>อาชีพ </label>"
-                + "<div class='col-sm-5'><input class='input-sm' type='text' id='father_occup' name='father_occup' placeholder='' /></div></div>"
-                + "</div></div></div>")
+            , $("<div id='father' class='row'><div class='form-horizontal' role='form'>"
+                + "<div class='form-group col-lg-3 row'><label class='col-sm-1 control-label no-padding-right' for='father_age'>อายุ </label>"
+                + "<div class='col-sm-4'><input class='input-sm' type='text' id='father_age' name='father_age' placeholder='' /></div></div>"
+                + "<div class='form-group col-lg-3 row'><label class='col-sm-1 col-lg-2 control-label no-padding-right' for='father_occup'>อาชีพ </label>"
+                + "<div class='col-sm-4'><input class='input-sm' type='text' id='father_occup' name='father_occup' placeholder='' /></div></div>"
+                + "</div></div>")
             , $("<div class='form-group row'><label class='col-sm-5 col-form-label'><b>มารดา </b>  <input class='input-sm' type='text' name='mothername' id='mothername' value='' placeholder='ชื่อมารดา' required></label><div class='col-sm-2'><label><input class='ace' type='radio' name='mother_chk' value='Y' checked required><span class='lbl'> มีชีวิตอยู่</span></label></div><div class='col-sm-2'><label><input class='ace' type='radio' name='mother_chk' value='N' required><span class='lbl'> เสียชีวิต</span></label></div></div>")
-            , $("<div id='mother' class='row'><div class='col-lg-12 row'><div class='form-horizontal' role='form'>"
-                + "<div class='form-group col-lg-4 row'><label class='col-sm-6 control-label no-padding-right' for='mother_age'>อายุ </label>"
-                + "<div class='col-sm-5'><input class='input-sm' type='text' id='mother_age' name='mother_age' placeholder='' /></div></div>"
-                + "<div class='form-group col-lg-4 row'><label class='col-sm-3 control-label no-padding-right' for='mother_occup'>อาชีพ </label>"
-                + "<div class='col-sm-5'><input class='input-sm' type='text' id='mother_occup' name='mother_occup' placeholder='' /></div></div>"
-                + "</div></div></div>")
+            , $("<div id='mother' class='row'><div class='form-horizontal' role='form'>"
+                + "<div class='form-group col-lg-3 row'><label class='col-sm-1 control-label no-padding-right' for='mother_age'>อายุ </label>"
+                + "<div class='col-sm-4'><input class='input-sm' type='text' id='mother_age' name='mother_age' placeholder='' /></div></div>"
+                + "<div class='form-group col-lg-3 row'><label class='col-sm-1 col-lg-2 control-label no-padding-right' for='mother_occup'>อาชีพ </label>"
+                + "<div class='col-sm-4'><input class='input-sm' type='text' id='mother_occup' name='mother_occup' placeholder='' /></div></div>"
+                + "</div></div>")
             , $("<div class='form-group row'><label class='col-sm-4 col-form-label'><b>การสมรส </b></label>"
                 + "<div class='col-sm-2'><label><input class='ace' type='radio' name='marry_chk' value='0'checked required><span class='lbl'> โสด</span></label></div>"
                 + "<div class='col-sm-2'><label><input class='ace' type='radio' name='marry_chk' value='1' required><span class='lbl'> หม้าย</span></label></div>"
