@@ -4,6 +4,7 @@ var AssGaugeIPD = function(content){
         $(this.content).empty().append(
             // $("<div class='row alert alert-info' id='Gpart1'></div>")
             // ,
+            //$("<div class='alert alert-success'>123</div>"));
             $("<div class='alert alert-success' id='Gpart2'></div>"));
         //$("#Gpart1").empty().append();
         // ,$("<div class='col-lg-12'>"
@@ -30,8 +31,8 @@ var AssGaugeIPD = function(content){
         //     +"<div class='col-sm-10 row'><input class='input-sm col-lg-12' type='text' id='disabled' name='disabled' placeholder='ลักษณะความพิการ'/></div> "
         //     +"</div>"
         //     +"</div>")
-        $("#Gpart2").empty().append($("<div class='form-group row'><label class='col-sm-5 col-form-label'><b>การประเมินสภาพจิต  </b></label></div>")
-            ,$("<div class='form-group row'><label class='col-sm-5 col-form-label'><b>ความคิด </b></label><div class='col-sm-2'><label><input class='ace' type='radio' name='think_chk' value='Y' required><span class='lbl'> สมเหตุสมผล</span></label></div><div class='col-sm-2'><label><input class='ace' type='radio' name='think_chk' value='N' required><span class='lbl'> ไม่สมเหตุสมผล</span></label></div></div>")
+        $("#Gpart2").empty().append($("<div class='row form-group'><label class='col-form-label'><b>การประเมินสภาพจิต  </b></label></div>")
+            ,$("<div class='row form-group'><label class='col-sm-5 col-form-label'><b>ความคิด </b></label><div class='col-sm-2'><label><input class='ace' type='radio' name='think_chk' value='Y' required><span class='lbl'> สมเหตุสมผล</span></label></div><div class='col-sm-2'><label><input class='ace' type='radio' name='think_chk' value='N' required><span class='lbl'> ไม่สมเหตุสมผล</span></label></div></div>")
             ,$("<div id='think_group' class='row'><div class='form-group row'><div class='col-sm-2'></div><div class='col-sm-2'><label><input class='ace' type='checkbox' name='think_1' value='1'><span class='lbl'> หลงผิด</span></label></div></div>"
                 +"<textarea name='think_1D' id='think_1D' class='form-control' placeholder='ระบุลักษณะการหลงผิด'></textarea><p>"
                 +"<div class='form-group row'><div class='col-sm-2'></div><div class='col-sm-2'><label><input class='ace' type='checkbox' name='think_2' value='2'><span class='lbl'> หวาดระแวง</span></label></div></div>"

@@ -17,19 +17,19 @@ function InterviewIPD(content, id = null) {
 
     $("#Tl0 >a").empty().append("แบบแรกรับ (หอผู้ป่วย)");
     $("#Tc0 >p").empty().append($("<form action='' name='frminv' id='frminv' method='post' enctype='multipart/form-data'>"
-        + "<div class='widget-main row'><div class='col-lg-12' id='cgi-post'>"
-        + "<div id='interviewfrm' class='row scroll'></div>"
-        + "<br><center><input type='submit' name='submit1' class='btn btn-success' value='บันทึก'></center></div>"
+        + "<div class='widget-main'>"
+        + "<div id='interviewfrm' class='scroll'></div>"
+        + "<center><input type='submit' name='submit1' class='btn btn-success' value='บันทึก'></center>"
         //+ "<div class='col-lg-6'><div class='row col-lg-12' id='sub-contentTB'></div><div class='row col-lg-12' id='sub-contentGr'></div></div>"
         + "</div></form>"));
 
     $("#Tl1 >a").empty().append("แบบประเมินสภาพจิตใจ");
-    $("#Tc1 >p").empty().append($("<form action='' name='frmgauge' id='frmgauge' method='post' enctype='multipart/form-data'>"
-        + "<div class='widget-main row'><div class='col-lg-12' id='cgi-post'>"
-        + "<div id='gaugefrm' class='row scroll'></div>"
-        + "<br><center><input type='submit' name='submit2' class='btn btn-success' value='ประเมิน'></center></div>"
+    $("#Tc1 >p").empty().append($("<div class='widget-main'><form action='' name='frmgauge' id='frmgauge' method='post' enctype='multipart/form-data'>"
+        + ""
+        + "<div id='gaugefrm' class='scroll'></div>"
+        + "<center><input type='submit' name='submit2' class='btn btn-success' value='ประเมิน'></center>"
         //+ "<div class='col-lg-6'><div class='row col-lg-12' id='sub-contentTB'></div><div class='row col-lg-12' id='sub-contentGr'></div></div>"
-        + "</div></form>"));
+        + "</form></div>"));
     var idvn = id;
 
     var FR = new AssFirstRecIPD("#interviewfrm");

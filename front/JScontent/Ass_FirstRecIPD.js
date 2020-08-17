@@ -173,12 +173,12 @@ var AssFirstRecIPD = function(content){
                 + "<div class='col-sm-5'><input class='input-sm' type='text' id='child' name='child' placeholder='' /></div></div>"
                 + "</div></div></div> ")
         
-            , $("<div class='col-lg-12 row'>"
-                + "<div class='form-group col-lg-2 row'><label class='col-sm-4 control-label no-padding-left' for='earmark'>ตำหนิ </label>"
-                + "<div class='col-sm-8 row'><input class='input-sm' type='text' id='earmark' name='earmark' placeholder='ตำหนิ'></div>"
+            , $("<div class='row'>"
+                + "<div class='form-group col-lg-3'><label class='col-sm-1 control-label no-padding-left' for='earmark'>ตำหนิ </label>"
+                + "<div class='col-sm-8'><input class='input-sm' type='text' id='earmark' name='earmark' placeholder='ตำหนิ'></div>"
                 + "</div>"
                 + "</div>")
-            , $("<div class='col-lg-12 alert alert-warning'><div class='row col-lg-2'><input type='text' name='bw' class='form-control' value='' placeholder='น้ำหนัก (ก.ก.)' required></div> <div class='col-lg-2'> <input type='text' name='height' class='form-control' value='' placeholder='ส่วนสูง (ซ.ม.)' required></div>"
+            , $("<div class='row alert alert-warning'><div class='col-lg-2'><input type='text' name='bw' class='form-control' value='' placeholder='น้ำหนัก (ก.ก.)' required></div> <div class='col-lg-2'> <input type='text' name='height' class='form-control' value='' placeholder='ส่วนสูง (ซ.ม.)' required></div>"
                 + "<div class='col-lg-1'><input type='button' class='btn btn-sm btn-success' id='BMIcal' value='คำนวณ BMI'></div> <div class='col-lg-2'> <input type='text' name='bmi' class='form-control' placeholder='BMI' required></div><div class='col-lg-3'> <b id='BMIresult'></b></div><br>"
                 + "<br><div class='row col-lg-12'><div class='col-lg-2'>Temp. : <span id='Temp'></span></div><div class='col-lg-2'>PR : <span id='PR'></span></div><div class='col-lg-2'>RR : <span id='RR'></span></div><div class='col-lg-2'>BP : <span id='BP'></span></div></div></div> ")
         

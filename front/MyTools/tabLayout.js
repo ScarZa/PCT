@@ -3,10 +3,11 @@ var TabLayout = function(content,numTab=1){
     this.numTab = numTab;
     this.GetTL= function (){
             var layout = "<div class='row'>"+
-            "<div id='sel_year' class='col-md-3 col-md-offset-9 form-group'></div>"+
-            "<div class='col-md-12'>"+
+							"<div id='sel_year' class='col-md-3 col-md-offset-9 form-group'></div>" +
+							"<div class='row'>"+
+            "<div class='col-xs-12 col-sm-12 widget-container-col'>"+
 
-											'<div class="widget-box widget-color-blue" id="widget-box-2">'+
+											'<div class="widget-box widget-color-blue" id="widget-box-1">'+
 												'<div class="widget-header">'+
 													'<h5 class="widget-title bigger lighter">'+
 														'<i class="ace-icon fa fa-table"></i>'+
@@ -36,12 +37,12 @@ var TabLayout = function(content,numTab=1){
 
 												'<div class="widget-body">'+
 													'<div class="widget-main no-padding"></div>'+
-            "<div class='row'><div class='col-sm-12'><div class='tabbable'>"
+            "<div class='row'><div class='col-sm-12 col-xs-12'><div class='tabbable'>"
 										+"<ul class='nav nav-tabs padding-12 tab-color-blue background-blue' id='myTab'></ul>"
                                         +"<div class='tab-content' id='MyTabCont'>"
                                         +"</div></div></div></div>"
             "<div align='center' id='Budget'></div><div id='contentGr'></div><br><div id='contentTB'></div>"+
-            "</div></div></div></div>";
+            "</div></div></div></div></div>";
             
         $(this.content).empty().append(layout);
         for(var i=0;i < this.numTab;i++){
@@ -49,7 +50,7 @@ var TabLayout = function(content,numTab=1){
             
 			$(".tab-content#MyTabCont").append($("<div id='Tc"+i+"' class='tab-pane'><p>เนื้อหา "+i+"</p></div>"));
 			if(i==0){$("#Tl0").addClass("active");$("#Tc0").addClass("in active");}
-			console.log(i)
+			
         }
     }
 }
