@@ -15,7 +15,8 @@ function TBInterviewIPD(content, id = null) {
     //$("#contentTB").empty().append("แบบสัมภาษณ์");
     $("#Budget").append($("<p><div class=''><div class='col-lg-2 offset-lg-2'><select class='form-control' id='sel-ward'></select></div></div></p > <br>"));
     selectMash("#sel-ward","ward_data.php","เลือก ward");
-    var column1 = ["AN","HN","วันที่ admit","หมายเลบัตรประชาชน","ชื่อ - นามสกุล","ที่อยู่","สัมภาษณ์"];
+    var column1 = ["AN", "HN", "วันที่ admit", "หมายเลบัตรประชาชน", "ชื่อ - นามสกุล", "ที่อยู่", "สัมภาษณ์"];
+    $("#contentTB").addClass("table-responsive");
     var CTb = new createTableAjax();
     CTb.GetNewTableAjax('contentTB','../back/API/DT_AN.php?','../back/API/tempSendDataAPI.php',column1
     , null, null, null, null, false, true, 'InterviewIPD', false, null, false, null, null, null, null, null, 'dynamic-table');

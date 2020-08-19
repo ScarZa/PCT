@@ -17,12 +17,12 @@ function AddPanel(content,id = null) {
                     + "<li class= 'dropdown-header' > <img src='images/icon_set2/contacts.ico' width='30px'> กระบวนการ</li > <li class='dropdown-content'><ul class='dropdown-menu dropdown-navbar' id='menu01-body" + i + "'></ul></li>"
                     + "<li class= 'dropdown-header' > <img src='images/icon_set2/compose.ico' width='30px'> แบบประเมิน </li > <li class='dropdown-content'><ul class='dropdown-menu dropdown-navbar' id='menu02-body" + i + "'></ul></li>"
                                         +"</ul> "))
-                    $("#menu01-body" + i).append($("<li><a data-toggle='tab' href='#' id='menu1_" + i + "'><img src='images/icon_set2/browser.ico' width='20'> ข้อมูลแรกรับ</a></li></ul>")
-                                            , $("<li><a data-toggle='tab' href='#' id='menu3_" + i + "'><img src='images/icon_set1/file_edit.ico' width='18'> สรุปข้อวินิจฉัยทางการพยาบาล</a></li></ul>")
+                    $("#menu01-body" + i).append($("<li><a data-toggle='tab' href='#' id='menu1_" + i + "'> <img src='images/icon_set2/browser.ico' width='20'> ข้อมูลแรกรับ</a></li>")
+                                            , $("<li><a data-toggle='tab' href='#' id='menu3_" + i + "'> <img src='images/icon_set1/file_edit.ico' width='18'> สรุปข้อวินิจฉัยทางการพยาบาล</a></li>")
                 )
-                    $("#menu02-body" + i).append($("<li><a data-toggle='tab' href='#' id='menu2_" + i + "'><img src='images/icon_set1/file_edit.ico' width='18'> ประเมินสภาพจิต</a></li></ul>")
-                                            ,$("<li><a data-toggle='tab' href='#' id='menu4_" + i + "'><img src='images/icon_set1/file_edit.ico' width='18'> ประเมิน SMI-V</a></li></ul>")
-                                            ,$("<li><a data-toggle='tab' href='#' id='menu5_" + i + "'><img src='images/icon_set1/file_edit.ico' width='18'> ประเมินซึมเศร้า</a></li></ul>")
+                    $("#menu02-body" + i).append($("<li><a data-toggle='tab' href='#' id='menu2_" + i + "'> <img src='images/icon_set1/file_edit.ico' width='18'> ประเมินสภาพจิต</a></li>")
+                                            ,$("<li><a data-toggle='tab' href='#' id='menu4_" + i + "'> <img src='images/icon_set1/file_edit.ico' width='18'> ประเมิน SMI-V</a></li>")
+                                            ,$("<li><a data-toggle='tab' href='#' id='menu5_" + i + "'> <img src='images/icon_set1/file_edit.ico' width='18'> ประเมินซึมเศร้า</a></li>")
                 )
                 $("a#menu1_" + i).click(function () {
                     window.open('content/FR_detial.html?id=' + item.ipd_fr_id, '', 'width=900,height=1000'); return false;
@@ -42,7 +42,11 @@ function AddPanel(content,id = null) {
                     //window.open('content/FR_detial.html?id=' + item.ipd_fr_id, '', 'width=900,height=1000'); return false;
                 })
             } else {
-                $("#menu-panel" + i).append($("<li><a data-toggle='tab' href='#' id='menu1_" + i + "'><img src='images/icon_set1/file_edit.ico' width='18'> บันทึกแรกรับ</a></li></ul>"))
+                $("#menu-panel" + i).append($("<ul class='dropdown-navbar'>"
+                    + "<li class= 'dropdown-header' > <img src='images/icon_set2/contacts.ico' width='30px'> กระบวนการ</li > <li class='dropdown-content'><ul class='dropdown-menu dropdown-navbar' id='menu01-body" + i + "'></ul></li>"
+                    //+ "<li class= 'dropdown-header' > <img src='images/icon_set2/compose.ico' width='30px'> แบบประเมิน </li > <li class='dropdown-content'><ul class='dropdown-menu dropdown-navbar' id='menu02-body" + i + "'></ul></li>"
+                                        +"</ul> "))
+                $("#menu01-body" + i).append($("<li><a data-toggle='tab' href='#' id='menu1_" + i + "'> <img src='images/icon_set1/file_edit.ico' width='18'> บันทึกแรกรับ</a></li>"))
                 $("a#menu1_" + i).click(function () {
                     InterviewIPD("#page-content",{ data:item.an });
                 })

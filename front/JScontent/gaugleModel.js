@@ -1,6 +1,6 @@
 function GaugleModal () {
 $("#createModal").empty().append("<div class='modal' id='GaugleModal' role='dialog' aria-labelledby='exampleModalLabel'>"
-                                    +"<div class='modal-dialog' role='document'><div class='modal-content'><form action='' name='frmgauge' id='frmgauge' method='post' enctype='multipart/form-data'><div class='modal-header'>"
+                                    +"<div class='modal-dialog modal-lg' role='document'><div class='modal-content'><form action='' name='frmgauge' id='frmgauge' method='post' enctype='multipart/form-data'><div class='modal-header'>"
                                     +"<button type='button' class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>&times;</span></button>"
                                     +"<h4 class='modal-title' id='hisModalLabel'></h4></div><div class='modal-body' id='modelhis'><span id='his_detail'></span></div>"
                                     +"<div class='modal-footer'><input type='submit' name='submit1' class='btn btn-success' value='บันทึก'> <button type='button' class='btn btn-danger' data-dismiss='modal'>ปิด</button></div></form></div></div></div>");
