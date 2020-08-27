@@ -28,7 +28,7 @@ $execute=array(':an' => $data);
 $rslt0=$conn_DB->select_a($execute);
 $sql="SELECT (SELECT count(a.an) from an_stat a WHERE a.hn = '".$rslt0['hn']."')admit
 ,CONCAT(p.pname,p.fname,' ',p.lname)fullname,a.age_y age,a.hn,a.vn,a.an,pt.name ptname
-,s.name sex,m.name marry_name,birthday,n.name nation_name,r.name religion_name,e.name edu_name,occ.name occ_name,p.cid
+,p.sex sexcode,s.name sex,m.name marry_name,birthday,n.name nation_name,r.name religion_name,e.name edu_name,occ.name occ_name,p.cid
 ,p.addrpart,p.moopart,t3.name tambon,t2.name ampher,t1.name changwat
 ,concat(p.fathername,' ',p.fatherlname)fathername,concat(p.mathername,' ',p.motherlname)mothername
 ,oc.bw,oc.height,oc.bmi,oc.temperature,oc.pulse,oc.rr,oc.bps,oc.bpd
@@ -82,6 +82,7 @@ $conv=new convers_encode();
     $series['edu_name'] = $conv->tis620_to_utf8($rslt['edu_name']);
     $series['occ_name'] = $conv->tis620_to_utf8($rslt['occ_name']);
     $series['cid'] = $rslt['cid'];
+    $series['sexcode'] = $rslt['sexcode'];
     $series['sex'] = $conv->tis620_to_utf8($rslt['sex']);
     $series['birthday'] = DateThai1($rslt['birthday']);
     $addrpart = $conv->tis620_to_utf8($rslt['addrpart']);

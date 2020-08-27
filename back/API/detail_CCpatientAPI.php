@@ -26,7 +26,7 @@ $data2 = isset($_POST['data2'])?$_POST['data2']:(isset($_GET['data2'])?$_GET['da
 if(!empty($data2)){
     $code = "";
 }else {
-    $code = "(t.status='0' or ISNULL(t.status)) and";
+    $code = "";
 }
     $sql="select t.tB_id,p.hn,p.pname,p.fname,p.lname,p.informaddr,p.cid,p.birthday,m.name as mrname,v.vn,v.pdx,v.dx0,v.dx1,v.dx2,v.dx3,v.dx4,v.dx5
     ,d.department,c.cons_name,t.cause,w.name as ward

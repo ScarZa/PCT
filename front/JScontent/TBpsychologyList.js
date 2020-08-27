@@ -13,7 +13,8 @@ function TBPsychologyList(content, id = null) {
         var PL = new PageLayout(content);
         PL.GetPL();
     $("#contentTB").html('<center><i class="fa fa-spinner fa-pulse" style="font-size:48px"></i></center><br>');
-    var column1 = ["เลขที่","HN","วันที่ส่ง","ชื่อ - นามสกุล","ผู้รับผิดชอบ","ตึก Admit","รายละเอียด"];
+    var column1 = ["เลขที่", "HN", "วันที่ส่ง", "ชื่อ - นามสกุล", "ผู้รับผิดชอบ", "ตึก Admit", "รายละเอียด"];
+    $("#contentTB").addClass("table-responsive");
     var CTb = new createTableAjax();
     CTb.GetNewTableAjax('contentTB','../back/API/DT_PhyList.php?','../back/API/tempSendDataAPI.php',column1
     ,null,null,null,null,false,true,'IPDConsult',false,null,false,null,null,null,null,null,'dynamic-table');

@@ -12,10 +12,11 @@ function TBCDI(content, id = null) {
     $("#Ssubmenu8-1").parent().find("li:eq(1)").addClass("active")
         var PL = new PageLayout(content);
         PL.GetPL();
-    $("#contentGr").html('<center><i class="fa fa-spinner fa-pulse" style="font-size:48px"></i></center><br>');
-    var column1 = ["HN","ชื่อ - นามสกุล","อายุ","PDX","สิทธิ์การรักษา","การทดสอบ(ครั้ง)","รายละเอียด"];
+    $("#contentTB").html('<center><i class="fa fa-spinner fa-pulse" style="font-size:48px"></i></center><br>');
+    var column1 = ["HN", "ชื่อ - นามสกุล", "อายุ", "PDX", "สิทธิ์การรักษา", "การทดสอบ(ครั้ง)", "รายละเอียด"];
+    $("#contentTB").addClass("table-responsive");
     var CTb = new createTableAjax();
-    CTb.GetNewTableAjax('contentGr','../back/API/DT_CDI.php','../back/API/tempSendDataAPI.php',column1
-    ,null,null,null,null,false,false,null,false,null,true,'../front/CDI_graph.html',null,null,null,null,'dynamic-table');
+    CTb.GetNewTableAjax('contentTB','../back/API/DT_CDI.php','../back/API/tempSendDataAPI.php',column1
+    ,null,null,null,null,false,false,null,false,null,true,'../front/content/CDI_graph.html',null,null,null,null,'dynamic-table');
 
 }

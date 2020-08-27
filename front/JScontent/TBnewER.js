@@ -12,10 +12,11 @@ function TBnewER(content, id = null) {
     $("#submenu7").parent().find("li:eq(0)").addClass("active")
         var PL = new PageLayout(content);
         PL.GetPL();
-    $("#contentGr").html('<center><i class="fa fa-spinner fa-pulse" style="font-size:48px"></i></center><br>');
-    var column1 = ["ลำดับ","VN","HN","วันที่","ชื่อ - นามสกุล","ผู้สัมภาษณ์","ใบสัมภาษณ์"];
+    $("#contentTB").html('<center><i class="fa fa-spinner fa-pulse" style="font-size:48px"></i></center><br>');
+    var column1 = ["ลำดับ", "VN", "HN", "วันที่", "ชื่อ - นามสกุล", "ผู้สัมภาษณ์", "ใบสัมภาษณ์"];
+    $("#contentTB").addClass("table-responsive");
     var CTb = new createTableAjax();
-    CTb.GetNewTableAjax('contentGr','../back/API/DT_ER.php','../back/API/tempSendDataAPI.php',column1
+    CTb.GetNewTableAjax('contentTB','../back/API/DT_ER.php','../back/API/tempSendDataAPI.php',column1
     ,null,null,null,null,false,false,null,false,null,true,'../back/API/ER_PDF.php',null,null,null,null,'dynamic-table');
 
 }

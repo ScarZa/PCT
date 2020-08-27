@@ -12,10 +12,11 @@ function TBNPIQ(content, id = null) {
     $("#Ssubmenu8-2").parent().find("li:eq(2)").addClass("active")
         var PL = new PageLayout(content);
         PL.GetPL();
-    $("#contentGr").html('<center><i class="fa fa-spinner fa-pulse" style="font-size:48px"></i></center><br>');
-    var column1 = ["เลขที่","HN","ชื่อ - นามสกุล","อายุ (ปี)","PDX","การทดสอบ(ครั้ง)","รายละเอียด"];
+    $("#contentTB").html('<center><i class="fa fa-spinner fa-pulse" style="font-size:48px"></i></center><br>');
+    var column1 = ["เลขที่", "HN", "ชื่อ - นามสกุล", "อายุ (ปี)", "PDX", "การทดสอบ(ครั้ง)", "รายละเอียด"];
+    $("#contentTB").addClass("table-responsive");
     var CTb = new createTableAjax();
-    CTb.GetNewTableAjax('contentGr','../back/API/DT_NPIQ.php','../back/API/tempSendDataAPI.php',column1
+    CTb.GetNewTableAjax('contentTB','../back/API/DT_NPIQ.php','../back/API/tempSendDataAPI.php',column1
     ,null,null,null,null,false,false,null,false,null,true,'../back/API/NPIQ_PDF.php',null,null,null,null,'dynamic-table');
 
 }

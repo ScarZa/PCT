@@ -49,14 +49,9 @@
    body {
     font-family: 'Kanit', sans-serif;
     }
-    h1 {
+    h1,rect,table {
     font-family: 'Kanit', sans-serif;
     }
-    @media print {
-      #print {
-  	    display: none;
-        }
-    } 
         </style>
         <style type="text/css">
             .block {
@@ -90,6 +85,48 @@
                     success: function (result) {
                         if (subgetfunc[0] == 'InterviewIPD') {
                             InterviewIPD(content, result);
+                        } else if (subgetfunc[0] == 'MatrixRegis') {
+                            MatrixRegis(content, result);
+                        } else if (subgetfunc[0] == 'IPDConsult') {
+                            IPDConsult(content, result);
+                            if (subgetfunc[1] == 'AddSympG') {
+                                AddSympG(result);
+                                AddSympC();
+                            } else if (subgetfunc[1] == 'AddSympC') {
+                                AddSympG();
+                                AddSympC(result);
+                            }
+                        } else if (subgetfunc[0] == 'AddNOPD') {
+                            AddNOPD(content, result);
+                        } else if (subgetfunc[0] == 'AddAcc') {
+                            AddAcc(content, result);
+                        } else if (subgetfunc[0] == 'AddStore') {
+                            AddStore(content, result);
+                        } else if (subgetfunc[0] == 'AddNotify') {
+                            AddNotify(content, result);
+                        } else if (subgetfunc[0] == 'AddRepair') {
+                            AddRepair(content, result);
+                        } else if (subgetfunc[0] == 'AddPM') {
+                            AddPM(content, result);
+                            if (subgetfunc[1] == 'AddP') {
+                                AddP(result);
+                                AddM();
+                            } else if (subgetfunc[1] == 'AddM') {
+                                AddP();
+                                AddM(result);
+                            }
+                        } else if (subgetfunc[0] == 'RecRepair') {
+                            RecRepair(content, result);
+                        } else if (subgetfunc[0] == 'HisRepair') {
+                            HisRepair(content, result);
+                        } else if (subgetfunc[0] == 'ListDev') {
+                            ListDev(content, result);
+                        } else if (subgetfunc[0] == 'AddPDCate') {
+                            AddPDCate(content, result);
+                        } else if (subgetfunc[0] == 'SymptomGroup01') {
+                            SymptomGroup01(content, result);
+                        } else if (subgetfunc[0] == 'SymptomGroup02') {
+                            SymptomGroup02(content, result);
                         } else if (subgetfunc[0] == 'logout') {
                             alert(result);
                             loadPage(content, 'index.html');
@@ -223,15 +260,36 @@
             <script src="../MyTools/AJAXCharts.js" type="text/javascript"></script>
             <!-- End My Tools -->
             <!-- JS content -->
-            <script src="../JScontent/FR_detial.js" type="text/javascript"></script>
+            <script src="../JScontent/navbar.js" type="text/javascript"></script>
+            <script src="../JScontent/Menu.js" type="text/javascript"></script>
+            <script src="../JScontent/page01.js" type="text/javascript"></script>
+            <script src="../JScontent/TBinterviewIPD.js" type="text/javascript"></script>
+            <script src="../JScontent/interviewIPD.js" type="text/javascript"></script>
+            <script src="../JScontent/TBmatrixRegis.js" type="text/javascript"></script>
+            <script src="../JScontent/matrixRegis.js" type="text/javascript"></script>
+            <script src="../JScontent/TBnewSocial.js" type="text/javascript"></script>
+            <script src="../JScontent/TBmatrixList.js" type="text/javascript"></script>
+            <script src="../JScontent/TBsocialRegis.js" type="text/javascript"></script>
+            <script src="../JScontent/TBcommuRegis.js" type="text/javascript"></script>
+            <script src="../JScontent/TBconsultIPD.js" type="text/javascript"></script>
+            <script src="../JScontent/IPDconsult.js" type="text/javascript"></script>
+            <script src="../JScontent/TBCommuList.js" type="text/javascript"></script>
+            <script src="../JScontent/TBSocialList.js" type="text/javascript"></script>
+            <script src="../JScontent/TBPharRegis.js" type="text/javascript"></script>
+            <script src="../JScontent/TBPharList.js" type="text/javascript"></script>
+            <script src="../JScontent/TBpsychologyRegis.js" type="text/javascript"></script>
+            <script src="../JScontent/TBpsychologyList.js" type="text/javascript"></script>
+            <script src="../JScontent/TBnewER.js" type="text/javascript"></script>
+            <script src="../JScontent/TBDepression.js" type="text/javascript"></script>
+            <script src="../JScontent/Gr_Depress.js" type="text/javascript"></script>
             <!-- End JS content -->
             <!-- inline scripts related to this page -->
 
             <script type="text/javascript">
                 $(function () {
-                var fr_id = get('id');
-                //$.cookie("hn", hn);
-                FRDetial("#page-content",fr_id);
+                var hn = get('id');
+                $.cookie("hn", hn);
+                GrDepress("#page-content");
                                 });
             </script>
             <script type="text/javascript">

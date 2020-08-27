@@ -16,7 +16,8 @@ function TBSmivList(content, id = null) {
                         +"</div></p > <br>"));
     selectMash("#sel-ward","ward_data.php","เลือก ward");
     $("#contentTB").html('<center><i class="fa fa-spinner fa-pulse" style="font-size:48px"></i></center><br>');
-    var column1 = ["เลขที่","HN","วันที่ลงทะเบียน","ชื่อ - นามสกุล","ผู้ลงทะเบียน","admit","กระบวนการ","รายละเอียด"];
+  var column1 = ["เลขที่", "HN", "วันที่ลงทะเบียน", "ชื่อ - นามสกุล", "ผู้ลงทะเบียน", "admit", "กระบวนการ", "รายละเอียด"];
+  $("#contentTB").addClass("table-responsive");
     var CTb = new createTableAjax();
     CTb.GetNewTableAjax('contentTB','../back/API/DT_SMIVList.php?','../back/API/tempSendDataAPI.php',column1
       , null, null, null, null, false, true, 'IPDSmiV', false, null, false, null, null, null, null, null, 'dynamic-table');

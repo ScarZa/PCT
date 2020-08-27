@@ -16,17 +16,17 @@ function InterviewIPD(content, id = null) {
     $("#Budget").remove();
 
     $("#Tl0 >a").empty().append("แบบแรกรับ (หอผู้ป่วย)");
-    $("#Tc0 >p").empty().append($("<form action='' name='frminv' id='frminv' method='post' enctype='multipart/form-data'>"
-        + "<div class='widget-main'>"
-        + "<div id='interviewfrm' class='scroll'></div>"
+    $("#Tc0 >p").empty().append($("<div class='widget-main row'><form action='' name='frminv' id='frminv' method='post' enctype='multipart/form-data'>"
+        + ""
+        + "<div id='interviewfrm' class='col-lg-12 scroll'></div>"
         + "<center><input type='submit' name='submit1' class='btn btn-success' value='บันทึก'></center>"
         //+ "<div class='col-lg-6'><div class='row col-lg-12' id='sub-contentTB'></div><div class='row col-lg-12' id='sub-contentGr'></div></div>"
-        + "</div></form>"));
+        + "</form></div>"));
 
     $("#Tl1 >a").empty().append("แบบประเมินสภาพจิตใจ");
-    $("#Tc1 >p").empty().append($("<div class='widget-main'><form action='' name='frmgauge' id='frmgauge' method='post' enctype='multipart/form-data'>"
+    $("#Tc1 >p").empty().append($("<div class='widget-main row'><form action='' name='frmgauge' id='frmgauge' method='post' enctype='multipart/form-data'>"
         + ""
-        + "<div id='gaugefrm' class='scroll'></div>"
+        + "<div id='gaugefrm' class='col-lg-12 scroll'></div>"
         + "<center><input type='submit' name='submit2' class='btn btn-success' value='ประเมิน'></center>"
         //+ "<div class='col-lg-6'><div class='row col-lg-12' id='sub-contentTB'></div><div class='row col-lg-12' id='sub-contentGr'></div></div>"
         + "</form></div>"));
@@ -119,6 +119,7 @@ function InterviewIPD(content, id = null) {
     $("input[type=radio][name=complicate_chk]").click(function () {
         if ($("input[type=radio][name=complicate_chk]:checked").val() == 'Y') { $("textarea#complicate").show(); } else { $("textarea#complicate").hide(); }
     });
+    
     $("input[type=radio][name=detain_chk]").click(function () {
         if ($("input[type=radio][name=detain_chk]:checked").val() == 'Y') { $("textarea#detain").show(); } else { $("textarea#detain").hide(); }
     });
@@ -455,6 +456,19 @@ function InterviewIPD(content, id = null) {
             $("input[type=radio][name=complicate_chk][value='Y']").attr("checked", "checked");
             $("textarea#complicate").show();
             $("textarea#complicate").val(data[0].complicate);
+        }
+        if (data[0].sexcode == 2) {
+            $("#menses-div").append($("<div class='row'><label class='col-sm-4 col-form-label'><b>ประจำเดือน </b></label><div class='col-sm-2'><label><input class='ace' type='radio' name='menses_chk' value='N'checked required><span class='lbl'> ปกติ</span></label></div><div class='col-sm-2'><label><input class='ace' type='radio' name='menses_chk' value='Y' required><span class='lbl'> ผิดปกติ</span></label></div><div class='col-sm-2'><label><input class='ace' type='radio' name='menses_chk' value='U' required><span class='lbl'> ไม่ทราบ</span></label></div></div>"
+                + "<textarea name='menses' id='menses' class='form-control' placeholder='รายละเอียดประจำเดือน'></textarea>"));
+                $("textarea#menses").hide();
+             $("input[type=radio][name=menses_chk]").click(function () {
+                if ($("input[type=radio][name=menses_chk]:checked").val() == 'Y') { $("textarea#menses").show(); } else { $("textarea#menses").hide(); }
+            });
+            if (data[0].menses_chk == 'Y') {
+                $("input[type=radio][name=menses_chk][value='Y']").attr("checked", "checked");
+                $("textarea#menses").show();
+                $("textarea#menses").val(data[0].menses);
+            }
         }
         if (data[0].alcohol_chk == 'Y') {
             $("input[type=radio][name=alcohol_chk][value='Y']").attr("checked", "checked");

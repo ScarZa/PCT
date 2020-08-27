@@ -171,16 +171,17 @@ $("#navbar-container").empty().append($('<button type="button" class="navbar-tog
                                                                 $("#submenu5").empty().append($('<li class=""><a href="#" id="pharmacy_new"><i class="menu-icon fa fa-caret-right"></i> รอลงทะเบียน</a><b class="arrow"></b></li>')
                                                                                                 ,$('<li class=""><a href="#" id="pharmacy_list"><i class="menu-icon fa fa-caret-right"></i> ผู้ป่วยในคลินิก</a><b class="arrow"></b></li>')
                                                                                                 ,$('<li class=""><a href="#" class="dropdown-toggle">'
-                                                                                                        +'<i class="menu-icon fa fa-caret-right"></i> Three Level Menu <b class="arrow fa fa-angle-down"></b></a>'
-                                                                                                        +'<b class="arrow"></b><ul id="Ssubmenu5" class="submenu"></ul></li>'));
-                                                                                $("#Ssubmenu5").empty().append($('<li class=""><a href="#"><i class="menu-icon fa fa-leaf green"></i> Item #1</a> <b class="arrow"></b></li>')
+                                                                                                        +'<i class="menu-icon fa fa-caret-right"></i> ประเมินยา HAD <b class="arrow fa fa-angle-down"></b></a>'
+                                                                                                        +'<b class="arrow"></b><ul id="Ssubmenu5-1" class="submenu"></ul></li>'));
+                                                                                $("#Ssubmenu5-1").empty().append($('<li class=""><a href="#" id="clozapine"><i class="menu-icon fa fa-leaf green"></i> ยา Clozapine </a> <b class="arrow"></b></li>')
                                                                                                                 ,$('<li class=""><a href="#" class="dropdown-toggle"><i class="menu-icon fa fa-pencil orange"></i> 4th level <b class="arrow fa fa-angle-down"></b></a>'
                                                                                                                 +'<b class="arrow"></b><ul id="SSsubmenu5" class="submenu"></ul></li>'));  
                                                                                         $("#SSsubmenu5").empty().append($('<li class=""><a href="#"><i class="menu-icon fa fa-plus purple"></i> Add Product</a> <b class="arrow"></b></li>')
                                                                                                                         ,$('<li class=""><a href="#"><i class="menu-icon fa fa-eye pink"></i> View Products</a> <b class="arrow"></b></li>'));          
                                                                                                                         
                                                                 $("a#pharmacy_new").attr("onclick","TBPharRegis('#page-content')"); 
-                                                                $("a#pharmacy_list").attr("onclick","TBPharList('#page-content')");
+                                                                $("a#pharmacy_list").attr("onclick", "TBPharList('#page-content')");
+                                                                $("a#clozapine").attr("onclick", "TBClozapine('#page-content')");
 
                                                                 $("#menu6").empty().append($('<a href="#" class="dropdown-toggle"><i class="menu-icon fa fa-bullseye"></i> <span class="menu-text">นักจิตวิทยา </span> <b class="arrow fa fa-angle-down"></b></a>')
                                                                                 ,$('<b class="arrow"></b>')

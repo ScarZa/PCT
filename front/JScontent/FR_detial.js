@@ -14,6 +14,7 @@ function FRDetial(content, id = null) {
                                                     , $("<div class='col-sm-12 alert alert-info' id='conclude-nurse'><u>สรุปข้อวินิจฉัยทางการพยาบาล</u><div class='' id='CCnurse'></div><br></div>")
                                                     , $("<div class='col-sm-12 alert alert-warning'><div class='' id='conclude'></div></div><br>")
                                                     , $("<div class='col-sm-12'><center><span id='recorder'></span></center></div>")
+                                                    , $("<div class='col-sm-12'><br><center><button id='print' class='btn btn-primary'>พิมพ์ข้อมูล</button></center></div>")
                                                     )
         $.getJSON('../../back/API/detail_FRAPI.php',{data : id},function (data) { console.log(data)
         $.getJSON('../../back/API/detail_patientAPI.php',{data : data.hn},function (data) {
@@ -310,5 +311,8 @@ function FRDetial(content, id = null) {
                 $table.appendTo('#CCnurse');
                 }
             })
-      });
+        });
+        $("button#print").click(function (e) {
+            window.print()
+        });
 }

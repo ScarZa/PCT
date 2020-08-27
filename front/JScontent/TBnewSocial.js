@@ -12,8 +12,11 @@ function TBnewSocial(content, id = null) {
     $("#submenu3").parent().find("li:eq(0)").addClass("active")
         var PL = new PageLayout(content);
         PL.GetPL();
+    $("#contentGr").html('<center><i class="fa fa-spinner fa-pulse" style="font-size:48px"></i></center><br>');
     $("#contentTB").html('<center><i class="fa fa-spinner fa-pulse" style="font-size:48px"></i></center><br>');
-    var column1 = ["ลำดับ","VN","HN","วันที่","ชื่อ - นามสกุล","ผู้สัมภาษณ์","ใบสัมภาษณ์"];
+    var column1 = ["ลำดับ", "VN", "HN", "วันที่", "ชื่อ - นามสกุล", "ผู้สัมภาษณ์", "ใบสัมภาษณ์"];
+    $("#contentGr").addClass("table-responsive");
+    $("#contentTB").addClass("table-responsive");
     var CTb = new createTableAjax();
     CTb.GetNewTableAjax('contentGr','../back/API/DT_Social.php?1','../back/API/tempSendDataAPI.php',column1
     ,null,null,null,null,false,false,null,false,null,true,'../back/API/socialPDF.php',null,null,null,null,'dynamic-table');

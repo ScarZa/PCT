@@ -120,10 +120,10 @@ if ($method == 'confirm_MR') {
     $execute=array(':hn' => $hn);
     $update_clinic = $connDB->update($table, $data, $where, $field, $execute);
     
-    if($update_clinic===true){
-        $res = array("messege"=>'Update ในคลินิคทานตะวันเรียบร้อยครับ!!!!',"check"=>'Y');
-    }else{
+    if($update_clinic===false){
         $res = array("messege"=>'Update ในคลินิคทานตะวันไม่สำเร็จครับ!!!!',"check"=>'N');
+    }else{
+        $res = array("messege"=>'Update ในคลินิคทานตะวันเรียบร้อยครับ!!!!',"check"=>'Y');
     }
     
 }
