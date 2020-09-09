@@ -25,6 +25,7 @@ inner join jvl_transferBox tb on tb.hn = ph.hn
 inner join an_stat a on a.vn = tb.vn
 inner join ward w on w.ward = a.ward
 where tb.dep_res = '006' and tb.status='Y'
+GROUP BY ph.hn
 ORDER BY ph.phy_id desc"; 
 $conn_DB->imp_sql($sql);
     $num_risk = $conn_DB->select();

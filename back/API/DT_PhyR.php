@@ -14,13 +14,13 @@ $conn_DB->conn_PDO();
 set_time_limit(0);
 $rslt = array();
 $series = array();
-$sql="select t.tB_id,t.vn,t.hn,concat(p.pname,p.fname,' ',p.lname) as fullname,w.name as ward,t.send_date
+$sql="select t.tB_id,t.vn,t.hn,concat(p.pname,p.fname,' ',p.lname) as fullname,w.name as ward,t.send_date,t.status,pr.regdate
 from an_stat a
 inner join jvl_transferBox t on a.vn = t.vn
 left outer join jvlphar_regis pr on pr.hn=t.hn
 inner join patient p on p.hn=t.hn 
 inner join ward w on w.ward = a.ward
-where a.vn = t.vn and t.dep_res='006' and (t.status='0' or ISNULL(t.status) or ISNULL(pr.regdate)) and t.status!='N'
+where t.dep_res='006' and ((t.status='0' or ISNULL(t.status)) and ISNULL(pr.regdate)) and t.status!='N'
 order by t.tB_id desc"; 
 $conn_DB->imp_sql($sql);
     $num_risk = $conn_DB->select();

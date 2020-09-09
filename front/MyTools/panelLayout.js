@@ -22,7 +22,7 @@ var PanelLayout = function (content, numTab = 1) {
         + "<a href='#' data-action='reload'><i class='ace-icon fa fa-refresh'></i></a> "
         + "<a href='#' data-action='collapse'><i class='ace-icon fa fa-chevron-up'></i></a> "
         + "<a href='#' data-action='fullscreen' class=''><i class='ace-icon fa fa-expand'></i></a>&nbsp;&nbsp;</div>"
-        + "<div class='col-sm-12' id='head-panel" + i + "'></div></div></div>"
+        + "<div class='col-sm-10' id='head-panel" + i + "'></div><div class='col-sm-2' id='box-alert" + i + "'></div></div></div>"
         + "<div class='widget-body'><div class='widget-main padding-4 scrollable' data-size='125'>"
         + "<div class='content' id='body-panel" + i + "'></div>"
         + "</div></div></div></div>";

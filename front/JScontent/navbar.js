@@ -173,7 +173,10 @@ $("#navbar-container").empty().append($('<button type="button" class="navbar-tog
                                                                                                 ,$('<li class=""><a href="#" class="dropdown-toggle">'
                                                                                                         +'<i class="menu-icon fa fa-caret-right"></i> ประเมินยา HAD <b class="arrow fa fa-angle-down"></b></a>'
                                                                                                         +'<b class="arrow"></b><ul id="Ssubmenu5-1" class="submenu"></ul></li>'));
-                                                                                $("#Ssubmenu5-1").empty().append($('<li class=""><a href="#" id="clozapine"><i class="menu-icon fa fa-leaf green"></i> ยา Clozapine </a> <b class="arrow"></b></li>')
+                                                                                $("#Ssubmenu5-1").empty().append($('<li class=""><a href="#" id="clozapine"><i class="menu-icon fa fa-leaf green"></i> Clozapine </a> <b class="arrow"></b></li>')
+                                                                                                                ,$('<li class=""><a href="#" id="lithium"><i class="menu-icon fa fa-leaf green"></i> Lithium Carbonate </a> <b class="arrow"></b></li>')
+                                                                                                                ,$('<li class=""><a href="#" id="carba"><i class="menu-icon fa fa-leaf green"></i> Carbamazepine </a> <b class="arrow"></b></li>')
+                                                                                                                ,$('<li class=""><a href="#" id="sodium"><i class="menu-icon fa fa-leaf green"></i> Sodium Valproate </a> <b class="arrow"></b></li>')
                                                                                                                 ,$('<li class=""><a href="#" class="dropdown-toggle"><i class="menu-icon fa fa-pencil orange"></i> 4th level <b class="arrow fa fa-angle-down"></b></a>'
                                                                                                                 +'<b class="arrow"></b><ul id="SSsubmenu5" class="submenu"></ul></li>'));  
                                                                                         $("#SSsubmenu5").empty().append($('<li class=""><a href="#"><i class="menu-icon fa fa-plus purple"></i> Add Product</a> <b class="arrow"></b></li>')
@@ -182,6 +185,9 @@ $("#navbar-container").empty().append($('<button type="button" class="navbar-tog
                                                                 $("a#pharmacy_new").attr("onclick","TBPharRegis('#page-content')"); 
                                                                 $("a#pharmacy_list").attr("onclick", "TBPharList('#page-content')");
                                                                 $("a#clozapine").attr("onclick", "TBClozapine('#page-content')");
+                                                                $("a#lithium").attr("onclick", "TBLithium('#page-content')");
+                                                                $("a#carba").attr("onclick", "TBCarba('#page-content')");
+                                                                $("a#sodium").attr("onclick", "TBSodium('#page-content')");
 
                                                                 $("#menu6").empty().append($('<a href="#" class="dropdown-toggle"><i class="menu-icon fa fa-bullseye"></i> <span class="menu-text">นักจิตวิทยา </span> <b class="arrow fa fa-angle-down"></b></a>')
                                                                                 ,$('<b class="arrow"></b>')

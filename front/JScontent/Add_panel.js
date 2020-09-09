@@ -10,8 +10,9 @@ function AddPanel(content,id = null) {
             });
             
             $("#patient-name" + i).append(" HN : " + item.hn + "<br>AN : " + item.an)
-            $("#head-panel" + i).append("<span>" + item.fullname + "</span> สภาพจิต : <span id='mentel-status" + i + "'> &nbsp;" + item.mental + "&nbsp; </span><br>วันที่ admit : " + item.regdate + " ( " + item.admit_day + " ) Admit <b>"+item.admit+"</b> ครั้ง<br>ตึก : <b>" + item.name + "</b>"
+            $("#head-panel" + i).append("<span>" + item.fullname + "</span> สภาพจิต : <span id='mentel-status" + i + "'> &nbsp;" + item.mental + "&nbsp; </span><br>Admit : " + item.regdate + " (" + item.admit_day + ") Admit <b>"+item.admit+"</b> ครั้ง<br>ตึก : <b>" + item.name + "</b>"
                 + "<br>Dx. : " + item.pdx + " " + item.dx0 + " " + item.dx2 + " " + item.dx3 + " " + item.dx4 + " " + item.dx5)
+            $("#box-alert" + i).append("<span id='row-alert_" + i+"'></span>")
             if (item.ipd_fr_id) {
                 $("#menu-panel" + i).append($("<ul class='dropdown-navbar'>"
                     + "<li class= 'dropdown-header' > <img src='images/icon_set2/contacts.ico' width='30px'> กระบวนการ</li > <li class='dropdown-content'><ul class='dropdown-menu dropdown-navbar' id='menu01-body" + i + "'></ul></li>"
@@ -51,6 +52,11 @@ function AddPanel(content,id = null) {
                     InterviewIPD("#page-content",{ data:item.an });
                 })
             }
+            if (item.typeP_1R != '') { $("#row-alert_" + i).append("<button class='btn btn-minier btn-purple'><i class='ace-icon fa fa-exclamation-triangle'></i></button> ") }
+            if (item.typeP_2R != '') { $("#row-alert_" + i).append("<button class='btn btn-minier btn-warning'><i class='ace-icon fa fa-exclamation-triangle'></i></button> ") }
+            if (item.typeP_3R != '') { $("#row-alert_" + i).append("<button class='btn btn-minier btn-pink'><i class='ace-icon fa fa-exclamation-triangle'></i></button> ") }
+            if (item.typeP_4R != '') { $("#row-alert_" + i).append("<button class='btn btn-minier btn-yellow'><i class='ace-icon fa fa-exclamation-triangle'></i></button> ") }
+            if (item.typeP_5R != '') { $("#row-alert_" + i).append("<button class='btn btn-minier btn-danger'><i class='ace-icon fa fa-exclamation-triangle'></i></button> ") }
             
             $("#body-panel" + i).append($("<div class='alert alert-info'><span style='color:#1c2352'>CC : " + item.cc + "<br>HPI : " + item.hpi + "</span></div>")
                 , $("<div class='alert alert-danger'>เฝ้าระวัง : <span style='background-color:yellow'>" + item.typeP_1R + " " + item.typeP_2R + " " + item.typeP_3R + " " + item.typeP_4R + " " + item.typeP_5R + "</span><br><div><div id='smiv_class" + i + "'></div><span style='background-color:yellow' id='smiv-detial" + i + "'></span></div>"
@@ -58,6 +64,7 @@ function AddPanel(content,id = null) {
         )
             $.getJSON('../back/API/detail_SMIVAPI.php', { data: item.hn }, function (data) {
                 if (data[0].chk_1 + data[0].chk_2 + data[0].chk_3 + data[0].chk_4 > 0) {
+                    $("#row-alert_" + i).append("<button class='btn btn-minier btn-grey'><i class='ace-icon fa fa-exclamation-triangle'></i></button> ")
                     $("#smiv-detial" + i).show();
                     if (data[0].smiv_class != '') { $("#smiv_class" + i).append("SMI-V : " + data[0].smiv_class) }
                     if (data[0].smi1_2 != '') { $("#smiv-detial" + i).append("1.2 " + data[0].smi1_2 + "<br>") }
@@ -97,7 +104,10 @@ function AddPanel(content,id = null) {
             
                 } else { $("#smiv-detial").hide(); }
             });
-            $.getJSON("../back/API/DT_HAD.php", { data: item.an}, function (data) { console.log(data)
+            $.getJSON("../back/API/DT_HAD.php", { data: item.an }, function (data) {
+                console.log(data)
+                if (data.Clozapine100 != null || data.Clozapine25 != null || data.Carbamazepine200 != null || data.LithiumCarbonate300 != null || data.SodiumValproate200 != null || data.SodiumValproate200CHRONO != null || data.SodiumValproate500 != null)
+                    {$("#row-alert_" + i).append("<button class='btn btn-minier btn-info'><i class='ace-icon fa fa-exclamation-triangle'></i></button>")}
                 if(data.Clozapine100 != null){
                     $("#HAD-detial"+i).append("<b style='color: red'>High Alert Drug : </b>"+data.Clozapine100+" (สั่งล่าสุด "+data.Clozapine100Date+")<br>");
                 }
@@ -124,9 +134,10 @@ function AddPanel(content,id = null) {
             
             if (item.mental == 'ยังไม่ประเมิน') { $("#mentel-status" + i).attr("style", "color:red;background-color:yellow") }
             if (item.ipd_fr_id){
-                if (((item.typeP_1) + (item.typeP_2) + (item.typeP_3) + (item.typeP_4) + (item.typeP_5) > 0) || item.smi4_id) { $("#widget_box_" + i).addClass("widget-color-red2") } else { $("#widget_box_" + i).addClass("widget-color-green") }
+                //if (((item.typeP_1) + (item.typeP_2) + (item.typeP_3) + (item.typeP_4) + (item.typeP_5) > 0) || item.smi4_id) { $("#widget_box_" + i).addClass("widget-color-red2") } else { $("#widget_box_" + i).addClass("widget-color-blue2") }
+                $("#widget_box_" + i).addClass("widget-color-default"); $("#head-panel" + i).attr("style", "color:#575757");$("#patient-name"+i).attr("style", "color:#575757");
             } else {
-                $("#widget-body").attr("style", "color:black;");
+                $("#widget_box_" + i).addClass("widget-color-blue2"); $("#head-panel" + i).attr("style", "color:#FFFF");;$("#patient-name"+i).attr("style", "color:#FFFF");
             }
         });
     });

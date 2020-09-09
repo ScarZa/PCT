@@ -18,7 +18,7 @@ function InterviewIPD(content, id = null) {
     $("#Tl0 >a").empty().append("แบบแรกรับ (หอผู้ป่วย)");
     $("#Tc0 >p").empty().append($("<div class='widget-main row'><form action='' name='frminv' id='frminv' method='post' enctype='multipart/form-data'>"
         + ""
-        + "<div id='interviewfrm' class='col-lg-12 scroll'></div>"
+        + "<div id='interviewfrm' class='col-lg-12 col-md-12 col-sm-12 col-xs-12 scroll'></div>"
         + "<center><input type='submit' name='submit1' class='btn btn-success' value='บันทึก'></center>"
         //+ "<div class='col-lg-6'><div class='row col-lg-12' id='sub-contentTB'></div><div class='row col-lg-12' id='sub-contentGr'></div></div>"
         + "</form></div>"));
@@ -26,7 +26,7 @@ function InterviewIPD(content, id = null) {
     $("#Tl1 >a").empty().append("แบบประเมินสภาพจิตใจ");
     $("#Tc1 >p").empty().append($("<div class='widget-main row'><form action='' name='frmgauge' id='frmgauge' method='post' enctype='multipart/form-data'>"
         + ""
-        + "<div id='gaugefrm' class='col-lg-12 scroll'></div>"
+        + "<div id='gaugefrm' class='col-lg-12 col-md-12 col-sm-12 col-xs-12 scroll'></div>"
         + "<center><input type='submit' name='submit2' class='btn btn-success' value='ประเมิน'></center>"
         //+ "<div class='col-lg-6'><div class='row col-lg-12' id='sub-contentTB'></div><div class='row col-lg-12' id='sub-contentGr'></div></div>"
         + "</form></div>"));
@@ -99,7 +99,13 @@ function InterviewIPD(content, id = null) {
     $("#Recog_5D").hide();
 
     $("input[type=radio][name=disease_chk]").click(function () {
-        if ($("input[type=radio][name=disease_chk]:checked").val() == 'Y') { $("textarea#disease").show(); $("#disease_group").show(); $("div#heal_0").show(); } else { $("textarea#disease").hide(); $("#disease_group").hide(); $("div#heal_0").hide(); }
+        if ($("input[type=radio][name=disease_chk]:checked").val() == 'Y') {
+            $("textarea#disease").show(); $("#disease_group").show(); $("div#heal_0").show();
+        } else {
+            $("input[type=radio][name=heal_chk][value='N']").prop("checked", true);
+            $("textarea#heal").val('').hide();
+            $("textarea#disease").hide(); $("div#heal_0").hide(); $("#disease_group").hide();
+        }
     });
     $("input[type=radio][name=heal_chk]").click(function () {
         if ($("input[type=radio][name=heal_chk]:checked").val() == 'Y') { $("textarea#heal").show(); } else { $("textarea#heal").hide(); }
@@ -469,7 +475,7 @@ function InterviewIPD(content, id = null) {
                 $("textarea#menses").show();
                 $("textarea#menses").val(data[0].menses);
             }
-        }
+        } else { $("#menses-div").hide();}
         if (data[0].alcohol_chk == 'Y') {
             $("input[type=radio][name=alcohol_chk][value='Y']").attr("checked", "checked");
             $("div#alcohol").show();

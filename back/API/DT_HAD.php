@@ -46,9 +46,9 @@ and op.income in(03,19))) GROUP BY op.vstdate ORDER BY op.vstdate desc limit 1)S
 and op.income in(03,19))) GROUP BY op.vstdate ORDER BY op.vstdate desc limit 1)SodiumValproate200CHRONO
 ,(SELECT op.vstdate FROM opitemrece op inner join drugitems di on di.icode = op.icode WHERE op.icode = '1570044' and ((op.an = :an
 and op.income in(03,19))) GROUP BY op.vstdate ORDER BY op.vstdate desc limit 1)SodiumValproate200CHRONODate
-,(SELECT concat(di.name,' ',di.strength) FROM opitemrece op inner join drugitems di on di.icode = op.icode WHERE op.icode = '1540027' and ((op.an = :an 
+,(SELECT concat(di.name,' ',di.strength) FROM opitemrece op inner join drugitems di on di.icode = op.icode WHERE op.icode = '1540021' and ((op.an = :an 
 and op.income in(03,19))) GROUP BY op.vstdate ORDER BY op.vstdate desc limit 1)SodiumValproate500
-,(SELECT op.vstdate FROM opitemrece op inner join drugitems di on di.icode = op.icode WHERE op.icode = '1540027' and ((op.an = :an
+,(SELECT op.vstdate FROM opitemrece op inner join drugitems di on di.icode = op.icode WHERE op.icode = '1540021' and ((op.an = :an
 and op.income in(03,19))) GROUP BY op.vstdate ORDER BY op.vstdate desc limit 1)SodiumValproate500Date
     from patient p 
     LEFT OUTER JOIN an_stat a ON a.hn=p.hn
