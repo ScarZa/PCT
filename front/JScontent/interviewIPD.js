@@ -1,4 +1,4 @@
-function InterviewIPD(content, id = null) {
+function InterviewIPD(content, id = null,url='../') {
 
     var title = " งานผู้ป่วยใน (IPD)";
     var subtitle = "แบบสัมภาษณ์ ";
@@ -263,7 +263,7 @@ function InterviewIPD(content, id = null) {
     });
     
      
-    $.getJSON('../back/API/disease_Data.php', function (data) {
+    $.getJSON(url+'back/API/disease_Data.php', function (data) {
         var ii = 0;
         $("div#disease_group").empty();
         $.each(data, function (i, item) {
@@ -271,7 +271,7 @@ function InterviewIPD(content, id = null) {
             ii++;
         });
     });
-    $.getJSON('../back/API/scab_Data.php', function (data) {
+    $.getJSON(url+'back/API/scab_Data.php', function (data) {
         var ii = 0;
         $("div#scab").empty();
         $.each(data, function (i, item) {
@@ -284,7 +284,7 @@ function InterviewIPD(content, id = null) {
     selectMash("#shape", "shape_Data.php", " เลือกรูปร่าง ");
     selectMash("#skin_color", "skin_Data.php", " เลือกสีผิว ");
     console.log(idvn)
-    $.getJSON('../back/API/patient_detail.php', { data: idvn.data }, function (data) { console.log(data);console.log('1234')
+    $.getJSON(url+'back/API/patient_detail.php', { data: idvn.data }, function (data) { console.log(data);console.log('1234')
         $("b#patient_name").append(data[0].fullname);
         $("b#age").append(data[0].age);
         $("#hn").append(data[0].hn);
@@ -307,9 +307,9 @@ function InterviewIPD(content, id = null) {
         $("#cid").append(data[0].cid);
         $("#ptname").append(data[0].ptname);
         var img = data[0].hn;
-        $.getJSON('../back/API/check_image.php', { data1: img }, function (data) {
+        $.getJSON(url+'back/API/check_image.php', { data1: img }, function (data) {
             if (data.cc) { 
-                $("#pics").append("<img src='../back/API/show_image.php?hn=" + img+ "' width='125' />");
+                $("#pics").append("<img src='"+url+"back/API/show_image.php?hn=" + img+ "' width='125' />");
             } else { 
                 $("#pics").append("<img src='images/person.png' width='125' />");
             }
@@ -366,7 +366,7 @@ function InterviewIPD(content, id = null) {
             $("textarea#surgery").show();
             $("textarea#surgery").val(data[0].surgery);
         }
-        $.getJSON('../back/API/allergy_Data.php', { data: $.cookie("hn") }, function (data) { console.log(data)
+        $.getJSON(url+'back/API/allergy_Data.php', { data: $.cookie("hn") }, function (data) { console.log(data)
             var text;
             $.each( data, function( key, value ) {
                 text += value.drugallergy+"<br>";
@@ -514,7 +514,7 @@ function InterviewIPD(content, id = null) {
         // }
         var settings = {
             type: "POST",
-            url: "../back/API/prcInterviewAPI.php",
+            url: url+"back/API/prcInterviewAPI.php",
             async: true,
             crossDomain: true,
             data: dataForm,
@@ -538,7 +538,7 @@ function InterviewIPD(content, id = null) {
             // }
             var settings = {
                 type: "POST",
-                url: "../back/API/prcInterviewAPI.php",
+                url: url+"back/API/prcInterviewAPI.php",
                 async: true,
                 crossDomain: true,
                 data: dataForm,

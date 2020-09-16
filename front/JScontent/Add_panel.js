@@ -4,11 +4,18 @@ function AddPanel(content,id = null) {
         $("#total-admit").empty().append("Admit : "+data.length+" ราย")
         PnL.GetPnL();
         $.each(data, function (i, item) {
-            $.getJSON('../back/API/check_image.php', { data1: item.hn }, function (data) {
-                if (data.cc == '') { var img = 'images/person.png' } else { var img = '../back/API/show_image.php?hn=' + item.hn }
-                $("#pics-panel" + i).attr("src", img)
-            });
-            
+            // $.getJSON('../back/API/check_image.php', { data1: item.hn, data2: item.an }, function (data) { console.log(data)
+            //     if (data.cc == '') { var img = 'images/person.png' } else {
+            //         if (data.chk == 'Y') {
+            //             var img = 'PI_imgs/'+data.cc
+            //         } else {
+            //             var img = '../back/API/show_image.php?hn=' + item.hn
+            //         }
+                    
+            //     }
+            //     $("#pics-panel" + i).attr("src", img)
+            // });
+            patient_photo('','../',item.hn,item.an,'#pics-panel' + i);
             $("#patient-name" + i).append(" HN : " + item.hn + "<br>AN : " + item.an)
             $("#head-panel" + i).append("<span>" + item.fullname + "</span> สภาพจิต : <span id='mentel-status" + i + "'> &nbsp;" + item.mental + "&nbsp; </span><br>Admit : " + item.regdate + " (" + item.admit_day + ") Admit <b>"+item.admit+"</b> ครั้ง<br>ตึก : <b>" + item.name + "</b>"
                 + "<br>Dx. : " + item.pdx + " " + item.dx0 + " " + item.dx2 + " " + item.dx3 + " " + item.dx4 + " " + item.dx5)
@@ -19,7 +26,8 @@ function AddPanel(content,id = null) {
                     + "<li class= 'dropdown-header' > <img src='images/icon_set2/compose.ico' width='30px'> แบบประเมิน </li > <li class='dropdown-content'><ul class='dropdown-menu dropdown-navbar' id='menu02-body" + i + "'></ul></li>"
                                         +"</ul> "))
                     $("#menu01-body" + i).append($("<li><a data-toggle='tab' href='#' id='menu1_" + i + "'> <img src='images/icon_set2/browser.ico' width='20'> ข้อมูลแรกรับ</a></li>")
-                                            , $("<li><a data-toggle='tab' href='#' id='menu3_" + i + "'> <img src='images/icon_set1/file_edit.ico' width='18'> สรุปข้อวินิจฉัยทางการพยาบาล</a></li>")
+                                                , $("<li><a data-toggle='tab' href='#' id='menu3_" + i + "'> <img src='images/icon_set1/file_edit.ico' width='18'> สรุปข้อวินิจฉัยทางการพยาบาล</a></li>")
+                                                , $("<li><a data-toggle='tab' href='#' id='menu6_" + i + "'> <img src='images/icon_set2/camera.ico' width='20'> รูปผู้ป่วย</a></li>")
                 )
                     $("#menu02-body" + i).append($("<li><a data-toggle='tab' href='#' id='menu2_" + i + "'> <img src='images/icon_set1/file_edit.ico' width='18'> ประเมินสภาพจิต</a></li>")
                                             ,$("<li><a data-toggle='tab' href='#' id='menu4_" + i + "'> <img src='images/icon_set1/file_edit.ico' width='18'> ประเมิน SMI-V</a></li>")
@@ -41,6 +49,9 @@ function AddPanel(content,id = null) {
                 $("a#menu5_" + i).click(function () {
                     popup('../../CF-Form/font/content/Ass_Depress.html?vn=' + item.vn + '?user=' + $.cookie("username"), popup, 1440, 900);
                     //window.open('content/FR_detial.html?id=' + item.ipd_fr_id, '', 'width=900,height=1000'); return false;
+                })
+                $("a#menu6_" + i).click(function () {
+                    $("a#menu6_" + i).attr("onclick", photoPIModal()).attr("data-toggle", "modal").attr("data-target", "#photoPIModal").attr("data-whatever", item.ipd_fr_id)
                 })
             } else {
                 $("#menu-panel" + i).append($("<ul class='dropdown-navbar'>"
@@ -105,7 +116,7 @@ function AddPanel(content,id = null) {
                 } else { $("#smiv-detial").hide(); }
             });
             $.getJSON("../back/API/DT_HAD.php", { data: item.an }, function (data) {
-                console.log(data)
+                //console.log(data)
                 if (data.Clozapine100 != null || data.Clozapine25 != null || data.Carbamazepine200 != null || data.LithiumCarbonate300 != null || data.SodiumValproate200 != null || data.SodiumValproate200CHRONO != null || data.SodiumValproate500 != null)
                     {$("#row-alert_" + i).append("<button class='btn btn-minier btn-info'><i class='ace-icon fa fa-exclamation-triangle'></i></button>")}
                 if(data.Clozapine100 != null){

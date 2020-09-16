@@ -15,12 +15,24 @@ $conv=new convers_encode();
 set_time_limit(0);
 $rslt = array();
 $series = array();
-$data = isset($_POST['data1'])?$_POST['data1']:(isset($_GET['data1'])?$_GET['data1']:'');
-
-$sql="select image as cc from patient_image where hn='".$data."'"; 
+$hn = isset($_POST['data1'])?$_POST['data1']:(isset($_GET['data1'])?$_GET['data1']:'');
+$an = isset($_POST['data2'])?$_POST['data2']:(isset($_GET['data2'])?$_GET['data2']:'');
+$sql = "SELECT pic_name FROM jvl_pics_ipd WHERE an = '".$an."'";
 $conn_DB->imp_sql($sql);
-    $num_risk = $conn_DB->select_a();
+    $pic_name = $conn_DB->select_a();
+    if(empty($pic_name['pic_name'])){
+        $sql="select image as cc from patient_image where hn='".$hn."'"; 
+        $conn_DB->imp_sql($sql);
+            $pic_name = $conn_DB->select_a();
+            $pics = isset($pic_name['cc'])?$conv->tis620_to_utf8($pic_name['cc']):'';
+            $chk = 'N';
+        }else{
+            $pics = isset($pic_name['pic_name'])?$conv->tis620_to_utf8($pic_name['pic_name']):'';
+            $chk = 'Y';
+        }
+
  //print_r($num_risk['cc']); 
- $series['cc'] = isset($num_risk['cc'])?$conv->tis620_to_utf8($num_risk['cc']):'';
+ $series['cc'] = $pics;
+ $series['chk'] = $chk;
 print json_encode($series);
 $conn_DB->close_PDO();

@@ -36,14 +36,14 @@ function IPDConsult(content, id = null) {
         + "</div></form>"));
         
         $.getJSON('../back/API/detail_IPDpatientAPI.php',{data : idvn.data,data2 : $.cookie("dep")},function (data) {console.log(data);
-        $("#P-data").append($("<div class='col-lg-12 row'><div class='block'> <img src='../back/API/show_image.php?hn="+data[0].hn+"' width='125px' /></div><span>AN : "+data[0].an+"<br>HN : "+data[0].hn+"<br>เลขบัตรประชาชน : "+data[0].cid+"<br>ชื่อ-สกุล :"+data[0].fullname
+        $("#P-data").append($("<div class='col-lg-12 row'><div class='block'> <img id='pics-panel' width='125' /></div><span>AN : "+data[0].an+"<br>HN : "+data[0].hn+"<br>เลขบัตรประชาชน : "+data[0].cid+"<br>ชื่อ-สกุล :"+data[0].fullname
         +"<br>ที่อยู่ : "+data[0].informaddr+"<br>วันเกิด : "+data[0].birthday+" สถานะภาพ : "+data[0].mrname+"<br>การวินิจฉัย : "+data[0].pdx+" "+data[0].dx0
         +" "+data[0].dx1+" "+data[0].dx2+" "+data[0].dx3+" "+data[0].dx4+" "+data[0].dx5+"<br><b style='color: red'>Admit ที่ : "+data[0].ward+"</b>  <br>ส่งให้ : "+data[0].department+" <br>ส่งมาเพื่อ : "+data[0].cons_name+" <br>สาเหตุที่ส่ง/อาการ/ความจำเป็น : "+data[0].cause
         +"<br>แพทย์เจ้าของไข้ : "+data[0].doctor_name+"<br>ผู้ส่งบำบัด : "+data[0].sender_name
         +"<br>ผู้ตอบรับ : "+data[0].resender_name+"<br>เหตุผล : "+data[0].resend+"</span>"
         +"</div><br>")
         );
-
+        patient_photo('','../',data[0].hn,data[0].an,'#pics-panel');
         
 
 $("#cgi-post").append($("<input type='hidden' name='hn' value='"+data[0].hn+"'>")

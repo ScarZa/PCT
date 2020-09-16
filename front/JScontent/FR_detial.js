@@ -16,15 +16,22 @@ function FRDetial(content, id = null) {
                                                     , $("<div class='col-sm-12'><center><span id='recorder'></span></center></div>")
                                                     , $("<div class='col-sm-12'><br><center><button id='print' class='btn btn-primary'>พิมพ์ข้อมูล</button></center></div>")
                                                     )
-        $.getJSON('../../back/API/detail_FRAPI.php',{data : id},function (data) { console.log(data)
-        $.getJSON('../../back/API/detail_patientAPI.php',{data : data.hn},function (data) {
+        $.getJSON('../../back/API/detail_FRAPI.php',{data : id},function (data) { 
+        $.getJSON('../../back/API/detail_patientAPI.php',{data : data.hn},function (data) {console.log(data)
             $("#medical-detial1").append($("<div class='col-sm-8'><span><label id='medical' class='col-form-label'>เลขบัตรประชาชน : " + data[0].cid + "<br>ชื่อ-สกุล : <b>" + data[0].fullname + "</b>"
                 + "<br>ที่อยู่ : " + data[0].informaddr + "<br>วันเกิด : " + data[0].birthday + " อายุ : " + data[0].age + " ปี  สถานะภาพ : " + data[0].mrname + "<br>การวินิจฉัย : " + data[0].pdx + " " + data[0].dx0
                 + " " + data[0].dx1 + " " + data[0].dx2 + " " + data[0].dx3 + " " + data[0].dx4 + " " + data[0].dx5
                 + "</label></span></div> "
                 + "<div class='col-sm-4 block'> <img id='pics-panel' width='100' /></div>"));
-                $.getJSON('../../back/API/check_image.php', { data1: data[0].hn }, function (datai) { console.log(datai)
-                    if (datai.cc == '') { var img = '../images/person.png' } else { var img = '../../back/API/show_image.php?hn=' + data[0].hn }
+                $.getJSON('../../back/API/check_image.php', { data1: data[0].hn , data2: data[0].an }, function (datai) { console.log(datai)
+                    if (datai.cc == '') { var img = '../images/person.png' } else {
+                        if (datai.chk == 'Y') {
+                            var img = '../PI_imgs/'+datai.cc
+                        } else {
+                            var img = '../../back/API/show_image.php?hn=' + data[0].hn
+                        }
+                        
+                    }
                     $("#pics-panel").attr("src", img)
                 });
         });

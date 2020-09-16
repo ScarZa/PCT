@@ -113,7 +113,7 @@ $("#cgi-post").append($("<input type='hidden' name='hn' value='"+data[0].hn+"'>"
                 }
             }else if(result.check=='Y'){
                 $("#page-content").empty();
-                popup('JScontent/'+popup_+'?vn='+idvn.data, popup, 710, 520);
+                popup('content/'+popup_+'?vn='+idvn.data, popup, 710, 520);
                 if($.cookie("dep")=='009'){
                     TBMtrixRegis('#page-content');
                 }else if($.cookie("dep")=='008'){

@@ -23,7 +23,7 @@ function MatrixRegis2(content, id = null) {
         + "</div></form>"));
         var idvn = id; console.log(idvn)
         $.getJSON('../../back/API/detail_CCpatientAPI.php',{data : idvn,data2 :'reg'},function (data) {console.log(data);
-        $("#P-data").append($("<div class='col-xs-12 row'><div><div class='block'><img src='../back/API/show_image.php?hn="+data[0].hn+"' width='150' /></div>"
+        $("#P-data").append($("<div class='col-xs-12 row'><div><div class='block'><img src='../../back/API/show_image.php?hn="+data[0].hn+"' width='150' /></div>"
         +"<span><label class='col-form-label'>HN : "+data[0].hn+"<br>เลขบัตรประชาชน : "+data[0].cid+"<br>ชื่อ-สกุล :"+data[0].fullname
         +"<br>ที่อยู่ : "+data[0].informaddr+"<br>วันเกิด : "+data[0].birthday+" สถานะภาพ : "+data[0].mrname+"<br>การวินิจฉัย : "+data[0].pdx+" "+data[0].dx0
         +" "+data[0].dx1+" "+data[0].dx2+" "+data[0].dx3+" "+data[0].dx4+" "+data[0].dx5+"</label></span></div> "

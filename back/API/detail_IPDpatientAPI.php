@@ -55,15 +55,15 @@ if($data2 == '009'){
     $sql="select t.tB_id,a.an,p.hn,p.pname,p.fname,p.lname,p.informaddr,p.cid,p.birthday,m.name as mrname,v.vn,v.pdx,v.dx0,v.dx1,v.dx2,v.dx3,v.dx4,v.dx5
     ,d.department,c.cons_name,t.cause,w.name as ward
     ,(SELECT d.name FROM vn_stat v inner join doctor d on d.code = v.dx_doctor WHERE v.vn=t.vn)doctor_name
-    ,o1.loginname as sender_name,o2.loginname as resender_name
+    ,o1.name as sender_name,doc.shortname as resender_name
 		,t.resend
         from patient p 
         inner JOIN vn_stat v ON v.hn=p.hn
-                inner join an_stat a on a.vn = v.vn
-                LEFT OUTER JOIN ward w on w.ward = a.ward
+        inner join an_stat a on a.vn = v.vn
+        LEFT OUTER JOIN ward w on w.ward = a.ward
         inner join jvl_transferBox t on t.vn = v.vn
 				inner join opduser o1 on o1.loginname = t.sender
-				left outer join opduser o2 on o2.loginname = t.resendname
+				inner join doctor doc on doc.code = t.resendname
 				".$join."
         inner join kskdepartment d on d.depcode = t.dep_res
         inner join jvl_consult c on c.cons_id = t.cons_id

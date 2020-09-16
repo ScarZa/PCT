@@ -27,8 +27,9 @@ FROM an_stat a2
 left outer join patient p2 on a2.hn=p2.hn
 where a2.hn = a.hn
 GROUP BY a2.hn) admit
-,CONCAT(timestampdiff(month,a.regdate,NOW())-(timestampdiff(year,a.regdate,NOW())*12),' เดือน ',
-FLOOR(TIMESTAMPDIFF(DAY,a.regdate,NOW())%30.4375),' วัน')AS admit_day  
+#,CONCAT(timestampdiff(month,a.regdate,NOW())-(timestampdiff(year,a.regdate,NOW())*12),' เดือน ',
+#FLOOR(TIMESTAMPDIFF(DAY,a.regdate,NOW())%30.4375),' วัน')AS admit_day  
+,CONCAT(FLOOR(TIMESTAMPDIFF(DAY,a.regdate,NOW())),' วัน')AS admit_day   
 ,CONCAT(p.pname,p.fname,' ',p.lname)fullname,w.name
 ,CASE WHEN !ISNULL(ms.mental_id) THEN 'ประเมินแล้ว' ELSE 'ยังไม่ประเมิน' END mental
 ,fr.smi4_chk,fr.smi4_1,fr.smi4_2,fr.smi4_3,fr.smi4_4,fr.typep_1,fr.typep_2,fr.typep_3,fr.typep_4,fr.typep_5
