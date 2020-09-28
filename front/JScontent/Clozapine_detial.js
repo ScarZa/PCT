@@ -62,11 +62,11 @@ function ClzDetial(content, id = null) {
                 $("#be-symptom").append(" <b style='color:green'>มีอาการปกติ</b>") 
             }
             $("#LAB").hide();
-            if (data.last_CBC_val == 0) {
+            if (data.last_CBC_val == 0 && data.last_CBC == 'Y') {
                 $("#be-last-lab").append("ไม่เคยเจาะ CBC");
             } else if (data.last_CBC == 'Y' && data.last_CBC_val > 0) {
                 $("#be-last-lab").append("เจาะ CBC เกิน 6 เดือน");
-            } else if (data.last_CBC == 'N' && data.last_CBC_val > 0) {
+            } else if (data.last_CBC == 'N' && data.last_CBC_val >= 0) {
                 $("#be-last-lab").append("เจาะ CBC ภายใน 6 เดือน");
                 $("#LAB").show();
                 $("#cbc").empty().append("<b id='LWBC'>WBC < 3,000/mm³ ค่า : " + data.WBC_val + "</b><br><b =id='LANC'>ANC < 1,500/mm³ ค่า : " + data.ANC_val + "</b><br><b =id='LP'>Platelet (กรณี <80,000/mm³) ค่า : " + data.platelet_val + "</b>");

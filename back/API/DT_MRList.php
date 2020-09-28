@@ -28,6 +28,7 @@ inner join clinic_member_status cs on cs.clinic_member_status_id=mr.m_status
 inner join jvl_transferBox tb on tb.hn = mr.hn
 #LEFT OUTER join an_stat a on a.vn = tb.vn
 #LEFT OUTER join ward w on w.ward = a.ward
+group by mr.matrix_id
 ORDER BY mr.matrix_id desc"; 
 $conn_DB->imp_sql($sql);
     $num_risk = $conn_DB->select();

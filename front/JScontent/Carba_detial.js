@@ -64,11 +64,11 @@ $("h5").empty().prepend("<img src='../images/icon_set2/compose.ico' width='30'> 
               $("#be-symptom").append(" <b style='color:green'>มีอาการปกติ</b>") 
           }
           $("#LAB").hide();
-          if (data.last_WBC_val == 0) {
+          if (data.last_WBC_val == 0 && data.last_WBC == 'Y') {
               $("#be-last-lab").append("ไม่เคยเจาะ CBC");
           } else if (data.last_WBC == 'Y' && data.last_WBC_val > 0) {
               $("#be-last-lab").append("เจาะ CBC เกิน 6 เดือน");
-          } else if (data.last_WBC == 'N' && data.last_WBC_val > 0) {
+          } else if (data.last_WBC == 'N' && data.last_WBC_val >= 0) {
               $("#be-last-lab").append("เจาะ CBC ภายใน 6 เดือน");
               $("#LAB").show();
               $("#cbc").empty().append("<b id='LWBC'>CBC baseline ก่อนเริ่มยา (5000-10000) ค่า : " + data.WBC_val + "</b>");

@@ -79,11 +79,11 @@ function ClzDetial(content, id = null) {
 
                 if(data.lithium_val > 1.5){$("#lithium").append(" <b style='color: red;'>  สูงกว่าค่าปกติ</b>"); }
             }
-            if (data.last_BUN_val <= 0) {
+            if (data.last_BUN_val == 0 && data.last_BUN == 'Y') {
                 $("#bun-last-lab").append("ไม่เคยเจาะ BUN");
             } else if (data.last_BUN == 'Y' && data.last_BUN_val > 0) {
                 $("#bun-last-lab").append("เจาะ BUN เกิน 6 เดือน");
-            } else if (data.last_BUN == 'N' && data.last_BUN_val > 0) {
+            } else if (data.last_BUN == 'N' && data.last_BUN_val >= 0) {
                 $("#bun-last-lab").append("เจาะ BUN ภายใน 6 เดือน");
                 $("#LAB").show();
                 $("#bun").empty().append("<b id='bun_val'>BUN (Normal Range 7-20) ค่า : " + data.BUN_val + "</b>");
@@ -91,11 +91,11 @@ function ClzDetial(content, id = null) {
                 if(data.BUN_val < 7 || data.BUN_val > 20){$("#bun").append(" <b style='color: red;'>  ค่าผิดปกติ</b>"); }
             }
 
-            if (data.last_Cr_val <= 0) {
+            if (data.last_Cr_val == 0 && data.last_Cr == 'Y') {
                 $("#cr-last-lab").append("ไม่เคยเจาะ Creatinine");
             } else if (data.last_Cr == 'Y' && data.last_Cr_val > 0) {
                 $("#cr-last-lab").append("เจาะ Creatinine เกิน 12 เดือน");
-            } else if (data.last_Cr == 'N' && data.last_Cr_val > 0) {
+            } else if (data.last_Cr == 'N' && data.last_Cr_val >= 0) {
                 $("#cr-last-lab").append("เจาะ Creatinine ภายใน 12 เดือน");
                 $("#LAB").show();
                 $("#cr").empty().append("<b id='cr_val'>Creatinie (Normal Range Male 0.6-1.2 , Female 0.5-1.1) ค่า : " + data.Cr_val + "</b>"
@@ -109,11 +109,11 @@ function ClzDetial(content, id = null) {
                 if(data.eGFR_val < 120){$("#eGFR_val").append(" <b style='color: red;'>  ค่าต่ำกว่ามาตรฐาน</b>");}
             }
 
-            if (data.last_TF_val <= 0) {
+            if (data.last_TF_val == 0 && data.last_TF == 'Y') {
                 $("#thyroid-last-lab").append("ไม่เคยเจาะ Thyroid Function");
             } else if (data.last_TF == 'Y' && data.last_TF_val > 0) {
                 $("#thyroid-last-lab").append("เจาะ Thyroid Function เกิน 12 เดือน");
-            } else if (data.last_TF == 'N' && data.last_TF_val > 0) {
+            } else if (data.last_TF == 'N' && data.last_TF_val >= 0) {
                 $("#thyroid-last-lab").append("เจาะ Thyroid Function ภายใน 12 เดือน");
                 $("#LAB").show();
                 $("#thyroid").empty().append("<b id='TSH_val'>TSH (Normal range 0.27-4.2) ค่า : " + data.TSH_val + "</b>"

@@ -59,11 +59,11 @@ $("h5").empty().prepend("<img src='../images/icon_set2/compose.ico' width='30'> 
               $("#be-symptom").append(" <b style='color:green'>มีอาการปกติ</b>") 
           }
           $("#LAB").hide();
-          if (data.last_lft_val == 0) {
+          if (data.last_lft_val == 0 && data.last_lft == 'Y') {
               $("#be-last-lab").append("ไม่เคยเจาะ Liver Function Test");
           } else if (data.last_lft == 'Y' && data.last_lft_val > 0) {
               $("#be-last-lab").append("เจาะ Liver Function Test เกิน 12 เดือน");
-          } else if (data.last_lft == 'N' && data.last_lft_val > 0) {
+          } else if (data.last_lft == 'N' && data.last_lft_val >= 0) {
               $("#be-last-lab").append("เจาะ Liver Function Test ภายใน 12 เดือน");
               $("#LAB").show();
             $("#cbc").empty().append("<b id='albumin'>albumin (3.5-5.2) ค่า : " + data.albumin_val + "</b><br>"
