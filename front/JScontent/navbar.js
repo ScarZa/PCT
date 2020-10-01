@@ -237,6 +237,7 @@ $("#navbar-container").empty().append($('<button type="button" class="navbar-tog
                                                                                                         );
                                                                                 $("#Ssubmenu8-1").empty().append($('<li class=""><a href="#" id="snap4"><i class="menu-icon fa fa-leaf green"></i> SNAP-IV</a> <b class="arrow"></b></li>')
                                                                                                                 ,$('<li class=""><a href="#" id="CDI"><i class="menu-icon fa fa-leaf green"></i> CDI</a> <b class="arrow"></b></li>')
+                                                                                                                ,$('<li class=""><a href="#" id="DSI"><i class="menu-icon fa fa-leaf green"></i> DSI 300</a> <b class="arrow"></b></li>')
                                                                                                                 );
                                                                                 $("#Ssubmenu8-2").empty().append($('<li class=""><a href="#" id="MMSE"><i class="menu-icon fa fa-leaf green"></i> MMSE-Thai 2002</a> <b class="arrow"></b></li>')
                                                                                                                 ,$('<li class=""><a href="#" id="ADL"><i class="menu-icon fa fa-leaf green"></i> ADL</a> <b class="arrow"></b></li>')
@@ -245,7 +246,8 @@ $("#navbar-container").empty().append($('<button type="button" class="navbar-tog
                                                                                                                         
                                                                                 $("a#Depression").attr("onclick","TBDepression('#page-content')");
                                                                                 $("a#snap4").attr("onclick","TBSnap4('#page-content')");
-                                                                                $("a#CDI").attr("onclick","TBCDI('#page-content')"); 
+                                                                                $("a#CDI").attr("onclick","TBCDI('#page-content')");
+                                                                                $("a#DSI").attr("onclick","TBDSI('#page-content')"); 
                                                                                 $("a#MMSE").attr("onclick","TBMMSE('#page-content')"); 
                                                                                 $("a#ADL").attr("onclick","TBADL('#page-content')");
                                                                                 $("a#NPIQ").attr("onclick", "TBNPIQ('#page-content')");

@@ -30,7 +30,15 @@ var AJAXCharts = function (container, type, title, unit, categories, data, subti
             yAxis: {
                 title: {
                     text: ''
+                }
+                //,type: 'datetime' //set type
+                , labels: {
+                    // formatter: function() {
+                    //     return Math.abs(this.data);
+                    //format: '{value:%Y-%m-%d}'
+                   // }
                 },
+                //tickInterval: 1, set ช่วงห่าง
                 plotLines: [{
                         value: 0,
                         width: 1,
@@ -52,14 +60,14 @@ var AJAXCharts = function (container, type, title, unit, categories, data, subti
                 enabled: true,
                 formatter: function () {
                     return '<b>' + this.series.name + '</b><br/>' +
-                            this.x + ': ' + this.y +' '+unit;
+                            this.x + ' : ' + this.y +' '+unit;
                 }
             };
     }else if(this.type == 'line'){
         options.tooltip = {
             headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
             pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-                '<td style="padding:0"><b>{point.y:.1f} '+unit+'</b></td></tr>',
+                '<td style="padding:0"><b>{point.y:.2f} '+unit+'</b></td></tr>',
             footerFormat: '</table>',
             shared: true,
             useHTML: true
