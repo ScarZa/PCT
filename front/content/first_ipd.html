@@ -249,9 +249,9 @@ text-decoration: none;
             <script type="text/javascript">
                 $(function () {
                 var an = get('id');
-                //$.cookie("hn", hn);
+                var user = get('recorder');
                 console.log(an)
-                InterviewIPD("#page-content",{data:an},'../../');
+                InterviewIPD("#page-content",{data:an},'../../',user);
                                 });
             </script>
             <script type="text/javascript">

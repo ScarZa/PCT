@@ -298,12 +298,12 @@ $("#navbar-container").empty().append($('<button type="button" class="navbar-tog
                                                     $("#menu9").show();
                                                 }else if(data.status_user=='HOS' && data.depcode=='018'){
                                                     $("#menu5").show();
-                                                }else if(data.status_user=='HOS' && data.depcode=='009'){
-                                                    $("#menu2").show();
+                                                }else if(data.status_user=='HOS' && (data.depcode=='009' || data.depcode=='005')){
+                                                    $("#menu2").show();$("#menu4").show();
                                                 }else if(data.status_user=='HOS' && data.depcode=='008'){
                                                     $("#menu3").show();
-                                                }else if(data.status_user=='HOS' && data.depcode=='005'){
-                                                    $("#menu4").show();
+                                                // }else if(data.status_user=='HOS' && (data.depcode=='005' || data.depcode=='009')){
+                                                //     $("#menu4").show();
                                                 }else if(data.status_user=='HOS' && (data.depcode=='022' || data.depcode=='023' || data.depcode=='031' || data.depcode=='033' || data.depcode=='034')){
                                                     $("#menu1").show();
                                                 }else if(data.status_user=='HOS' && data.depcode=='006'){

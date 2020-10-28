@@ -70,6 +70,7 @@ if(!empty($data2)){
     ,CASE WHEN con.swelling_chk= 'N' THEN 'ไม่มี' ELSE 'มี' END swelling_chk
     ,con.swelling,con.movement
     ,CASE WHEN con.disabled_chk= 'N' THEN 'ไม่มี' ELSE 'มี' END disabled_chk,con.disabled
+    ,ms.mental_id
 		,CASE WHEN ms.think_chk= 'N' THEN 'ไม่สมเหตุสมผล' ELSE 'สมเหตุสมผล' END think_chk
 		,CASE WHEN ms.continuous= 'N' THEN 'ไม่ต่อเนื่อง' WHEN ms.continuous= 'Y' THEN 'ต่อเนื่อง' ELSE '' END continuous,ms.continuous_detial
 		,CASE WHEN ms.think_1= '0' THEN '' ELSE 'หลงผิด' END think_1,ms.think_1d
@@ -116,7 +117,7 @@ if(!empty($data2)){
     left outer join jvlmatrix_alcohol_volume alcV on alcV.volume_id = fr.alcohol_vol 
     left outer join jvlmatrix_drug dr on dr.drug_id = fr.dope_type 
     left outer join jvl_admittype amt on amt.admittype_id = fr.admittype
-    inner join doctor doc on doc.code = fr.recorder
+    left outer join doctor doc on doc.code = fr.recorder
     inner join jvl_condition con on con.ipd_fr_id = fr.ipd_fr_id
     inner join jvl_shape s on s.shape_id = con.shape
     inner join jvl_skin sk on sk.skin_id = con.skin_color

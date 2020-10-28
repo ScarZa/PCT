@@ -209,7 +209,7 @@ function FRDetial(content, id = null) {
             if (data.income_code = '1') { $("#income").append("ชนิดการ Admit : <b>" + data.admittype_name + "</b>"); }
             $("#recorder").append("ผู้บันทึก " + data.recorder + "<br>วันที่ " + data.recdate);
             
-            if (data.recorder2 == '') { $("#mental-panel").hide() } else {
+            if (data.mental_id == '') { $("#mental-panel").hide() } else {
                 $("#mental").append($("<div class='row col-sm-12'><span class='col-sm-3'>ความคิด  : <b>" + data.think_chk + "</b></span> <span class='col-sm-9' id='think-detial'></span></div>")
                     , $("<div class='row col-sm-12'><span class='col-sm-2'>อารมณ์ : </span> <span class='col-sm-10' id='mood-detial'></span></div>")
                     , $("<div class='row col-sm-12'><span class='col-sm-2'>พฤติกรรม : </span> <span class='col-sm-10' id='action-detial'></span></div>")

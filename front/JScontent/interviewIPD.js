@@ -1,4 +1,4 @@
-function InterviewIPD(content, id = null,url='../') {
+function InterviewIPD(content, id = null, url = '../', recorder = null) {
 
     var title = " งานผู้ป่วยใน (IPD)";
     var subtitle = "แบบสัมภาษณ์ ";
@@ -284,15 +284,23 @@ function InterviewIPD(content, id = null,url='../') {
     selectMash("#shape", "shape_Data.php", " เลือกรูปร่าง ");
     selectMash("#skin_color", "skin_Data.php", " เลือกสีผิว ");
     console.log(idvn)
-    $.getJSON(url+'back/API/patient_detail.php', { data: idvn.data }, function (data) { console.log(data);console.log('1234')
+    $.getJSON(url+'back/API/patient_detail.php', { data: idvn.data }, function (data) { 
         $("b#patient_name").append(data[0].fullname);
         $("b#age").append(data[0].age);
         $("#hn").append(data[0].hn);
         $("#an").append(data[0].an);
         $("#interviewfrm ,#gaugefrm").append($("<input type='hidden' name='hn' value='" + data[0].hn + "'>")
-                                            ,$("<input type='hidden' name='vn' value='" + data[0].vn + "'>")
-                                            ,$("<input type='hidden' name='an' value='" + data[0].an + "'>")
-                                            ,$("<input type='hidden' name='user' value='" + $.cookie("user") + "'>"))
+                                            , $("<input type='hidden' name='vn' value='" + data[0].vn + "'>")
+                                            , $("<input type='hidden' name='an' value='" + data[0].an + "'>")
+        );
+        
+        if (recorder == null) {
+            $("#interviewfrm ,#gaugefrm").append($("<input type='hidden' name='user' value='" + $.cookie("user") + "'>"));
+        } else {
+            $.getJSON('../../back/API/userToDCcodeAPI.php', { data: recorder }, function (data) {console.log(data);
+                $("#interviewfrm ,#gaugefrm").append($("<input type='hidden' name='user' value='" + data.user + "'>"));
+            });
+        }
         $("#admit_no").append(data[0].admit);
         $("#admitdate").append(data[0].admitdate);
         $("#regtime").append(data[0].regtime);
