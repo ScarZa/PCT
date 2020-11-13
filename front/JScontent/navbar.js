@@ -153,6 +153,7 @@ $("#navbar-container").empty().append($('<button type="button" class="navbar-tog
                                                                                 ,$('<ul class="submenu" id="submenu4"></ul>'));   
                                                                 $("#submenu4").empty().append($('<li class=""><a href="#" id="community_new"><i class="menu-icon fa fa-caret-right"></i> รอลงทะเบียน</a><b class="arrow"></b></li>')
                                                                                                 ,$('<li class=""><a href="#" id="community_list"><i class="menu-icon fa fa-caret-right"></i> ผู้ป่วยในคลินิก</a><b class="arrow"></b></li>')
+                                                                                                ,$('<li class=""><a href="#" id="smivDC_list"><i class="menu-icon fa fa-caret-right"></i> ผู้ป่วย SMI-V D/C</a><b class="arrow"></b></li>')
                                                                                                 ,$('<li class=""><a href="#" class="dropdown-toggle">'
                                                                                                         +'<i class="menu-icon fa fa-caret-right"></i> Three Level Menu <b class="arrow fa fa-angle-down"></b></a>'
                                                                                                         +'<b class="arrow"></b><ul id="Ssubmenu4" class="submenu"></ul></li>'));
@@ -164,6 +165,7 @@ $("#navbar-container").empty().append($('<button type="button" class="navbar-tog
                                                                                                                         
                                                                 $("a#community_new").attr("onclick","TBCommuRegis('#page-content')"); 
                                                                 $("a#community_list").attr("onclick","TBCommuList('#page-content')");
+                                                                $("a#smivDC_list").attr("onclick","TBSMIVDCList('#page-content')");
 
                                                                 $("#menu5").empty().append($('<a href="#" class="dropdown-toggle"><i class="menu-icon fa fa-medkit"></i> <span class="menu-text">เภสัช </span> <b class="arrow fa fa-angle-down"></b></a>')
                                                                                 ,$('<b class="arrow"></b>')
