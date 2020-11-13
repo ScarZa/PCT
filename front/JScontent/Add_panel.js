@@ -24,6 +24,7 @@ function AddPanel(content,id = null) {
                 $("#menu-panel" + i).append($("<ul class='dropdown-navbar'>"
                     + "<li class= 'dropdown-header' > <img src='images/icon_set2/contacts.ico' width='30px'> กระบวนการ</li > <li class='dropdown-content'><ul class='dropdown-menu dropdown-navbar' id='menu01-body" + i + "'></ul></li>"
                     + "<li class= 'dropdown-header' > <img src='images/icon_set2/compose.ico' width='30px'> แบบประเมิน </li > <li class='dropdown-content'><ul class='dropdown-menu dropdown-navbar' id='menu02-body" + i + "'></ul></li>"
+                    + "<li class= 'dropdown-header' > <img src='images/icon_set2/compose.ico' width='30px'> แบบ High Alert Drug </li > <li class='dropdown-content'><ul class='dropdown-menu dropdown-navbar' id='menu03-body" + i + "'></ul></li>"
                                         +"</ul> "))
                     $("#menu01-body" + i).append($("<li><a data-toggle='tab' href='#' id='menu1_" + i + "'> <img src='images/icon_set2/browser.ico' width='20'> ข้อมูลแรกรับ</a></li>")
                                                 , $("<li><a data-toggle='tab' href='#' id='menu3_" + i + "'> <img src='images/icon_set1/file_edit.ico' width='18'> สรุปข้อวินิจฉัยทางการพยาบาล</a></li>")
@@ -32,6 +33,11 @@ function AddPanel(content,id = null) {
                     $("#menu02-body" + i).append($("<li><a data-toggle='tab' href='#' id='menu2_" + i + "'> <img src='images/icon_set1/file_edit.ico' width='18'> ประเมินสภาพจิต</a></li>")
                                             ,$("<li><a data-toggle='tab' href='#' id='menu4_" + i + "'> <img src='images/icon_set1/file_edit.ico' width='18'> ประเมิน SMI-V</a></li>")
                                             ,$("<li><a data-toggle='tab' href='#' id='menu5_" + i + "'> <img src='images/icon_set1/file_edit.ico' width='18'> ประเมินซึมเศร้า</a></li>")
+                )
+                $("#menu03-body" + i).append($("<li><a data-toggle='tab' href='#' id='menu7_" + i + "'> <img src='images/icon_set1/file_edit.ico' width='18'> Cozapine</a></li>")
+                                            ,$("<li><a data-toggle='tab' href='#' id='menu8_" + i + "'> <img src='images/icon_set1/file_edit.ico' width='18'> Lithium Carbonate</a></li>")
+                                            ,$("<li><a data-toggle='tab' href='#' id='menu9_" + i + "'> <img src='images/icon_set1/file_edit.ico' width='18'> Carbamazepine</a></li>")
+                                            ,$("<li><a data-toggle='tab' href='#' id='menu10_" + i + "'> <img src='images/icon_set1/file_edit.ico' width='18'> Sodium Valproate</a></li>")
                 )
                 $("a#menu1_" + i).click(function () {
                     window.open('content/FR_detial.html?id=' + item.ipd_fr_id, '', 'width=900,height=1000'); return false;
@@ -52,6 +58,22 @@ function AddPanel(content,id = null) {
                 })
                 $("a#menu6_" + i).click(function () {
                     $("a#menu6_" + i).attr("onclick", photoPIModal()).attr("data-toggle", "modal").attr("data-target", "#photoPIModal").attr("data-whatever", item.ipd_fr_id)
+                })
+                $("a#menu7_" + i).click(function () {
+                    popup('../../CF-Form/font/content/Ass_Cozapine.html?vn=' + item.vn + '?user=' + $.cookie("username"), popup, 1440, 900);
+                    //window.open('content/FR_detial.html?id=' + item.ipd_fr_id, '', 'width=900,height=1000'); return false;
+                })
+                $("a#menu8_" + i).click(function () {
+                    popup('../../CF-Form/font/content/Ass_Lithium.html?vn=' + item.vn + '?user=' + $.cookie("username"), popup, 1440, 900);
+                    //window.open('content/FR_detial.html?id=' + item.ipd_fr_id, '', 'width=900,height=1000'); return false;
+                })
+                $("a#menu9_" + i).click(function () {
+                    popup('../../CF-Form/font/content/Ass_Carba.html?vn=' + item.vn + '?user=' + $.cookie("username"), popup, 1440, 900);
+                    //window.open('content/FR_detial.html?id=' + item.ipd_fr_id, '', 'width=900,height=1000'); return false;
+                })
+                $("a#menu10_" + i).click(function () {
+                    popup('../../CF-Form/font/content/Ass_Sodium.html?vn=' + item.vn + '?user=' + $.cookie("username"), popup, 1440, 900);
+                    //window.open('content/FR_detial.html?id=' + item.ipd_fr_id, '', 'width=900,height=1000'); return false;
                 })
             } else {
                 $("#menu-panel" + i).append($("<ul class='dropdown-navbar'>"

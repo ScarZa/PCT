@@ -178,8 +178,8 @@ var AssFirstRecIPD = function(content){
                 + "<div class='col-lg-11 col-md-11 col-xs-11'><input class='input-sm col-lg-12 col-md-12 col-xs-12' type='text' id='earmark' name='earmark' placeholder='ตำหนิ'></div>"
                 + "</div>"
                 + "</div>")
-            , $("<div class='row alert alert-warning'><div class='col-lg-2'><input type='text' name='bw' class='form-control' value='' placeholder='น้ำหนัก (ก.ก.)' required></div> <div class='col-lg-2'> <input type='text' name='height' class='form-control' value='' placeholder='ส่วนสูง (ซ.ม.)' required></div>"
-                + "<div class='col-lg-1'><input type='button' class='btn btn-sm btn-success' id='BMIcal' value='คำนวณ BMI'></div> <div class='col-lg-2'> <input type='text' name='bmi' class='form-control' placeholder='BMI' required></div><div class='col-lg-3'> <b id='BMIresult'></b></div><br>"
+            , $("<div class='row alert alert-warning'><div class='col-lg-2'><input type='text' name='bw' class='form-control' value='' placeholder='น้ำหนัก (ก.ก.)'></div> <div class='col-lg-2'> <input type='text' name='height' class='form-control' value='' placeholder='ส่วนสูง (ซ.ม.)'></div>"
+                + "<div class='col-lg-1'><input type='button' class='btn btn-sm btn-success' id='BMIcal' value='คำนวณ BMI'></div> <div class='col-lg-2'> <input type='text' name='bmi' class='form-control' placeholder='BMI'></div><div class='col-lg-3'> <b id='BMIresult'></b></div><br>"
                 + "<br><div class='row col-lg-12'><div class='col-lg-2'>Temp. : <span id='Temp'></span></div><div class='col-lg-2'>PR : <span id='PR'></span></div><div class='col-lg-2'>RR : <span id='RR'></span></div><div class='col-lg-2'>BP : <span id='BP'></span></div></div></div> ")
         
             , $("<div class='row'><label class='col-sm-5 col-form-label'><b>อาการสำคัญ (CC) </b></label></div>")
