@@ -19,14 +19,14 @@ $("#navbar-container").empty().append($('<button type="button" class="navbar-tog
                         $("#Messages").hide();
                         $("#profile").hide();
                                       
-                $.getJSON('../back/API/up_header.php',function (data) { console.log(data);
+                $.getJSON('../back/API/up_header.php',function (data) { 
                         if(data.conn=='Connect_DB_false'){
                             $(".content-wrapper").append("<section class='content' id='sec_content'></section>");   
                                                     $("#sec_content").append("<div id='index_content'></div>");
                                                     $("#index_content").html("<center><h4><a href='#'>Please connect Database!!!!</a></h4></center>");
                                                         $("a").attr("onclick","return popup('content/set_conn_db.php?method="+data.check+"&host=main', popup, 400, 600);");
                         }else{   
-                            if (data.status_user != '') {
+                            if (data.status_user != '' && data.user !='N') {
                                 $.cookie("username", data.username);
                                 $.cookie("user", data.user);
                                 $.cookie("depcode", data.depcode);
@@ -301,7 +301,7 @@ $("#navbar-container").empty().append($('<button type="button" class="navbar-tog
                                                 }else if(data.status_user=='HOS' && data.depcode=='018'){
                                                     $("#menu5").show();
                                                 }else if(data.status_user=='HOS' && (data.depcode=='009' || data.depcode=='005')){
-                                                    $("#menu2").show();$("#menu4").show();
+                                                    $("#menu1").show();$("#menu2").show();$("#menu4").show();
                                                 }else if(data.status_user=='HOS' && data.depcode=='008'){
                                                     $("#menu3").show();
                                                 // }else if(data.status_user=='HOS' && (data.depcode=='005' || data.depcode=='009')){

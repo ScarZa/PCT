@@ -516,10 +516,10 @@ function InterviewIPD(content, id = null, url = '../', recorder = null) {
     $("#frminv").on('submit', (function (e) {
         e.preventDefault();
         var dataForm = new FormData(this);
-        // console.log(dataForm)
-        // for (var value of dataForm.values()) {
-        //     console.log(value);
-        // }
+        console.log(dataForm)
+        for (var value of dataForm.values()) {
+            console.log(value);
+        }
         var settings = {
             type: "POST",
             url: url+"back/API/prcInterviewAPI.php",

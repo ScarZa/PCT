@@ -99,7 +99,7 @@ $("#createModal").empty().append("<div class='modal' id='GaugleModal' role='dial
                 , $("<input type='hidden' name='user' value='" + $.cookie("user") + "'>"))
         });  
         $.getJSON('../back/API/mental_Data.php', { data: recipient }, function (data) { console.log(data)
-            if(data.ipd_fr_id !=''){ $("input[type=submit][name=submit1]").attr("disabled", "disabled");}
+            if(data.ipd_fr_id !='N'){ $("input[type=submit][name=submit1]").attr("disabled", "disabled");}
                 
         }); 
         $("#frmgauge").on('submit', (function (e) {

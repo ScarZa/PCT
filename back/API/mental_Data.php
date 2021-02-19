@@ -22,7 +22,7 @@ $execute=array(':ipd_fr_id'=>$data);
 $rs=$connDB->select_a($execute);
 //print_r($connDB);
     //for($i=0;$i<count($user);$i++){
-        $series['ipd_fr_id'] = $rs['ipd_fr_id'];
+        $series['ipd_fr_id'] = isset($rs['ipd_fr_id'])?$rs['ipd_fr_id']:'N' ;
     //array_push($rslt, $series);  
 
     //}

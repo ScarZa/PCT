@@ -28,7 +28,9 @@ $_SESSION['clinic_user'] = isset($result['clinic'])?$result['clinic']:'';
 
 if (!$result) {
     
-$sql2 ="select doctorcode,name from opduser where   loginname= :user_account and passweb= :user_pwd";
+$sql2 ="select ou.doctorcode,ou.name from opduser ou
+inner join jvl_mappingDU mdu on mdu.doctorcode = ou.doctorcode
+where   ou.loginname= :user_account and ou.passweb= :user_pwd";
 $execute2=array(':user_account' => $user_account, ':user_pwd' => $user_pwd);
 $dbh->imp_sql($sql2);
 $result=$dbh->select_a($execute2);   
@@ -53,7 +55,7 @@ if($result){
     $execute=array(':username' => $user_account,':password'=>$user_pwd);
     $receive_repair=$dbh->update($table, $data, $where, $field, $execute);
     $_SESSION['username'] = $user_account;
-    $_SESSION['user'] = $result['doctorcode'];
+    $_SESSION['user'] = isset($result['doctorcode'])?$result['doctorcode']:'N';
     $_SESSION['name_user'] = $result['name'];
     $_SESSION['depcode'] = $result3['depcode'];
     $_SESSION['ward'] = $result3['ward'];

@@ -169,8 +169,11 @@ if ($method == 'add_FR') {
         $hn = $conv->utf8_to_tis620($_POST['hn']);
         $vn = $conv->utf8_to_tis620($_POST['vn']);
         $an = $conv->utf8_to_tis620($_POST['an']);
-        $user = $conv->utf8_to_tis620($_POST['user']);
+        $user = isset($_POST['user'])?$conv->utf8_to_tis620($_POST['user']):'N';
         $redate = date('Y-m-d H:i:s');
+        if($user =='N' or $user =='null' or $user =='undefined'){
+            $res = array("messege"=>'ไม่สามารถบันทึกได้ กรุณาติดต่องานคอมพิวเตอร์ (68120) ครับ!!!!',"check"=>'N');
+        } else{
         $sql = "SELECT ipd_fr_id FROM jvl_ipd_first_rec WHERE an='".$an."'";
         $connDB->imp_sql($sql);
         $chk_fr=$connDB->select_a();
@@ -199,9 +202,12 @@ if ($method == 'add_FR') {
     }else{
         $res = array("messege"=>'AN : '.$an.' บันทึกข้อมูลแล้วครับ!!!!',"check"=>'N');
     }
-            
+
+    
+}
         print json_encode($res);
         $connDB->close_PDO();
+
 }elseif ($method == 'add_GG') {
     $think_chk = isset($_POST['think_chk'])?$conv->utf8_to_tis620($_POST['think_chk']):'';
     $continuous = isset($_POST['continuous'])?$conv->utf8_to_tis620($_POST['continuous']):'';
