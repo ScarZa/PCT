@@ -1,5 +1,5 @@
-function GrSnap4(content, id = null) {
-    var title = " ผลการประเมิน SNAP-IV";
+function GrTGDS(content, id = null) {
+    var title = " ผลการประเมิน TGDS-15";
     var subtitle = "";
     var PL = new PageLayout(content);
         PL.GetPL();
@@ -12,19 +12,14 @@ function GrSnap4(content, id = null) {
             +"</label></span></div> "
             +"<div class='col-sm-4 block'> <img src='../../back/API/show_image.php?hn="+data[0].hn+"' width='100' /></div></div><br>"))
         });
-        var title1 = "ผลการประเมิน SNAP-IV (โดยผู้ปกครอง)";
-        var title2 = "ผลการประเมิน SNAP-IV (โดยครู/อาจารย์)";
+        var title1 = "ผลการประเมิน TGDS-15";
         var subtitle = "รายครั้ง";
         var unit = "คะแนน";
-        $.getJSON('../../back/API/graph_SNAP4P.php',{data:$.cookie('hn')},function (data) {
+        $.getJSON('../../back/API/graph_TGDS.php',{data:$.cookie('hn')},function (data) { console.log(data)
             var date = data.date
-            var CChartsP =  new AJAXCharts('contentGr','line',title1,unit,date,'../../back/API/DC_columnSNAP4P.php?'+$.cookie('hn'),subtitle,['#3ec613', '#cc6945', '#6c94dd', 'purple', '#d92727', 'orange', 'yellow']);
+            var CChartsP =  new AJAXCharts('contentGr','line',title1,unit,date,'../../back/API/DC_columnTGDS.php?'+$.cookie('hn'),subtitle,['#3ec613', '#cc6945', '#6c94dd', 'purple', '#d92727', 'orange', 'yellow']);
             $(CChartsP.GetCL());
-        });     
-        $.getJSON('../../back/API/graph_SNAP4T.php',{data:$.cookie('hn')},function (data) { 
-            var date = data.date     
-            var CChartsT =  new AJAXCharts('contentTB','line',title2,unit,date,'../../back/API/DC_columnSNAP4T.php?'+$.cookie('hn'),subtitle,['purple', '#d92727', 'orange', 'yellow','#3ec613', '#cc6945', '#6c94dd']);
-            $(CChartsT.GetCL());
-            });     
+        });
+  $("#contentTB").empty().append("<div class='row'><div class='col-lg-12 col-md-12'>&nbsp;&nbsp;&nbsp;&nbsp; <b>การแปรผล</b><br>&nbsp;&nbsp;&nbsp;&nbsp; 6 คะแนนขึ้นไป บ่งบอกว่ามีภาวะซึมเศร้า ควรติดตามหรือส่งพบแพทย์ประเมินอาการทางคลินิก<br>&nbsp;&nbsp;&nbsp;&nbsp; 11 คะแนนขึ้นไป บ่งบอกว่ามีภาวะซึมเศร้าแน่นอน ควรพบจิตแพทย์</div></div>")
                    
 }

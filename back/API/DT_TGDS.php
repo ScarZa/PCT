@@ -16,24 +16,21 @@ $rslt = array();
 $series = array();
 //$data = isset($_POST['data1'])?$_POST['data1']:(isset($_GET['data1'])?$_GET['data1']:'');
 
-$sql="select p.hn,concat(p.pname,p.fname,' ',p.lname) as fullname,v.age_y age,v.pdx,pt.name ptname 
-,(SELECT count(ds.hn) FROM depression_screen ds inner join jvl_headData_2q8q9q hd on hd.depression_screen_id = ds.depression_screen_id  WHERE ds.hn = p.hn GROUP BY ds.hn)count
+$sql="select p.hn,concat(p.pname,p.fname,' ',p.lname) as fullname,v.age_y age,v.pdx,pt.name ptname
+,(SELECT count(hn) count FROM jvl_tgds_result tgds WHERE tgds.hn = p.hn)count
 from patient p
-inner join depression_screen ds on ds.hn = p.hn
-inner join jvl_headData_2q8q9q hd on hd.depression_screen_id = ds.depression_screen_id
+inner join jvl_tgds_result tgds on tgds.hn = p.hn
 inner JOIN vn_stat v ON v.hn=p.hn
 inner join pttype pt on v.pttype=pt.pttype
-GROUP BY ds.hn ORDER BY hd.hd_id desc"; 
+GROUP BY tgds.hn ORDER BY tgds.tgds15_id desc"; 
 $conn_DB->imp_sql($sql);
 $num_risk = $conn_DB->select();
 
-       
+    // $sql2="SELECT count(hn) count FROM jvl_tgds_result GROUP BY hn ORDER BY tgds15_id desc"; 
+    // $conn_DB->imp_sql($sql2);
+    // $count = $conn_DB->select();    
     $conv=new convers_encode();
     for($i=0;$i<count($num_risk);$i++){
-    //     $sql2="SELECT count(ds.hn) count FROM jvl_headData_2q8q9q hd inner join depression_screen ds on hd.depression_screen_id = ds.depression_screen_id WHERE ds.hn = '".$num_risk[$i]['hn']."' "; 
-    // $conn_DB->imp_sql($sql2);
-    // $count = $conn_DB->select(); 
-
     $series['hn'] = $num_risk[$i]['hn'];
     $series['fullname'] = $conv->tis620_to_utf8($num_risk[$i]['fullname']);
     $series['age'] = $num_risk[$i]['age'];

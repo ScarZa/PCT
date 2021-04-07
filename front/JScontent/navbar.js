@@ -244,6 +244,7 @@ $("#navbar-container").empty().append($('<button type="button" class="navbar-tog
                                                                                 $("#Ssubmenu8-2").empty().append($('<li class=""><a href="#" id="MMSE"><i class="menu-icon fa fa-leaf green"></i> MMSE-Thai 2002</a> <b class="arrow"></b></li>')
                                                                                                                 ,$('<li class=""><a href="#" id="ADL"><i class="menu-icon fa fa-leaf green"></i> ADL</a> <b class="arrow"></b></li>')
                                                                                                                 ,$('<li class=""><a href="#" id="NPIQ"><i class="menu-icon fa fa-leaf green"></i> NPI-Q thai</a> <b class="arrow"></b></li>')
+                                                                                                                ,$('<li class=""><a href="#" id="TGDS"><i class="menu-icon fa fa-leaf green"></i> TGDS-15</a> <b class="arrow"></b></li>')
                                                                                                                 );        
                                                                                                                         
                                                                                 $("a#Depression").attr("onclick","TBDepression('#page-content')");
@@ -253,6 +254,7 @@ $("#navbar-container").empty().append($('<button type="button" class="navbar-tog
                                                                                 $("a#MMSE").attr("onclick","TBMMSE('#page-content')"); 
                                                                                 $("a#ADL").attr("onclick","TBADL('#page-content')");
                                                                                 $("a#NPIQ").attr("onclick", "TBNPIQ('#page-content')");
+                                                                                $("a#TGDS").attr("onclick", "TBTGDS('#page-content')");
                                                                                 
                                                                 $("#menu9").empty().append($('<a href="#" class="dropdown-toggle"><i class="menu-icon fa fa-fire red"></i> <span class="menu-text">งานโภชนาการ </span> <b class="arrow fa fa-angle-down"></b></a>')
                                                                                 ,$('<b class="arrow"></b>')

@@ -16,8 +16,8 @@ function FRDetial(content, id = null) {
                                                     , $("<div class='col-sm-12'><center><span id='recorder'></span></center></div>")
                                                     , $("<div class='col-sm-12'><br><center><button id='print' class='btn btn-primary'>พิมพ์ข้อมูล</button></center></div>")
                                                     )
-        $.getJSON('../../back/API/detail_FRAPI.php',{data : id},function (data) { 
-        $.getJSON('../../back/API/detail_patientAPI.php',{data : data.hn},function (data) {console.log(data)
+        $.getJSON('../../back/API/detail_FRAPI.php',{data : id},function (data) { console.log(data)
+        $.getJSON('../../back/API/detail_patientAPI.php',{data : data.hn},function (data) {
             $("#medical-detial1").append($("<div class='col-sm-8'><span><label id='medical' class='col-form-label'>เลขบัตรประชาชน : " + data[0].cid + "<br>ชื่อ-สกุล : <b>" + data[0].fullname + "</b>"
                 + "<br>ที่อยู่ : " + data[0].informaddr + "<br>วันเกิด : " + data[0].birthday + " อายุ : " + data[0].age + " ปี  สถานะภาพ : " + data[0].mrname + "<br>การวินิจฉัย : " + data[0].pdx + " " + data[0].dx0
                 + " " + data[0].dx1 + " " + data[0].dx2 + " " + data[0].dx3 + " " + data[0].dx4 + " " + data[0].dx5
@@ -62,7 +62,11 @@ function FRDetial(content, id = null) {
                             , $("<div class='col-sm-12' id='wound'>บาดแผล : <b>" + data.wound + "</b></div>")
                             , $("<div class='col-sm-12' id='surgery'>อุบัติเหตุทางสมอง/การผ่าตัด : <b>" + data.surgery + "</b></div>")
                             , $("<div class='col-sm-12' id='complicate'>ภาวะแทรกซ้อน (ER) : <b>" + data.complicate + "</b></div>")
-                            , $("<div class='col-sm-12' id='menses'>ประจำเดือน : <b>" + data.menses + "</b></div>")
+                , $("<div class='col-sm-12' id='menses'>ประจำเดือน : <b>" + data.menses + "</b></div>")
+                , $("<div class='col-sm-12' id='alcohol'><span class='row col-sm-2'>การดื่มสุรา : </span><span class='col-sm-10'>ชนิด : <b>" + data.name + "</b>  ปริมาณ : <b>" + data.volume_type + "</b> ความถี่ในการใช้ : <b>" + data.alcohol_frequency+"</b>"
+                            + "<br>ดื่มต่อเนื่อง : <b>"+data.drink_age+"</b> ดื่มครั้งสุดท้าย : <b>"+data.last_useA+"</b><br>ระยะเวลาที่หยุดดื่ม : <b>"+data.time_stop+"</b> สาเหตุการดื่ม : <b>"+data.drink_cause+"</b></span></div>")
+                , $("<div class='col-sm-12' id='dope'><span class='row col-sm-2'>การใช้ยาเสพติด : </span><span class='col-sm-10'>ชนิด : <b>" + data.drug_name + "</b>  ปริมาณ : <b>" + data.narcotic_vol + "</b> ความถี่ในการใช้ : <b>" + data.narcotic_frequency+"</b>"
+                + "<br>ใช้ต่อเนื่อง : <b>"+data.narcotic_age+"</b> ใช้ครั้งสุดท้าย : <b>"+data.last_useD+"</b><br>ระยะเวลาที่หยุดใช้ : <b>"+data.narcotic_stop+"</b> สาเหตุการใช้ : <b>"+data.narcotic_cause+"</b></span></div>")
 
 
 
@@ -166,6 +170,8 @@ function FRDetial(content, id = null) {
             if (data.surgery == '') { $("#surgery").hide(); } else { $("#surgery").show(); }
             if (data.complicate == '') { $("#complicate").hide(); } else { $("#complicate").show(); }
             if (data.menses == '') { $("#menses").hide(); } else { $("#menses").show(); }
+            if (data.alcohol_chk == 'ไม่ดื่ม') { $("#alcohol").hide(); } else { $("#alcohol").show(); }
+            if (data.dope_chk == 'ไม่เสพ') { $("#dope").hide(); } else { $("#dope").show(); }
 
             if (data.d1 != '' || data.d2 != '' || data.d3 != '' || data.d4 != '' || data.d5 != '' || data.d6 != '' || data.d7 != '') {
                 $("#disease").show().append(" โรคที่พบ : ");
