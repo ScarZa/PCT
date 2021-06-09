@@ -17,6 +17,7 @@ $series = array();
 //$data = isset($_POST['data1'])?$_POST['data1']:(isset($_GET['data1'])?$_GET['data1']:'');
 
 $sql="select p.hn,concat(p.pname,p.fname,' ',p.lname) as fullname,v.age_y age,v.pdx,pt.name ptname
+,(SELECT count(adl.hn) count FROM jvl_adl adl WHERE adl.hn = p.hn)count
 from patient p
 inner join jvl_adl adl on adl.hn = p.hn
 inner JOIN vn_stat v ON v.hn=p.hn
@@ -25,9 +26,9 @@ GROUP BY adl.hn ORDER BY adl.adl_id desc";
 $conn_DB->imp_sql($sql);
 $num_risk = $conn_DB->select();
 
-    $sql2="SELECT count(hn) count FROM jvl_adl GROUP BY hn ORDER BY adl_id desc"; 
-    $conn_DB->imp_sql($sql2);
-    $count = $conn_DB->select();    
+    // $sql2="SELECT count(hn) count FROM jvl_adl GROUP BY hn ORDER BY adl_id desc"; 
+    // $conn_DB->imp_sql($sql2);
+    // $count = $conn_DB->select();    
     $conv=new convers_encode();
     for($i=0;$i<count($num_risk);$i++){
     $series['hn'] = $num_risk[$i]['hn'];
@@ -35,7 +36,7 @@ $num_risk = $conn_DB->select();
     $series['age'] = $num_risk[$i]['age'];
     $series['pdx'] = $num_risk[$i]['pdx'];
     $series['ptname'] = $conv->tis620_to_utf8($num_risk[$i]['ptname']);
-    $series['count'] = $count[$i]['count'];
+    $series['count'] = $num_risk[$i]['count'];
     
     
     array_push($rslt, $series);    
