@@ -103,6 +103,7 @@ $("#navbar-container").empty().append($('<button type="button" class="navbar-tog
                                                                                                                 ,$('<li class=""><a href="#"  id="SSsubmenu1-3"><i class="menu-icon fa fa-send green"></i> SMI-V</a> <b class="arrow"></b></li>')
                                                                                                                     );
                                                                                             $("#Ssubmenu1").empty().append($('<li class=""><a href="#"  id="SSsubmenu1-1"><i class="menu-icon fa fa-send green"></i> เคสส่ง Consult</a> <b class="arrow"></b></li>')
+                                                                                                                            ,$('<li class=""><a href="#"  id="SSsubmenu1-4"><i class="menu-icon fa fa-send green"></i> รายงานเคสส่ง Consult</a> <b class="arrow"></b></li>')
                                                                                                                             ,$('<li class=""><a href="#" class="dropdown-toggle"><i class="menu-icon fa fa-pencil orange"></i> 4th level <b class="arrow fa fa-angle-down"></b></a>'
                                                                                                                                 +'<b class="arrow"></b><ul id="SSsubmenu1" class="submenu"></ul></li>'));  
                                                                                                         $("#SSsubmenu1").empty().append($('<li class=""><a href="#"><i class="menu-icon fa fa-plus purple"></i> Add Product</a> <b class="arrow"></b></li>')
@@ -112,6 +113,7 @@ $("#navbar-container").empty().append($('<button type="button" class="navbar-tog
                                                                                 $("a#SSsubmenu1-2").attr("onclick","TBRegisIPD('#page-content')");
                                                                                 $("a#SSsubmenu1-1").attr("onclick", "TBConsultIPD('#page-content')");
                                                                                 $("a#SSsubmenu1-3").attr("onclick", "TBSmivList('#page-content')");
+                                                                                $("a#SSsubmenu1-4").attr("onclick", "TBreportConsultIPD('#page-content')");
                                                                     $("#menu2").empty().append($('<a href="#" class="dropdown-toggle"><i class="menu-icon fa fa-beer"></i> <span class="menu-text">สุราและสารเสพติด </span> <b class="arrow fa fa-angle-down"></b></a>')
                                                                                                 ,$('<b class="arrow"></b>')
                                                                                                 ,$('<ul class="submenu" id="submenu2"></ul>'));   
