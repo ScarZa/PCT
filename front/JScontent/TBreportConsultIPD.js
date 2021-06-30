@@ -24,12 +24,27 @@ function TBreportConsultIPD(content, id = null) {
                 } console.log(option)
                 $("#year-clinic").empty().append(option);
                 $(".select2").select2();
-    $("#contentTB").html('<center><i class="fa fa-spinner fa-pulse" style="font-size:48px"></i></center><br>');
+    
     var column1 = ["รหัส", "รายการ Consult", "ต.ค", "พ.ย", "ธ.ค", "ม.ค", "ก.พ.","มี.ค.","เม.ย.","พ.ค.","มิ.ย.","ก.ค.","ส.ค.","ก.ย.","รวม","รายละเอียด"];
     $("#contentTB").addClass("table-responsive");
-    var CTb = new createTableAjax();
-    CTb.GetNewTableAjax('contentTB','../back/API/DT_reportIPDcase.php?','../back/API/tempSendDataAPI.php',column1
-    ,null,null,null,null,false,true,'IPDConsult',false,null,false,null,null,null,null,null,'dynamic-table');
+  var CTb = new createTableAjax();
+  $("select#dep_clinic").change(function () {
+    if ($("select#year-clinic").val() != '') {
+      $.cookie("year-clinic",$("select#year-clinic").val());
+      $("#contentTB").html('<center><i class="fa fa-spinner fa-pulse" style="font-size:48px"></i></center><br>');
+      CTb.GetNewTableAjax('contentTB','../back/API/DT_reportIPDcase.php?'+$("select#dep_clinic").val()+'?'+$("select#year-clinic").val(),'../back/API/tempSendDataAPI.php',column1
+      ,null,null,null,null,false,true,'TBreportDC',false,null,false,null,null,null,null,null,'dynamic-table');
+}
+  });
+    
+  $("select#year-clinic").change(function () {
+    if ($("select#dep_clinic").val() != '') {
+      $.cookie("year-clinic",$("select#year-clinic").val());
+      $("#contentTB").html('<center><i class="fa fa-spinner fa-pulse" style="font-size:48px"></i></center><br>');
+      CTb.GetNewTableAjax('contentTB','../back/API/DT_reportIPDcase.php?'+$("select#dep_clinic").val()+'?'+$("select#year-clinic").val(),'../back/API/tempSendDataAPI.php',column1
+      ,null,null,null,null,false,true,'TBreportDC',false,null,false,null,null,null,null,null,'dynamic-table');
+}
+  });
 
     // $("select#sel-ward").change(function () { 
     //     console.log($("#sel-ward").val()) ;
