@@ -98,12 +98,25 @@ $("#navbar-container").empty().append($('<button type="button" class="navbar-tog
                                                                                                                     +'<b class="arrow"></b><ul id="Ssubmenu1-2" class="submenu"></ul></li>')
                                                                                                                 , $('<li class=""><a href="#" class="dropdown-toggle">'
                                                                                                                     +'<i class="menu-icon fa fa-caret-right"></i> รายการส่งเคส <b class="arrow fa fa-angle-down"></b></a>'
-                                                                                                                    + '<b class="arrow"></b><ul id="Ssubmenu1" class="submenu"></ul></li>'));
+                                                                                                                    + '<b class="arrow"></b><ul id="Ssubmenu1" class="submenu"></ul></li>')
+                                                                                                                ,$('<li class=""><a href="#" class="dropdown-toggle">'
+                                                                                                                    +'<i class="menu-icon fa fa-caret-right"></i> ประเมินยา HAD <b class="arrow fa fa-angle-down"></b></a>'
+                                                                                                                    +'<b class="arrow"></b><ul id="Ssubmenu1-5" class="submenu"></ul></li>'));
+                                $("#Ssubmenu1-5").empty().append($('<li class=""><a href="#" id="clozapine"><i class="menu-icon fa fa-leaf green"></i> Clozapine </a> <b class="arrow"></b></li>')
+                                    , $('<li class=""><a href="#" id="lithium"><i class="menu-icon fa fa-leaf green"></i> Lithium Carbonate </a> <b class="arrow"></b></li>')
+                                    , $('<li class=""><a href="#" id="carba"><i class="menu-icon fa fa-leaf green"></i> Carbamazepine </a> <b class="arrow"></b></li>')
+                                    , $('<li class=""><a href="#" id="sodium"><i class="menu-icon fa fa-leaf green"></i> Sodium Valproate </a> <b class="arrow"></b></li>')
+                                    , $('<li class=""><a href="#" class="dropdown-toggle"><i class="menu-icon fa fa-pencil orange"></i> 4th level <b class="arrow fa fa-angle-down"></b></a>'
+                                        + '<b class="arrow"></b><ul id="SSsubmenu5" class="submenu"></ul></li>'));
+                                
                                                                                 $("#Ssubmenu1-2").empty().append($('<li class=""><a href="#"  id="SSsubmenu1-2"><i class="menu-icon fa fa-send green"></i> ผู้ป่วยใน</a> <b class="arrow"></b></li>')
                                                                                                                 ,$('<li class=""><a href="#"  id="SSsubmenu1-3"><i class="menu-icon fa fa-send green"></i> SMI-V</a> <b class="arrow"></b></li>')
                                                                                                                     );
                                                                                             $("#Ssubmenu1").empty().append($('<li class=""><a href="#"  id="SSsubmenu1-1"><i class="menu-icon fa fa-send green"></i> เคสส่ง Consult</a> <b class="arrow"></b></li>')
-                                                                                                                            ,$('<li class=""><a href="#"  id="SSsubmenu1-4"><i class="menu-icon fa fa-send green"></i> รายงานเคสส่ง Consult</a> <b class="arrow"></b></li>')
+                                                                                                , $('<li class=""><a href="#"  id="SSsubmenu1-4"><i class="menu-icon fa fa-send green"></i> รายงานเคสส่ง Consult</a> <b class="arrow"></b></li>')
+                                                                                                                            
+                                                                                                
+
                                                                                                                             ,$('<li class=""><a href="#" class="dropdown-toggle"><i class="menu-icon fa fa-pencil orange"></i> 4th level <b class="arrow fa fa-angle-down"></b></a>'
                                                                                                                                 +'<b class="arrow"></b><ul id="SSsubmenu1" class="submenu"></ul></li>'));  
                                                                                                         $("#SSsubmenu1").empty().append($('<li class=""><a href="#"><i class="menu-icon fa fa-plus purple"></i> Add Product</a> <b class="arrow"></b></li>')
