@@ -40,9 +40,50 @@ function InterviewIPD(content, id = null, url = '../', recorder = null) {
 
     selectMash("#alcohol_type", "alcoholType_data.php", " เลือกชนิดสุรา ");
     selectMash("#alcohol_vol", "alcoholVol_Data.php", " เลือกปริมาณ ");
-    selectMash("#dope_type", "drugs_data.php", " เลือกชนิดยาเสพติด ");
-    
-    
+    selectMash("#dope_type0", "drugs_data.php", " เลือกชนิดยาเสพติด ");
+    //////////////// เพิ่มชนิดยาเสพติด
+                                    var i=1;
+                                       if(i==1){ $('#minus-btn').hide(); }//else{$('#minus-btn').show()}
+                            $('#plus-btn').click(function () {
+                                i++;
+                                    if(i<=3){
+                                        $("#narcotic_item").append("<div><div class= 'col-lg-12 row' > <div class='form-horizontal' role='form'>"
+                                        +"<div class='form-group col-lg-3 row'><label class='col-sm-3 control-label no-padding-right' for='dope_type'><b>"+i+" . </b>ชนิด </label>"
+                                        +"<div class='col-sm-8'><select class='form-control form-control-sm  select2' id='dope_type"+i+"' name='dope_type[]'></select></div></div>"
+                                        +"<div class='form-group col-lg-3 row'><label class='col-sm-3 control-label no-padding-right' for='narcotic_volume'>ปริมาณ </label>"
+                                        +"<div class='col-sm-8'><input class='input-sm' type='text' id='narcotic_vol"+i+"' name='narcotic_vol[]' placeholder='จำนวน (ตัวเลข)' /></div></div>"
+                                        +"<div class='form-group col-lg-3 row'><label class='col-sm-3 control-label no-padding-right' for='narcotic_frequency'>ความถี่ </label>"
+                                        +"<div class='col-sm-8'><input class='input-sm' type='text' id='narcotic_frequency"+i+"' name='narcotic_frequency[]' placeholder='' /></div></div>"
+                                            + "</div></div>"
+                                            +"<div class='col-lg-12 row'><div class='form-horizontal' role='form'>"
+                                            +"<div class='form-group col-lg-4 row'><label class='col-sm-5 control-label no-padding-right' for='narcotic_age'>ระยะเวลาที่ใช้ต่อเนื่อง </label>"
+                                            +"<div class='col-sm-5'><input class='input-sm' type='text' id='narcotic_age"+i+"' name='narcotic_age[]' placeholder='' /></div></div>"
+                                            +"<div class='form-group col-lg-4 row'><label class='col-sm-6 control-label no-padding-right' for='last_useD'>ใช้ครั้งสุดท้าย (จำนวนวัน) </label>"
+                                            +"<div class='col-sm-5'><input class='input-sm' type='text' id='last_useD"+i+"' name='last_useD[]' placeholder='ระบุจำนวนวัน' /></div></div>"
+                                            +"</div></div>"
+                                            +"<div class='col-lg-12 row'><div class='form-horizontal' role='form'>"
+                                            +"<div class='form-group col-lg-4 row'><label class='col-sm-5 control-label no-padding-right' for='narcotic_stop'>ระยะเวลาที่เลิก </label>"
+                                            +"<div class='col-sm-5'><input class='input-sm' type='text' id='narcotic_stop"+i+"' name='narcotic_stop[]' placeholder='' /></div></div>"
+                                            +"<div class='form-group col-lg-4 row'><label class='col-sm-6 control-label no-padding-right' for='narcotic_cause'>สาเหตุการใช้ </label>"
+                                            +"<div class='col-sm-5'><input class='input-sm' type='text' id='narcotic_cause"+i+"' name='narcotic_cause[]' placeholder='' /></div></div>"
+                                            +"</div></div></div>")
+                                        //console.log("#Sdiag_"+i);
+                                        selectMash("#dope_type"+i,"drugs_data.php", " เลือกชนิดยาเสพติด ");
+                                    }
+                                if (i != 1) { $('#minus-btn').show(); }
+                                if (i >= 3) { $('#plus-btn').prop("disabled", true); }
+                                       });
+                            $('#minus-btn').click(function () {
+                                if (i == 2) { $('#minus-btn').hide(); }//$("#IMsubmit").hide(); }//else{$('#minus-btn').show()}
+                                
+                                        //$("select#Sdiag_"+i).remove();
+                                        $("div#narcotic_item >div:last").remove();
+                                        $('#plus-btn').show();
+                                       
+                                i--;
+                                if(i<3){ $('#plus-btn').removeAttr("disabled");}
+                                    }); 
+    //////////////// สิ้นสุดเพิ่มชนิดยาเสพติด                                
     $("textarea#disease").hide();
     $("#disease_group").hide();
     $("#surgery").hide();
@@ -494,8 +535,8 @@ function InterviewIPD(content, id = null, url = '../', recorder = null) {
         if (data[0].dope_chk == 'Y') {
             $("input[type=radio][name=narcotic_chk][value='Y']").attr("checked", "checked");
             $("div#narcotic").show();
-            selectMash("#dope_type", "drugs_data.php", " เลือกชนิดยาเสพติด ", data[0].dope_type);
-            $("input#last_useD").val(data[0].last_useD);
+            selectMash("#dope_type0", "drugs_data.php", " เลือกชนิดยาเสพติด ", data[0].dope_type);
+            $("input#last_useD0").val(data[0].last_useD);
         }
         $("input[type=radio][name=smi4_chk]").click(function () {
             if ($("input[type=radio][name=smi4_chk]:checked").val() == 'Y') { console.log($.cookie("username"))

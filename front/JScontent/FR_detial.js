@@ -15,7 +15,7 @@ function FRDetial(content, id = null) {
                                                     , $("<div class='col-sm-12 alert alert-warning'><div class='' id='conclude'></div></div><br>")
                                                     , $("<div class='col-sm-12'><center><span id='recorder'></span></center></div>")
                                                     , $("<div class='col-sm-12'><br><center><button id='print' class='btn btn-primary'>พิมพ์ข้อมูล</button></center></div>")
-                                                    )
+                                                    );
         $.getJSON('../../back/API/detail_FRAPI.php',{data : id},function (data) { console.log(data)
         $.getJSON('../../back/API/detail_patientAPI.php',{data : data.hn},function (data) {
             $("#medical-detial1").append($("<div class='col-sm-8'><span><label id='medical' class='col-form-label'>เลขบัตรประชาชน : " + data[0].cid + "<br>ชื่อ-สกุล : <b>" + data[0].fullname + "</b>"

@@ -90,13 +90,15 @@ if ($method == 'add_FR') {
         $time_stop = isset($_POST['time_stop'])?$conv->utf8_to_tis620($_POST['time_stop']):'';
         $drink_cause = isset($_POST['drink_cause'])?$conv->utf8_to_tis620($_POST['drink_cause']):'';
         $dope_chk = $conv->utf8_to_tis620($_POST['narcotic_chk']);
-        $dope_type = isset($_POST['dope_type'])?$conv->utf8_to_tis620($_POST['dope_type']):'';
-        $narcotic_vol = isset($_POST['narcotic_vol'])?$conv->utf8_to_tis620($_POST['narcotic_vol']):'';
-        $narcotic_frequency = isset($_POST['narcotic_frequency'])?$conv->utf8_to_tis620($_POST['narcotic_frequency']):'';
-        $narcotic_age = isset($_POST['narcotic_age'])?$conv->utf8_to_tis620($_POST['narcotic_age']):'';
-        $last_useD = isset($_POST['last_useD'])?$conv->utf8_to_tis620($_POST['last_useD']):'';
-        $narcotic_stop = isset($_POST['narcotic_stop'])?$conv->utf8_to_tis620($_POST['narcotic_stop']):'';
-        $narcotic_cause = isset($_POST['narcotic_cause'])?$conv->utf8_to_tis620($_POST['narcotic_cause']):'';
+
+        $dope_type = isset($_POST['dope_type'][0])?$conv->utf8_to_tis620($_POST['dope_type'][0]):'';
+        $narcotic_vol = isset($_POST['narcotic_vol'][0])?$conv->utf8_to_tis620($_POST['narcotic_vol'][0]):'';
+        $narcotic_frequency = isset($_POST['narcotic_frequency'][0])?$conv->utf8_to_tis620($_POST['narcotic_frequency'][0]):'';
+        $narcotic_age = isset($_POST['narcotic_age'][0])?$conv->utf8_to_tis620($_POST['narcotic_age'][0]):'';
+        $last_useD = isset($_POST['last_useD'][0])?$conv->utf8_to_tis620($_POST['last_useD'][0]):'';
+        $narcotic_stop = isset($_POST['narcotic_stop'][0])?$conv->utf8_to_tis620($_POST['narcotic_stop'][0]):'';
+        $narcotic_cause = isset($_POST['narcotic_cause'][0])?$conv->utf8_to_tis620($_POST['narcotic_cause'][0]):'';
+        
         $menses_chk = isset($_POST['menses_chk'])?$conv->utf8_to_tis620($_POST['menses_chk']):'';
         $menses = isset($_POST['menses'])?$conv->utf8_to_tis620($_POST['menses']):'';
         ////////////////// End ER
@@ -181,20 +183,54 @@ if ($method == 'add_FR') {
             $data = array($hn,$vn,$an,$biographer,$relative,$patient_add,$tel0,$tel1,$relative1,$tel2,$relative2,$fathername,$father_chk,$father_age,$father_occup,$mothername,$mother_chk,$mother_age,$mother_occup
             ,$marry_chk,$spouse_name,$child,$earmark,$bw,$height,$bmi,$cc,$hpi,$pmh,$weapon_chk,$weapon,$weaponer_chk,$weaponer,$detain_chk,$detain,$smi4_chk,$smi4_1,$smi4_2,$smi4_3,$smi4_4
             ,$lawpsych_chk,$lawpsych,$sleep_chk,$sleep,$ic_chk,$ic,$med_chk,$med,$accident_chk,$accident,$wound_chk,$wound,$surgery_chk,$surgery,$complicate_chk,$complicate,$alcohol_chk
-            ,$alcohol_type,$alcohol_vol,$alcohol_frequency,$drink_age,$last_useA,$time_stop,$drink_cause,$dope_chk,$dope_type,$narcotic_vol,$narcotic_frequency,$narcotic_age,$last_useD,$narcotic_stop
-            ,$narcotic_cause,$menses_chk,$menses,$disease_chk,$d0,$d1,$d2,$d3,$d4,$d5,$d6,$d7,$disease,$heal_chk,$heal,$whip_chk,$whip,$regular_med_chk,$regular_med,$adr_chk,$adr
+            ,$alcohol_type,$alcohol_vol,$alcohol_frequency,$drink_age,$last_useA,$time_stop,$drink_cause,$dope_chk,$dope_type,$narcotic_vol,$narcotic_frequency,$narcotic_age,$last_useD,$narcotic_stop,$narcotic_cause
+            ,$menses_chk,$menses,$disease_chk,$d0,$d1,$d2,$d3,$d4,$d5,$d6,$d7,$disease,$heal_chk,$heal,$whip_chk,$whip,$regular_med_chk,$regular_med,$adr_chk,$adr
             ,$beallergic_chk,$beallergic,$old_med_chk,$old_med,$heredity_chk,$heredity,$Hurt_yourself_chk,$think,$plan,$plan_detial,$action,$action_detial,$lawsuit_chk,$lawsuit,$personality
             ,$typep,$refer,$admit_type,$income,$admittype,$typep_1,$typep_2,$typep_3,$typep_4,$typep_5,$redate,$user);
             $table = "jvl_ipd_first_rec";
             $first_rec = $connDB->insert($table, $data);
+
+            $dope_type_chk=$_POST['dope_type'];
+            
+foreach ($dope_type_chk as $key => $value) {
+         $dope_typeArr[$key] = $conv->utf8_to_tis620($_POST['dope_type'][$key]);
+        $narcotic_volArr[$key]=$conv->utf8_to_tis620($_POST['narcotic_vol'][$key]);
+        $narcotic_frequencyArr[$key]=$conv->utf8_to_tis620($_POST['narcotic_frequency'][$key]);
+        $narcotic_ageArr[$key]=$conv->utf8_to_tis620($_POST['narcotic_age'][$key]);
+        $last_useDArr[$key]=$conv->utf8_to_tis620($_POST['last_useD'][$key]);
+        $narcotic_stopArr[$key]=$conv->utf8_to_tis620($_POST['narcotic_stop'][$key]);
+        $narcotic_causeArr[$key]=$conv->utf8_to_tis620($_POST['narcotic_cause'][$key]);
+
+        $dope_typearr = $dope_typeArr[$key];
+        $narcotic_volarr = $narcotic_volArr[$key];
+        $narcotic_frequencyarr = $narcotic_frequencyArr[$key];
+        $narcotic_agearr = $narcotic_ageArr[$key];
+        $last_useDarr = $last_useDArr[$key];
+        $narcotic_stoparr = $narcotic_stopArr[$key];
+        $narcotic_causearr = $narcotic_causeArr[$key];
+        
+
+        // if($key == 0){
+        //     $data4 = array($dope_typearr,$narcotic_volarr,$narcotic_frequencyarr,$narcotic_agearr,$last_useDarr,$narcotic_stoparr,$narcotic_causearr);
+        //     $field4=array("dope_type","narcotic_vol","narcotic_frequency", "narcotic_age","last_useD","narcotic_stop","narcotic_cause");
+        //     $table4 = "jvl_ipd_first_rec";
+        //     $where4="ipd_fr_id=:ipd_fr_id";
+        //     $execute4=array(':ipd_fr_id' => $first_rec);
+        //     $connDB->update($table4, $data4, $where4, $field4, $execute4);
+        // }
+       
+        $data3 = array($first_rec,$dope_typearr,$narcotic_volarr,$narcotic_frequencyarr,$narcotic_agearr,$last_useDarr,$narcotic_stoparr,$narcotic_causearr);
+        $table3 = "jvl_narcotic";
+        $connDB->insert($table3, $data3);
+}
         if($first_rec){
             $data2 = array($first_rec,$shape,$skin_color,$scab_chk,$scab_0,$scab_1,$scab_2,$scab_3,$scab_4,$scab_5,$scab_6,$scab_7,$scab_8,$scab_9,$detial_scab,$swelling_chk,$swelling,$movement,$disabled_chk,$disabled);
             $table2 = "jvl_condition";
             $condition = $connDB->insert($table2, $data2);
             if($condition){
-              $res = array("messege"=>'บันทึกข้อมูลสำเร็จครับ!!!!',"check"=>'Y');
+              $res = array("messege"=>'บันทึกข้อมูลประเมินทางกายสำเร็จครับ!!!!',"check"=>'Y');
             }else{
-              $res = array("messege"=>'บันทึกข้อมูลไม่สำเร็จครับ!!!!',"check"=>'N');
+              $res = array("messege"=>'บันทึกข้อมูลประเมินทางกายไม่สำเร็จครับ!!!!',"check"=>'N');
           }
         }else{
             $res = array("messege"=>'บันทึกข้อมูลไม่สำเร็จครับ!!!!',"check"=>'N');

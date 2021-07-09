@@ -62,7 +62,7 @@ if(!empty($data2)){
     ,fr.lawsuit,fr.personality
     ,CASE WHEN fr.typep= 1 THEN 'จิตเวชทั่วไป' ELSE 'พรบ.สุรา/ยาเสพติด' END typep
     ,CASE WHEN fr.refer= 1 THEN 'Refer-in' ELSE 'ไม่มีใบ Refer' END refer
-    ,CASE WHEN fr.admit_type= 1 THEN 'มารับบริการเอง' WHEN fr.admit_type = 2 THEN 'รพ.ในเครือข่ายนำส่ง'  WHEN fr.admit_type = 3 THEN 'รพ.นอกเครือข่ายนำส่ง'  WHEN fr.admit_type = 4 THEN 'มูลนิธินำส่ง' ELSE 'ตำรวจ/หรือฝ่ายปกครองนำส่ง' END admit_type
+    ,CASE WHEN fr.admit_type= 1 THEN 'มารับบริการเอง' WHEN fr.admit_type = 2 THEN 'รพ.ในเครือข่ายนำส่ง'  WHEN fr.admit_type = 3 THEN 'รพ.นอกเครือข่ายนำส่ง'  WHEN fr.admit_type = 4 THEN 'มูลนิธินำส่ง'  WHEN fr.admit_type = 5 THEN 'ตำรวจ/หรือฝ่ายปกครองนำส่ง' ELSE 'ศุนย์คุ้มครองคนไร้ที่พึ่ง' END admit_type
     ,CASE WHEN fr.income= 1 THEN 'Admit แบบปกติ' WHEN fr.income = 2 THEN 'Admit โดยการ Refer กลับ' ELSE 'Admit เพื่อการ Rehabilitation' END income
     ,fr.income income_code,amt.admittype_name,fr.typep_1,fr.typep_2,fr.typep_3,fr.typep_4,fr.typep_5,fr.recdate,doc.name recorder
     ,s.shape_name,sk.skin_name,con.scab_chk,sc1.scab_name sc1,sc2.scab_name sc2,sc3.scab_name sc3,sc4.scab_name sc4,sc5.scab_name sc5,sc6.scab_name sc6,sc7.scab_name sc7,sc8.scab_name sc8,sc9.scab_name sc9
@@ -197,7 +197,7 @@ $conv=new convers_encode();
   $series['alcohol_frequency'] = isset($rslt['alcohol_frequency'])?$conv->tis620_to_utf8($rslt['alcohol_frequency']):'';
   $series['drink_age'] = isset($rslt['drink_age'])?$conv->tis620_to_utf8($rslt['drink_age']):'';
   $series['last_useA'] = isset($rslt['last_useA'])?'ใช้ครั้งสุดท้ายเมื่อ '.$rslt['last_useA'].' วันทีแล้ว':'';
-  $series['time_stop'] = !empty($rslt['time_stop'])?'หยุดมาแล้ว '.$rslt['time_stop'].' วัน':'';
+  $series['time_stop'] = !empty($rslt['time_stop'])?'หยุดมาแล้ว '.$conv->tis620_to_utf8($rslt['time_stop']).' วัน':'';
   $series['drink_cause'] = isset($rslt['drink_cause'])?$conv->tis620_to_utf8($rslt['drink_cause']):'';
   $series['dope_chk']= $rslt['dope_chk']=='Y'?'เสพ':'ไม่เสพ';
   $series['drug_name'] = isset($rslt['drug_name'])?$conv->tis620_to_utf8($rslt['drug_name']):'';
@@ -205,7 +205,7 @@ $conv=new convers_encode();
   $series['narcotic_frequency'] = isset($rslt['narcotic_frequency'])?$conv->tis620_to_utf8($rslt['narcotic_frequency']):'';
   $series['narcotic_age'] = isset($rslt['narcotic_age'])?$conv->tis620_to_utf8($rslt['narcotic_age']):'';
   $series['last_useD'] = isset($rslt['last_useD'])?'ใช้ครั้งสุดท้ายเมื่อ '.$rslt['last_useD'].' วันทีแล้ว':'';
-  $series['narcotic_stop'] = !empty($rslt['narcotic_stop'])?'หยุดมาแล้ว '.$rslt['narcotic_stop'].' วัน':'';
+  $series['narcotic_stop'] = !empty($rslt['narcotic_stop'])?'หยุดมาแล้ว '.$conv->tis620_to_utf8($rslt['narcotic_stop']).' วัน':'';
   $series['narcotic_cause'] = isset($rslt['narcotic_cause'])?$conv->tis620_to_utf8($rslt['narcotic_cause']):'';
   $series['disease_chk']= $rslt['disease_chk'];
   $series['d1'] = isset($rslt['d1'])?$conv->tis620_to_utf8($rslt['d1']):'';
