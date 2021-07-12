@@ -65,8 +65,7 @@ function FRDetial(content, id = null) {
                 , $("<div class='col-sm-12' id='menses'>ประจำเดือน : <b>" + data.menses + "</b></div>")
                 , $("<div class='col-sm-12' id='alcohol'><span class='row col-sm-2'>การดื่มสุรา : </span><span class='col-sm-10'>ชนิด : <b>" + data.name + "</b>  ปริมาณ : <b>" + data.volume_type + "</b> ความถี่ในการใช้ : <b>" + data.alcohol_frequency+"</b>"
                             + "<br>ดื่มต่อเนื่อง : <b>"+data.drink_age+"</b> ดื่มครั้งสุดท้าย : <b>"+data.last_useA+"</b><br>ระยะเวลาที่หยุดดื่ม : <b>"+data.time_stop+"</b> สาเหตุการดื่ม : <b>"+data.drink_cause+"</b></span></div>")
-                , $("<div class='col-sm-12' id='dope'><span class='row col-sm-2'>การใช้ยาเสพติด : </span><span class='col-sm-10'>ชนิด : <b>" + data.drug_name + "</b>  ปริมาณ : <b>" + data.narcotic_vol + "</b> ความถี่ในการใช้ : <b>" + data.narcotic_frequency+"</b>"
-                + "<br>ใช้ต่อเนื่อง : <b>"+data.narcotic_age+"</b> ใช้ครั้งสุดท้าย : <b>"+data.last_useD+"</b><br>ระยะเวลาที่หยุดใช้ : <b>"+data.narcotic_stop+"</b> สาเหตุการใช้ : <b>"+data.narcotic_cause+"</b></span></div>")
+                , $("<div class='col-sm-12' id='dope'><span class='row col-sm-2'>การใช้ยาเสพติด : </span><span id='nct_item' class='col-sm-10'></span></div>")
 
 
 
@@ -120,46 +119,54 @@ function FRDetial(content, id = null) {
             if (data.detain == '') { $("#detain").hide(); } else { $("#detain").show(); }
             $("#smiv").hide(); 
             $.getJSON('../../back/API/detail_SMIVAPI.php', { data: data.hn }, function (data) {
-                if (data[0].chk_1 +data[0].chk_2 +data[0].chk_3 +data[0].chk_4>0) {
+                if (data[0].chk_1 + data[0].chk_2 + data[0].chk_3 + data[0].chk_4 > 0) {
                     $("#smiv").show();
                     
-        if (data[0].smi1_2 != '') { $("#smiv-detial").append("1.2 "+data[0].smi1_2 + "<br>") }
-        if (data[0].smi1_3 != '') { $("#smiv-detial").append("1.3 "+data[0].smi1_3 + "<br>") }
-        if (data[0].smi1_4 != '') { $("#smiv-detial").append("1.4 "+data[0].smi1_4 + "<br>") }
-        if (data[0].smi1_5 != '') { $("#smiv-detial").append("1.5 "+data[0].smi1_5 + "<br>") }
-        if (data[0].smi1_6 != '') { $("#smiv-detial").append("1.6 "+data[0].smi1_6 + "<br>") }
-        if (data[0].smi1_7 != '') { $("#smiv-detial").append("1.7 "+data[0].smi1_7 + "<br>") }
-        if (data[0].smi1_8 != '') { $("#smiv-detial").append("1.8 "+data[0].smi1_8 + "<br>") }
-        if (data[0].smi1_9 != '') { $("#smiv-detial").append("1.9 "+data[0].smi1_9 + "<br>") }
-        if (data[0].smi1_10 != '') { $("#smiv-detial").append("1.10 "+data[0].smi1_10 + "<br>") }
-        if (data[0].smi1_11 != '') { $("#smiv-detial").append("1.11 "+data[0].smi1_11 + "<br>") }
-        if (data[0].t1_12 != '') { $("#smiv-detial").append("1.12 "+data[0].t1_12 + "<br>") }
-        if (data[0].smi2_1 != '') { $("#smiv-detial").append("2.1 "+data[0].smi2_1 + "<br>") }
-        if (data[0].smi2_2 != '') { $("#smiv-detial").append("2.2 "+data[0].smi2_2 + "<br>") }
-        if (data[0].smi2_3 != '') { $("#smiv-detial").append("2.3 "+data[0].smi2_3 + "<br>") }
-        if (data[0].smi2_4 != '') { $("#smiv-detial").append("2.4 "+data[0].smi2_4 + "<br>") }
-        if (data[0].smi2_5 != '') { $("#smiv-detial").append("2.5 "+data[0].smi2_5 + "<br>") }
-        if (data[0].smi2_6 != '') { $("#smiv-detial").append("2.6 "+data[0].smi2_6 + "<br>") }
-        if (data[0].smi2_7 != '') { $("#smiv-detial").append("2.7 "+data[0].smi2_7 + "<br>") }
-        if (data[0].smi2_8 != '') { $("#smiv-detial").append("2.8 "+data[0].smi2_8 + "<br>") }
-        if (data[0].smi2_9 != '') { $("#smiv-detial").append("2.9 "+data[0].smi2_9 + "<br>") }
-        if (data[0].smi2_10 != '') { $("#smiv-detial").append("2.10 "+data[0].smi2_10 + "<br>") }
-        if (data[0].smi2_11 != '') { $("#smiv-detial").append("2.11 "+data[0].smi2_11 + "<br>") }
-        if (data[0].t2_12 != '') { $("#smiv-detial").append("2.12 "+data[0].t2_12 + "<br>") }
-        if (data[0].smi3_1 != '') { $("#smiv-detial").append("3.1 "+data[0].smi3_1 + "<br>") }
-        if (data[0].smi3_2 != '') { $("#smiv-detial").append("3.2 "+data[0].smi3_2 + "<br>") }
-        if (data[0].t3_3 != '') { $("#smiv-detial").append("3.3 "+data[0].t3_3 + "<br>") }
-        if (data[0].smi4_1 != '') { $("#smiv-detial").append("4.1 "+data[0].smi4_1 + "<br>") }
-        if (data[0].smi4_2 != '') { $("#smiv-detial").append("4.2 "+data[0].smi4_2 + "<br>") }
-        if (data[0].smi4_3 != '') { $("#smiv-detial").append("4.3 "+data[0].smi4_3 + "<br>") }
-        if (data[0].smi4_4 != '') { $("#smiv-detial").append("4.4 "+data[0].smi4_4 + "<br>") }
-        if (data[0].smi5_1 != '') { $("#smiv-detial").append("5.1 "+data[0].smi5_1 + "<br>") }
-        if (data[0].smi5_2 != '') { $("#smiv-detial").append("5.2 "+data[0].smi5_2 + "<br>") }
-        if (data[0].smi5_3 != '') { $("#smiv-detial").append("5.3 "+data[0].smi5_3 + "<br>") }
-        if (data[0].smi5_4 != '') { $("#smiv-detial").append("5.4 "+data[0].smi5_4 + "<br>") }
+                    if (data[0].smi1_2 != '') { $("#smiv-detial").append("1.2 " + data[0].smi1_2 + "<br>") }
+                    if (data[0].smi1_3 != '') { $("#smiv-detial").append("1.3 " + data[0].smi1_3 + "<br>") }
+                    if (data[0].smi1_4 != '') { $("#smiv-detial").append("1.4 " + data[0].smi1_4 + "<br>") }
+                    if (data[0].smi1_5 != '') { $("#smiv-detial").append("1.5 " + data[0].smi1_5 + "<br>") }
+                    if (data[0].smi1_6 != '') { $("#smiv-detial").append("1.6 " + data[0].smi1_6 + "<br>") }
+                    if (data[0].smi1_7 != '') { $("#smiv-detial").append("1.7 " + data[0].smi1_7 + "<br>") }
+                    if (data[0].smi1_8 != '') { $("#smiv-detial").append("1.8 " + data[0].smi1_8 + "<br>") }
+                    if (data[0].smi1_9 != '') { $("#smiv-detial").append("1.9 " + data[0].smi1_9 + "<br>") }
+                    if (data[0].smi1_10 != '') { $("#smiv-detial").append("1.10 " + data[0].smi1_10 + "<br>") }
+                    if (data[0].smi1_11 != '') { $("#smiv-detial").append("1.11 " + data[0].smi1_11 + "<br>") }
+                    if (data[0].t1_12 != '') { $("#smiv-detial").append("1.12 " + data[0].t1_12 + "<br>") }
+                    if (data[0].smi2_1 != '') { $("#smiv-detial").append("2.1 " + data[0].smi2_1 + "<br>") }
+                    if (data[0].smi2_2 != '') { $("#smiv-detial").append("2.2 " + data[0].smi2_2 + "<br>") }
+                    if (data[0].smi2_3 != '') { $("#smiv-detial").append("2.3 " + data[0].smi2_3 + "<br>") }
+                    if (data[0].smi2_4 != '') { $("#smiv-detial").append("2.4 " + data[0].smi2_4 + "<br>") }
+                    if (data[0].smi2_5 != '') { $("#smiv-detial").append("2.5 " + data[0].smi2_5 + "<br>") }
+                    if (data[0].smi2_6 != '') { $("#smiv-detial").append("2.6 " + data[0].smi2_6 + "<br>") }
+                    if (data[0].smi2_7 != '') { $("#smiv-detial").append("2.7 " + data[0].smi2_7 + "<br>") }
+                    if (data[0].smi2_8 != '') { $("#smiv-detial").append("2.8 " + data[0].smi2_8 + "<br>") }
+                    if (data[0].smi2_9 != '') { $("#smiv-detial").append("2.9 " + data[0].smi2_9 + "<br>") }
+                    if (data[0].smi2_10 != '') { $("#smiv-detial").append("2.10 " + data[0].smi2_10 + "<br>") }
+                    if (data[0].smi2_11 != '') { $("#smiv-detial").append("2.11 " + data[0].smi2_11 + "<br>") }
+                    if (data[0].t2_12 != '') { $("#smiv-detial").append("2.12 " + data[0].t2_12 + "<br>") }
+                    if (data[0].smi3_1 != '') { $("#smiv-detial").append("3.1 " + data[0].smi3_1 + "<br>") }
+                    if (data[0].smi3_2 != '') { $("#smiv-detial").append("3.2 " + data[0].smi3_2 + "<br>") }
+                    if (data[0].t3_3 != '') { $("#smiv-detial").append("3.3 " + data[0].t3_3 + "<br>") }
+                    if (data[0].smi4_1 != '') { $("#smiv-detial").append("4.1 " + data[0].smi4_1 + "<br>") }
+                    if (data[0].smi4_2 != '') { $("#smiv-detial").append("4.2 " + data[0].smi4_2 + "<br>") }
+                    if (data[0].smi4_3 != '') { $("#smiv-detial").append("4.3 " + data[0].smi4_3 + "<br>") }
+                    if (data[0].smi4_4 != '') { $("#smiv-detial").append("4.4 " + data[0].smi4_4 + "<br>") }
+                    if (data[0].smi5_1 != '') { $("#smiv-detial").append("5.1 " + data[0].smi5_1 + "<br>") }
+                    if (data[0].smi5_2 != '') { $("#smiv-detial").append("5.2 " + data[0].smi5_2 + "<br>") }
+                    if (data[0].smi5_3 != '') { $("#smiv-detial").append("5.3 " + data[0].smi5_3 + "<br>") }
+                    if (data[0].smi5_4 != '') { $("#smiv-detial").append("5.4 " + data[0].smi5_4 + "<br>") }
                 
                 } else { $("#smiv").hide(); }
-            })
+            });
+
+            $.getJSON('../../back/API/detail_narcotic.php', { data: data.ipd_fr_id }, function (dataNct) {
+                $("#nct_item").empty();
+                $.each(dataNct, function (key, value) {
+                    $("#nct_item").append($("<span class='col-sm-10'><div class='row hr'></div><b>"+(key+1)+".</b> ชนิด : <b>" + value.drug_name + "</b>  ปริมาณ : <b>" + value.narcotic_vol + "</b> ความถี่ในการใช้ : <b>" + value.narcotic_frequency + "</b>"
+                        + "<br>ใช้ต่อเนื่อง : <b>" + value.narcotic_age + "</b> ใช้ครั้งสุดท้าย : <b>" + value.last_useD + "</b><br>ระยะเวลาที่หยุดใช้ : <b>" + value.narcotic_stop + "</b> สาเหตุการใช้ : <b>" + value.narcotic_cause + "</b></span>"));
+                });
+            });
             if (data.lawpsych == '') { $("#lawpsych").hide(); } else { $("#lawpsych").show(); }
             if (data.sleep == '') { $("#sleep").hide(); } else { $("#sleep").show(); }
             if (data.IC == '') { $("#IC").hide(); } else { $("#IC").show(); }
