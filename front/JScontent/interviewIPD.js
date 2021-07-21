@@ -34,7 +34,7 @@ function InterviewIPD(content, id = null, url = '../', recorder = null) {
 
     var FR = new AssFirstRecIPD("#interviewfrm");
     FR.GetFRIPD();
-    
+    $("#interviewfrm").append("<input type='hidden' name='method' value='add_FR'>");
     var G = new AssGaugeIPD("#gaugefrm");
     G.GetGIPD();
 
@@ -308,7 +308,7 @@ function InterviewIPD(content, id = null, url = '../', recorder = null) {
         var ii = 0;
         $("div#disease_group").empty();
         $.each(data, function (i, item) {
-            $("div#disease_group").append($("<div class='col-lg-2'><label><input class='ace' type='checkbox' name='D" + ii + "' value='" + item.disease_id + "' ><span class='lbl'> " + item.disease_name + "</label></div>"))
+            $("div#disease_group").append($("<div class='col-lg-2'><label><input class='ace ace-checkbox-2' type='checkbox' name='D" + ii + "' value='" + item.disease_id + "' ><span class='lbl'> " + item.disease_name + "</label></div>"))
             ii++;
         });
     });
@@ -316,7 +316,7 @@ function InterviewIPD(content, id = null, url = '../', recorder = null) {
         var ii = 0;
         $("div#scab").empty();
         $.each(data, function (i, item) {
-            $("div#scab").append($("<div class='col-lg-2'><label><input class='ace' type='checkbox' name='scab_" + ii + "' value='" + item.id + "' ><span class='lbl'> " + item.name + "</span></label></div>"))
+            $("div#scab").append($("<div class='col-lg-2'><label><input class='ace ace-checkbox-2' type='checkbox' name='scab_" + ii + "' value='" + item.id + "' ><span class='lbl'> " + item.name + "</span></label></div>"))
             ii++;
         });
     });
@@ -405,7 +405,7 @@ function InterviewIPD(content, id = null, url = '../', recorder = null) {
         $("#BP").append(data[0].bps+'/'+data[0].bpd+' mmHg.');
         if (data[0].bps < 100) { $("#BP").css("background-color", "yellow"); } else if (data[0].bps > 130) { $("#BP").css({ "background-color": "red", "color": "white" }); }
         
-        if (data[0].accident == 'Y') {
+        if (data[0].accident_chk == 'Y') {
             $("input[type=radio][name=accident_chk][value='Y']").attr("checked", "checked");
             $("textarea#accident").show();
             $("textarea#accident").val(data[0].accident);

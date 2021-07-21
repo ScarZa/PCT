@@ -492,6 +492,8 @@ border-top: 1.5px solid rgb(206, 206, 206);
             <script src="JScontent/TBTGDS.js" type="text/javascript"></script>
             <script src="JScontent/TBreportConsultIPD.js" type="text/javascript"></script>
             <script src="JScontent/TBreportDetialConsult.js" type="text/javascript"></script>
+            <script src="JScontent/interviewIPD_edit.js" type="text/javascript"></script>
+            <script src="JScontent/FrIPDModel.js" type="text/javascript"></script>
             <!-- End JS content -->
             <!-- inline scripts related to this page -->
 
@@ -500,7 +502,7 @@ border-top: 1.5px solid rgb(206, 206, 206);
                                     Page01("#page-content");
                                 });
 function patient_photo(front,back,hn,an,tag_img){
-                                $.getJSON(back+'back/API/check_image.php', { data1: hn , data2: an }, function (datai) { console.log(datai)
+                                $.getJSON(back+'back/API/check_image.php', { data1: hn , data2: an }, function (datai) { 
                     if (datai.cc == '') { var img = front+'images/person.png' } else {
                         if (datai.chk == 'Y') {
                             var img = front+'PI_imgs/'+datai.cc

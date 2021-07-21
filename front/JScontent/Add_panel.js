@@ -27,6 +27,7 @@ function AddPanel(content,id = null) {
                     + "<li class= 'dropdown-header' > <img src='images/icon_set2/compose.ico' width='30px'> แบบ High Alert Drug </li > <li class='dropdown-content'><ul class='dropdown-menu dropdown-navbar' id='menu03-body" + i + "'></ul></li>"
                                         +"</ul> "))
                     $("#menu01-body" + i).append($("<li><a data-toggle='tab' href='#' id='menu1_" + i + "'> <img src='images/icon_set2/browser.ico' width='20'> ข้อมูลแรกรับ</a></li>")
+                                                , $("<li><a data-toggle='tab' href='#' id='menu11_" + i + "'> <img src='images/icon_set2/browser.ico' width='20'> แก้ไขข้อมูลแรกรับ</a></li>")
                                                 , $("<li><a data-toggle='tab' href='#' id='menu3_" + i + "'> <img src='images/icon_set1/file_edit.ico' width='18'> สรุปข้อวินิจฉัยทางการพยาบาล</a></li>")
                                                 , $("<li><a data-toggle='tab' href='#' id='menu6_" + i + "'> <img src='images/icon_set2/camera.ico' width='20'> รูปผู้ป่วย</a></li>")
                 )
@@ -74,6 +75,9 @@ function AddPanel(content,id = null) {
                 $("a#menu10_" + i).click(function () {
                     popup('../../CF-Form/font/content/Ass_Sodium.html?vn=' + item.vn + '?user=' + $.cookie("username"), popup, 1440, 900);
                     //window.open('content/FR_detial.html?id=' + item.ipd_fr_id, '', 'width=900,height=1000'); return false;
+                })
+                $("a#menu11_" + i).click(function () {
+                    $("a#menu11_" + i).attr("onclick", FrIPDModal()).attr("data-toggle", "modal").attr("data-target", "#FrIPDModal").attr("data-whatever", item.an)
                 })
             } else {
                 $("#menu-panel" + i).append($("<ul class='dropdown-navbar'>"

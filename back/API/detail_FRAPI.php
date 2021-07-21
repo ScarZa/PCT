@@ -132,7 +132,7 @@ if(!empty($data2)){
     left outer join jvl_scab sc9 on sc9.scab_id = con.scab_8
 	left outer join jvl_mental_state ms on ms.ipd_fr_id = fr.ipd_fr_id
 	left outer join doctor doc2 on doc2.code = ms.recorder
-    where fr.ipd_fr_id = :ipd_fr_id";
+    where fr.ipd_fr_id = :ipd_fr_id and fr.chk_update= 0";
     $conn_DB->imp_sql($sql);
     $execute=array(':ipd_fr_id'=>$data);
     $rslt=$conn_DB->select_a($execute);

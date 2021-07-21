@@ -8,7 +8,7 @@ var AssFirstRecIPD = function(content){
         +"<div class='row'><label class='col-sm-4 col-form-label'><b>ประวัติพกพาอาวุธ </b></label><div class='col-sm-2'><label><input class='ace' type='radio' name='weapon_chk' value='N'checked required><span class='lbl'> ไม่มี</span></label></div><div class='col-sm-2'><label><input class='ace' type='radio' name='weapon_chk' value='Y' required><span class='lbl'> มี</span></label></div><div class='col-sm-2'><label><input class='ace' type='radio' name='weapon_chk' value='U' required><span class='lbl'> ไม่ทราบ</span></label></div></div>"
         + "<textarea name='weapon' id='weapon' class='form-control' placeholder='รายละเอียดการพกพาอาวุธ'></textarea><p>"
         +"<div class='row'><label class='col-sm-4 col-form-label'><b>พกพาอาวุธ(ตรวจค้น) </b></label><div class='col-sm-2'><label><input class='ace' type='radio' name='weaponer_chk' value='N'checked required><span class='lbl'> ไม่มี</span></label></div><div class='col-sm-2'><label><input class='ace' type='radio' name='weaponer_chk' value='Y' required><span class='lbl'> มี</span></label></div><div class='col-sm-2'><label><input class='ace' type='radio' name='weapon_chk' value='U' required><span class='lbl'> ไม่ทราบ</span></label></div></div>"
-        +"<textarea name='weapon' id='weaponer' class='form-control' placeholder='รายละเอียดการพกพาอาวุธ'></textarea><p>"
+        +"<textarea name='weaponer' id='weaponer' class='form-control' placeholder='รายละเอียดการพกพาอาวุธ'></textarea><p>"
         +"<div class='row'><label class='col-sm-4 col-form-label'><b>การจำกัดพฤติกรรม </b></label><div class='col-sm-2'><label><input class='ace' type='radio' name='detain_chk' value='N'checked required><span class='lbl'> ไม่มี</span></label></div><div class='col-sm-2'><label><input class='ace' type='radio' name='detain_chk' value='Y' required><span class='lbl'> มี</span></label></div><div class='col-sm-2'><label><input class='ace' type='radio' name='detain_chk' value='U' required><span class='lbl'> ไม่ทราบ</span></label></div></div>"
         +"<textarea name='detain' id='detain' class='form-control' placeholder='รายละเอียดการจำกัดพฤติกรรม'></textarea><p>"
         +"<div class='row'><label class='col-sm-4 col-form-label'><b>การคัดกรอง SMI-V </b></label><div class='col-sm-2'><label><input class='ace' type='radio' name='smi4_chk' value='N'checked required><span class='lbl'> ไม่มี</span></label></div><div class='col-sm-2'><label><input class='ace' type='radio' name='smi4_chk' value='Y' required><span class='lbl'> มี</span></label></div></div><p>"
@@ -54,7 +54,7 @@ var AssFirstRecIPD = function(content){
         +"</div></div></div><p>"
         +"<div class='row'><label class='col-sm-4 col-form-label'><b>ยาเสพติด (ระยะเวลาภายใน 3 เดือน)</b></label><div class='col-sm-2'><label><input class='ace' type='radio' name='narcotic_chk' value='N'checked required><span class='lbl'> ไม่เสพ</span></label></div><div class='col-sm-2'><label><input class='ace' type='radio' name='narcotic_chk' value='Y' required><span class='lbl'> เสพ</span></label></div></div>"    
         +"<div class='row' id='narcotic'>&nbsp;<input type='button' class='btn btn-success btn-sm' id='plus-btn' value='+ เพิ่มรายการ'>  &nbsp;<input type='button' class='btn btn-danger btn-sm' id='minus-btn' value='- ลบรายการ'><p>"
-            + "<div class= 'col-lg-12 row' > <div class='form-horizontal' role='form'>"
+            + "<div id='static_item'><div class= 'col-lg-12 row' > <div class='form-horizontal' role='form'>"
         +"<div class='form-group col-lg-3 row'><label class='col-sm-3 control-label no-padding-right' for='dope_type'><b>1 . </b> ชนิด</label>"
         +"<div class='col-sm-8'><select class='form-control form-control-sm  select2' id='dope_type0' name='dope_type[]'></select></div></div>"
         +"<div class='form-group col-lg-3 row'><label class='col-sm-3 control-label no-padding-right' for='narcotic_volume'>ปริมาณ </label>"
@@ -73,8 +73,8 @@ var AssFirstRecIPD = function(content){
         +"<div class='col-sm-5'><input class='input-sm' type='text' id='narcotic_stop0' name='narcotic_stop[]' placeholder='' /></div></div>"
         +"<div class='form-group col-lg-4 row'><label class='col-sm-6 control-label no-padding-right' for='narcotic_cause'>สาเหตุการใช้ </label>"
         +"<div class='col-sm-5'><input class='input-sm' type='text' id='narcotic_cause0' name='narcotic_cause[]' placeholder='' /></div></div>"
-        +"</div></div><p><div class='' id='narcotic_item'></div>"
-        +"</div>"
+        +"</div></div></div><p><div class='' id='narcotic_item'></div>"
+        +"<div id='nc_update'></div></div>"
         // +"<p class='alert alert-success'>"
         //     +"สามารถใส่เนื้อหาในนี้ได้</p>"
       + "</div></div>")
@@ -101,10 +101,9 @@ var AssFirstRecIPD = function(content){
               + "</div>")
               ,$("<div class='alert alert-danger'>"
         + "<div class='form-group row'><label class='col-sm-5 col-form-label'><u><b> การประเมินผู้ป่วย </b></u></label></div>"
-       +"<div class='form-group row'><div class='col-sm-1'><label><input class='ace' type='checkbox' name='typeP_1' value='1'><span class='lbl'> 3s</span></label></div><div class='col-lg-2 col-sm-3'><label><input class='ace' type='checkbox' name='typeP_2' value='2'><span class='lbl'> เฝ้าระวังหลบหนี</span></label></div>"
-       +"<div class='col-lg-2 col-sm-3'><label><input class='ace' type='checkbox' name='typeP_3' value='3'><span class='lbl'> เฝ้าระวังฆ่าตัวตาย</span></label></div><div class='col-lg-2 col-sm-3'><label><input class='ace' type='checkbox' name='typeP_4' value='4'><span class='lbl'> เฝ้าระวังอุบัติเหตุ</span></label></div><div class='col-lg-2 col-sm-4'><label><input class='ace' type='checkbox' name='typeP_5' value='5'><span class='lbl'> เฝ้าระวังพฤติกรรมรุนแรง</span></label></div>"
-                  + "</div></div>"
-              +"<input type='hidden' name='method' value='add_FR'>")
+       +"<div class='form-group row'><div class='col-sm-1'><label><input class='ace ace-checkbox-2' type='checkbox' name='typeP_1' value='1'><span class='lbl'> 3s</span></label></div><div class='col-lg-2 col-sm-3'><label><input class='ace ace-checkbox-2' type='checkbox' name='typeP_2' value='2'><span class='lbl'> เฝ้าระวังหลบหนี</span></label></div>"
+       +"<div class='col-lg-2 col-sm-3'><label><input class='ace ace-checkbox-2' type='checkbox' name='typeP_3' value='3'><span class='lbl'> เฝ้าระวังฆ่าตัวตาย</span></label></div><div class='col-lg-2 col-sm-3'><label><input class='ace ace-checkbox-2' type='checkbox' name='typeP_4' value='4'><span class='lbl'> เฝ้าระวังอุบัติเหตุ</span></label></div><div class='col-lg-2 col-sm-4'><label><input class='ace ace-checkbox-2' type='checkbox' name='typeP_5' value='5'><span class='lbl'> เฝ้าระวังพฤติกรรมรุนแรง</span></label></div>"
+                  + "</div></div>")
         );
         
 //////////////////////////// Part 1
@@ -209,7 +208,7 @@ var AssFirstRecIPD = function(content){
             , $("<div class='form-group'><textarea name='ADR' id='ADR' class='form-control' placeholder='รายละเอียดประวัติการแพ้ยาะ ADR'></textarea></div>")
             
             , $("<div class='row'><label class='col-lg-4 col-sm-6 col-form-label'><b>แพ้อาหาร/แพ้สารอื่นๆ </b></label><div class='col-sm-2'><label><input class='ace' type='radio' name='beAllergic_chk' value='N'checked required><span class='lbl'> ไม่มี</span></label></div><div class='col-sm-2'><label><input class='ace' type='radio' name='beAllergic_chk' value='Y' required><span class='lbl'> มี</span></label></div><div class='col-sm-2'><label><input class='ace' type='radio' name='beAllergic_chk' value='U' required><span class='lbl'> ไม่ทราบ</span></label></div></div>")
-            , $("<div class='form-group'><textarea name=beAllergic' id='beAllergic' class='form-control' placeholder='รายละเอียดประวัติการแพ้อาหาร/แพ้สารอื่นๆ'></textarea></div>")
+            , $("<div class='form-group'><textarea name='beAllergic' id='beAllergic' class='form-control' placeholder='รายละเอียดประวัติการแพ้อาหาร/แพ้สารอื่นๆ'></textarea></div>")
             
             , $("<div class='row'><label class='col-lg-4 col-sm-6 col-form-label'><b>ประวัติการใช้/รับประทานยาก่อนมา รพจ.เลยฯ </b></label><div class='col-sm-2'><label><input class='ace' type='radio' name='old_med_chk' value='N'checked required><span class='lbl'> ไม่มี</span></label></div><div class='col-sm-2'><label><input class='ace' type='radio' name='old_med_chk' value='Y' required><span class='lbl'> มี</span></label></div><div class='col-sm-2'><label><input class='ace' type='radio' name='old_med_chk' value='U' required><span class='lbl'> ไม่ทราบ</span></label></div></div>")
             , $("<div class='form-group'><textarea name='old_med' id='old_med' class='form-control' placeholder='รายละเอียดประวัติการใช้/รับประทานยาก่อนมา รพจ.เลยฯ'></textarea></div>")

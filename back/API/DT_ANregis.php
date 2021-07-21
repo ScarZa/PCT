@@ -16,9 +16,9 @@ $rslt = array();
 $series = array();
 $data = isset($_POST['data1'])?$_POST['data1']:(isset($_GET['data1'])?$_GET['data1']:'');
 if(!empty($data)){
-    $code = "WHERE a.ward ='".$data."'";
+    $code = "WHERE a.ward ='".$data."'  and fr.chk_update=0";
 }else{
-    $code ='';
+    $code ='where fr.chk_update=0';
 }
 
 $sql="select fr.ipd_fr_id,a.an,a.hn,a.vn,a.regdate
