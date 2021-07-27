@@ -204,7 +204,12 @@ var AJAXCharts = function (container, type, title, unit, categories, data, subti
              options.series[i] = json[i];
       }
          chart = new Highcharts.Chart(options);
-         });
+        });
+        if(color != null){
+            Highcharts.setOptions({
+              colors: color    
+          });
+      }
 }
 
     this.GetCLStrack = function () {
