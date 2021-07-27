@@ -18,7 +18,7 @@ $series = array();
 $mont = $_GET['data'];
 $Y = $_GET['data2'];
 
-    $process = array('admit','discart','คงพยาบาล','ยอดสะสม');
+    $process = array('admit','discart','คงพยาบาล');
     foreach($process as $key=>$value){
      $processname = $value;
      if($key == 0){
@@ -28,7 +28,7 @@ $Y = $_GET['data2'];
      }elseif($key == 2){
       $code = "(select count(*) from ipt where regdate<=a.admdate and (dchdate>a.admdate or dchdate is null) and ward =99) 'Stay'";
      }else{
-       $code = "(select count(*) from ipt where regdate<=a.admdate  and ward =99) collect";
+       //$code = "(select count(*) from ipt where regdate<=a.admdate  and ward =99) collect";
      }
 
 $countnum = array();

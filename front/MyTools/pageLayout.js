@@ -41,13 +41,13 @@ var PageLayout = function(content){
         $(this.content).empty().append(layout);
     }
 }
-jQuery(function($) {
+// jQuery(function($) {
 			
-    $('#simple-colorpicker-1').ace_colorpicker({pull_right:true}).on('change', function(){
-        var color_class = $(this).find('option:selected').data('class');
-        var new_class = 'widget-box';
-        if(color_class != 'default')  new_class += ' widget-color-'+color_class;
-        $(this).closest('.widget-box').attr('class', new_class);
-    });
+//     $('#simple-colorpicker-1').ace_colorpicker({pull_right:true}).on('change', function(){
+//         var color_class = $(this).find('option:selected').data('class');
+//         var new_class = 'widget-box';
+//         if(color_class != 'default')  new_class += ' widget-color-'+color_class;
+//         $(this).closest('.widget-box').attr('class', new_class);
+//     });
 
-});
+// });
