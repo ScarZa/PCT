@@ -775,7 +775,20 @@ function patient_photo(front,back,hn,an,tag_img){
 					if(color_class != 'default')  new_class += ' widget-color-'+color_class;
 					$(this).closest('.widget-box').attr('class', new_class);
 				});
-			
+
+			$('#simple-colorpicker-2').ace_colorpicker({pull_right:true}).on('change', function(){
+					var color_class = $(this).find('option:selected').data('class');
+					var new_class = 'widget-box';
+					if(color_class != 'default')  new_class += ' widget-color-'+color_class;
+					$(this).closest('.widget-box').attr('class', new_class);
+				});
+
+                $('#simple-colorpicker-3').ace_colorpicker({pull_right:true}).on('change', function(){
+					var color_class = $(this).find('option:selected').data('class');
+					var new_class = 'widget-box';
+					if(color_class != 'default')  new_class += ' widget-color-'+color_class;
+					$(this).closest('.widget-box').attr('class', new_class);
+				});
 			
 				// scrollables
 				$('.scrollable').each(function () {

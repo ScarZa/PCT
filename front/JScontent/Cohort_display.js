@@ -1,38 +1,89 @@
 function CohortDis(content, id = null) {
   $(content).empty().append("<div class='row'><div class='col-lg-12'>"
-    + "<div class= 'col-lg-6' id='cohD1'><br><br><div class= 'col-lg-12' id='cohD1_1'></div><div class= 'col-lg-12' id='cohD1_2'></div></div>"
-    + "<div class= 'col-lg-6' id='cohD2'><div class= 'col-lg-12' id='cohD2_1'></div><div class= 'col-lg-12' id='cohD2_2'></div></div><div class= 'col-lg-12'><center><h3>ตารางข้อมูลผู้ป่วยใน Cohort ward</h3></center></div>"
+    + "<div class= 'col-lg-6' id='cohD1'></div>"
+    + "<div class= 'col-lg-6' id='cohD2'></div><div class= 'col-lg-12'><center><h3>ตารางข้อมูลผู้ป่วยใน Cohort ward</h3></center></div>"
     + "<div class= 'col-lg-12' id='row2'></div></div></div> ");
-  $("#cohD2_1").html('<center><i class="fa fa-spinner fa-pulse" style="font-size:48px"></i><br><br> <h3>กำลังดำเนินการ.....</h3></center><br>');
-  $("#cohD2_2").html('<center><i class="fa fa-spinner fa-pulse" style="font-size:48px"></i><br><br> <h3>กำลังดำเนินการ.....</h3></center><br>');
-  $("#cohD1_1").html('<center><i class="fa fa-spinner fa-pulse" style="font-size:48px"></i><br><br> <h3>กำลังดำเนินการ.....</h3></center><br>');
-  $("#cohD1_2").html('<center><i class="fa fa-spinner fa-pulse" style="font-size:48px"></i><br><br> <h3>กำลังดำเนินการ.....</h3></center><br>');
-
-$("#cohD1").prepend("<div class='row'><div class='col-xs-12 col-sm-12 widget-container-col'>"
-+"<div class='widget-box widget-color-blue' id='widget-box-2'>"
-  +"<div class='widget-header'>"
-    +"<h5 class='widget-title bigger lighter'><i class='ace-icon fa fa-bar-chart'></i> ข้อมูล Cohort ward</h5>"
-      +"<div class='widget-toolbar widget-toolbar-light no-border'>"
-     +"<select id='simple-colorpicker-1' class='hide'>"
-        +"<option selected='' data-class='blue' value='#307ECC'>#307ECC</option>"
-        +"<option data-class='blue2' value='#5090C1'>#5090C1</option>"
-        +"<option data-class='blue3' value='#6379AA'>#6379AA</option>"
-        +"<option data-class='green' value='#82AF6F'>#82AF6F</option>"
-        +"<option data-class='green2' value='#2E8965'>#2E8965</option>"
-        +"<option data-class='green3' value='#5FBC47'>#5FBC47</option>"
-        +"<option data-class='red' value='#E2755F'>#E2755F</option>"
-        +"<option data-class='red2' value='#E04141'>#E04141</option>"
-        +"<option data-class='red3' value='#D15B47'>#D15B47</option>"
-        +"<option data-class='orange' value='#FFC657'>#FFC657</option>"
-        +"<option data-class='purple' value='#7E6EB0'>#7E6EB0</option>"
-        +"<option data-class='pink' value='#CE6F9E'>#CE6F9E</option>"
-        +"<option data-class='dark' value='#404040'>#404040</option>"
-        +"<option data-class='grey' value='#848484'>#848484</option>"
-        +"<option data-class='default' value='#EEE'>#EEE</option>"
-  + "</select></div></div>"
-  + "<div class='widget-body'><div class='widget-main no-padding'></div><div class='row'><br><div class= 'col-lg-12 infobox-container' id='cohD1_0'><div class='col-lg-12' id='cohD1_01'></div><div class='col-lg-12' id='cohD1_02'></div></div></div>"
-  +"</div></div></div></div>")
-
+  
+  
+  $("#cohD1").prepend("<div class='row'><div class='col-xs-12 col-sm-12 widget-container-col'>"
+    + "<div class='widget-box widget-color-blue' id='widget-box-2'>"
+    + "<div class='widget-header'>"
+    + "<h5 class='widget-title bigger lighter'><i class='ace-icon fa fa-bar-chart'></i> ข้อมูล Cohort ward</h5>"
+    + "<div class='widget-toolbar widget-toolbar-light no-border'>"
+    + "<select id='simple-colorpicker-1' class='hide'>"
+    + "<option selected='' data-class='blue' value='#307ECC'>#307ECC</option>"
+    + "<option data-class='blue2' value='#5090C1'>#5090C1</option>"
+    + "<option data-class='blue3' value='#6379AA'>#6379AA</option>"
+    + "<option data-class='green' value='#82AF6F'>#82AF6F</option>"
+    + "<option data-class='green2' value='#2E8965'>#2E8965</option>"
+    + "<option data-class='green3' value='#5FBC47'>#5FBC47</option>"
+    + "<option data-class='red' value='#E2755F'>#E2755F</option>"
+    + "<option data-class='red2' value='#E04141'>#E04141</option>"
+    + "<option data-class='red3' value='#D15B47'>#D15B47</option>"
+    + "<option data-class='orange' value='#FFC657'>#FFC657</option>"
+    + "<option data-class='purple' value='#7E6EB0'>#7E6EB0</option>"
+    + "<option data-class='pink' value='#CE6F9E'>#CE6F9E</option>"
+    + "<option data-class='dark' value='#404040'>#404040</option>"
+    + "<option data-class='grey' value='#848484'>#848484</option>"
+    + "<option data-class='default' value='#EEE'>#EEE</option>"
+    + "</select></div></div>"
+    + "<div class='widget-body'><div class='widget-main no-padding'></div><div class='row'><br><div class= 'col-lg-12 infobox-container' id='cohD1_0'><div class='col-lg-12' id='cohD1_01'></div><div class='col-lg-12' id='cohD1_02'></div></div></div>"
+    + "</div></div></div></div>");
+  
+    $("#cohD1").append("<div class='row'><div class='col-xs-12 col-sm-12 widget-container-col'>"
+    + "<div class='widget-box widget-color-blue' id='widget-box-2'>"
+    + "<div class='widget-header'>"
+    + "<h5 class='widget-title bigger lighter'><i class='ace-icon fa fa-bar-chart'></i> ข้อมูล Cohort ward ยอดสะสม</h5>"
+    + "<div class='widget-toolbar widget-toolbar-light no-border'>"
+    + "<select id='simple-colorpicker-2' class='hide'>"
+    + "<option selected='' data-class='blue' value='#307ECC'>#307ECC</option>"
+    + "<option data-class='blue2' value='#5090C1'>#5090C1</option>"
+    + "<option data-class='blue3' value='#6379AA'>#6379AA</option>"
+    + "<option data-class='green' value='#82AF6F'>#82AF6F</option>"
+    + "<option data-class='green2' value='#2E8965'>#2E8965</option>"
+    + "<option data-class='green3' value='#5FBC47'>#5FBC47</option>"
+    + "<option data-class='red' value='#E2755F'>#E2755F</option>"
+    + "<option data-class='red2' value='#E04141'>#E04141</option>"
+    + "<option data-class='red3' value='#D15B47'>#D15B47</option>"
+    + "<option data-class='orange' value='#FFC657'>#FFC657</option>"
+    + "<option data-class='purple' value='#7E6EB0'>#7E6EB0</option>"
+    + "<option data-class='pink' value='#CE6F9E'>#CE6F9E</option>"
+    + "<option data-class='dark' value='#404040'>#404040</option>"
+    + "<option data-class='grey' value='#848484'>#848484</option>"
+    + "<option data-class='default' value='#EEE'>#EEE</option>"
+    + "</select></div></div>"
+    + "<div class='widget-body'><div class='widget-main no-padding'></div><div class='row'><div class= 'col-lg-12' id='cohD1_1'></div><div class= 'col-lg-12' id='cohD1_2'></div></div>"
+    + "</div></div></div></div>");
+    $("#cohD1_1").html('<center><i class="fa fa-spinner fa-pulse" style="font-size:48px"></i><br><br> <h3>กำลังดำเนินการ.....</h3></center><br>');
+    $("#cohD1_2").html('<center><i class="fa fa-spinner fa-pulse" style="font-size:48px"></i><br><br> <h3>กำลังดำเนินการ.....</h3></center><br>');
+  
+  $("#cohD2").prepend("<div class='row'><div class='col-xs-12 col-sm-12 widget-container-col'>"
+    + "<div class='widget-box widget-color-blue' id='widget-box-2'>"
+    + "<div class='widget-header'>"
+    + "<h5 class='widget-title bigger lighter'><i class='ace-icon fa fa-bar-chart'></i> ข้อมูล Cohort ward รายวัน</h5>"
+    + "<div class='widget-toolbar widget-toolbar-light no-border'>"
+    + "<select id='simple-colorpicker-3' class='hide'>"
+    + "<option selected='' data-class='blue' value='#307ECC'>#307ECC</option>"
+    + "<option data-class='blue2' value='#5090C1'>#5090C1</option>"
+    + "<option data-class='blue3' value='#6379AA'>#6379AA</option>"
+    + "<option data-class='green' value='#82AF6F'>#82AF6F</option>"
+    + "<option data-class='green2' value='#2E8965'>#2E8965</option>"
+    + "<option data-class='green3' value='#5FBC47'>#5FBC47</option>"
+    + "<option data-class='red' value='#E2755F'>#E2755F</option>"
+    + "<option data-class='red2' value='#E04141'>#E04141</option>"
+    + "<option data-class='red3' value='#D15B47'>#D15B47</option>"
+    + "<option data-class='orange' value='#FFC657'>#FFC657</option>"
+    + "<option data-class='purple' value='#7E6EB0'>#7E6EB0</option>"
+    + "<option data-class='pink' value='#CE6F9E'>#CE6F9E</option>"
+    + "<option data-class='dark' value='#404040'>#404040</option>"
+    + "<option data-class='grey' value='#848484'>#848484</option>"
+    + "<option data-class='default' value='#EEE'>#EEE</option>"
+    + "</select></div></div>"
+    + "<div class='widget-body'><div class='widget-main no-padding'></div><div align='center' id='sel-div'></div><div class='row'><div class= 'col-lg-12' id='cohD2_1'></div><div class= 'col-lg-12' id='cohD2_2'></div></div>"
+    + "</div></div></div></div>");
+    $("#cohD2_1").html('<center><i class="fa fa-spinner fa-pulse" style="font-size:48px"></i><br><br> <h3>กำลังดำเนินการ.....</h3></center><br>');
+    $("#cohD2_2").html('<center><i class="fa fa-spinner fa-pulse" style="font-size:48px"></i><br><br> <h3>กำลังดำเนินการ.....</h3></center><br>');
+  
   $("#cohD1_01").empty().append($("<div class='infobox infobox-red'>"
     + "<div class='infobox-icon'><i class='ace-icon fa fa-bed'></i></div>"
     + "<div class='infobox-data'><div class='infobox-data-number'><b id='total'></b> คน</div><div class='infobox-content'>ยอดสะสมผู้ป่วย Admit</div>"
@@ -66,6 +117,10 @@ $("#cohD1").prepend("<div class='row'><div class='col-xs-12 col-sm-12 widget-con
       + "</div></div>")
   );
 
+  $("#sel-div").empty().append("<div class='row'><div class='col-lg-12' style='text-align: right;'><div class='col-lg-6 col-md-6 col-sm-6' style='text-align: right;'><select class='form-control' id='sel-month'></select></div>"
+                              +"<div class= 'col-lg-6 col-md-6 col-sm-6' style = 'text-align: right;'><select class='form-control' id='sel-year'></select></div></div></div><p>")
+  
+
   $.getJSON('../back/API/detail_cohort.php', function (data) {
     $("#total").empty().append(data.total);
     $("#dc").empty().append(data.dc);
@@ -83,6 +138,10 @@ $("#cohD1").prepend("<div class='row'><div class='col-xs-12 col-sm-12 widget-con
     
   });
 
+//   $.getJSON('https://static.easysunday.com/covid-19/getTodayCases.json', function (data) {
+// console.log(data)
+//   })
+  
   var title1 = "ข้อมูล Cohort ward";
   var title2 = "ข้อมูลโรงพยาบาล Refer มาที่ Cohort ward";
   var title3 = "ข้อมูลยอดผู้ป่วยสะสม แยกเพศ";
