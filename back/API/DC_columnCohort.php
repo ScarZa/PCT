@@ -15,27 +15,36 @@ $conn_DB->conn_PDO();
 set_time_limit(0);
 $rslt = array();
 $series = array();
-$mont = $_GET['data'];
-$Y = $_GET['data2'];
-
+$month = isset($_POST['data'])?$_POST['data']:(isset($_GET['data'])?$_GET['data']:'');
+$Y = isset($_POST['data2'])?$_POST['data2']:(isset($_GET['data2'])?$_GET['data2']:'');
+$ward = isset($_POST['data3'])?$_POST['data3']:(isset($_GET['data3'])?$_GET['data3']:'');
+$DIM=cal_days_in_month(CAL_GREGORIAN,$month,$Y);
+if(!empty($ward)){
+  
+  $code0 = "ward=".$ward." and regdate BETWEEN '".$Y."-".$month."-01' and '".$Y."-".$month."-".$DIM."'";
+  $code1 ="ward=".$ward;
+}else {
+  $code0 = "ward=99 ";
+  $code1= "ward=99 ";
+}
     $process = array('admit','discart','คงพยาบาล');
     foreach($process as $key=>$value){
      $processname = $value;
      if($key == 0){
-      $code = "(select count(*) from ipt where regdate=a.admdate and ward =99) 'admit'";
+      $code = "(select count(*) from ipt where regdate=a.admdate and ".$code0.") 'admit'";
      }elseif($key == 1){
-      $code = "(select count(*) from ipt where dchdate=a.admdate and ward =99) 'dch'";
+      $code = "(select count(*) from ipt where dchdate=a.admdate and ".$code1.") 'dch'";
      }elseif($key == 2){
-      $code = "(select count(*) from ipt where regdate<=a.admdate and (dchdate>a.admdate or dchdate is null) and ward =99) 'Stay'";
+      $code = "(select count(*) from ipt where regdate<=a.admdate and (dchdate>a.admdate or dchdate is null) and ".$code1.") 'Stay'";
      }else{
        //$code = "(select count(*) from ipt where regdate<=a.admdate  and ward =99) collect";
      }
 
 $countnum = array();
 
-$DIM=cal_days_in_month(CAL_GREGORIAN,$mont,$Y); 
-$month_start = "$Y-$mont-01";
-$month_end = "$Y-$mont-$DIM";
+//$DIM=cal_days_in_month(CAL_GREGORIAN,$mont,$Y); 
+$month_start = "$Y-$month-01";
+$month_end = "$Y-$month-$DIM";
 $sql = "select $code from (select vstdate 'admdate'
             from ovst
             where vstdate between '$month_start' and '$month_end'

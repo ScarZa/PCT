@@ -13,7 +13,7 @@ var PageLayout = function(content){
 													'</h5>'+
 
 													'<div class="widget-toolbar widget-toolbar-light no-border">'+
-														'<select id="simple-colorpicker-1" class="hide">'+
+														'<select id="simple-colorpicker-0" class="hide">'+
 															'<option selected="" data-class="blue" value="#307ECC">#307ECC</option>'+
 															'<option data-class="blue2" value="#5090C1">#5090C1</option>'+
 															'<option data-class="blue3" value="#6379AA">#6379AA</option>'+

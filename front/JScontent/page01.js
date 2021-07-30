@@ -15,7 +15,7 @@ function Page01(content, id = null) {
         PL.GetPL();
         $("#head-table").empty().append("<i class='ace-icon fa fa-table'></i> Dashboard")
         HAlert("#contentGr");
-        CohortDis("#contentTB");
+        WardDis("#contentTB");
     } else {
         CohortDis(content);
         //$(content).empty().append("Hello world!!!!");
