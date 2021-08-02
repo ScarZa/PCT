@@ -334,9 +334,10 @@ $("#navbar-container").empty().append($('<button type="button" class="navbar-tog
                                                 }else if(data.status_user=='HOS' && data.depcode=='024'){
                                                     $("#menu9").show();
                                 }
-                                //Page01("#page-content")
+                                Page01("#page-content");
                                             }else if(data.status_user == ''){
-                                                $("#login-tab").show(); 
+                                $("#login-tab").show();
+                                //Page01("#page-content");
                                             }
                         }
                 });

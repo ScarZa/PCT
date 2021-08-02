@@ -79,7 +79,9 @@ function WardDis(content, id = null) {
     + "<option data-class='grey' value='#848484'>#848484</option>"
     + "<option data-class='default' value='#EEE'>#EEE</option>"
     + "</select></div></div>"
-    + "<div class='widget-body'><div class='widget-main no-padding'></div><div align='center' id='sel-div'></div><div class='row'><div class= 'col-lg-12' id='cohD2_1'></div><div class= 'col-lg-12' id='cohD2_2'></div></div>"
+    + "<div class='widget-body'><div class='widget-main no-padding'></div><div align='center' id='sel-div'></div><div class='row'><div class= 'col-lg-12' id='cohD2_1'>"
+    //+"</div > <div class='col-lg-12' id='cohD2_2'></div>"
+    +"</div> "
     + "</div></div></div></div>");
     $("#cohD2_1").html('<center><i class="fa fa-spinner fa-pulse" style="font-size:48px"></i><br><br> <h3>กำลังดำเนินการ.....</h3></center><br>');
     //$("#cohD2_2").html('<center><i class="fa fa-spinner fa-pulse" style="font-size:48px"></i><br><br> <h3>กำลังดำเนินการ.....</h3></center><br>');
@@ -196,7 +198,7 @@ function AddDis(month, year, ward) {
   var year_val = year;
   var ward_val = ward;
   
-  $.getJSON('../back/API/detail_cohort.php', { data: month_val, data2: year_val, data3: ward_val }, function (data) { console.log(data)
+  $.getJSON('../back/API/detail_cohort.php', { data: month_val, data2: year_val, data3: ward_val }, function (data) { 
     
     $("#total").empty().append(data.total);
     $("#dc").empty().append(data.dc);
@@ -222,5 +224,10 @@ function AddDis(month, year, ward) {
         $(CChartsCh.GetCL());
       
           });
-
+          var column1 = ["วันที่", "Admit", "D/C", "คงพยาบาล","Admit สะสมในเดือน", "D/C สะสมในเดือน"];
+          $("#row2").addClass("table-responsive");
+      var CTb = new createTableAjax();
+        $("#row2").html('<center><i class="fa fa-spinner fa-pulse" style="font-size:48px"></i><br> <h3>กำลังดำเนินการ.....</h3></center><br>');
+        CTb.GetNewTableAjax('row2', '../back/API/DT_ward.php?' + month_val + '?' +year_val+'?'+ward_val, '../back/API/tempSendDataAPI.php', column1
+          , null, null, null, null, false, false, null, false, null, false, null, null, null, null, null, null);
 }
