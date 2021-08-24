@@ -15,16 +15,16 @@ function InterviewIPD(content, id = null, url = '../', recorder = null) {
     $("h5.widget-title").empty().prepend("แบบสัมภาษณ์ประวัติผู้ป่วย");
     $("#Budget").remove();
 
-    $("#Tl0 >a").empty().append("แบบแรกรับ (หอผู้ป่วย)");
-    $("#Tc0 >p").empty().append($("<div class='widget-main row'><form action='' name='frminv' id='frminv' method='post' enctype='multipart/form-data'>"
+    $(content+"l0 >a").empty().append("แบบแรกรับ (หอผู้ป่วย)");
+    $(content+"c0 >p").empty().append($("<div class='widget-main row'><form action='' name='frminv' id='frminv' method='post' enctype='multipart/form-data'>"
         + ""
         + "<div id='interviewfrm' class='col-lg-12 col-md-12 col-sm-12 col-xs-12 scroll'></div>"
         + "<center><input type='submit' name='submit1' class='btn btn-success' value='บันทึก'></center>"
         //+ "<div class='col-lg-6'><div class='row col-lg-12' id='sub-contentTB'></div><div class='row col-lg-12' id='sub-contentGr'></div></div>"
         + "</form></div>"));
 
-    $("#Tl1 >a").empty().append("แบบประเมินสภาพจิตใจ");
-    $("#Tc1 >p").empty().append($("<div class='widget-main row'><form action='' name='frmgauge' id='frmgauge' method='post' enctype='multipart/form-data'>"
+    $(content+"l1 >a").empty().append("แบบประเมินสภาพจิตใจ");
+    $(content+"c1 >p").empty().append($("<div class='widget-main row'><form action='' name='frmgauge' id='frmgauge' method='post' enctype='multipart/form-data'>"
         + ""
         + "<div id='gaugefrm' class='col-lg-12 col-md-12 col-sm-12 col-xs-12 scroll'></div>"
         + "<center><input type='submit' name='submit2' class='btn btn-success' value='ประเมิน'></center>"

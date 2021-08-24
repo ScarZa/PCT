@@ -211,7 +211,7 @@ function AddDis(month, year, ward) {
     $("#femaletoday").empty().append(data.femaletoday);
     $("#wardnameTB,#wardname01,#wardname02").empty().append(data[0]);
   });
-    var title1 = "ข้อมูล Cohort ward";
+    var title1 = "ข้อมูลผู้ป่วยใน ward";
     var title2 = "ข้อมูลโรงพยาบาล Refer มาที่ Cohort ward";
     var title3 = "ข้อมูลยอดผู้ป่วยสะสม แยกเพศ";
     var title4 = "ข้อมูล Referin สะสมแยกโรงพยาบาล";

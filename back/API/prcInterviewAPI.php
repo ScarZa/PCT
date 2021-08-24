@@ -297,11 +297,11 @@ foreach ($dope_type_chk as $key => $value) {
     $redate = date('Y-m-d H:i:s');
     $vn = $conv->utf8_to_tis620($_POST['vn']);
 
-    $sql = "SELECT ipd_fr_id FROM jvl_ipd_first_rec WHERE vn='".$vn."'";
+    $sql = "SELECT ipd_fr_id FROM jvl_ipd_first_rec WHERE vn='".$vn."' and chk_update=0";
         $connDB->imp_sql($sql);
         $chk_fr=$connDB->select_a();
         if($chk_fr){
-            $sql2 = "SELECT count(ms.ipd_fr_id)count FROM jvl_mental_state ms inner join jvl_ipd_first_rec fr on fr.ipd_fr_id = ms.ipd_fr_id WHERE vn='".$vn."'";
+            $sql2 = "SELECT count(ms.ipd_fr_id)count FROM jvl_mental_state ms inner join jvl_ipd_first_rec fr on fr.ipd_fr_id = ms.ipd_fr_id WHERE vn='".$vn."' and fr.chk_update=0";
         $connDB->imp_sql($sql2);
         $chk_mental=$connDB->select_a();
         if($chk_mental['count']==0){
@@ -539,6 +539,12 @@ foreach ($dope_type_chk as $key => $value) {
         //$data = array(1);
         $field3=array("chk_update");
         $edit_con=$connDB->update($table2, $data, $where, $field3, $execute);  
+
+        $table4 = "jvl_mental_state";
+        $data4 = array($first_rec);
+        $field4=array("ipd_fr_id");
+        $edit_con=$connDB->update($table4, $data4, $where, $field4, $execute);
+
         if($condition){
           $res = array("messege"=>'บันทึกข้อมูลประเมินทางกายสำเร็จครับ!!!!',"check"=>'Y');
         }else{

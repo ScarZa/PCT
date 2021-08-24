@@ -12,9 +12,10 @@ $("#createModal").empty().append("<div class='modal' id='ConcludeModel' role='di
       var G = new AssConcludeIPD("span#his_detail");
       G.GetCIPD();
       console.log(recipient)
-      var DP = new DatepickerThai();
-      DP.GetDatepicker("#begin_date"); 
-      DP.GetDatepicker("#end_date"); 
+       var DP = new DatepickerThai();
+       DP.GetDatepicker("#begin_date"); 
+       DP.GetDatepicker("#end_date"); 
+    
         $.getJSON('../back/API/FR_Data.php', { data: recipient }, function (data) { 
             $("#Cpart1").append($("<input type='hidden' name='hn' value='" + data.hn + "'>")
                 , $("<input type='hidden' name='vn' value='" + data.vn + "'>")

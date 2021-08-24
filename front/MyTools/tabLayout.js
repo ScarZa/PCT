@@ -1,6 +1,7 @@
 var TabLayout = function(content,numTab=1){
     this.content = content;
-    this.numTab = numTab;
+		this.numTab = numTab;
+		var tab_name = content.split("#");console.log(tab_name)
     this.GetTL= function (){
             var layout = "<div class='row'>"+
 							"<div id='sel_year' class='col-md-3 col-md-offset-9 form-group'></div>" +
@@ -38,7 +39,7 @@ var TabLayout = function(content,numTab=1){
 												'<div class="widget-body">'+
 													'<div class="widget-main no-padding"></div>'+
             "<div class='row'><div class='col-sm-12 col-xs-12'><div class='tabbable'>"
-										+"<ul class='nav nav-tabs padding-12 tab-color-blue background-blue' id='myTab'></ul>"
+										+"<ul class='nav nav-tabs padding-12 tab-color-blue background-blue' id='myTab"+tab_name[1]+"'></ul>"
                                         +"<div class='tab-content' id='MyTabCont'>"
                                         +"</div></div></div></div>"
             "<div align='center' id='Budget'></div><div id='contentGr'></div><br><div id='contentTB'></div>"+
@@ -46,10 +47,10 @@ var TabLayout = function(content,numTab=1){
             
         $(this.content).empty().append(layout);
         for(var i=0;i < this.numTab;i++){
-            $("#myTab").append($("<li id='Tl"+i+"'><a data-toggle='tab' href='#Tc"+i+"'>ชื่อ tab "+i+"</a></li>"));
+            $("#myTab"+tab_name[1]).append($("<li id='"+tab_name[1]+"l"+i+"'><a data-toggle='tab' href='#"+tab_name[1]+"c"+i+"'>ชื่อ tab "+i+"</a></li>"));
             
-			$(".tab-content#MyTabCont").append($("<div id='Tc"+i+"' class='tab-pane'><p>เนื้อหา "+i+"</p></div>"));
-			if(i==0){$("#Tl0").addClass("active");$("#Tc0").addClass("in active");}
+			$(".tab-content#MyTabCont").append($("<div id='"+tab_name[1]+"c"+i+"' class='tab-pane'><p>เนื้อหา "+i+"</p></div>"));
+			if(i==0){$("#"+tab_name[1]+"l0").addClass("active");$("#"+tab_name[1]+"c0").addClass("in active");}
 			
         }
     }

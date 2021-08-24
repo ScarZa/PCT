@@ -52,7 +52,7 @@ if($data2 == '009'){
     $where = 'where t.tB_id=:tB_id';
     $exe = ':tB_id';
 }
-    $sql="select t.tB_id,a.an,p.hn,p.pname,p.fname,p.lname,p.informaddr,p.cid,p.birthday,m.name as mrname,v.age_y,v.age_m,v.vn,v.pdx,v.dx0,v.dx1,v.dx2,v.dx3,v.dx4,v.dx5
+    $sql="select fr.ipd_fr_id,t.tB_id,a.an,p.hn,p.pname,p.fname,p.lname,p.informaddr,p.cid,p.birthday,m.name as mrname,v.age_y,v.age_m,v.vn,v.pdx,v.dx0,v.dx1,v.dx2,v.dx3,v.dx4,v.dx5
     ,d.department,c.cons_name,t.cause,w.name as ward
     ,(SELECT d.name FROM vn_stat v inner join doctor d on d.code = v.dx_doctor WHERE v.vn=t.vn)doctor_name
     ,o1.name as sender_name,doc.shortname as resender_name
@@ -62,6 +62,8 @@ if($data2 == '009'){
         inner join an_stat a on a.vn = v.vn
         LEFT OUTER JOIN ward w on w.ward = a.ward
         inner join jvl_transferBox t on t.vn = v.vn
+        LEFT OUTER join jvl_ipd_first_rec fr on fr.vn = t.vn
+        LEFT OUTER join jvl_progress_commu pc on fr.ipd_fr_id = pc.ipd_fr_id
 				inner join opduser o1 on o1.loginname = t.sender
 				inner join doctor doc on doc.code = t.resendname
 				".$join."
@@ -77,6 +79,8 @@ if($data2 == '009'){
 //print_r($rslt);
 $conv=new convers_encode();
 //for($i=0;$i<count($rslt);$i++){
+    $series['ipd_fr_id'] = isset($rslt['ipd_fr_id'])?$rslt['ipd_fr_id']:'';
+    $series['pc_id'] = isset($rslt['pc_id'])?$rslt['pc_id']:'';
     $series['tB_id'] = $rslt['tB_id'];
     $series['an'] = $rslt['an'];
     $pname=$conv->tis620_to_utf8( $rslt['pname']);

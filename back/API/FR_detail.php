@@ -35,14 +35,14 @@ $sql="SELECT (SELECT count(a.an) from an_stat a WHERE a.hn = '".$rslt0['hn']."')
 ,oc.temperature,oc.pulse,oc.rr,oc.bps,oc.bpd
 ,fr.*
 FROM jvl_ipd_first_rec fr
-inner join an_stat a on a.an = fr.an
+left outer join an_stat a on a.an = fr.an
 left outer join patient p on fr.hn=p.hn
-inner join sex s on s.code=p.sex
-inner join marrystatus m on m.code = p.marrystatus
+left outer join sex s on s.code=p.sex
+left outer join marrystatus m on m.code = p.marrystatus
 left outer join nationality n on n.nationality = p.nationality
 left outer join religion r on r.religion = p.religion
 left outer join education e on e.education = p.educate
-inner join occupation occ on occ.occupation = p.occupation
+left outer join occupation occ on occ.occupation = p.occupation
 left outer join pttype pt on a.pttype=pt.pttype
 left outer join opdscreen oc on oc.vn=a.vn
 left outer join ipt i on a.an=i.an

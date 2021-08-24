@@ -17,8 +17,9 @@ $("#createModal").empty().append("<div class='modal' id='FrIPDModal' role='dialo
 
     var FR = new AssFirstRecIPD("span#FrIPD_detail");
     FR.GetFRIPD();
+       ////////////// แก้ select2 ไม่ทำงานใน modal Bootstrap 3 
+        $.fn.modal.Constructor.prototype.enforceFocus = function () { };
         
-
     selectMash("#alcohol_type", "alcoholType_data.php", " เลือกชนิดสุรา ");
     selectMash("#alcohol_vol", "alcoholVol_Data.php", " เลือกปริมาณ ");
     selectMash("#dope_type0", "drugs_data.php", " เลือกชนิดยาเสพติด ");

@@ -120,7 +120,7 @@ function CohortDis(content, id = null) {
 
   $("#cohD1_03").empty().append($("<button class='btn btn-lg btn-danger btn-block'>"
     + "<i class='ace-icon fa fa-bed fa-lg'></i> ผู้ป่วยรับใหม่วันนี้<br>"
-    +"<span id='Pan-body' style='font-size:14px'></span>"
+    +"<span id='Pan-body' style='font-size:16px;color:yellow'></span>"
 +"</button><p>")
   );
 

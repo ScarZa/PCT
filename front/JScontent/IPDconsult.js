@@ -1,6 +1,6 @@
 function IPDConsult(content, id = null) {
     
-    var idvn = id; console.log(idvn)
+    var idvn = id;
     // if($.cookie("dep")=='009'){
     //     var title = " ลงทะเบียนคลินิกสุราและยาเสพติด";
     //     var process= "prcMRAPI.php";
@@ -35,16 +35,28 @@ function IPDConsult(content, id = null) {
         //+ "<br><center><button class='btn btn-success'>ลงทะเบียน</button> <button class='btn btn-danger'>ส่งคืน</button></center></div>"
         + "</div></form>"));
         
-        $.getJSON('../back/API/detail_IPDpatientAPI.php',{data : idvn.data,data2 : $.cookie("dep")},function (data) {console.log(data);
+        $.getJSON('../back/API/detail_IPDpatientAPI.php',{data : idvn.data,data2 : $.cookie("dep")},function (data) {
         $("#P-data").append($("<div class='col-lg-12 row'><div class='block'> <img id='pics-panel' width='125' /></div><span>AN : "+data[0].an+"<br>HN : "+data[0].hn+"<br>เลขบัตรประชาชน : "+data[0].cid+"<br>ชื่อ-สกุล :"+data[0].fullname
         +"<br>ที่อยู่ : "+data[0].informaddr+"<br>วันเกิด : "+data[0].birthday+" อายุ : "+data[0].age_y+" ปี "+data[0].age_m+" เดือน สถานะภาพ : "+data[0].mrname+"<br>การวินิจฉัย : "+data[0].pdx+" "+data[0].dx0
         +" "+data[0].dx1+" "+data[0].dx2+" "+data[0].dx3+" "+data[0].dx4+" "+data[0].dx5+"<br><b style='color: red'>Admit ที่ : "+data[0].ward+"</b>  <br>ส่งให้ : "+data[0].department+" <br>ส่งมาเพื่อ : "+data[0].cons_name+" <br>สาเหตุที่ส่ง/อาการ/ความจำเป็น : "+data[0].cause
         +"<br>แพทย์เจ้าของไข้ : "+data[0].doctor_name+"<br>ผู้ส่งบำบัด : "+data[0].sender_name
         +"<br>ผู้ตอบรับ : "+data[0].resender_name+"<br>เหตุผล : "+data[0].resend+"</span>"
         +"</div><br>")
-        );
+            , $("<br><div class='row'><div class='col-lg-12'><a href='' id='progress-not' class='btn btn-success'><i class='fa fa-pencil-square-o'></i> Progress note</a></div></div>")
+            );
+            
         patient_photo('','../',data[0].hn,data[0].an,'#pics-panel');
         
+$("#progress-not").click(function(){
+    $("a#progress-not").attr("onclick", PGCommuModal()).attr("data-toggle", "modal").attr("data-target", "#PGCommuModal").attr("data-whatever", [data[0].an+' '+data[0].tB_id])
+})
+
+var column1 = ["ลำดับ", "วันบันทึก", "ผู้บันทึก", "Subject data","Object data", "สรุป","รายละเอียดแผน"];
+$("#contentTB").addClass("table-responsive");
+var PTb = new createTableAjax();
+$("#contentTB").html('<center><i class="fa fa-spinner fa-pulse" style="font-size:48px"></i><br> <h3>กำลังดำเนินการ.....</h3></center><br>');
+PTb.GetNewTableAjax('contentTB', '../back/API/DT_progressCommu.php?' +data[0].ipd_fr_id, '../back/API/tempSendDataAPI.php', column1
+, null, null, null, null, false, false, null, true, 'PCommuModal', false, null, null, null, null, null, null);
 
 $("#cgi-post").append($("<input type='hidden' name='hn' value='"+data[0].hn+"'>")
     ,$("<input type='hidden' name='tB_id' value='"+data[0].tB_id+"'>")

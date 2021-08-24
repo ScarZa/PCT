@@ -95,10 +95,36 @@ function AddPanel(content,id = null) {
             if (item.typeP_4R != '') { $("#row-alert_" + i).append("<button class='btn btn-minier btn-yellow'><i class='ace-icon fa fa-exclamation-triangle'></i></button> ") }
             if (item.typeP_5R != '') { $("#row-alert_" + i).append("<button class='btn btn-minier btn-danger'><i class='ace-icon fa fa-exclamation-triangle'></i></button> ") }
             
+            
             $("#body-panel" + i).append($("<div class='alert alert-info'><span style='color:#1c2352'>CC : " + item.cc + "<br>HPI : " + item.hpi + "</span></div>")
                 , $("<div class='alert alert-danger'>เฝ้าระวัง : <span style='background-color:yellow'>" + item.typeP_1R + " " + item.typeP_2R + " " + item.typeP_3R + " " + item.typeP_4R + " " + item.typeP_5R + "</span><br><div><div id='smiv_class" + i + "'></div><span style='background-color:yellow' id='smiv-detial" + i + "'></span></div>"
-            +"<br><div><div id='HAD"+i+"'></div><span style='background-color:' id='HAD-detial"+i+"'></span></div></div> ")
-        )
+                    + "<br><div><div id='HAD" + i + "'></div><span style='background-color:' id='HAD-detial" + i + "'></span></div></div> ")
+                ,$("<div class='' id='tab-progerss" + i+"'><a href='#' id='show-detial'> แสดงรายละเอียด <img src='images/click.gif' width='75'></a></div>")
+            );
+            $("a#show-detial").click(function () {
+                var PL = new TabLayout('#tab-progerss' + i, 2);
+                PL.GetTL();
+                $("h5.widget-title").empty().prepend("Progress note");
+                //$("#Budget").remove();
+        
+                $("#tab-progerss" + i+"l0 >a").empty().append(" Progress note(ชุมชน)");
+                $("#tab-progerss" + i+"c0 >p").empty().append($("<div class='widget-main row'>"
+                    + "<div id='progressCommu" + i + "' class='col-lg-12 col-md-12 col-sm-12 col-xs-12 scroll'></div>"
+                    + "</div>"));
+        
+                var column1 = ["ลำดับ", "วันบันทึก", "ผู้บันทึก", "Subject data", "Object data", "สรุป", "รายละเอียดแผน"];
+                $("#progressCommu" + i).addClass("table-responsive");
+                var PTb = new createTableAjax();
+                $("#progressCommu" + i).html('<center><i class="fa fa-spinner fa-pulse" style="font-size:48px"></i><br> <h3>กำลังดำเนินการ.....</h3></center><br>');
+                PTb.GetNewTableAjax('progressCommu' + i, '../back/API/DT_progressCommu.php?' + item.ipd_fr_id, '../back/API/tempSendDataAPI.php', column1
+                    , null, null, null, null, false, false, null, true, 'PCommuModal?', false, null, null, null, null, null, null);
+            
+                $("#tab-progerss" + i+"l1 >a").empty().append("Progress note(?)");
+                $("#tab-progerss" + i+"c1 >p").empty().append($("<div class='widget-main row'><form action='' name='frmgauge' id='frmgauge' method='post' enctype='multipart/form-data'>"
+                    + ""
+                    + "<div id='gaugefrm' class='col-lg-12 col-md-12 col-sm-12 col-xs-12 scroll'></div>"
+                    + "</form></div>"));
+            });
             $.getJSON('../back/API/detail_SMIVAPI.php', { data: item.hn }, function (data) {
                 if (data[0].chk_1 + data[0].chk_2 + data[0].chk_3 + data[0].chk_4 > 0) {
                     $("#row-alert_" + i).append("<button class='btn btn-minier btn-grey'><i class='ace-icon fa fa-exclamation-triangle'></i></button> ")
