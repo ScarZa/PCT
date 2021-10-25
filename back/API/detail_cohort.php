@@ -24,22 +24,25 @@ $result = array();
 $series = array();
 $month = isset($_POST['data'])?$_POST['data']:(isset($_GET['data'])?$_GET['data']:'');
 $year = isset($_POST['data2'])?$_POST['data2']:(isset($_GET['data2'])?$_GET['data2']:'');
-$ward = isset($_POST['data3'])?$_POST['data3']:(isset($_GET['data3'])?$_GET['data3']:'');
+// $ward = isset($_POST['data3'])?$_POST['data3']:(isset($_GET['data3'])?$_GET['data3']:'');
 if(!empty($ward)){
     $DIM=cal_days_in_month(CAL_GREGORIAN,$month,$year);
     $code = "an.ward='".$ward."' and an.regdate BETWEEN '".$year."-".$month."-01' and '".$year."-".$month."-".$DIM."'";
     $code1 ="an.ward=".$ward;
     $code2 = "an.ward='".$ward."' and an.dchdate BETWEEN '".$year."-".$month."-01' and '".$year."-".$month."-".$DIM."'";
+    $code3 = "w.ward= '".$ward."'";
 }else {
     $code = "an.ward='99' ";
     $code1 ="an.ward='99' ";
     $code2 = "an.ward='99' and an.dchdate BETWEEN '2021-07-05' and substr(now(),1,11)";
+    $code3 = "w.ward= '99'";
 }
     $sql="SELECT count(*)total,w.name
     ,(select count(*) from an_stat an where ".$code2.")dc
     ,(select count(*) from an_stat an where an.sex=1 and ".$code.")male
     ,(select count(*) from an_stat an where an.sex=2 and ".$code.")female
     ,(select count(*) from an_stat an where ISNULL(an.dchdate) and ".$code1.")stay
+    ,(SELECT COUNT(DISTINCT an) from ward_admit_snapshot w WHERE ".$code3." and w.snap_date=SUBSTR(now(),1,11))stayatday
     ,(select count(*) from an_stat an where ISNULL(an.dchdate) and an.regdate = SUBSTR(now(),1,11) and ".$code1.")admit
     ,(select count(*) from an_stat an where an.dchdate = SUBSTR(now(),1,11) and ".$code1.")dctoday
     ,(select count(*) from an_stat an where an.sex=1 and ISNULL(an.dchdate) and ".$code1.")maletoday

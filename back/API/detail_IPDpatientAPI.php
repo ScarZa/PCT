@@ -25,28 +25,39 @@ $data = isset($_POST['data'])?$_POST['data']:(isset($_GET['data'])?$_GET['data']
 $data2 = isset($_POST['data2'])?$_POST['data2']:(isset($_GET['data2'])?$_GET['data2']:'');
 if($data2 == '009'){
     $join = 'inner join jvlmatrix_register mr on mr.hn = t.hn';
-    $where = 'where mr.matrix_id = :matrix_id';
+    $where = 'where mr.matrix_id = :matrix_id and t.dep_res = "009"';
+    //$where = 'where mr.matrix_id = :matrix_id and (t.dep_res = "009" or t.tB_id = mr.tB_id)';
     $exe = ':matrix_id';
 }else if($data2 == '008'){
     $join = 'inner join jvlsocial_regis sc on sc.hn = t.hn';
-    $where = 'where sc.social_id = :social_id';
+    $where = 'where sc.social_id = :social_id and t.dep_res = "008"';
+    //$where = 'where sc.social_id = :social_id and (t.dep_res = "008" or t.tB_id = sc.tB_id)';
     $exe = ':social_id';
 }else if($data2 == '006'){
     $join = 'inner join jvlphy_regis ph on ph.hn = t.hn';
-    $where = 'where ph.phy_id = :phy_id';
+    $where = 'where ph.phy_id = :phy_id and t.dep_res = "006"';
+    //$where = 'where ph.phy_id = :phy_id and (t.dep_res = "006" or t.tB_id = ph.tB_id)';
     $exe = ':phy_id';
 }else if($data2 == '018'){
     $join = 'inner join jvlphar_regis pr on pr.hn = t.hn';
-    $where = 'where pr.phar_id = :phar_id';
+    $where = 'where pr.phar_id = :phar_id and t.dep_res = "018"';
+    //$where = 'where pr.phar_id = :phar_id and (t.dep_res = "018" or t.tB_id = pr.tB_id)';
     $exe = ':phar_id';
 }else if($data2 == '024'){
     $join = 'inner join jvlfood_regis f on f.hn = t.hn';
-    $where = 'where f.food_id = :food_id';
+    $where = 'where f.food_id = :food_id and t.dep_res = "024"';
+    //$where = 'where f.food_id = :food_id and (t.dep_res = "024" or t.tB_id = f.tB_id)';
     $exe = ':food_id';
 }else if($data2 == '005'){
     $join = 'inner join jvlcommunity_regis co on co.hn = t.hn';
-    $where = 'where co.commu_id = :commu_id';
+    $where = 'where co.commu_id = :commu_id and t.dep_res = "005"';
+    //$where = 'where co.commu_id = :commu_id and (t.dep_res = "005" or t.tB_id = co.tB_id)';
     $exe = ':commu_id';
+}else if($data2 == '016'){
+    $join = 'inner join jvlpatent_regis pt on pt.hn = t.hn';
+    $where = 'where pt.patent_id = :patent_id and t.dep_res = "016"';
+    //$where = 'where pt.patent_id = :patent_id and (t.dep_res = "016" or t.tB_id = pt.tB_id)';
+    $exe = ':patent_id';
 }else {
     $join = '';
     $where = 'where t.tB_id=:tB_id';
@@ -56,12 +67,12 @@ if($data2 == '009'){
     ,d.department,c.cons_name,t.cause,w.name as ward
     ,(SELECT d.name FROM vn_stat v inner join doctor d on d.code = v.dx_doctor WHERE v.vn=t.vn)doctor_name
     ,o1.name as sender_name,doc.shortname as resender_name
-		,t.resend
+		,t.resend,fr.tel0,fr.tel1,fr.tel2
         from patient p 
         inner JOIN vn_stat v ON v.hn=p.hn
         inner join an_stat a on a.vn = v.vn
         LEFT OUTER JOIN ward w on w.ward = a.ward
-        inner join jvl_transferBox t on t.vn = v.vn
+        LEFT OUTER join jvl_transferBox t on t.vn = v.vn
         LEFT OUTER join jvl_ipd_first_rec fr on fr.vn = t.vn
         LEFT OUTER join jvl_progress_commu pc on fr.ipd_fr_id = pc.ipd_fr_id
 				inner join opduser o1 on o1.loginname = t.sender
@@ -89,6 +100,9 @@ $conv=new convers_encode();
     $series['fullname'] = $pname.$fname.' '.$lname;
     $series['hn'] = $rslt['hn'];
     $series['informaddr'] = $conv->tis620_to_utf8( $rslt['informaddr']);
+    $series['tel0'] = isset($rslt['tel0'])?$conv->tis620_to_utf8($rslt['tel0']):'';
+    $series['tel1'] = isset($rslt['tel1'])?' /'.$conv->tis620_to_utf8($rslt['tel1']):'';
+    $series['tel2'] = isset($rslt['tel2'])?' /'.$conv->tis620_to_utf8($rslt['tel2']):'';
     $series['cid'] = $rslt['cid'];
     $series['birthday'] = DateThai1($rslt['birthday']);
     $series['mrname'] = $conv->tis620_to_utf8( $rslt['mrname']);

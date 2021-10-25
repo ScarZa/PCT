@@ -26,17 +26,17 @@ END pcchk
 ,cm.hn,cm.regdate,o.name,cs.clinic_member_status_name as cms
 ,concat(p.pname,p.fname,' ',p.lname) as fullname
 ,dep.department
-FROM patient p
-inner join jvlcommunity_regis cm on cm.hn=p.hn
+FROM an_stat a
+inner join patient p on p.hn = a.hn
+inner join jvlcommunity_regis cm on cm.hn=a.hn
 inner join opduser o on o.doctorcode = cm.doctor
 inner join clinic_member_status cs on cs.clinic_member_status_id=cm.comm_status
 inner join jvl_transferBox tb on tb.hn = cm.hn
 left outer join jvl_ipd_first_rec ifr on ifr.vn = tb.vn
 left outer join jvl_progress_commu pc on pc.ipd_fr_id = ifr.ipd_fr_id
 inner join kskdepartment dep on dep.depcode = tb.dep_send
-where tb.dep_res = '005' and tb.status='Y' 
-GROUP BY cm.commu_id
-ORDER BY cm.commu_id desc;"; 
+where tb.dep_res = '005' and tb.status='Y' and ISNULL(a.dchdate)
+GROUP BY cm.commu_id;"; 
 $conn_DB->imp_sql($sql);
     $num_risk = $conn_DB->select();
 

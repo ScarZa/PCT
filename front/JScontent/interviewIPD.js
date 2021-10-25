@@ -35,6 +35,7 @@ function InterviewIPD(content, id = null, url = '../', recorder = null) {
     var FR = new AssFirstRecIPD("#interviewfrm");
     FR.GetFRIPD();
     $("#interviewfrm").append("<input type='hidden' name='method' value='add_FR'>");
+    $("#typeP_2,#typeP_3,#typeP_4,#typeP_5").hide();
     var G = new AssGaugeIPD("#gaugefrm");
     G.GetGIPD();
 
@@ -325,6 +326,7 @@ function InterviewIPD(content, id = null, url = '../', recorder = null) {
     selectMash("#shape", "shape_Data.php", " เลือกรูปร่าง ");
     selectMash("#skin_color", "skin_Data.php", " เลือกสีผิว ");
     console.log(idvn)
+    var vn;
     $.getJSON(url+'back/API/patient_detail.php', { data: idvn.data }, function (data) { 
         $("b#patient_name").append(data[0].fullname);
         $("b#age").append(data[0].age);
@@ -334,7 +336,7 @@ function InterviewIPD(content, id = null, url = '../', recorder = null) {
                                             , $("<input type='hidden' name='vn' value='" + data[0].vn + "'>")
                                             , $("<input type='hidden' name='an' value='" + data[0].an + "'>")
         );
-        
+        vn = data[0].vn;
         if (recorder == null) {
             $("#interviewfrm ,#gaugefrm").append($("<input type='hidden' name='user' value='" + $.cookie("user") + "'>"));
         } else {
@@ -575,7 +577,10 @@ function InterviewIPD(content, id = null, url = '../', recorder = null) {
         $.ajax(settings).done(function (result) {
             alert(result.messege);
             //TBInterviewIPD('#page-content');
+            if(result.check=='Y'){
             $("input[type=submit][name=submit1]").attr("disabled", "disabled");
+                popup('../../CF-Form/font/content/Ass_SAVE.html?vn=' + vn + '?user=' + $.cookie("username") + '?process=FR', popup, 1440, 900);
+            }
         })
     }));
         $("#frmgauge").on('submit', (function (e) {

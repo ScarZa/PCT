@@ -188,7 +188,12 @@ if ($method == 'add_FR') {
             ,$beallergic_chk,$beallergic,$old_med_chk,$old_med,$heredity_chk,$heredity,$Hurt_yourself_chk,$think,$plan,$plan_detial,$action,$action_detial,$lawsuit_chk,$lawsuit,$personality
             ,$typep,$refer,$admit_type,$income,$admittype,$typep_1,$typep_2,$typep_3,$typep_4,$typep_5,$redate,$user);
             $table = "jvl_ipd_first_rec";
+            //$execute=array(':hpi' => $hpi);
             $first_rec = $connDB->insert($table, $data);
+
+            $data = array($first_rec,$hn,$vn,$an,$typep_1,$typep_2,$typep_3,$typep_4,$typep_5,$redate,$user);
+            $table = "jvl_head_alert";
+            $head_alert = $connDB->insert($table, $data);
 
             $dope_type_chk=$_POST['dope_type'];
             
@@ -486,6 +491,9 @@ print json_encode($res);
         $table = "jvl_ipd_first_rec";
         $first_rec = $connDB->insert($table, $data);
 
+        $data = array($first_rec,$hn,$vn,$an,$typep_1,$typep_2,$typep_3,$typep_4,$typep_5,$redate,$user);
+        $table = "jvl_head_alert";
+        $jvl_head_alert = $connDB->insert($table, $data);
 
 
         $dope_type_chk=$_POST['dope_type'];
@@ -527,6 +535,8 @@ foreach ($dope_type_chk as $key => $value) {
         $field2=array("chk_update");
         $edit_FR=$connDB->update($table1, $data, $where, $field2, $execute);    
          
+        $table5 = "jvl_head_alert";
+        $edit_HA=$connDB->update($table5, $data, $where, $field2, $execute);
 
         $data2 = array($first_rec,$shape,$skin_color,$scab_chk,$scab_0,$scab_1,$scab_2,$scab_3,$scab_4,$scab_5,$scab_6,$scab_7,$scab_8,$scab_9,$detial_scab,$swelling_chk,$swelling,$movement,$disabled_chk,$disabled);
         $table2 = "jvl_condition";
@@ -544,6 +554,8 @@ foreach ($dope_type_chk as $key => $value) {
         $data4 = array($first_rec);
         $field4=array("ipd_fr_id");
         $edit_con=$connDB->update($table4, $data4, $where, $field4, $execute);
+
+        
 
         if($condition){
           $res = array("messege"=>'บันทึกข้อมูลประเมินทางกายสำเร็จครับ!!!!',"check"=>'Y');

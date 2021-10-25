@@ -15,7 +15,7 @@ $("#createModal").empty().append("<div class='modal' id='PGCommuModal' role='dia
 
         var idvn = id[0];
         var tB_id = id[1];
-
+        console.log(tB_id);
     var FR = new AssPGCommu("span#FrIPD_detail");
     FR.GetPGCommu();
     $("#FrIPD_detail").append("<input type='hidden' name='method' value='add_PG_commu'>");    
@@ -148,7 +148,12 @@ $(".select2").select2();
         $.ajax(settings).done(function (result) {
             alert(result.messege);
             modal.modal('hide');
-            TBCommuList('#page-content');
+            if (tB_id != 'undefined') {
+                TBCommuList('#page-content');
+            } else {
+                TBAdmitList('#page-content');
+            }
+            
         })
     }));
 });

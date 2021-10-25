@@ -16,8 +16,13 @@ $rslt = array();
 $series = array();
 $plpg_id = isset($_POST['data1'])?$_POST['data1']:(isset($_GET['data1'])?$_GET['data1']:'');
 $sql="SELECT pc.plan_cid,pp.plan_name,pc.begindate,pc.enddate
+,CASE
+    WHEN ISNULL(prc.prc_id) THEN 'ยังไม่บันทึก'
+    ELSE 'บันทึกแล้ว'
+END recchk
 FROM jvl_plan_commu pc
 inner join jvl_plan_progress pp on pp.plpg_id = pc.plan_id
+left outer join jvl_plan_result_commu prc on prc.plan_cid = pc.plan_cid
 WHERE pc.pc_id = $plpg_id ORDER BY pc.plan_cid asc"; 
 $conn_DB->imp_sql($sql);
     $num_risk = $conn_DB->select();
@@ -27,6 +32,7 @@ $conn_DB->imp_sql($sql);
     $series['plan_name'] = $conv->tis620_to_utf8($num_risk[$i]['plan_name']);
     $series['begindate'] = DateThai1($num_risk[$i]['begindate']);
     $series['enddate'] = DateThai1($num_risk[$i]['enddate']);
+    $series['recchk'] = $num_risk[$i]['recchk'];
     array_push($rslt, $series);    
     }
 print json_encode($rslt);

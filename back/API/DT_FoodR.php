@@ -20,7 +20,10 @@ inner join patient p on p.hn=t.hn
 left outer join jvlfood_regis fr on fr.hn = t.hn
 inner join an_stat a on a.vn = t.vn
 left outer join ward w on w.ward = a.ward
-where t.dep_res='024' and ((t.status='0' or ISNULL(t.status)) and ISNULL(fr.regdate)) and t.status!='N' 
+where t.dep_res='024' 
+and ((t.status='0' or ISNULL(t.status)) )
+#and ISNULL(fr.regdate)) 
+and t.status!='N' 
 order by t.tB_id desc;"; 
 $conn_DB->imp_sql($sql);
     $num_risk = $conn_DB->select();

@@ -56,6 +56,7 @@ if ($method == 'confirm_Social') {
         $connDB->close_PDO();
 }elseif ($method == 'regis_Social') {
     $hn=$conv->utf8_to_tis620($_POST['hn']);
+    $tB_id=$conv->utf8_to_tis620($_POST['tB_id']);
     $soc_type=$conv->utf8_to_tis620($_POST['soc_type']);
     $regdate=$conv->utf8_to_tis620($_POST['regdate']);
     $soc_status=$conv->utf8_to_tis620($_POST['soc_status']);
@@ -69,8 +70,8 @@ if ($method == 'confirm_Social') {
         $connDB->imp_sql($sql);
         $chk_send=$connDB->select_a();
         if(empty($chk_send)){
-    $data = array($doctor2,$hn,$soc_type,$regdate,$soc_status);
-    $field = array("doctor","hn","soc_type","regdate","soc_status");
+    $data = array($doctor2,$hn,$soc_type,$regdate,$soc_status,$tB_id);
+    $field = array("doctor","hn","soc_type","regdate","soc_status","tB_id");
     $table = "jvlsocial_regis";
     $M_regis = $connDB->insert($table, $data, $field);
 

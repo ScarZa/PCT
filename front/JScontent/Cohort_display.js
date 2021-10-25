@@ -53,7 +53,7 @@ function CohortDis(content, id = null) {
     + "<option data-class='grey' value='#848484'>#848484</option>"
     + "<option data-class='default' value='#EEE'>#EEE</option>"
     + "</select></div></div>"
-    + "<div class='widget-body'><div class='widget-main no-padding'></div><div class='row'><div class= 'col-lg-12' id='cohD1_1'></div><div class= 'col-lg-11' id='cohD1_2' align='center'></div></div>"
+    + "<div class='widget-body' style='display: block;'><div class='widget-main no-padding'></div><div class='row'><div class= 'col-lg-12' id='cohD1_1'></div><div class= 'col-lg-11' id='cohD1_2' align='center'></div></div>"
     + "</div></div></div></div>");
     $("#cohD1_1").html('<center><i class="fa fa-spinner fa-pulse" style="font-size:48px"></i><br><br> <h3>กำลังดำเนินการ.....</h3></center><br>');
     $("#cohD1_2").html('<center><i class="fa fa-spinner fa-pulse" style="font-size:48px"></i><br><br> <h3>กำลังดำเนินการ.....</h3></center><br>');

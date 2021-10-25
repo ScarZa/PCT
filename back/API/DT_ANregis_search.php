@@ -18,9 +18,9 @@ $series = array();
 $data = isset($_POST['data1'])?$_POST['data1']:(isset($_GET['data1'])?$_GET['data1']:'');
 if(!empty($data)){
   $data =$conv->utf8_to_tis620($data);
-    $code = "WHERE (a.an like '%".$data."%' or p.fname like '%".$data."%' or p.lname like '%".$data."%' or a.hn like '%".$data."%') and fr.chk_update=0";
+    $code = "WHERE (a.an like '%".$data."%' or p.fname like '%".$data."%' or p.lname like '%".$data."%' or a.hn like '%".$data."%') and (fr.chk_update=0 or ISNULL(fr.ipd_fr_id))";
 }else{
-    $code ='where fr.chk_update=0';
+    $code ='where fr.chk_update=0 or ISNULL(fr.ipd_fr_id)';
 }
 
 $sql="select fr.ipd_fr_id,a.an,a.hn,a.vn,a.regdate
@@ -34,13 +34,15 @@ GROUP BY a2.hn) admit
 ,CONCAT(FLOOR(TIMESTAMPDIFF(DAY,a.regdate,NOW())),' วัน')AS admit_day 
 ,CONCAT(p.pname,p.fname,' ',p.lname)fullname,w.name
 ,CASE WHEN !ISNULL(ms.mental_id) THEN 'ประเมินแล้ว' ELSE 'ยังไม่ประเมิน' END mental
-,fr.smi4_chk,fr.smi4_1,fr.smi4_2,fr.smi4_3,fr.smi4_4,fr.typep_1,fr.typep_2,fr.typep_3,fr.typep_4,fr.typep_5
+,fr.smi4_chk,fr.smi4_1,fr.smi4_2,fr.smi4_3,fr.smi4_4
+,hr.typep_1,hr.typep_2,hr.typep_3,hr.typep_4,hr.typep_5
 ,fr.cc,fr.hpi,fr.complicate_chk,fr.complicate
 ,a.pdx,a.dx0,a.dx1,a.dx2,a.dx3,a.dx4,a.dx5,smivr.smi4_id
 from an_stat a 
 inner join patient p on a.hn=p.hn and ISNULL(a.dchdate)
 inner join ward w on w.ward = a.ward
 left outer join jvl_ipd_first_rec fr on fr.an = a.an
+left outer join jvl_head_alert hr on fr.an = hr.an
 left outer join jvl_mental_state ms on ms.ipd_fr_id = fr.ipd_fr_id
 left outer join jvlsmiv_regis smivr on smivr.hn = fr.hn
 ".$code."

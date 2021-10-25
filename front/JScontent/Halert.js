@@ -10,6 +10,7 @@ function HAlert(content, id = null) {
                                 , $(" <div class='col-lg-2 col-sm-4 col-xs-12'><a id='smiv-panel' href='#' class='btn btn-inverse btn-block' title='กดเพื่อดูรายละเอียด'><img src='images/smiv.png' height='20'><p></p> เฝ้าระวัง SMI-V <span class='badge badge-danger'><b id='smiv' style='font-size:275%;'> 0 </b></span></a></div> ")
     )
     $("#dangrow-2").empty().append($(" <div class='col-lg-2 col-sm-4 col-xs-12'><a id='drug-panel' href='#' class='btn btn-info btn-block' title='กดเพื่อดูรายละเอียด'><img src='images/drug.png' height='55'> High Alert Drug <span class='badge badge-warning'><b id='drug' style='font-size:275%;color:white;'> 0 </b></span></a></div> ")
+                                , $(" <div class='col-lg-2 col-sm-4 col-xs-12'><a id='save-panel' href='#' class='btn btn-success btn-block' title='กดเพื่อดูรายละเอียด'><img src='images/save.png' height='19'><p></p> ประเมิน SAVE <span class='badge badge-warning'><b id='save' style='font-size:275%;color:white;'> 0 </b></span></a></div> ")
     )
     $("#inforow-1").empty().append($(" <div class='col-lg-2 col-sm-4 col-xs-12'><span id='total-admit'></span></div"))
 
@@ -21,6 +22,7 @@ function HAlert(content, id = null) {
         $("#S3").empty().append(data.count_3s)
         $("#smiv").empty().append(data.count_smiv)
         $("#drug").empty().append(data.count_drug)
+        $("#save").empty().append(data.count_save)
     });
     if ($.cookie("username")) {
         $("a#suiside-panel").click(function () {
@@ -43,6 +45,9 @@ function HAlert(content, id = null) {
         });
         $("a#drug-panel").click(function () {
             PNDrugIPD("#page-content");
+        });
+        $("a#save-panel").click(function () {
+            TBSAVEtoDay("#page-content");
         });
     }
 }

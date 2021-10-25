@@ -88,6 +88,7 @@ $("#navbar-container").empty().append($('<button type="button" class="navbar-tog
                                                                                         ,$('<li class="" id="menu7">')
                                                                                         ,$('<li class="" id="menu8">')
                                                                                         ,$('<li class="" id="menu9">')
+                                                                                        ,$('<li class="" id="menu10">')
                                                                                         );   
                                                                     $("#menu1").empty().append($('<a href="#" class="dropdown-toggle"><i class="menu-icon fa fa-bed"></i> <span class="menu-text">ผู้ป่วยใน </span> <b class="arrow fa fa-angle-down"></b></a>')
                                                                                                 ,$('<b class="arrow"></b>')
@@ -167,7 +168,8 @@ $("#navbar-container").empty().append($('<button type="button" class="navbar-tog
                                                                                 ,$('<b class="arrow"></b>')
                                                                                 ,$('<ul class="submenu" id="submenu4"></ul>'));   
                                                                 $("#submenu4").empty().append($('<li class=""><a href="#" id="community_new"><i class="menu-icon fa fa-caret-right"></i> รอลงทะเบียน</a><b class="arrow"></b></li>')
-                                                                                                ,$('<li class=""><a href="#" id="community_list"><i class="menu-icon fa fa-caret-right"></i> ผู้ป่วยในคลินิก</a><b class="arrow"></b></li>')
+                                                                                                , $('<li class=""><a href="#" id="community_list"><i class="menu-icon fa fa-caret-right"></i> ผู้ป่วยในคลินิก</a><b class="arrow"></b></li>')
+                                                                                                , $('<li class=""><a href="#" id="admit_list"><i class="menu-icon fa fa-caret-right"></i> แผนการดูแลผู้ป่วยใน</a><b class="arrow"></b></li>')
                                                                                                 ,$('<li class=""><a href="#" id="smivDC_list"><i class="menu-icon fa fa-caret-right"></i> ผู้ป่วย SMI-V D/C</a><b class="arrow"></b></li>')
                                                                                                 ,$('<li class=""><a href="#" class="dropdown-toggle">'
                                                                                                         +'<i class="menu-icon fa fa-caret-right"></i> Three Level Menu <b class="arrow fa fa-angle-down"></b></a>'
@@ -179,7 +181,8 @@ $("#navbar-container").empty().append($('<button type="button" class="navbar-tog
                                                                                                                         ,$('<li class=""><a href="#"><i class="menu-icon fa fa-eye pink"></i> View Products</a> <b class="arrow"></b></li>'));          
                                                                                                                         
                                                                 $("a#community_new").attr("onclick","TBCommuRegis('#page-content')"); 
-                                                                $("a#community_list").attr("onclick","TBCommuList('#page-content')");
+                                                                $("a#community_list").attr("onclick", "TBCommuList('#page-content')");
+                                                                $("a#admit_list").attr("onclick","TBAdmitList('#page-content')");
                                                                 $("a#smivDC_list").attr("onclick","TBSMIVDCList('#page-content')");
 
                                                                 $("#menu5").empty().append($('<a href="#" class="dropdown-toggle"><i class="menu-icon fa fa-medkit"></i> <span class="menu-text">เภสัช </span> <b class="arrow fa fa-angle-down"></b></a>')
@@ -281,6 +284,23 @@ $("#navbar-container").empty().append($('<button type="button" class="navbar-tog
                                                                                 $("a#food_new").attr("onclick","TBFoodRegis('#page-content')");
                                                                                 $("a#food_list").attr("onclick","TBFoodList('#page-content')");
 
+                                                                $("#menu10").empty().append($('<a href="#" class="dropdown-toggle"><img src="images/patent_icon.png" width="25px"> <span class="menu-text"> สิทธิบัตร </span> <b class="arrow fa fa-angle-down"></b></a>')
+                                                                                ,$('<b class="arrow"></b>')
+                                                                                ,$('<ul class="submenu" id="submenu10"></ul>'));   
+                                                                $("#submenu10").empty().append($('<li class=""><a href="#" id="patent_new"><i class="menu-icon fa fa-caret-right"></i> รอลงทะเบียน</a><b class="arrow"></b></li>')
+                                                                                                ,$('<li class=""><a href="#" id="patent_list"><i class="menu-icon fa fa-caret-right"></i> ผู้ป่วยในคลินิก</a><b class="arrow"></b></li>')
+                                                                                                ,$('<li class=""><a href="#" class="dropdown-toggle">'
+                                                                                                        +'<i class="menu-icon fa fa-caret-right"></i> Three Level Menu <b class="arrow fa fa-angle-down"></b></a>'
+                                                                                                        +'<b class="arrow"></b><ul id="Ssubmenu10" class="submenu"></ul></li>'));
+                                                                                $("#Ssubmenu10").empty().append($('<li class=""><a href="#"><i class="menu-icon fa fa-leaf green"></i> Item #1</a> <b class="arrow"></b></li>')
+                                                                                                                ,$('<li class=""><a href="#" class="dropdown-toggle"><i class="menu-icon fa fa-pencil orange"></i> 4th level <b class="arrow fa fa-angle-down"></b></a>'
+                                                                                                                +'<b class="arrow"></b><ul id="SSsubmenu10" class="submenu"></ul></li>'));  
+                                                                                        $("#SSsubmenu10").empty().append($('<li class=""><a href="#"><i class="menu-icon fa fa-plus purple"></i> Add Product</a> <b class="arrow"></b></li>')
+                                                                                                                        ,$('<li class=""><a href="#"><i class="menu-icon fa fa-eye pink"></i> View Products</a> <b class="arrow"></b></li>'));          
+                                                                                                                        
+                                                                $("a#patent_new").attr("onclick","TBPatentRegis('#page-content')"); 
+                                                                $("a#patent_list").attr("onclick","TBPatentList('#page-content')");                
+
                                                                     // $("#menu3").empty().append($('<a href="calendar.html"><i class="menu-icon fa fa-calendar"></i>'
                                                                     //                             +'<span class="menu-text">Calendar <span class="badge badge-transparent tooltip-error" title="2 Important Events"> '
                                                                     //                             +'<i class="ace-icon fa fa-exclamation-triangle red bigger-130"></i></span></span></a> <b class="arrow"></b>'));
@@ -303,6 +323,7 @@ $("#navbar-container").empty().append($('<button type="button" class="navbar-tog
                                                 $("#menu7").hide();
                                                 $("#menu8").hide();
                                                 $("#menu9").hide();
+                                                $("#menu10").hide();
                                                 if (data.status_user == 'ADMIN' || data.depcode=='026') {
                                                     $("#settihg-01").show();
                                                     $("#settihg-02").show();
@@ -315,6 +336,7 @@ $("#navbar-container").empty().append($('<button type="button" class="navbar-tog
                                                     $("#menu7").show();
                                                     $("#menu8").show();
                                                     $("#menu9").show();
+                                                    $("#menu10").show();
                                                 }else if(data.status_user=='HOS' && data.depcode=='018'){
                                                     $("#menu5").show();
                                                 }else if(data.status_user=='HOS' && (data.depcode=='009' || data.depcode=='005')){
@@ -333,7 +355,9 @@ $("#navbar-container").empty().append($('<button type="button" class="navbar-tog
                                                     $("#menu8").show();
                                                 }else if(data.status_user=='HOS' && data.depcode=='024'){
                                                     $("#menu9").show();
-                                }
+                                                }else if(data.status_user=='HOS' && data.depcode=='016'){
+                                                    $("#menu1").show();$("#menu10").show();
+                                                }
                                 Page01("#page-content");
                                             }else if(data.status_user == ''){
                                 $("#login-tab").show();

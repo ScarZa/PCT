@@ -56,6 +56,7 @@ if ($method == 'confirm_Food') {
         $connDB->close_PDO();
 }elseif ($method == 'regis_Food') {
     $hn=$conv->utf8_to_tis620($_POST['hn']);
+    $tB_id=$conv->utf8_to_tis620($_POST['tB_id']);
     $food_type=$conv->utf8_to_tis620($_POST['food_type']);
     $regdate=$conv->utf8_to_tis620($_POST['regdate']);
     $food_status=$conv->utf8_to_tis620($_POST['food_status']);
@@ -68,7 +69,7 @@ if ($method == 'confirm_Food') {
         $connDB->imp_sql($sql);
         $chk_send=$connDB->select_a();
         if(empty($chk_send)){
-    $data = array($doctor2,$hn,$food_type,$regdate,$food_status);
+    $data = array($doctor2,$hn,$food_type,$regdate,$food_status,$tB_id);
     $table = "jvlfood_regis";
     $Phy_regis = $connDB->insert($table, $data);
 

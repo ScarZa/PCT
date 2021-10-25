@@ -32,8 +32,9 @@ function AddPanel(content,id = null) {
                                                 , $("<li><a data-toggle='tab' href='#' id='menu6_" + i + "'> <img src='images/icon_set2/camera.ico' width='20'> รูปผู้ป่วย</a></li>")
                 )
                     $("#menu02-body" + i).append($("<li><a data-toggle='tab' href='#' id='menu2_" + i + "'> <img src='images/icon_set1/file_edit.ico' width='18'> ประเมินสภาพจิต</a></li>")
-                                            ,$("<li><a data-toggle='tab' href='#' id='menu4_" + i + "'> <img src='images/icon_set1/file_edit.ico' width='18'> ประเมิน SMI-V</a></li>")
-                                            ,$("<li><a data-toggle='tab' href='#' id='menu5_" + i + "'> <img src='images/icon_set1/file_edit.ico' width='18'> ประเมินซึมเศร้า</a></li>")
+                                            , $("<li><a data-toggle='tab' href='#' id='menu4_" + i + "'> <img src='images/icon_set1/file_edit.ico' width='18'> ประเมิน SMI-V</a></li>")
+                                            , $("<li><a data-toggle='tab' href='#' id='menu5_" + i + "'> <img src='images/icon_set1/file_edit.ico' width='18'> ประเมินซึมเศร้า</a></li>")
+                                            , $("<li><a data-toggle='tab' href='#' id='menu12_" + i + "'> <img src='images/icon_set1/file_edit.ico' width='18'> ประเมิน SAVE</a></li>")
                 )
                 $("#menu03-body" + i).append($("<li><a data-toggle='tab' href='#' id='menu7_" + i + "'> <img src='images/icon_set1/file_edit.ico' width='18'> Cozapine</a></li>")
                                             ,$("<li><a data-toggle='tab' href='#' id='menu8_" + i + "'> <img src='images/icon_set1/file_edit.ico' width='18'> Lithium Carbonate</a></li>")
@@ -79,6 +80,10 @@ function AddPanel(content,id = null) {
                 $("a#menu11_" + i).click(function () {
                     $("a#menu11_" + i).attr("onclick", FrIPDModal()).attr("data-toggle", "modal").attr("data-target", "#FrIPDModal").attr("data-whatever", item.an)
                 })
+                $("a#menu12_" + i).click(function () {
+                    popup('../../CF-Form/font/content/Ass_SAVE.html?vn=' + item.vn + '?user=' + $.cookie("username")+'?process=IPD', popup, 1440, 900);
+                    //window.open('content/FR_detial.html?id=' + item.ipd_fr_id, '', 'width=900,height=1000'); return false;
+                })
             } else {
                 $("#menu-panel" + i).append($("<ul class='dropdown-navbar'>"
                     + "<li class= 'dropdown-header' > <img src='images/icon_set2/contacts.ico' width='30px'> กระบวนการ</li > <li class='dropdown-content'><ul class='dropdown-menu dropdown-navbar' id='menu01-body" + i + "'></ul></li>"
@@ -89,19 +94,23 @@ function AddPanel(content,id = null) {
                     InterviewIPD("#page-content",{ data:item.an });
                 })
             }
-            if (item.typeP_1R != '') { $("#row-alert_" + i).append("<button class='btn btn-minier btn-purple'><i class='ace-icon fa fa-exclamation-triangle'></i></button> ") }
-            if (item.typeP_2R != '') { $("#row-alert_" + i).append("<button class='btn btn-minier btn-warning'><i class='ace-icon fa fa-exclamation-triangle'></i></button> ") }
-            if (item.typeP_3R != '') { $("#row-alert_" + i).append("<button class='btn btn-minier btn-pink'><i class='ace-icon fa fa-exclamation-triangle'></i></button> ") }
-            if (item.typeP_4R != '') { $("#row-alert_" + i).append("<button class='btn btn-minier btn-yellow'><i class='ace-icon fa fa-exclamation-triangle'></i></button> ") }
-            if (item.typeP_5R != '') { $("#row-alert_" + i).append("<button class='btn btn-minier btn-danger'><i class='ace-icon fa fa-exclamation-triangle'></i></button> ") }
+            if (item.typeP_1R != '') { $("#row-alert_" + i).append("<button class='btn btn-minier btn-purple' title='เฝ้าระวัง 3S'><i class='ace-icon fa fa-exclamation-triangle'></i></button> ") }
+            if (item.typeP_2R != '') { $("#row-alert_" + i).append("<button class='btn btn-minier btn-warning'title='เฝ้าระวังหลบหนี'><i class='ace-icon fa fa-exclamation-triangle'></i></button> ") }
+            if (item.typeP_3R != '') { $("#row-alert_" + i).append("<button class='btn btn-minier btn-pink'title='เฝ้าระวังฆ่าตัวตาย'><i class='ace-icon fa fa-exclamation-triangle'></i></button> ") }
+            if (item.typeP_4R != '') { $("#row-alert_" + i).append("<button class='btn btn-minier btn-yellow'title='เฝ้าระวังอุบัติเหตุ'><i class='ace-icon fa fa-exclamation-triangle'></i></button> ") }
+            if (item.typeP_5R != '') { $("#row-alert_" + i).append("<button class='btn btn-minier btn-danger'title='เฝ้าระวังก้าวร้าว'><i class='ace-icon fa fa-exclamation-triangle'></i></button> ") }
             
             
             $("#body-panel" + i).append($("<div class='alert alert-info'><span style='color:#1c2352'>CC : " + item.cc + "<br>HPI : " + item.hpi + "</span></div>")
                 , $("<div class='alert alert-danger'>เฝ้าระวัง : <span style='background-color:yellow'>" + item.typeP_1R + " " + item.typeP_2R + " " + item.typeP_3R + " " + item.typeP_4R + " " + item.typeP_5R + "</span><br><div><div id='smiv_class" + i + "'></div><span style='background-color:yellow' id='smiv-detial" + i + "'></span></div>"
                     + "<br><div><div id='HAD" + i + "'></div><span style='background-color:' id='HAD-detial" + i + "'></span></div></div> ")
-                ,$("<div class='' id='tab-progerss" + i+"'><a href='#' id='show-detial'> แสดงรายละเอียด <img src='images/click.gif' width='75'></a></div>")
+                ,$("<a href='#' id='resSAVE"+i+"' class='btn btn-warning'> ผลประเมิน SAVE</a>")
+                ,$("<div class='' id='tab-progerss" + i+"'><a href='#' id='show-detial" + i+"'> แสดงรายละเอียด <img src='images/click.gif' width='75'></a></div>")
             );
-            $("a#show-detial").click(function () {
+            $("a#resSAVE"+i).click(function () {
+                window.open('content/SAVE_detial.html?id=' + item.ipd_fr_id, '', 'width=900,height=1000'); return false;
+            })
+            $("a#show-detial" + i).click(function () {
                 var PL = new TabLayout('#tab-progerss' + i, 2);
                 PL.GetTL();
                 $("h5.widget-title").empty().prepend("Progress note");
@@ -111,7 +120,7 @@ function AddPanel(content,id = null) {
                 $("#tab-progerss" + i+"c0 >p").empty().append($("<div class='widget-main row'>"
                     + "<div id='progressCommu" + i + "' class='col-lg-12 col-md-12 col-sm-12 col-xs-12 scroll'></div>"
                     + "</div>"));
-        
+                $("#progressCommu" + i).empty();
                 var column1 = ["ลำดับ", "วันบันทึก", "ผู้บันทึก", "Subject data", "Object data", "สรุป", "รายละเอียดแผน"];
                 $("#progressCommu" + i).addClass("table-responsive");
                 var PTb = new createTableAjax();
@@ -127,7 +136,7 @@ function AddPanel(content,id = null) {
             });
             $.getJSON('../back/API/detail_SMIVAPI.php', { data: item.hn }, function (data) {
                 if (data[0].chk_1 + data[0].chk_2 + data[0].chk_3 + data[0].chk_4 > 0) {
-                    $("#row-alert_" + i).append("<button class='btn btn-minier btn-grey'><i class='ace-icon fa fa-exclamation-triangle'></i></button> ")
+                    $("#row-alert_" + i).append("<button class='btn btn-minier btn-grey' title='เฝ้าระวัง SMI-V'><i class='ace-icon fa fa-exclamation-triangle'></i></button> ")
                     $("#smiv-detial" + i).show();
                     if (data[0].smiv_class != '') { $("#smiv_class" + i).append("SMI-V : " + data[0].smiv_class) }
                     if (data[0].smi1_2 != '') { $("#smiv-detial" + i).append("1.2 " + data[0].smi1_2 + "<br>") }
@@ -170,7 +179,7 @@ function AddPanel(content,id = null) {
             $.getJSON("../back/API/DT_HAD.php", { data: item.an }, function (data) {
                 //console.log(data)
                 if (data.Clozapine100 != null || data.Clozapine25 != null || data.Carbamazepine200 != null || data.LithiumCarbonate300 != null || data.SodiumValproate200 != null || data.SodiumValproate200CHRONO != null || data.SodiumValproate500 != null)
-                    {$("#row-alert_" + i).append("<button class='btn btn-minier btn-info'><i class='ace-icon fa fa-exclamation-triangle'></i></button>")}
+                    {$("#row-alert_" + i).append("<button class='btn btn-minier btn-info' title='เฝ้าระวัง High Alert Drug'><i class='ace-icon fa fa-exclamation-triangle'></i></button>")}
                 if(data.Clozapine100 != null){
                     $("#HAD-detial"+i).append("<b style='color: red'>High Alert Drug : </b>"+data.Clozapine100+" (สั่งล่าสุด "+data.Clozapine100Date+")<br>");
                 }

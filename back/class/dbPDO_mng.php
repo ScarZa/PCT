@@ -77,10 +77,11 @@ class dbPDO_mng extends ConnPDO_db{
         return $result;
     }
 //    ฟังก์ชันสำหรับการ insert ข้อมูล
-    function insert($table, $data, $field=null) {
+    function insert($table, $data, $field=null, $execute=null) {
         $this->table = $table;
         $this->data = $data;
         if(!empty($field)){ $this->field = $field;}
+        if(!empty($execute)){ $this->execute=$execute;}
         $this->db=$this->conn_PDO();
                 if(empty($this->field)){
         $fields = "";
@@ -94,7 +95,7 @@ class dbPDO_mng extends ConnPDO_db{
                 $values.=", ";
             }
             $fields.="$var[$key]";
-            $values.="'$val'";
+            $values.='"'.$val.'"';
             $i++;
         }
                 }else{
@@ -116,7 +117,8 @@ class dbPDO_mng extends ConnPDO_db{
         try
 		{
         $data = $this->db->prepare($this->sql);
-        $data->execute(); 
+        if(isset($this->execute)){ $data->execute($this->execute);}else{$data->execute(); }
+        
         return $this->db->lastInsertId();
                 } catch(PDOException $e)
 		{

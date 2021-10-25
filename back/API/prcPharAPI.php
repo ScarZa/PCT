@@ -56,6 +56,7 @@ if ($method == 'confirm_Phar') {
         $connDB->close_PDO();
 }elseif ($method == 'regis_Phar') {
     $hn=$conv->utf8_to_tis620($_POST['hn']);
+    $tB_id=$conv->utf8_to_tis620($_POST['tB_id']);
     $phar_type=$conv->utf8_to_tis620($_POST['phar_type']);
     $regdate=$conv->utf8_to_tis620($_POST['regdate']);
     $phar_status=$conv->utf8_to_tis620($_POST['phar_status']);
@@ -68,7 +69,7 @@ if ($method == 'confirm_Phar') {
         $connDB->imp_sql($sql);
         $chk_send=$connDB->select_a();
         if(empty($chk_send)){
-    $data = array($doctor2,$hn,$phar_type,$regdate,$phar_status);
+    $data = array($doctor2,$hn,$phar_type,$regdate,$phar_status,$tB_id);
     $table = "jvlphar_regis";
     $Phar_regis = $connDB->insert($table, $data);
 

@@ -17,6 +17,7 @@
         <link rel="stylesheet" href="assets/css/select2.min.css" />
         <link rel="stylesheet" href="plugins/jquery-ui-1.11.4.custom/jquery-ui-1.11.4.custom.css" />
         <link rel="stylesheet" href="plugins/jquery-ui-1.11.4.custom/SpecialDateSheet.css" />
+        
 
         <!-- text fonts -->
         <link rel="stylesheet" href="assets/css/fonts.googleapis.com.css" />
@@ -39,6 +40,7 @@
 
         <!-- ace settings handler -->
         <script src="assets/js/ace-extra.min.js"></script>
+        <script src="plugins/excellentexport.js"></script>
         <!-- Select2 -->
         <!-- <link rel="stylesheet" href="plugins/select2/select2.min.css"> -->
         <!-- HTML5shiv and Respond.js for IE8 to support HTML5 elements and media queries -->
@@ -154,6 +156,10 @@ border-top: 1.5px solid rgb(206, 206, 206);
                             AddUser(content, result);
                         } else if (subgetfunc[0] == 'TBreportDC') {
                             TBreportDC(content, result);
+                        } else if (subgetfunc[0] == 'PlanCommu') {
+                            PlanCommu(content, result);
+                        } else if (subgetfunc[0] == 'IPDProgress') {
+                            IPDProgress(content, result);
                         } else if (subgetfunc[0] == 'logout') {
                             alert(result);
                             loadPage(content, 'index.html');
@@ -407,6 +413,7 @@ border-top: 1.5px solid rgb(206, 206, 206);
             <![endif]-->
             <script src="plugins/DataTables/jquery.dataTables.min.js"></script>
             <script src="plugins/DataTables/dataTables.bootstrap.min.js"></script>
+            
             <!-- <script src="plugins/select2/select2.full.min.js"></script> -->
             <script src="assets/js/select2.min.js"></script>
             <script src="assets/js/jquery-ui.custom.min.js"></script>
@@ -500,6 +507,12 @@ border-top: 1.5px solid rgb(206, 206, 206);
             <script src="JScontent/ProgressCommuModel.js" type="text/javascript"></script>
             <script src="masked/Ass_ProgressCommu.js" type="text/javascript"></script>
             <script src="JScontent/PlanCommuModel.js" type="text/javascript"></script>
+            <script src="JScontent/TBAdmitList.js" type="text/javascript"></script>
+            <script src="JScontent/IPDprogress.js" type="text/javascript"></script>
+            <script src="JScontent/wardtotal_display.js" type="text/javascript"></script>
+            <script src="JScontent/TBpatentRegis.js" type="text/javascript"></script>
+            <script src="JScontent/TBpatentList.js" type="text/javascript"></script>
+            <script src="JScontent/TBSAVEtoDay.js" type="text/javascript"></script>
             <!-- End JS content -->
             <!-- inline scripts related to this page -->
 
@@ -547,6 +560,20 @@ function patient_photo(front,back,hn,an,tag_img){
                 if (!regExp.test(sensor.value)) {
                     alert("กรอกตัวอักษรเท่านั้นครับ");
                     sensor.value = sensor.value.substring(0, sensor.value.length - 1);
+                }
+            }
+
+            function getThaiDate2(date) {//yyyy-mm-dd
+                date = (date == "" || date == undefined || date.length < 8 || date == null || date == 'undefined' ? "00000000" : date);
+                if (date != "00000000") {
+                    var date = date.split("-");
+                    var year = date[0];
+                    var month = date[1];
+                    var day = date[2];
+                    var monthNamesThai = ["มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน", "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม"];
+                    return parseInt(day) + " " + monthNamesThai[parseInt(month) - 1] + " " + (parseInt(year)+543);
+                } else {
+                    return "รูปแบบไม่ถูกต้อง";
                 }
             }
         </script>

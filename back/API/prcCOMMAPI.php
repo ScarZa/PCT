@@ -56,6 +56,7 @@ if ($method == 'confirm_COMMU') {
         $connDB->close_PDO();
 }elseif ($method == 'regis_COMM') {
     $hn=$conv->utf8_to_tis620($_POST['hn']);
+    $tB_id=$conv->utf8_to_tis620($_POST['tB_id']);
     $comm_type=$conv->utf8_to_tis620($_POST['comm_type']);
     $regdate=$conv->utf8_to_tis620($_POST['regdate']);
     $comm_status=$conv->utf8_to_tis620($_POST['comm_status']);
@@ -69,8 +70,8 @@ if ($method == 'confirm_COMMU') {
         $connDB->imp_sql($sql);
         $chk_send=$connDB->select_a();
         if(empty($chk_send)){
-    $data = array($doctor2,$hn,$comm_type,$regdate,$comm_status);
-    $field = array("doctor","hn","comm_type","regdate","comm_status");
+    $data = array($doctor2,$hn,$comm_type,$regdate,$comm_status,$tB_id);
+    $field = array("doctor","hn","comm_type","regdate","comm_status","tB_id");
     $table = "jvlcommunity_regis";
     $M_regis = $connDB->insert($table, $data, $field);
 

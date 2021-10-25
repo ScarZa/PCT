@@ -105,6 +105,10 @@ function WardDis(content, id = null) {
   + "<div class='infobox-icon'><i class='ace-icon fa fa-bed'></i></div>"
   + "<div class='infobox-data'><div class='infobox-data-number'><b id='stay'></b> คน</div><div class='infobox-content'>ยอดผู้ป่วยคงพยาบาล</div>"
     + "</div></div>")
+    ,$("<div class='infobox infobox-blue'>"
+    + "<div class='infobox-icon'><i class='ace-icon fa fa-bed'></i></div>"
+    + "<div class='infobox-data'><div class='infobox-data-number'><b id='stayatday'></b> คน</div><div class='infobox-content'>ยอดผู้ป่วยคงพยาบาลในวัน</div>"
+      + "</div></div>")
     , $("<div class='infobox infobox-green'>"
     + "<div class='infobox-icon'><i class='ace-icon fa fa-bed'></i></div>"
     + "<div class='infobox-data'><div class='infobox-data-number'><b id='admit'></b> คน</div><div class='infobox-content'>ผู้ป่วย Admit ในวัน</div>"
@@ -205,6 +209,7 @@ function AddDis(month, year, ward) {
     $("#male").empty().append(data.male);
     $("#female").empty().append(data.female);
     $("#stay").empty().append(data.stay);
+    $("#stayatday").empty().append(data.stayatday);
     $("#admit").empty().append(data.admit);
     $("#dctoday").empty().append(data.dctoday);
     $("#maletoday").empty().append(data.maletoday);

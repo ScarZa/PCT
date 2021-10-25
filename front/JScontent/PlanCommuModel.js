@@ -18,7 +18,7 @@ $("#createModal").empty().append("<div class='modal' id='PCommuModal' role='dial
 
     var FR = new AssPGCommu("span#FrIPD_detail");
     FR.GetPGCommu();
-    $("#FrIPD_detail").append("<input type='hidden' name='method' value='add_PG_commu'>");    
+    // $("#FrIPD_detail").append("<input type='hidden' name='method' value='add_PG_commu'>");    
 ////////////// แก้ select2 ไม่ทำงานใน modal Bootstrap 3
         $.fn.modal.Constructor.prototype.enforceFocus = function () { };
         
@@ -27,36 +27,40 @@ $("#createModal").empty().append("<div class='modal' id='PCommuModal' role='dial
  
       
 /////////////////////////////////
+        addTBplan(recipient);
 
-var column1 = ["ลำดับ","รายละเอียดแผน","วันที่เริ่ม","วันที่สิ้นสุด"];
+    //   $("#frmPGC").on('submit', (function (e) {
+    //     e.preventDefault();
+    //     var dataForm = new FormData(this);
+    //     // console.log(dataForm)
+    //     for (var value of dataForm.values()) {
+    //         console.log(value);
+    //     }
+    //     var settings = {
+    //         type: "POST",
+    //         url: url+"back/API/prcprogress.php",
+    //         async: true,
+    //         crossDomain: true,
+    //         data: dataForm,
+    //         contentType: false,
+    //         cache: false,
+    //         processData: false
+    //     }
+    //     console.log(settings)
+    //     $.ajax(settings).done(function (result) {
+    //         alert(result.messege);
+    //         modal.modal('hide');
+    //         TBCommuList('#page-content');
+    //     })
+    // }));
+});
+}
+function addTBplan(value) {
+
+    var column1 = ["ลำดับ","รายละเอียดแผน","วันที่เริ่ม","วันที่สิ้นสุด","วันบันทึกผล","ผล","เอกสารแนบ","เอกสาร"];
 $("#FrIPD_detail").addClass("table-responsive");
 var PTb = new createTableAjax();
 $("#FrIPD_detail").html('<center><i class="fa fa-spinner fa-pulse" style="font-size:48px"></i><br> <h3>กำลังดำเนินการ.....</h3></center><br>');
-PTb.GetNewTableAjax('FrIPD_detail', '../back/API/DT_planCommu.php?' +recipient, '../back/API/tempSendDataAPI.php', column1
-, null, null, null, null, false, false, null, false, null, false, null, null, null, null, null, null);
-      $("#frmPGC").on('submit', (function (e) {
-        e.preventDefault();
-        var dataForm = new FormData(this);
-        // console.log(dataForm)
-        for (var value of dataForm.values()) {
-            console.log(value);
-        }
-        var settings = {
-            type: "POST",
-            url: url+"back/API/prcprogress.php",
-            async: true,
-            crossDomain: true,
-            data: dataForm,
-            contentType: false,
-            cache: false,
-            processData: false
-        }
-        console.log(settings)
-        $.ajax(settings).done(function (result) {
-            alert(result.messege);
-            modal.modal('hide');
-            TBCommuList('#page-content');
-        })
-    }));
-});
+PTb.GetNewTableAjax('FrIPD_detail', '../back/API/DT_planCommuTotal.php?' +value, '../back/API/tempSendDataAPI.php', column1
+, null, null, null, null, false, false, null, false, null, true, '../back/API/planCommuDocs.php', null, null, null, null, null);
 }

@@ -49,7 +49,8 @@ function SocialRegis2(content, id = null) {
 
 
 $("#cgi-post").append($("<input type='hidden' name='hn' value='"+data[0].hn+"'>")
-    ,$("<input type='hidden' name='user' value='"+$.cookie("user")+"'>")
+    , $("<input type='hidden' name='user' value='" + $.cookie("user") + "'>")
+    ,$("<input type='hidden' name='tB_id' value='"+idvn+"'>")
     ,$("<input type='hidden' name='method' value='regis_Social'>"));    
     
     $("#frmMR").on('submit', (function (e) {

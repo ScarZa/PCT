@@ -75,5 +75,42 @@ foreach ($plan_type_chk as $key => $value) {
       print json_encode($res);
       $connDB->close_PDO();
 
+}else if ($method == 'add_plan_result') {
+    $plan_cid = $_POST['plan_cid'];
+    $plan_result = $conv->utf8_to_tis620($_POST['plan_result']);
+    $recorder = isset($_POST['recorder'])?$conv->utf8_to_tis620($_POST['recorder']):'N';
+    $recdate = date('Y-m-d H:i:s');
+
+    function removespecialchars($raw) {
+        return preg_replace('#[^ก-ฮะ-็่-๋์a-zA-Z0-9.-]#u', '', $raw);
+    }
+    if (trim($_FILES["doc_result"]["name"] != "")) {
+     $file_name =$_FILES["doc_result"]["name"];
+     //$temp_name =$conv->utf8_to_tis620($_FILES["doc_result"]["tmp_name"]);
+        $temporary = explode(".", $_FILES["doc_result"]["name"]);
+        $file_extension = end($temporary);
+        $newname = date("d-m-Y")."Doc".$plan_cid.".".$file_extension;
+        $dir = "../../front/ProgressDoc_Commu/";
+        $target = $dir.$newname;
+        $sourcePath = $_FILES["doc_result"]['tmp_name']; // Storing source path of the file in a variable
+                move_uploaded_file($sourcePath, $target); // Moving Uploaded file
+            // if (move_uploaded_file($_FILES["doc_result"]["tmp_name"], "../../front/ProgressDoc_Commu/" . removespecialchars(date("d-m-Y/") . $file_name))) {
+            //     $file1 = date("d-m-Y/") . $file_name;
+            //     $doc = removespecialchars($file1);
+            // }
+            $doc =$newname;
+        }  else {
+            $doc ='';
+        }
+        $data = array($plan_cid,$plan_result,$doc,$recdate,$recorder);
+          $table = "jvl_plan_result_commu";
+          $prc_id = $connDB->insert($table, $data);
+          if($prc_id){
+            $res = array("messege"=>'บันทึกผลการปฏิบัติสำเร็จครับ!!!!',"check"=>'Y');
+        }else{
+          $res = array("messege"=>'บันทึกผลการปฏิบัติไม่สำเร็จครับ!!!!',"check"=>'N');
+        }
+        print json_encode($res);
+        $connDB->close_PDO();
 }
 ?>

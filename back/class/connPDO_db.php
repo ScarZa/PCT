@@ -31,6 +31,7 @@ class connPDO_db extends read_conn{
         
         try {  
             $this->db = new PDO('mysql:host='.$host.';port='.$port.';dbname='.$database.';charset='.$char,$user,$pass);
+            //$this->db->setAttribute( PDO::ATTR_EMULATE_PREPARES, 'false' );
             $this->db->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
             $this->db->setAttribute(PDO::MYSQL_ATTR_INIT_COMMAND, 'SET NAMES '.$char.'');
             $this->db->exec("set names ".$char."");

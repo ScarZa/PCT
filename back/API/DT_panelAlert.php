@@ -30,35 +30,35 @@ $conn_DB->imp_sql($sql);
 $num_smiv = $conn_DB->select_a();
 
     $sql2="SELECT count(DISTINCT fr.ipd_fr_id) s3
-    FROM jvl_ipd_first_rec fr 
+    FROM jvl_head_alert fr 
     inner join an_stat a on fr.an = a.an
     where ISNULL(a.dchdate) and fr.typep_1 !=0 and fr.chk_update=0 $code"; 
     $conn_DB->imp_sql($sql2);
     $num_3s = $conn_DB->select_a();
         
         $sql2="SELECT count(DISTINCT fr.ipd_fr_id) escab
-        FROM jvl_ipd_first_rec fr 
+        FROM jvl_head_alert fr 
         inner join an_stat a on fr.an = a.an
         where ISNULL(a.dchdate) and fr.typep_2 !=0 and fr.chk_update=0 $code"; 
 $conn_DB->imp_sql($sql2);
     $num_escab = $conn_DB->select_a();
 
     $sql="SELECT count(DISTINCT fr.ipd_fr_id) suiside
-    FROM jvl_ipd_first_rec fr 
+    FROM jvl_head_alert fr 
     inner join an_stat a on fr.an = a.an
     where ISNULL(a.dchdate) and fr.typep_3 !=0 and fr.chk_update=0 $code"; 
 $conn_DB->imp_sql($sql);
     $num_suiside = $conn_DB->select_a();
 
     $sql="SELECT count(DISTINCT fr.ipd_fr_id) accident
-    FROM jvl_ipd_first_rec fr 
+    FROM jvl_head_alert fr 
     inner join an_stat a on fr.an = a.an
     where ISNULL(a.dchdate) and fr.typep_4 !=0 and fr.chk_update=0 $code"; 
 $conn_DB->imp_sql($sql);
     $num_accident = $conn_DB->select_a();
 
     $sql="SELECT count(DISTINCT fr.ipd_fr_id) assail
-    FROM jvl_ipd_first_rec fr 
+    FROM jvl_head_alert fr 
     inner join an_stat a on fr.an = a.an
     where ISNULL(a.dchdate) and fr.typep_5 !=0 and fr.chk_update=0 $code"; 
 $conn_DB->imp_sql($sql);
@@ -75,6 +75,19 @@ $conn_DB->imp_sql($sql);
 $conn_DB->imp_sql($sql);
     $num_drug = $conn_DB->select_a();
  
+    $sql="SELECT ((SELECT count(s.save_id)
+    FROM jvl_save s
+    inner join an_stat a on a.vn = s.vn
+    WHERE (SELECT place FROM jvl_save WHERE vn = s.vn ORDER BY save_id desc limit 1) = 2 and s.place=2
+    and DATEDIFF(NOW(),s.recdate) >=3 $code)+(SELECT count(s.save_id) 
+    FROM jvl_save s
+    inner join an_stat a on a.vn = s.vn
+    WHERE (SELECT place FROM jvl_save WHERE vn = s.vn ORDER BY save_id desc limit 1) = 3 and s.place=3
+    and (SELECT recdate FROM jvl_save WHERE vn = s.vn ORDER BY save_id desc limit 1) = s.recdate
+    and DATEDIFF(NOW(),(SELECT recdate FROM jvl_save WHERE vn = s.vn ORDER BY save_id desc limit 1)) >=7 $code)) c_save"; 
+$conn_DB->imp_sql($sql);
+    $num_save = $conn_DB->select_a();
+
     $conv=new convers_encode();
     //for($i=0;$i<count($num_risk);$i++){
     $series['count_smiv'] = $num_smiv['count_smiv'];
@@ -84,6 +97,7 @@ $conn_DB->imp_sql($sql);
     $series['count_accident'] = $num_accident['accident'];
     $series['count_assail'] = $num_assail['assail'];
     $series['count_drug'] = $num_drug['drug'];
+    $series['count_save'] = $num_save['c_save'];
     //array_push($rslt, $series);    
     //}
     //print_r($rslt);

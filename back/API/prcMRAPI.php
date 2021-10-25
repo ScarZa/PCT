@@ -56,6 +56,7 @@ if ($method == 'confirm_MR') {
         $connDB->close_PDO();
 }elseif ($method == 'regis_MR') {
     $hn=$conv->utf8_to_tis620($_POST['hn']);
+    $tB_id=$conv->utf8_to_tis620($_POST['tB_id']);
     $m_type=$conv->utf8_to_tis620($_POST['m_type']);
     $regdate=$conv->utf8_to_tis620($_POST['regdate']);
     $m_status=$conv->utf8_to_tis620($_POST['m_status']);
@@ -70,7 +71,7 @@ if ($method == 'confirm_MR') {
         $connDB->imp_sql($sql);
         $chk_send=$connDB->select_a();
         if(empty($chk_send)){
-    $data = array($doctor2,$hn,$m_type,$regdate,$m_status);
+    $data = array($doctor2,$hn,$m_type,$regdate,$m_status,$tB_id);
     $table = "jvlmatrix_register";
     $M_regis = $connDB->insert($table, $data);
 

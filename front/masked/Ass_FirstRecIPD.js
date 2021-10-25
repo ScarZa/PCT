@@ -101,8 +101,8 @@ var AssFirstRecIPD = function(content){
               + "</div>")
               ,$("<div class='alert alert-danger'>"
         + "<div class='form-group row'><label class='col-sm-5 col-form-label'><u><b> การประเมินผู้ป่วย </b></u></label></div>"
-       +"<div class='form-group row'><div class='col-sm-1'><label><input class='ace ace-checkbox-2' type='checkbox' name='typeP_1' value='1'><span class='lbl'> 3s</span></label></div><div class='col-lg-2 col-sm-3'><label><input class='ace ace-checkbox-2' type='checkbox' name='typeP_2' value='2'><span class='lbl'> เฝ้าระวังหลบหนี</span></label></div>"
-       +"<div class='col-lg-2 col-sm-3'><label><input class='ace ace-checkbox-2' type='checkbox' name='typeP_3' value='3'><span class='lbl'> เฝ้าระวังฆ่าตัวตาย</span></label></div><div class='col-lg-2 col-sm-3'><label><input class='ace ace-checkbox-2' type='checkbox' name='typeP_4' value='4'><span class='lbl'> เฝ้าระวังอุบัติเหตุ</span></label></div><div class='col-lg-2 col-sm-4'><label><input class='ace ace-checkbox-2' type='checkbox' name='typeP_5' value='5'><span class='lbl'> เฝ้าระวังพฤติกรรมรุนแรง</span></label></div>"
+       +"<div class='form-group row'><div class='col-sm-1'><label><input class='ace ace-checkbox-2' type='checkbox' name='typeP_1' value='1'><span class='lbl'> 3s</span></label></div><div class='col-lg-2 col-sm-3' id='typeP_2'><label><input class='ace ace-checkbox-2' type='checkbox' name='typeP_2' value='2'><span class='lbl'> เฝ้าระวังหลบหนี</span></label></div>"
+       +"<div class='col-lg-2 col-sm-3' id='typeP_3'><label><input class='ace ace-checkbox-2' type='checkbox' name='typeP_3' value='3'><span class='lbl'> เฝ้าระวังฆ่าตัวตาย</span></label></div><div class='col-lg-2 col-sm-3' id='typeP_4'><label><input class='ace ace-checkbox-2' type='checkbox' name='typeP_4' value='4'><span class='lbl'> เฝ้าระวังอุบัติเหตุ</span></label></div><div class='col-lg-2 col-sm-4' id='typeP_5'><label><input class='ace ace-checkbox-2' type='checkbox' name='typeP_5' value='5'><span class='lbl'> เฝ้าระวังพฤติกรรมรุนแรง</span></label></div>"
                   + "</div></div>")
         );
         

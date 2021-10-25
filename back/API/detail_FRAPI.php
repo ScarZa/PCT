@@ -28,7 +28,7 @@ if(!empty($data2)){
 }else {
     $code = "(t.status='0' or ISNULL(t.status)) and";
 }
-    $sql="SELECT fr.hn,fr.an,fr.biographer,fr.relative,fr.patient_add,fr.tel0,fr.tel1,fr.relative1,fr.tel2,fr.relative2,fr.fathername
+    $sql="SELECT fr.hn,fr.vn,fr.an,fr.biographer,fr.relative,fr.patient_add,fr.tel0,fr.tel1,fr.relative1,fr.tel2,fr.relative2,fr.fathername
     ,CASE WHEN fr.father_chk = 'Y' THEN 'ยังมีชีวิตอยู่' ELSE 'เสียชีวิต' END father_chk,fr.father_age,fr.father_occup
     ,fr.mothername,CASE WHEN fr.mother_chk = 'Y' THEN 'ยังมีชีวิตอยู่' ELSE 'เสียชีวิต' END mother_chk,fr.mother_age,fr.mother_occup
     ,CASE WHEN fr.marry_chk = 0 THEN 'โสด' WHEN fr.marry_chk = 1 THEN 'หม้าย' WHEN fr.marry_chk = 2 THEN 'หย่า/แยก' ELSE 'คู่' END marry_chk,fr.spouse_name,fr.child,fr.earmark,fr.bw,fr.height,fr.bmi
@@ -143,6 +143,7 @@ $conv=new convers_encode();
 //for($i=0;$i<count($rslt);$i++){
   $series['ipd_fr_id'] = $data;
   $series['hn'] = $rslt['hn'];
+  $series['vn'] = $rslt['vn'];
   $series['an'] = $rslt['an'];
   $series['biographer'] = isset($rslt['biographer'])?$conv->tis620_to_utf8($rslt['biographer']):'';
   $series['relative'] = isset($rslt['relative'])?$conv->tis620_to_utf8($rslt['relative']):'';

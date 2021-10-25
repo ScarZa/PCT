@@ -40,7 +40,7 @@ var TabLayout = function(content,numTab=1){
 													'<div class="widget-main no-padding"></div>'+
             "<div class='row'><div class='col-sm-12 col-xs-12'><div class='tabbable'>"
 										+"<ul class='nav nav-tabs padding-12 tab-color-blue background-blue' id='myTab"+tab_name[1]+"'></ul>"
-                                        +"<div class='tab-content' id='MyTabCont'>"
+                                        +"<div class='tab-content' id='MyTabCont"+tab_name[1]+"'>"
                                         +"</div></div></div></div>"
             "<div align='center' id='Budget'></div><div id='contentGr'></div><br><div id='contentTB'></div>"+
             "</div></div></div></div></div>";
@@ -49,7 +49,7 @@ var TabLayout = function(content,numTab=1){
         for(var i=0;i < this.numTab;i++){
             $("#myTab"+tab_name[1]).append($("<li id='"+tab_name[1]+"l"+i+"'><a data-toggle='tab' href='#"+tab_name[1]+"c"+i+"'>ชื่อ tab "+i+"</a></li>"));
             
-			$(".tab-content#MyTabCont").append($("<div id='"+tab_name[1]+"c"+i+"' class='tab-pane'><p>เนื้อหา "+i+"</p></div>"));
+			$(".tab-content#MyTabCont"+tab_name[1]).append($("<div id='"+tab_name[1]+"c"+i+"' class='tab-pane'><p>เนื้อหา "+i+"</p></div>"));
 			if(i==0){$("#"+tab_name[1]+"l0").addClass("active");$("#"+tab_name[1]+"c0").addClass("in active");}
 			
         }
