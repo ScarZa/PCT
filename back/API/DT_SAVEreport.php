@@ -77,7 +77,8 @@ left outer join jvl_result_save rs on sg.sg_id = rs.save_group where $codeR1 ord
                                 $sql = "SELECT CASE
                                 WHEN ".$mode." = 1 THEN 'ต่ำ'
                                 WHEN ".$mode." = 2 THEN 'กลาง'
-                                ELSE 'สูง'
+                                WHEN ".$mode." = 3 THEN 'สูง'
+                                ELSE 'ต่ำ'
                                 END ".$mode."
                                 FROM jvl_save s
                                 WHERE s.vn ='".$data."' and s.recdate = '".$value2['recdate_num']."'";

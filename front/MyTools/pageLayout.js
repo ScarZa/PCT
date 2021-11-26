@@ -36,7 +36,7 @@ var PageLayout = function(content){
 												'<div class="widget-body">'+
 													'<div class="widget-main no-padding"></div>'+
 
-            "<div align='center' id='Budget'></div><div id='contentGr'></div><br><div id='contentTB'></div>"+
+            "<div align='center' id='Budget'></div><div class='row'><div class='col-lg-12'><label id='LGr'></label><div id='contentGr'></div></div></div><div class='row'><div class='col-lg-12'><label id='LTB'></label><div id='contentTB'></div></div></div>"+
             "</div></div></div></div>";
         $(this.content).empty().append(layout);
     }

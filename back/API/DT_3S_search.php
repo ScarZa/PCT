@@ -23,7 +23,7 @@ if(!empty($data)){
     $code ='';
 }
 
-$sql="select fr.ipd_fr_id,a.an,a.hn,a.regdate
+$sql="select fr.ipd_fr_id,a.an,a.hn,a.vn,a.regdate
 ,(SELECT count(a2.hn)
 FROM an_stat a2
 left outer join patient p2 on a2.hn=p2.hn
@@ -52,6 +52,7 @@ $conn_DB->imp_sql($sql);
       $series['ipd_fr_id'] = $num_risk[$i]['ipd_fr_id'];
     $series['an'] = $num_risk[$i]['an'];
     $series['hn'] = $num_risk[$i]['hn'];
+    $series['vn'] = $num_risk[$i]['vn'];
     $series['smi4_id'] = $num_risk[$i]['smi4_id'];
     $series['regdate'] = DateThai1($num_risk[$i]['regdate']);
     $series['admit'] = $num_risk[$i]['admit'];

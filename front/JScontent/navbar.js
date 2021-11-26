@@ -1,12 +1,12 @@
 $("#navbar").empty().append($('<div class="navbar-container ace-save-state" id="navbar-container"></div>'));
 $("#navbar-container").empty().append($('<button type="button" class="navbar-toggle menu-toggler pull-left" id="menu-toggler" data-target="#sidebar">'
 					+'<span class="sr-only">Toggle sidebar</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>')
-                                        ,$('<div class="navbar-header pull-left"><a href="index.html" class="navbar-brand"><small><i class="fa fa-plus-circle"></i> Psychiatry-Clinic </small></a></div>')
+                                        ,$('<div class="navbar-header pull-left"><a href="index.html" class="navbar-brand"><small><i class="fa fa-plus-circle"></i> JVL Clinicap Management </small></a></div>')
                                         ,$('<div class="navbar-buttons navbar-header pull-right" role="navigation"><ul class="nav ace-nav" id="top-menu"></ul></div>'));
 
 //////////////// Top Menu    
           
-                $("head").prepend($("<title></title>").text("ระบบคลินิคทางจิตเวช"));
+                $("head").prepend($("<title></title>").text("โปรแกรมบริหารจัดการทางคลินิค รพ.จิตเวชเลยราชนครินทร์"));
                 $("ul#top-menu").empty().append($('<li class="grey dropdown-modal" id="Tasks"></li>')
                                                 ,$('<li class="purple dropdown-modal" id="Notify"></li>')
                                                 ,$('<li class="green dropdown-modal" id="Messages"></li>')

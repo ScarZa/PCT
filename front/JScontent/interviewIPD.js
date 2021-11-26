@@ -1,4 +1,4 @@
-function InterviewIPD(content, id = null, url = '../', recorder = null) {
+function InterviewIPD(content, id = null, url = '../', recorder = null,process = null) {
 
     var title = " งานผู้ป่วยใน (IPD)";
     var subtitle = "แบบสัมภาษณ์ ";
@@ -555,7 +555,7 @@ function InterviewIPD(content, id = null, url = '../', recorder = null) {
             else { $("div#Hurt_yourself").hide(); }
         });
     });
-
+console.log(process)
     $("#frminv").on('submit', (function (e) {
         e.preventDefault();
         var dataForm = new FormData(this);
@@ -578,8 +578,13 @@ function InterviewIPD(content, id = null, url = '../', recorder = null) {
             alert(result.messege);
             //TBInterviewIPD('#page-content');
             if(result.check=='Y'){
-            $("input[type=submit][name=submit1]").attr("disabled", "disabled");
-                popup('../../CF-Form/font/content/Ass_SAVE.html?vn=' + vn + '?user=' + $.cookie("username") + '?process=FR', popup, 1440, 900);
+                $("input[type=submit][name=submit1]").attr("disabled", "disabled");
+                if (process == 'CF') {
+                    popup('../../../CF-Form/font/content/Ass_SAVE.html?vn=' + vn + '?user=' + $.cookie("username") + '?process=FR', popup, 1440, 900);
+                } else {
+                    popup('../../CF-Form/font/content/Ass_SAVE.html?vn=' + vn + '?user=' + $.cookie("username") + '?process=FR', popup, 1440, 900);
+                }
+                
             }
         })
     }));

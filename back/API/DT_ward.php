@@ -22,15 +22,15 @@ $DIM=cal_days_in_month(CAL_GREGORIAN,$mont,$Y);
 $month_start = "$Y-$mont-01";
 $month_end = "$Y-$mont-$DIM";
 $sql="select a.admdate
-,(select count(*) from ipt where regdate=a.admdate and ward =$ward) admit
-,(select count(*) from ipt where dchdate=a.admdate and ward =$ward) dch
-,(select count(*) from ipt where regdate<=a.admdate and (dchdate>a.admdate or dchdate is null) and ward =$ward) Stay
-,(select count(*) from ipt where regdate<=a.admdate and  ward =$ward and regdate between '$month_start' and '$month_end') admitim
-,(select count(*) from ipt where dchdate<=a.admdate and ward =$ward and (dchdate between '$month_start' and '$month_end')) dchim
+,(SELECT COUNT(DISTINCT w.an) from ward_admit_snapshot w inner join ipt i on i.an = w.an WHERE w.snap_date = admdate and w.ward = '$ward'  and w.snap_date = i.regdate) admit
+,(SELECT COUNT(DISTINCT an) from ipt WHERE dchdate = admdate and ward ='$ward') dch
+,(SELECT COUNT(DISTINCT an) from ward_admit_snapshot w WHERE w.snap_date=admdate and w.ward ='$ward') Stay
+,(select count(DISTINCT w.an) from ward_admit_snapshot w inner join ipt i on i.an = w.an where w.snap_date<=a.admdate and  w.ward ='$ward' and i.regdate between '$month_start' and '$month_end') admitim
+,(select count(*) from ipt where dchdate<=a.admdate and ward ='$ward' and (dchdate between '$month_start' and '$month_end')) dchim
 from (select vstdate 'admdate'
 from ovst
 where vstdate between '$month_start' and '$month_end'
-group by vstdate) a"; 
+group by vstdate) a";
 $conn_DB->imp_sql($sql);
     $num_risk = $conn_DB->select();
     $conv=new convers_encode();

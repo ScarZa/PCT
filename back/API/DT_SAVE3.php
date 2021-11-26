@@ -21,13 +21,13 @@ if(!empty($data)){
 }else{
     $code ='';
 }
-$sql="SELECT s.vn,a.an,s.hn,concat(p.pname,p.fname,' ',p.lname)fullname,w.name
+$sql="SELECT s.vn,a.an,p.hn,concat(p.pname,p.fname,' ',p.lname)fullname,w.name
 FROM jvl_save s
-inner join patient p on p.hn = s.hn
-inner join an_stat a on a.vn = s.vn
+left outer join an_stat a on a.vn = s.vn
+left outer join patient p on p.hn = a.hn
 inner join ward w on w.ward = a.ward
 WHERE (SELECT place FROM jvl_save WHERE vn = s.vn ORDER BY save_id desc limit 1) = 2 and s.place=2
-and DATEDIFF(NOW(),s.recdate) >=3 $code"; 
+and DATEDIFF(NOW(),substr(s.recdate,1,11)) >=2 $code and isnull(a.dchdate)"; 
 $conn_DB->imp_sql($sql);
     $num_risk = $conn_DB->select();
     $conv=new convers_encode();

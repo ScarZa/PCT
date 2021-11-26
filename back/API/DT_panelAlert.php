@@ -79,12 +79,18 @@ $conn_DB->imp_sql($sql);
     FROM jvl_save s
     inner join an_stat a on a.vn = s.vn
     WHERE (SELECT place FROM jvl_save WHERE vn = s.vn ORDER BY save_id desc limit 1) = 2 and s.place=2
-    and DATEDIFF(NOW(),s.recdate) >=3 $code)+(SELECT count(s.save_id) 
+    and DATEDIFF(NOW(),substr(s.recdate,1,11)) >=2 $code  and isnull(a.dchdate))+(SELECT count(s.save_id)
     FROM jvl_save s
     inner join an_stat a on a.vn = s.vn
     WHERE (SELECT place FROM jvl_save WHERE vn = s.vn ORDER BY save_id desc limit 1) = 3 and s.place=3
-    and (SELECT recdate FROM jvl_save WHERE vn = s.vn ORDER BY save_id desc limit 1) = s.recdate
-    and DATEDIFF(NOW(),(SELECT recdate FROM jvl_save WHERE vn = s.vn ORDER BY save_id desc limit 1)) >=7 $code)) c_save"; 
+    and (SELECT count(*) FROM jvl_save WHERE vn = s.vn and place=3) = 1
+    and DATEDIFF(NOW(),substr(s.recdate,1,11)) >=6 $code  and isnull(a.dchdate))+(SELECT count(s.save_id) 
+    FROM jvl_save s
+    inner join an_stat a on a.vn = s.vn
+    WHERE (SELECT place FROM jvl_save WHERE vn = s.vn ORDER BY save_id desc limit 1) = 3 and s.place=3
+    and (SELECT substr(s.recdate,1,11) FROM jvl_save WHERE vn = s.vn ORDER BY save_id desc limit 1) = substr(s.recdate,1,11)
+    and (SELECT count(*) FROM jvl_save WHERE vn = s.vn and place=3) >= 2
+    and DATEDIFF(NOW(),(SELECT substr(s.recdate,1,11) FROM jvl_save WHERE vn = s.vn ORDER BY save_id desc limit 1)) >=6 $code  and isnull(a.dchdate))) c_save"; 
 $conn_DB->imp_sql($sql);
     $num_save = $conn_DB->select_a();
 

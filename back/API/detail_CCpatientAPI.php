@@ -23,13 +23,13 @@ $result = array();
 $series = array();
 $data = isset($_POST['data'])?$_POST['data']:(isset($_GET['data'])?$_GET['data']:'');
 $data2 = isset($_POST['data2'])?$_POST['data2']:(isset($_GET['data2'])?$_GET['data2']:'');
-echo $data;
+// echo $data;
 if(!empty($data2)){
     $code = "";
 }else {
     $code = "";
 }
-    echo $sql="select t.tB_id,p.hn,p.pname,p.fname,p.lname,p.informaddr,p.cid,p.birthday,m.name as mrname,v.vn,v.pdx,v.dx0,v.dx1,v.dx2,v.dx3,v.dx4,v.dx5
+    $sql="select t.tB_id,p.hn,p.pname,p.fname,p.lname,p.informaddr,p.cid,p.birthday,m.name as mrname,v.vn,v.pdx,v.dx0,v.dx1,v.dx2,v.dx3,v.dx4,v.dx5
     ,d.department,c.cons_name,t.cause,w.name as ward
     ,(SELECT d.name FROM vn_stat v inner join doctor d on d.code = v.dx_doctor WHERE v.vn=t.vn and t.tB_id=:tB_id)doctor_name
     ,(SELECT o.name FROM jvl_transferBox t inner join opduser o on o.loginname = t.sender WHERE ".$code." t.tB_id=:tB_id)sender_name

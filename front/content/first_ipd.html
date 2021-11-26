@@ -250,8 +250,9 @@ text-decoration: none;
                 $(function () {
                 var an = get('id');
                 var user = get('recorder');
-                console.log(an)
-                InterviewIPD("#page-content",{data:an},'../../',user);
+                var process = get('process');
+                console.log(process)
+                InterviewIPD("#page-content",{data:an},'../../',user,process);
                                 });
             </script>
             <script type="text/javascript">

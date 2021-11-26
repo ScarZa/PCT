@@ -27,9 +27,8 @@ left outer join an_stat a on a.vn = s.vn
 left outer join patient p on p.hn = a.hn
 inner join ward w on w.ward = a.ward
 WHERE (SELECT place FROM jvl_save WHERE vn = s.vn ORDER BY save_id desc limit 1) = 3 and s.place=3
-and (SELECT substr(recdate,1,11) FROM jvl_save WHERE vn = s.vn ORDER BY save_id desc limit 1) = substr(s.recdate,1,11)
-and (SELECT count(*) FROM jvl_save WHERE vn = s.vn and place=3) >= 2
-and DATEDIFF(NOW(),(SELECT substr(recdate,1,11) FROM jvl_save WHERE vn = s.vn ORDER BY save_id desc limit 1)) >=6 $code  and isnull(a.dchdate)"; 
+and (SELECT count(*) FROM jvl_save WHERE vn = s.vn and place=3) = 1
+and DATEDIFF(NOW(),substr(s.recdate,1,11)) >=6 $code  and isnull(a.dchdate)"; 
 $conn_DB->imp_sql($sql);
     $num_risk = $conn_DB->select();
     $conv=new convers_encode();

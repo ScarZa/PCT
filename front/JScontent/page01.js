@@ -13,9 +13,15 @@ function Page01(content, id = null) {
     if ($.cookie("username")) {
         var PL = new PageLayout(content);
         PL.GetPL();
+        
         $("#head-table").empty().append("<i class='ace-icon fa fa-table'></i> Dashboard")
         HAlert("#contentGr");
         WardTotalDis("#contentTB");
+        $("#contentTB").prepend("<div class='col-lg-12' id='menu-report'></div>");
+        $("#menu-report").empty().append("<a href='#' class='btn btn-info' id='ward-report'>รายงงานแยก ward</a>")
+        $("#ward-report").click(function () { 
+            WardDis("#contentTB");
+        });
     } else {
         CohortDis(content);
         //$(content).empty().append("Hello world!!!!");

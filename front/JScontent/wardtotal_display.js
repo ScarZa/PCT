@@ -1,7 +1,7 @@
 function WardTotalDis(content, id = null) {
   $(content).empty().append("<div class='row'><div class='col-lg-12'>"
   + "<div class= 'col-lg-12' id='cohD1'></div>"
-  + "<div class= 'col-lg-12'>เลือกเดือนและปีงบประมาณ</div>"
+  + "<div class= 'col-lg-12'>เลือกเดือน/ปี</div>"
   + "<div class='col-lg-12'><div align='center' id='sel-div'></div></div>"
   + "<div class= 'col-lg-12' id='cohD2'></div><div class= 'col-lg-12'><center><h3>ตารางข้อมูลผู้ป่วยใน <b id='wardnameTB'></b></h3></center></div>"
   //+ "<div class= 'col-lg-12'><a class='btn btn-success' download='totalIPD.xls' href='#' onClick='return ExcellentExport.excel(this, '', 'totalIPD');'>Export to Excel</a></div>"

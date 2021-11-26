@@ -26,28 +26,28 @@ function HAlert(content, id = null) {
     });
     if ($.cookie("username")) {
         $("a#suiside-panel").click(function () {
-            PNSuisideIPD("#page-content");
+            PNSuisideIPD("#page-content",$("#sel-ward").val());
         });
         $("a#angry-panel").click(function () {
-            PNAssailIPD("#page-content");
+            PNAssailIPD("#page-content",$("#sel-ward").val());
         });
         $("a#escap-panel").click(function () {
-            PNEscapIPD("#page-content");
+            PNEscapIPD("#page-content",$("#sel-ward").val());
         });
         $("a#accident-panel").click(function () {
-            PNAccidentIPD("#page-content");
+            PNAccidentIPD("#page-content",$("#sel-ward").val());
         });
         $("a#3s-panel").click(function () {
-            PN3SIPD("#page-content");
+            PN3SIPD("#page-content",$("#sel-ward").val());
         });
         $("a#smiv-panel").click(function () {
-            PNSmivIPD("#page-content");
+            PNSmivIPD("#page-content",$("#sel-ward").val());
         });
         $("a#drug-panel").click(function () {
-            PNDrugIPD("#page-content");
+            PNDrugIPD("#page-content",$("#sel-ward").val());
         });
         $("a#save-panel").click(function () {
-            TBSAVEtoDay("#page-content");
+            TBSAVEtoDay("#page-content",$("#sel-ward").val());
         });
     }
 }

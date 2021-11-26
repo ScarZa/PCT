@@ -24,7 +24,7 @@ $result = array();
 $series = array();
 $month = isset($_POST['data'])?$_POST['data']:(isset($_GET['data'])?$_GET['data']:'');
 $year = isset($_POST['data2'])?$_POST['data2']:(isset($_GET['data2'])?$_GET['data2']:'');
-// $ward = isset($_POST['data3'])?$_POST['data3']:(isset($_GET['data3'])?$_GET['data3']:'');
+$ward = isset($_POST['data3'])?$_POST['data3']:(isset($_GET['data3'])?$_GET['data3']:'');
 if(!empty($ward)){
     $DIM=cal_days_in_month(CAL_GREGORIAN,$month,$year);
     $code = "an.ward='".$ward."' and an.regdate BETWEEN '".$year."-".$month."-01' and '".$year."-".$month."-".$DIM."'";

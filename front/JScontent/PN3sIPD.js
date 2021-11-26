@@ -17,9 +17,9 @@ function PN3SIPD(content, id = null) {
     //$("#contentTB").empty().append("แบบสัมภาษณ์");
     $("#Budget").append($("<p><div class=''><div class='col-lg-2 offset-lg-2'><select class='form-control' id='sel-ward'></select></div>"
                         +"<div class='col-md-10 offset-md-3' style='text-align: right;'><input type='text' id='search-patient' placeholder='ค้นหา ชื่อ/สกุล/HN/AN'></div></div></p > <br><br>"));
-    selectMash("#sel-ward","ward_data.php","เลือก ward",$.cookie("ward"));
-    HAlert("#alert-add",$.cookie("ward"));
-    AddPanel("DT_3S.php",$.cookie("ward"));
+    selectMash("#sel-ward","ward_data.php","เลือก ward",id);
+    HAlert("#alert-add",id);
+    AddPanel("DT_3S.php",id);
     $("select#sel-ward").change(function () {
         HAlert("#alert-add",$("#sel-ward").val());
         AddPanel("DT_3S.php",$("#sel-ward").val());

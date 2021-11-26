@@ -1,7 +1,7 @@
 function WardDis(content, id = null) {
   $(content).empty().append("<div class='row'><div class='col-lg-12'>"
-    + "<div class= 'col-lg-6' id='cohD1'></div>"
-    + "<div class= 'col-lg-6' id='cohD2'></div><div class= 'col-lg-12'><center><h3>ตารางข้อมูลผู้ป่วยใน <b id='wardnameTB'></b></h3></center></div>"
+    //+ "<div class= 'col-lg-6' id='cohD1'></div>"
+    + "<div class= 'col-lg-12' id='cohD2'></div><div class= 'col-lg-12'><center><h3>ตารางข้อมูลผู้ป่วยใน <b id='wardnameTB'></b></h3></center></div>"
     + "<div class= 'col-lg-12' id='row2'></div></div></div> ");
   
   
@@ -202,7 +202,7 @@ function AddDis(month, year, ward) {
   var year_val = year;
   var ward_val = ward;
   
-  $.getJSON('../back/API/detail_cohort.php', { data: month_val, data2: year_val, data3: ward_val }, function (data) { 
+  $.getJSON('../back/API/detail_cohort.php', { data: month_val, data2: year_val, data3: ward_val }, function (data) { console.log(data)
     
     $("#total").empty().append(data.total);
     $("#dc").empty().append(data.dc);
@@ -225,7 +225,7 @@ function AddDis(month, year, ward) {
       var unit = "คน";
     $.getJSON('../back/API/graph_DOM.php',{data1:month_val,data2:year_val},function (data) { 
       var date = data.day;
-        var CChartsCh =  new AJAXCharts('cohD2_1','line',title1,unit,date,'../back/API/DC_columnCohort.php?'+month_val+'?'+year_val+'?'+ward_val,subtitle,['#04c20d', '#c99138', '#6c94dd', 'purple', '#d92727', 'orange', 'yellow']);
+        var CChartsCh =  new AJAXCharts('cohD2_1','line',title1,unit,date,'../back/API/DC_columnSeleWard.php?'+month_val+'?'+year_val+'?'+ward_val,subtitle,['#04c20d', '#c99138', '#6c94dd', 'purple', '#d92727', 'orange', 'yellow']);
         $(CChartsCh.GetCL());
       
           });
