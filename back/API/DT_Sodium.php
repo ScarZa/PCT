@@ -16,7 +16,7 @@ $rslt = array();
 $series = array();
 $sql="SELECT cb.sodium_id,cb.hn,cb.regdate,concat(p.pname,p.fname,' ',p.lname) as fullname,w.name as ward
 FROM an_stat a
-right outer join jvl_sodium cb on a.vn = cb.vn
+right outer join jvl_sodium cb on a.hn = cb.hn and a.vn = cb.vn
 left outer join ward w on w.ward = a.ward
 inner join patient p on cb.hn=p.hn"; 
 $conn_DB->imp_sql($sql);

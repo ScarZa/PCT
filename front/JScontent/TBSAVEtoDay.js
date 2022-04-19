@@ -12,7 +12,7 @@ function TBSAVEtoDay(content, id = null) {
     $("#submenu3").parent().find("li:eq(0)").addClass("active")
         var PL = new PageLayout(content);
     PL.GetPL();
-    $(".widget-body").append("<div class='row'><div class='col-lg-12'><label id='LTB2'></label><div id='contentTB2'></div></div></div>");
+    $(".widget-body").append("<div class='row'><div class='col-lg-12 col-md-12 col-xs-12'><label id='LTB2'></label><div id='contentTB2'></div></div></div>");
     $("#LGr").append("<u><h4>ผู้ป่วยครบประเมิน 3 วันแรก</h4></u>");
     $("#LTB").append("<u><h4>ผู้ป่วยครบประเมิน 7 วันแรก</h4></u>");
     $("#LTB2").append("<u><h4>ผู้ป่วยครบประเมิน 7 วัน</h4></u> ");

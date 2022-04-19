@@ -16,7 +16,7 @@ function TBRegisIPD(content, id = null) {
     
     //$("#contentTB").empty().append("แบบสัมภาษณ์");
     $("#Budget").append($("<div class=''><div class='col-lg-2 offset-lg-2 col-md-2 offset-md-2'><select class='form-control' id='sel-ward'></select></div>"
-                        +"<div class='col-lg-10 offset-lg-2 col-md-10 offset-md-2 col-sm-12 col-xs-12' style='text-align: right;'><input type='text' id='search-patient' placeholder='ค้นหา ชื่อ/สกุล/HN/AN'></div></div><p>"));
+                        +"<div class='col-lg-10 offset-lg-2 col-md-10 offset-md-2 col-sm-12 col-xs-12' style='text-align: right;'><form class='form-search'><span class='input-icon'><input type='text' id='search-patient' placeholder='ค้นหา ชื่อ/สกุล/HN/AN'><i class='ace-icon fa fa-search nav-search-icon'></i></span></form></div></div><p>"));
     selectMash("#sel-ward","ward_data.php","เลือก ward",$.cookie("ward"));
     // var column1 = ["ลำดับ","AN","HN","วันที่ admit","ชื่อ - นามสกุล","ward","สภาพจิตใจ","ข้อมูลแรกรับ","ประเมินสภาพจิต"];
     // var CTb = new createTableAjax();

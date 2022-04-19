@@ -6,6 +6,7 @@ function __autoload($class_name) {
     include '../class/' . $class_name . '.php';
 }
 include '../function/string_to_ascii.php';
+include_once ('../plugins/funcDateThai.php');
 set_time_limit(0);
 $connDB = new EnDeCode();
 $read = "../connection/conn_DB.txt";
@@ -15,17 +16,22 @@ $connDB->conn_PDO();
 $rslt = array();
 $series = array();
 $data = isset($_POST['data'])?$_POST['data']:(isset($_GET['data'])?$_GET['data']:'');
-$data2 = isset($_POST['data2'])?$_POST['data2']:(isset($_GET['data2'])?$_GET['data2']:'');
-if(!empty($data2)){ $or = "or m.depcode='".$data2."'";}else{ $or = '';}
-$sql = "select d.code as id,d.name FROM doctor d
-inner join jvl_mappingDU m on m.doctorcode=d.code
-WHERE m.depcode='".$data."' $or ORDER BY id asc";
+$sql = "SELECT recdate,vn,SUBSTR(regdate,11,6)rectime
+,CASE
+WHEN processSMIV = 1 THEN 'ประเมินผู้ป่วยใหม่'
+WHEN processSMIV = 2 THEN 'ติดตามผู้ป่วย SMI-V'
+ELSE 'ผู้ป่วย SMI-V ทำซ้ำ'
+END smiv_status 
+FROM jvl_smiv WHERE hn = '".$data."' and !isnull(confirm) ORDER BY recdate desc";
 $conv=new convers_encode();
     $connDB->imp_sql($sql);
     $user = $connDB->select();
     for($i=0;$i<count($user);$i++){
-        $series['id'] = $conv->tis620_to_utf8($user[$i]['id']);
-        $series['name'] = $conv->tis620_to_utf8($user[$i]['name']);
+        $series['recdate'] = DateThai1($user[$i]['recdate']);
+        $series['rectime'] = $user[$i]['rectime'];
+        $series['vn'] = $user[$i]['vn'];
+        $series['smiv_status'] = $user[$i]['smiv_status'];
+        //$series['an'] = $user[$i]['an'];
     array_push($rslt, $series);    
     }
     print json_encode($rslt);

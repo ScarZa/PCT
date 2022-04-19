@@ -50,7 +50,7 @@ $data2 = isset($_POST['data2'])?$_POST['data2']:(isset($_GET['data2'])?$_GET['da
     END smiv_status
         from patient p 
         inner JOIN vn_stat v ON v.hn=p.hn
-        LEFT OUTER join an_stat a on a.hn = v.hn and a.vn = v.vn
+        LEFT OUTER join an_stat a on a.vn = v.vn
 				inner join jvl_smiv smi on smi.vn = v.vn
 				inner join jvlsmiv_regis smiv on smiv.hn=smi.hn
         LEFT OUTER JOIN ward w on w.ward = a.ward

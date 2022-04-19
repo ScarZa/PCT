@@ -22,7 +22,7 @@ inner join jvlfood_regis f on f.hn=p.hn
 inner join opduser o on o.doctorcode = f.doctor
 inner join clinic_member_status cs on cs.clinic_member_status_id=f.food_status
 inner join jvl_transferBox tb on tb.hn = f.hn
-inner join an_stat a on a.vn = tb.vn
+inner join an_stat a on a.hn = tb.hn and a.vn = tb.vn
 inner join ward w on w.ward = a.ward
 where tb.dep_res = '024' and tb.status='Y'
 ORDER BY f.food_id desc"; 

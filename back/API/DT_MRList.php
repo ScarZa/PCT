@@ -20,14 +20,14 @@ $sql="SELECT mr.matrix_id,mr.hn,mr.regdate,o.name,cs.clinic_member_status_name a
     WHEN mr.m_type = 1 THEN 'สุรา'
     WHEN mr.m_type = 2 THEN 'ยาเสพติด'
     ELSE 'สุรา+ยาเสพติด' END as type
-#,w.name as ward
+,w.name as ward
 FROM patient p
 inner join jvlmatrix_register mr on mr.hn=p.hn
 inner join opduser o on o.doctorcode = mr.doctor
 inner join clinic_member_status cs on cs.clinic_member_status_id=mr.m_status
 inner join jvl_transferBox tb on tb.hn = mr.hn
-#LEFT OUTER join an_stat a on a.vn = tb.vn
-#LEFT OUTER join ward w on w.ward = a.ward
+LEFT OUTER join an_stat a on a.hn = tb.hn and a.vn = tb.vn
+LEFT OUTER join ward w on w.ward = a.ward
 group by mr.matrix_id
 ORDER BY mr.matrix_id desc"; 
 $conn_DB->imp_sql($sql);
@@ -43,7 +43,7 @@ $conn_DB->imp_sql($sql);
     $series['name']= $conv->tis620_to_utf8($num_risk[$i]['name']);
     //$series['type']= $num_risk[$i]['type'];
     //$series['department']= $conv->tis620_to_utf8($num_risk[$i]['department']);
-    //$series['ward']= $conv->tis620_to_utf8($num_risk[$i]['ward']);
+    $series['ward']= $conv->tis620_to_utf8($num_risk[$i]['ward']);
     array_push($rslt, $series);    
     }
     //print_r($rslt);

@@ -24,8 +24,11 @@ $sql="SELECT smi.smi4_id,a.an,smi.hn,a.dchdate
 ,concat(p.pname,p.fname,' ',p.lname) as fullname
 ,w.name as ward,cs.clinic_member_status_name as cms
 ,CASE
-    WHEN smi.smi4_type = 1 THEN 'ดูแลต่อเนื่อง'
-    ELSE 'ติดตามในระบบ( HDC )' END as type
+    WHEN smiv.confirm = 1 THEN 'ดูแลต่อเนื่อง'
+    WHEN smiv.confirm = 2 THEN 'ติดตามในระบบ HDC'
+    WHEN smiv.confirm = 3 THEN 'ไม่เป็นผู้ป่วย SMI-V'
+    ELSE 'อยู่ระหว่างการพิจารณา'
+    END type
 FROM an_stat a 
 inner join jvlsmiv_regis smi on smi.hn=a.hn
 inner join patient p on p.hn=smi.hn

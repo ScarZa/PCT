@@ -17,7 +17,7 @@ function AddPanel(content,id = null) {
             // });
             patient_photo('','../',item.hn,item.an,'#pics-panel' + i);
             $("#patient-name" + i).append(" HN : " + item.hn + "<br>AN : " + item.an)
-            $("#head-panel" + i).append("<span>" + item.fullname + "</span> สภาพจิต : <span id='mentel-status" + i + "'> &nbsp;" + item.mental + "&nbsp; </span><br>Admit : " + item.regdate + " (" + item.admit_day + ") Admit <b>"+item.admit+"</b> ครั้ง<br>ตึก : <b>" + item.name + "</b>"
+            $("#head-panel" + i).append("<span>" + item.fullname + "</span> <br>สภาพจิต : <span id='mentel-status" + i + "'> &nbsp;" + item.mental + "&nbsp; </span><br>Admit : " + item.regdate + " (" + item.admit_day + ") Admit <b>"+item.admit+"</b> ครั้ง<br>ตึก : <b>" + item.name + "</b>"
                 + "<br>Dx. : " + item.pdx + " " + item.dx0 + " " + item.dx2 + " " + item.dx3 + " " + item.dx4 + " " + item.dx5)
             $("#box-alert" + i).append("<span id='row-alert_" + i+"'></span>")
             if (item.ipd_fr_id) {

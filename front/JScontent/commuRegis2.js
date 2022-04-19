@@ -45,7 +45,7 @@ function CommuRegis2(content, id = null) {
 
         selectMash("#comm_type","consult_data.php?data=005","เลือกเหตุผล");                      
         selectMash("#comm_status","member_status_data.php","เลือกสถานะ");
-        selectMash("#doctor","clinic_data.php?data=005","เลือกผู้รับผิดชอบ");
+        selectMash("#doctor","clinic_data.php?data=005&data2=009","เลือกผู้รับผิดชอบ");
 
 
 $("#cgi-post").append($("<input type='hidden' name='hn' value='"+data[0].hn+"'>")

@@ -17,12 +17,12 @@ $series = array();
 $sql="SELECT f.patent_id,f.hn,f.regdate,o.name,cs.clinic_member_status_name as cms
 ,concat(p.pname,p.fname,' ',p.lname) as fullname
 ,w.name as ward
-FROM patient p
-inner join jvlpatent_regis f on f.hn=p.hn
+FROM an_stat a
+inner join jvl_transferBox tb on a.hn = tb.hn and a.vn = tb.vn
+inner join jvlpatent_regis f on tb.hn = f.hn
+inner join patient p on  f.hn=p.hn
 inner join opduser o on o.doctorcode = f.doctor
 inner join clinic_member_status cs on cs.clinic_member_status_id=f.patent_status
-inner join jvl_transferBox tb on tb.hn = f.hn
-inner join an_stat a on a.vn = tb.vn
 inner join ward w on w.ward = a.ward
 where tb.dep_res = '016' and tb.status='Y'
 GROUP BY f.patent_id
@@ -32,6 +32,19 @@ $conn_DB->imp_sql($sql);
  
     $conv=new convers_encode();
     for($i=0;$i<count($num_risk);$i++){
+
+// $sqlan ="SELECT w.name as ward
+// FROM an_stat a
+// inner join ward w on w.ward = a.ward
+// WHERE a.vn = '".$num_risk[$i]['vn']."'";
+// $conn_DB->imp_sql($sqlan);
+// $ward = $conn_DB->select_a();
+// if(empty($ward)){
+//     $wardarray = '';
+// }else{
+//     $wardarray = $ward['ward'];
+// }
+//print_r($wardarray);
     $series['patent_id'] = $num_risk[$i]['patent_id'];
     $series['hn'] = $num_risk[$i]['hn'];
     $series['regdate'] = DateThai1($num_risk[$i]['regdate']);

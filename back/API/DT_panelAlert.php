@@ -75,24 +75,84 @@ $conn_DB->imp_sql($sql);
 $conn_DB->imp_sql($sql);
     $num_drug = $conn_DB->select_a();
  
-    $sql="SELECT ((SELECT count(s.save_id)
-    FROM jvl_save s
-    inner join an_stat a on a.vn = s.vn
-    WHERE (SELECT place FROM jvl_save WHERE vn = s.vn ORDER BY save_id desc limit 1) = 2 and s.place=2
-    and DATEDIFF(NOW(),substr(s.recdate,1,11)) >=2 $code  and isnull(a.dchdate))+(SELECT count(s.save_id)
-    FROM jvl_save s
-    inner join an_stat a on a.vn = s.vn
-    WHERE (SELECT place FROM jvl_save WHERE vn = s.vn ORDER BY save_id desc limit 1) = 3 and s.place=3
-    and (SELECT count(*) FROM jvl_save WHERE vn = s.vn and place=3) = 1
-    and DATEDIFF(NOW(),substr(s.recdate,1,11)) >=6 $code  and isnull(a.dchdate))+(SELECT count(s.save_id) 
-    FROM jvl_save s
-    inner join an_stat a on a.vn = s.vn
-    WHERE (SELECT place FROM jvl_save WHERE vn = s.vn ORDER BY save_id desc limit 1) = 3 and s.place=3
-    and (SELECT substr(s.recdate,1,11) FROM jvl_save WHERE vn = s.vn ORDER BY save_id desc limit 1) = substr(s.recdate,1,11)
-    and (SELECT count(*) FROM jvl_save WHERE vn = s.vn and place=3) >= 2
-    and DATEDIFF(NOW(),(SELECT substr(s.recdate,1,11) FROM jvl_save WHERE vn = s.vn ORDER BY save_id desc limit 1)) >=6 $code  and isnull(a.dchdate))) c_save"; 
-$conn_DB->imp_sql($sql);
-    $num_save = $conn_DB->select_a();
+    // $sql="SELECT ((SELECT count(s.save_id)
+    // FROM jvl_save s
+    // inner join an_stat a on a.vn = s.vn
+    // WHERE (SELECT place FROM jvl_save WHERE vn = s.vn ORDER BY save_id desc limit 1) = 2 and s.place=2
+    // and DATEDIFF(NOW(),substr(s.recdate,1,11)) >=2 $code  and isnull(a.dchdate))+(SELECT count(s.save_id)
+    // FROM jvl_save s
+    // inner join an_stat a on a.vn = s.vn
+    // WHERE (SELECT place FROM jvl_save WHERE vn = s.vn ORDER BY save_id desc limit 1) = 3 and s.place=3
+    // and (SELECT count(*) FROM jvl_save WHERE vn = s.vn and place=3) = 1
+    // and DATEDIFF(NOW(),substr(s.recdate,1,11)) >=6 $code  and isnull(a.dchdate))+(SELECT count(s.save_id) 
+    // FROM jvl_save s
+    // inner join an_stat a on a.vn = s.vn
+    // WHERE (SELECT place FROM jvl_save WHERE vn = s.vn ORDER BY save_id desc limit 1) = 3 and s.place=3
+    // and (SELECT substr(recdate,1,11) FROM jvl_save WHERE vn = s.vn ORDER BY save_id desc limit 1) = substr(s.recdate,1,11)
+    // and (SELECT count(*) FROM jvl_save WHERE vn = s.vn and place=3) >= 2
+    // and DATEDIFF(NOW(),(SELECT substr(s.recdate,1,11) FROM jvl_save WHERE vn = s.vn ORDER BY save_id desc limit 1)) >=6 $code  and isnull(a.dchdate))) c_save"; 
+//$conn_DB->imp_sql($sql);
+    //$num_save = $conn_DB->select_a();
+
+    $count3Day = 0;
+$count7Day = 0;
+$count7Daynext = 0;
+///////// 3 Day
+    $sql="SELECT s.save_id,s.vn,s.place,s.recdate FROM an_stat a 
+    inner join jvl_save s on a.vn = s.vn WHERE isnull(a.dchdate) and s.place = 2 group by s.save_id ORDER BY s.save_id asc"; 
+    $conn_DB->imp_sql($sql);
+    $num_save = $conn_DB->select();
+    
+    for($i=0;$i<count($num_save);$i++){
+    $sql3 = "SELECT s.save_id,s.vn
+    FROM an_stat a
+    inner join jvl_save s on a.vn = s.vn
+    WHERE s.vn = '".$num_save[$i]['vn']."' and isnull(a.dchdate) and (SELECT place FROM jvl_save WHERE vn = '".$num_save[$i]['vn']."' ORDER BY save_id desc limit 1) = 2 and s.place=2
+    and DATEDIFF(NOW(),substr(s.recdate,1,11)) >=2 $code  ";
+    $conn_DB->imp_sql($sql3);
+    $num_save3 = $conn_DB->select_a();
+if(count($num_save3) !=0){
+    $count3Day++;
+}
+    
+    } ////////// End 3Day //////////////////////////
+
+///////////////// 7 Day ////////////////////////
+    $sql="SELECT s.save_id,s.vn,s.place,s.recdate FROM an_stat a 
+    inner join jvl_save s on a.vn = s.vn WHERE isnull(a.dchdate) and s.place = 3 group by s.vn ORDER BY s.save_id asc";
+    $conn_DB->imp_sql($sql);
+    $num_7save = $conn_DB->select();
+    
+    for($i=0;$i<count($num_7save);$i++){
+        ////////////////////// Day 7 ////////////////////////
+    $sql7 = "SELECT s.save_id,s.vn
+    FROM an_stat a
+    inner join jvl_save s on a.vn = s.vn
+    WHERE s.vn = '".$num_7save[$i]['vn']."' and isnull(a.dchdate) and (SELECT place FROM jvl_save WHERE vn = '".$num_7save[$i]['vn']."' ORDER BY save_id desc limit 1) = 3 and s.place=3
+    and (SELECT count(*) FROM jvl_save WHERE vn = '".$num_7save[$i]['vn']."' and place=3) = 1
+    and DATEDIFF(NOW(),substr(s.recdate,1,11)) >=6 $code";
+    $conn_DB->imp_sql($sql7);
+    $num_save7 = $conn_DB->select_a();
+
+if(count($num_save7) !=0){
+    $count7Day++;
+ }
+       /////////////////// Day 7 next ////////////////////
+    $sql7n = "SELECT s.save_id,s.vn
+    FROM an_stat a
+    inner join jvl_save s on a.vn = s.vn
+    WHERE s.vn = '".$num_7save[$i]['vn']."' and isnull(a.dchdate) and (SELECT place FROM jvl_save WHERE vn = '".$num_7save[$i]['vn']."' ORDER BY save_id desc limit 1) = 3 and s.place=3
+    and (SELECT substr(recdate,1,11) FROM jvl_save WHERE vn = '".$num_7save[$i]['vn']."' ORDER BY save_id desc limit 1) = substr(s.recdate,1,11)
+    and (SELECT count(*) FROM jvl_save WHERE vn = '".$num_7save[$i]['vn']."' and place=3) >= 2
+    and DATEDIFF(NOW(),(SELECT substr(s.recdate,1,11) FROM jvl_save WHERE vn = '".$num_7save[$i]['vn']."' ORDER BY save_id desc limit 1)) >=6 $code GROUP BY s.vn";
+    $conn_DB->imp_sql($sql7n);
+    $num_save7n = $conn_DB->select_a();
+
+if(count($num_save7n) !=0){
+    $count7Daynext++;
+}
+    
+    }
 
     $conv=new convers_encode();
     //for($i=0;$i<count($num_risk);$i++){
@@ -103,7 +163,7 @@ $conn_DB->imp_sql($sql);
     $series['count_accident'] = $num_accident['accident'];
     $series['count_assail'] = $num_assail['assail'];
     $series['count_drug'] = $num_drug['drug'];
-    $series['count_save'] = $num_save['c_save'];
+    $series['count_save'] = $count3Day+$count7Day+$count7Daynext;
     //array_push($rslt, $series);    
     //}
     //print_r($rslt);

@@ -20,12 +20,15 @@ if(!empty($data)){
 }else{
     $code ='';
 }
-$sql="SELECT smi.smi4_id,smi.hn,smi.regdate,o.name,cs.clinic_member_status_name as cms
+$sql="SELECT smiv.vn,smi.smi4_id,smi.hn,smi.regdate,o.name,cs.clinic_member_status_name as cms
 ,concat(p.pname,p.fname,' ',p.lname) as fullname
 ,w.name as ward
-,CASE
-    WHEN smi.smi4_type = 1 THEN 'ดูแลต่อเนื่อง'
-    ELSE 'ติดตามในระบบ( HDC )' END as type
+    ,CASE
+    WHEN smiv.confirm = 1 THEN 'ดูแลต่อเนื่อง'
+    WHEN smiv.confirm = 2 THEN 'ติดตามในระบบ HDC'
+    WHEN smiv.confirm = 3 THEN 'ไม่เป็นผู้ป่วย SMI-V'
+    ELSE 'อยู่ระหว่างการพิจารณา'
+    END type
 FROM an_stat a 
 inner join jvlsmiv_regis smi on smi.hn=a.hn
 inner join patient p on p.hn=smi.hn
@@ -33,7 +36,7 @@ inner join opduser o on o.doctorcode = smi.doctor
 inner join clinic_member_status cs on cs.clinic_member_status_id=smi.smi4_status
 inner join jvl_smiv smiv on smiv.hn = smi.hn
 inner join ward w on w.ward = a.ward
-where ISNULL(a.dchdate) $code
+where ISNULL(a.dchdate) 
 GROUP BY smi.smi4_id
 ORDER BY smi.smi4_id desc"; 
 $conn_DB->imp_sql($sql);
@@ -41,7 +44,7 @@ $conn_DB->imp_sql($sql);
  
     $conv=new convers_encode();
     for($i=0;$i<count($num_risk);$i++){
-    $series['smi4_id'] = $num_risk[$i]['smi4_id'];
+    $series['vn'] = $num_risk[$i]['vn'];
     $series['hn'] = $num_risk[$i]['hn'];
     $series['regdate'] = DateThai1($num_risk[$i]['regdate']);
     //$series['cms']= $conv->tis620_to_utf8($num_risk[$i]['cms']);

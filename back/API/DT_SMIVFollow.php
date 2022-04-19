@@ -15,12 +15,18 @@ set_time_limit(0);
 $rslt = array();
 $series = array();
 $sql="select smi.smiv_id,smi.vn,smi.hn,concat(p.pname,p.fname,' ',p.lname) as fullname,w.name as ward,smi.regdate
+,if(!ISNULL(smir.recdate),'ลงทะเบียนแล้ว','ยังไม่ลงทะเบียน')regischk
+,CASE
+    WHEN smi.processSMIV = 1 THEN 'ประเมินผู้ป่วยใหม่'
+    WHEN smi.processSMIV = 2 THEN 'ติดตามผู้ป่วย SMI-V'
+    ELSE 'ผู้ป่วย SMI-V ทำซ้ำ'
+END smiv_status
 FROM an_stat a 
 right OUTER join patient p on p.hn=a.hn
 inner join jvl_smiv smi on smi.hn = p.hn
-left outer join jvlsmiv_regis smir on smir.hn = smi.hn
+inner join jvlsmiv_regis smir on smir.hn = smi.hn
 left outer join ward w on w.ward = a.ward
-WHERE ISNULL(smir.recdate) and ISNULL(smi.confirm) and smi.processSMIV =1
+WHERE ISNULL(smi.confirm) and smi.processSMIV in(2,3)
 GROUP BY smi.smiv_id
 order by smi.smiv_id desc"; 
 $conn_DB->imp_sql($sql);
@@ -33,6 +39,8 @@ $conn_DB->imp_sql($sql);
     $series['regdate'] = DateThai1($num_risk[$i]['regdate']);
     $series['fullname'] = $conv->tis620_to_utf8($num_risk[$i]['fullname']);
     $series['ward']= $conv->tis620_to_utf8($num_risk[$i]['ward']);
+    $series['regischk'] = $num_risk[$i]['regischk'];
+    $series['smiv_status'] = $num_risk[$i]['smiv_status'];
     array_push($rslt, $series);    
     }
 print json_encode($rslt);

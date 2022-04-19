@@ -42,7 +42,7 @@ $conn_DB->imp_sql($sql3);
         $series['an'] = $num_save3['an'];
         $series['hn'] = $num_save3['hn'];
         $series['fullname'] = $conv->tis620_to_utf8($num_save3['fullname']);
-        $series['name'] = $conv->tis620_to_utf8($num_save3['name']);
+        $series['name'] = $conv->tis620_to_utf8($numnum_save3_risk['name']);
         array_push($rslt, $series);   
     }
 }

@@ -12,7 +12,7 @@ function IPDSmiV(content, id = null) {
     //     var process = "";
         
     // }
-    var title = " ข้อมูลผู้ป่วย SMI-V";
+    var title = " ข้อมูลผู้ป่วย SMI-V test";
     var subtitle = "รายละเอียดผู้ป่วย";
     //$("li#page").empty().text(title)
     $("b#head-title").empty().prepend("<img src='images/icon_set2/compose.ico' width='40'> ").append(title);
@@ -30,20 +30,27 @@ function IPDSmiV(content, id = null) {
         + "<div class='row'><div class='col-lg-12' id='cgi-post'>"
         + "<div class='card border-success'>"
         + "<div class='card-header col-lg-12'><label class='col-form-label'><b>ข้อมูลคนไข้</b></label></div>"
-        + "<div id='P-data' class='card-body col-lg-12'></div></div><p>"
-        //+ "<br><center><input type='submit' name='submit' class='btn btn-success' value='บันทึกผล'></center></div>"
-        //+ "<br><center><button class='btn btn-success'>ลงทะเบียน</button> <button class='btn btn-danger'>ส่งคืน</button></center></div>"
-        + "</div></form>"));
+        + "<div id='P-data' class='card-body col-lg-10'></div><div class='col-lg-2' id='vdate'>  </div><p>"
+        + "</div></div></div></form>"));
         
-        $.getJSON('../back/API/detail_IPDSMIVAPI.php',{data : idvn.data},function (data) {console.log(data);
-        $("#P-data").append($("<div class='col-lg-12 row'><div class='block'> <img id='pics-panel' width='125' /></div><span>AN : "+data[0].an+"<br>HN : "+data[0].hn+"<br>เลขบัตรประชาชน : "+data[0].cid+"<br>ชื่อ-สกุล :"+data[0].fullname
-        +"<br>ที่อยู่ : "+data[0].informaddr+"<br>วันเกิด : "+data[0].birthday+" สถานะภาพ : "+data[0].mrname+"<br>การวินิจฉัย : "+data[0].pdx+" "+data[0].dx0
+;            
+    AddDataSMIVDe('detail_IPDSMIVpatientAPI.php',idvn.data);
+    
+}
+function AddDataSMIVDe(json, id) { console.log(id)
+    $("#P-data").empty();
+    $.getJSON('../back/API/'+json,{data : id},function (data) {
+        $("#P-data").append($("<div class='col-lg-12 row'><div class='row col-lg-6'><span><label class='col-form-label'>AN : "+data[0].an+"<br>HN : "+data[0].hn+"<br>เลขบัตรประชาชน : "+data[0].cid+"<br>ชื่อ-สกุล :"+data[0].fullname
+        +"<br>ที่อยู่ : "+data[0].informaddr+"<br>วันเกิด : "+data[0].birthday+" สถานะภาพ : "+data[0].mrname+"<br>วันมารับบริการ : "+data[0].vstdate+"<br>การวินิจฉัย : "+data[0].pdx+" "+data[0].dx0
         +" "+data[0].dx1+" "+data[0].dx2+" "+data[0].dx3+" "+data[0].dx4+" "+data[0].dx5+"<br><b style='color: red'>Admit ที่ : "+data[0].ward+"</b>"
         +"<br>แพทย์เจ้าของไข้ : "+data[0].doctor_name+"<br>ผู้บันทึกการประเมิน SMI-V : "+data[0].recorder
-        +"<br>เหตุผล(ผู้ประเมิน) : "+data[0].comment+"<br>เหตุผล(ผู้ยืนยัน) : "+data[0].confirm_comment+"<br>ประเภท SMI-V : <br><b id='smiv-detial'></b></span>"
-        +"</div><br>")
-            );
-            patient_photo('','../',data[0].hn,data[0].an,'#pics-panel');
+        +"<br>เหตุผล(ผู้ประเมิน) : "+data[0].comment+"<br>เหตุผล(ผู้ยืนยัน) : "+data[0].confirm_comment+"<br>สถานะ : <b>"+data[0].smiv_status+"</b><br><b>"+data[0].confirm+"</b><br>ประเภท SMI-V : <br><b id='smiv-detial'></b></label></span></div> "
+        +"<div class='col-lg-6'> <img id='picsEMR-panel' width='230' /></div></div><br>")
+        );
+        $.getJSON('../back/API/check_image.php', { data1: data[0].hn }, function (datai) {
+            if (datai.cc == '') { var img = '../images/person.png' } else { var img = '../back/API/show_image.php?hn=' + data[0].hn; }
+            $("#picsEMR-panel").attr("src", img);
+        });
         if (data[0].smi1_1 != '') { $("#smiv-detial").append("1.1 "+data[0].smi1_1 + "<br>") }
         if (data[0].smi1_2 != '') { $("#smiv-detial").append("1.2 "+data[0].smi1_2 + "<br>") }
         if (data[0].smi1_3 != '') { $("#smiv-detial").append("1.3 "+data[0].smi1_3 + "<br>") }
@@ -80,46 +87,19 @@ function IPDSmiV(content, id = null) {
         if (data[0].smi5_3 != '') { $("#smiv-detial").append("5.3 "+data[0].smi5_3 + "<br>") }
         if (data[0].smi5_4 != '') { $("#smiv-detial").append("5.4 "+data[0].smi5_4 + "<br>") }
         
+        $("#vdate").empty().append($("<b>วันที่บันทึกการประเมิน</b> <div class='row list-group' id='vdate_list'></div>"))  
+        console.log(data[0].hn);
+        $.getJSON('../back/API/vsdate_Data.php', { data: data[0].hn }, function (data) { 
+            $("div#vdate_list").empty();
+            $.each(data, function (i, item) {
+                $("div#vdate_list").append($("<a href='#' id='li_vdate" + i + "' class='list-group-item list-group-item-action list-group-item-secondary'><b>" + data[i].recdate + "</b> <b style='font-size:13px'>" + data[i].rectime + " น.</b><br><b style='font-size:10px'>( " + data[i].smiv_status + " )</b></a>")
+                )
+                //if (item.an) { $("#li_vdate" + i).attr("style", "color: red"); }
+                $("#li_vdate" + i).click(function () { 
+                    AddDataSMIVDe("detail_IPDSMIVpatientAPI.php", item.vn);
+                })
+            });
+        });
 
-$("#cgi-post").append($("<input type='hidden' name='hn' value='"+data[0].hn+"'>")
-    ,$("<input type='hidden' name='tB_id' value='"+data[0].tB_id+"'>")
-    ,$("<input type='hidden' name='vn' value='"+idvn.data+"'>")
-    //,$("<input type='hidden' name='vstdate' value='"+$.cookie("vstdate")+"'>")
-    ,$("<input type='hidden' name='user' value='"+$.cookie("user")+"'>")
-    ,$("<input type='hidden' name='method' value='confirm_MR'>"));    
-    
-    $("#frmMR").on('submit', (function (e) {
-        e.preventDefault();
-        var dataForm = new FormData(this);
-        // console.log(dataForm)
-        // for (var value of dataForm.values()) {
-        //     console.log(value);
-        // }
-        var settings = {
-            type: "POST",
-            url: "../back/API/"+process,
-            async: true,
-            crossDomain: true,
-            data: dataForm,
-            contentType: false,
-            cache: false,
-            processData: false
-        }
-        console.log(dataForm);
-        $.ajax(settings).done(function (result) {
-            if(result.check=='N'){
-                alert(result.messege);
-                $("#page-content").empty();
-                TBMtrixRegis('#page-content');
-            }else if(result.check=='Y'){
-                $("#page-content").empty();
-                popup('JScontent/MR_Regis.html?vn='+idvn.data, popup, 710, 520);
-                TBMtrixRegis('#page-content');
-            }
-            
-        })
-    }));
-});            
-
-    
+})
 }

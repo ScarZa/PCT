@@ -22,7 +22,7 @@ inner join jvlphy_regis ph on ph.hn=p.hn
 inner join opduser o on o.doctorcode = ph.doctor
 inner join clinic_member_status cs on cs.clinic_member_status_id=ph.phy_status
 inner join jvl_transferBox tb on tb.hn = ph.hn
-inner join an_stat a on a.vn = tb.vn
+inner join an_stat a on a.hn = tb.hn and a.vn = tb.vn
 inner join ward w on w.ward = a.ward
 where tb.dep_res = '006' and tb.status='Y'
 GROUP BY ph.hn

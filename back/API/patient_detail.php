@@ -35,7 +35,7 @@ $sql="SELECT (SELECT count(a.an) from an_stat a WHERE a.hn = '".$rslt0['hn']."')
 ,p.hometel,p.informtel
 ,oc.pmh,oc.cc,oc.hpi,i.regdate,SUBSTR(i.regtime,1,5)regtime,doc.name as doctorname,a.pdx,a.dx0,a.dx1,a.dx2,a.dx3,a.dx4
 ,IF(a.lastvisit ='999', 'ไม่เคยรับการ admit', a.lastvisit)lastvisit
-,er.relative,er.police_name,er.weapon_chk,er.weapon,er.weaponer_chk,er.weaponer,er.detain_chk,er.detain,er.typeP_1,er.typeP_2,er.typeP_3,er.typeP_4
+,er.relative,er.agency,er.police_name,er.weapon_chk,er.weapon,er.weaponer_chk,er.weaponer,er.detain_chk,er.detain,er.typeP_1,er.typeP_2,er.typeP_3,er.typeP_4
 ,er.typeP_5,er.typeP_6,er.typeP_7,er.smi4_chk,er.smi4_1,er.smi4_2,er.smi4_3,er.smi4_4,er.lawpsych_chk,er.lawpsych
 ,er.sleep_chk,er.sleep,er.IC_chk,er.IC,er.med_chk,er.med,er.accident_chk,er.accident,er.wound_chk,er.wound,er.surgery_chk,er.surgery
 ,er.cigarette_chk,er.D_cigarette,er.last_useC,er.alcohol_chk,er.alcohol_type,er.alcohol_vol,er.last_useA,er.dope_chk,er.dope_type,last_useD
@@ -120,6 +120,7 @@ $conv=new convers_encode();
     $series['dx4'] = $rslt['dx4'];
     $series['lastvisit'] = $rslt['lastvisit'];
     $series['relative'] = isset($rslt['relative'])?$conv->tis620_to_utf8($rslt['relative']):'';
+    $series['agency'] = isset($rslt['agency'])?$rslt['agency']:'';
     $series['police_name'] = isset($rslt['police_name'])?$conv->tis620_to_utf8($rslt['police_name']):'';
     $series['weapon_chk'] = $rslt['weapon_chk'];
     $series['weapon'] = isset($rslt['weapon'])?$conv->tis620_to_utf8($rslt['weapon']):'';

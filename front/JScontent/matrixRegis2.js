@@ -57,7 +57,7 @@ function MatrixRegis2(content, id = null) {
                                        $("select#begin_year").empty().append(option2);
                                        $(".select2").select2();
         selectMash("#m_status","member_status_data.php","เลือกสถานะ");
-        selectMash("#doctor","clinic_data.php?data=009","เลือกผู้รับผิดชอบ");
+        selectMash("#doctor","clinic_data.php?data=009&data2=005","เลือกผู้รับผิดชอบ");
 
 
 $("#cgi-post").append($("<input type='hidden' name='hn' value='"+data[0].hn+"'>")

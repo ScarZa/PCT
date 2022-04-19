@@ -546,6 +546,13 @@ function InterviewIPD(content, id = null, url = '../', recorder = null,process =
                 $("div#smi4_group").show();
             } else { $("div#smi4_group").hide(); }
         });
+        if (data[0].agency == '2') { $("input[type=radio][name=admit_type][value=2]").attr("checked", "checked"); }
+        else if (data[0].agency == '3') { $("input[type=radio][name=admit_type][value=3]").attr("checked", "checked"); }
+        else if (data[0].agency == '4') { $("input[type=radio][name=admit_type][value=4]").attr("checked", "checked"); }
+        else if (data[0].agency == '5') { $("input[type=radio][name=admit_type][value=5]").attr("checked", "checked"); }
+        else if (data[0].agency == '6') { $("input[type=radio][name=admit_type][value=6]").attr("checked", "checked"); }
+        else if (data[0].agency == '7') { $("input[type=radio][name=admit_type][value=7]").attr("checked", "checked"); }
+        else { $("input[type=radio][name=admit_type][value=1]").attr("checked", "checked"); }
         ///////// End ER Zone ///////////
         $("input[type=radio][name=Hurt_yourself_chk]").click(function () {
             if ($("input[type=radio][name=Hurt_yourself_chk]:checked").val() == 'Y') { console.log("1234")

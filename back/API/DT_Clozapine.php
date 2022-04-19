@@ -16,7 +16,7 @@ $rslt = array();
 $series = array();
 $sql="SELECT cp.cozapine_id,cp.hn,cp.regdate,concat(p.pname,p.fname,' ',p.lname) as fullname,w.name as ward
 FROM an_stat a
-right outer join jvl_clozapine cp on a.vn = cp.vn
+right outer join jvl_clozapine cp on a.hn = cp.hn and a.vn = cp.vn
 left outer join ward w on w.ward = a.ward
 inner join patient p on cp.hn=p.hn"; 
 $conn_DB->imp_sql($sql);
